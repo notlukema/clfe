@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\win">
-      <UniqueIdentifier>{aa0fb07d-3e1a-416e-909c-c8655d19b781}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\win">
       <UniqueIdentifier>{a8aecb72-5ee1-4857-bccb-08e5827ce7cd}</UniqueIdentifier>
     </Filter>
@@ -24,13 +21,22 @@
     <ClCompile Include="Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cle\Window.cpp">
-      <Filter>Source Files\win</Filter>
+    <ClCompile Include="cle\window\WndWindow.cpp">
+      <Filter>Header Files\win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cle\Window.h">
       <Filter>Header Files\win</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\WindowManager.h">
+      <Filter>Header Files\win</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\CLE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\window\WndWindow.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,23 +2,32 @@
 #define CLE_WINDOW_H
 
 #include <string>
-#include <windows.h>
 
 namespace cle {
 	class Window {
+	private:
 	protected:
-		HWND hwnd;
 		int x, y, width, height;
 		bool active;
 	public:
-		static const WCHAR* toWChar(const CHAR* str);
+		/*
 		Window(int x, int y, int width, int height, std::string name);
 		Window(int x, int y, int width, int height, std::wstring name);
 		Window(int x, int y, int width, int height, const CHAR* name);
 		Window(int x, int y, int width, int height, const WCHAR* name);
-		HWND gethwnd() const;
-		bool isActive() const;
+		*/
+
+		bool isActive() const {
+			return active;
+		}
+
+		// create destructor to free items such as the name
 	};
 }
+
+#if defined(_WIN32) || defined(_WIN64)
+// Make sure Window class is defined beforehand
+#include "window/WndWindow.h"
+#endif
 
 #endif

@@ -126,10 +126,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
-    <ClCompile Include="cle\Window.cpp" />
+    <ClCompile Include="cle\window\WndWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cle\CLE.h" />
     <ClInclude Include="cle\Window.h" />
+    <ClInclude Include="cle\WindowManager.h" />
+    <ClInclude Include="cle\window\WndWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

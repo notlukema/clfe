@@ -1,5 +1,5 @@
 * linguist-vendored
-src/*.cpp linguist-vendored=false
+Base/*.cpp linguist-vendored=false
 
 ###############################################################################
 # Set default behavior to automatically normalize line endings.

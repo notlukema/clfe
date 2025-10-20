@@ -1,12 +1,31 @@
-#if defined(_WIN32) || defined(_WIN64)
-// Windows specific code definition for Window.h
-
 #include "WndWindow.h"
 
 #include <cstdlib>
 #include <iostream>
+#include "../utils/StringUtils.h"
 
 namespace cle {
+	LRESULT CALLBACK WndWindow::WndProcWrapper(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+		WndWindow* window;
+		if (uMsg == WM_NCCREATE) {
+			// Retrieve pointer to wrapper class from additional application data
+			CREATESTRUCT* createStruct = (CREATESTRUCT*)lParam;
+			window = (WndWindow*)createStruct->lpCreateParams;
+
+			// Store pointer to wrapper class in window's user data
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
+		}
+		else {
+			// Retrieve pointer to wrapper class from window's user data
+			window = (WndWindow*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		}
+		if (window) {
+			return window->WndProc(hwnd, uMsg, wParam, lParam);
+		}
+		else { // Shouldn't happen
+			return DefWindowProc(hwnd, uMsg, wParam, lParam);
+		}
+	}
 	LRESULT CALLBACK WndWindow::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		switch (uMsg) {
 		case WM_DESTROY:
@@ -16,30 +35,23 @@ namespace cle {
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);
 	}
 
-	WndWindow::WndWindow(int x, int y, int width, int height, std::string name) {
-		WndWindow(x, y, width, height, toWChar(name.c_str()));
+	const WCHAR* WndWindow::GenClassName(long id) {
+		return toWChar("CLE:" + id);
 	}
 
-	WndWindow::WndWindow(int x, int y, int width, int height, std::wstring name) {
-		WndWindow(x, y, width, height, name.c_str());
-	}
+	// Less complicated instance data
 
-	WndWindow::WndWindow(int x, int y, int width, int height, const CHAR* name) {
-		WndWindow(x, y, width, height, toWChar(name));
-	}
-
-	WndWindow::WndWindow(int x, int y, int width, int height, const WCHAR* name) {
+	WndWindow::WndWindow(int x, int y, int width, int height, const CHAR* name, long id) : Window(id) {
 		HINSTANCE hInstance = GetModuleHandle(NULL);
+		const WCHAR* nameW = toWChar(name);
 
-		// Note: create function to generate window class names
-		//const WCHAR CLASS_NAME[] = L"Sample Window Class";
-		const WCHAR* CLASS_NAME = toWChar(std::to_string(rand() % 100).c_str());
-		std::wcout << L"Regsitering class: " << CLASS_NAME << std::endl;
+		className = GenClassName(id);
+		std::wcout << L"Registering class: " << className << std::endl;
 
 		WNDCLASS wc = { };
 		wc.lpfnWndProc = WndProcWrapper;
 		wc.hInstance = hInstance;
-		wc.lpszClassName = CLASS_NAME;
+		wc.lpszClassName = className;
 
 		ATOM atom = RegisterClass(&wc);
 		if (atom == 0) {
@@ -50,13 +62,12 @@ namespace cle {
 
 		// Create the window.
 
-		hwnd = CreateWindowEx(
-			0,                              // Optional window styles.
-			CLASS_NAME,                     // Window class
-			name,                           // Window text
-			WS_OVERLAPPEDWINDOW,            // Window style
+		hwnd_ = CreateWindowEx(
+			0,
+			className,
+			nameW,
+			WS_OVERLAPPEDWINDOW,
 
-			// Size and position
 			x, y, width, height,
 
 			NULL,       // Parent window    
@@ -65,19 +76,50 @@ namespace cle {
 			this        // Store current instance in user data
 		);
 
-		if (hwnd == NULL)
+		if (hwnd_ == NULL)
 		{
 			DWORD errorCode = GetLastError();
 			std::wcerr << L"CreateWindowEx failed with error code: " << errorCode << std::endl;
 			return;
 		}
 
-		ShowWindow(hwnd, SW_SHOWNORMAL);
+		ShowWindow(hwnd_, SW_SHOWNORMAL);
 	}
 
-	HWND WndWindow::gethwnd() const {
-		return WndWindow::hwnd;
+	bool WndWindow::isVisible() const {
+		return true;
 	}
+
+	const char* WndWindow::name() const {
+		return "";
+	}
+
+	void WndWindow::x(int x) {
+
+	}
+
+	void WndWindow::y(int y) {
+
+	}
+
+	void WndWindow::width(int width) {
+
+	}
+
+	void WndWindow::height(int height) {
+
+	}
+
+	void WndWindow::show() {
+		ShowWindow(hwnd_, SW_SHOW);
+	}
+
+	void WndWindow::hide() {
+		ShowWindow(hwnd_, SW_HIDE);
+	}
+
+	WndWindow::~WndWindow() {
+
+	}
+
 }
-
-#endif

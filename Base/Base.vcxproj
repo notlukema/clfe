@@ -126,10 +126,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
+    <ClCompile Include="cle\Errors.cpp" />
+    <ClCompile Include="cle\Window.cpp" />
     <ClCompile Include="cle\window\WndWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cle\CLE.h" />
+    <ClInclude Include="cle\CrossPlatform.h" />
+    <ClInclude Include="cle\Errors.h" />
+    <ClInclude Include="cle\utils\StringUtils.h" />
     <ClInclude Include="cle\Window.h" />
     <ClInclude Include="cle\WindowManager.h" />
     <ClInclude Include="cle\window\WndWindow.h" />

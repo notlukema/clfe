@@ -24,6 +24,12 @@
     <ClCompile Include="cle\window\WndWindow.cpp">
       <Filter>Header Files\win</Filter>
     </ClCompile>
+    <ClCompile Include="cle\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cle\Errors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cle\Window.h">
@@ -36,6 +42,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cle\window\WndWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\CrossPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\utils\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\Errors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

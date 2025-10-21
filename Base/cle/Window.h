@@ -17,7 +17,7 @@ namespace cle {
 
 	public:
 		Window(long id) : id_(id) {
-			logID(this);
+			windows.insert({ id, this });
 		}
 
 		long id() const {
@@ -54,7 +54,9 @@ namespace cle {
 		virtual void show() = 0;
 		virtual void hide() = 0;
 
-		virtual ~Window() = 0;
+		virtual ~Window() {
+			windows.erase(id_);
+		}
 
 	private: // Static methods
 		static std::map<long, Window*> windows;
@@ -69,10 +71,6 @@ namespace cle {
 			return (long)rand();
 		}
 
-		static void logID(Window* window) {
-			windows.insert({ window->id(), window });
-		}
-
 		static Window* findWindow(long id) {
 			auto it = windows.find(id);
 			if (it != windows.end()) {
@@ -82,16 +80,10 @@ namespace cle {
 		}
 	};
 
-	inline Window* cleCreateWindowTrue(int x, int y, int width, int height, const char* name, long id);
+	Window* cleCreateWindowTrue(int x, int y, int width, int height, const char* name, long id);
 
-	inline Window* cleCreateWindow(int x, int y, int width, int height, std::string name) {
-		return cleCreateWindowTrue(x, y, width, height, name.c_str(), Window::genID());
-	}
-
-	inline Window* cleCreateWindow(int x, int y, int width, int height, const char* name) {
-		return cleCreateWindowTrue(x, y, width, height, name, Window::genID());
-	}
-
+	Window* cleCreateWindow(int x, int y, int width, int height, std::string name);
+	Window* cleCreateWindow(int x, int y, int width, int height, const char* name);
 	// TODO: Add creation functions for wide strings
 }
 

@@ -12,6 +12,8 @@ int main()
     cle::Window* w = cle::cleCreateWindow(WDEFAULT, WDEFAULT, 600, 600, "ting");
     cle::Window* w2 = cle::cleCreateWindow(800, 500, 700, 150, "window number 2");
 
+	std::cout << "TEST windows name: " << w->name() << ", " << w2->name() << "\n";
+
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {

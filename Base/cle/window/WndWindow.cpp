@@ -36,7 +36,9 @@ namespace cle {
 	}
 
 	const WCHAR* WndWindow::GenClassName(long id) {
-		return toWChar("CLE:" + id);
+		// temporary
+		std::string a = "CLE:" + std::to_string(id);
+		return toWChar(a.c_str());
 	}
 
 	// Less complicated instance data
@@ -53,8 +55,8 @@ namespace cle {
 		wc.hInstance = hInstance;
 		wc.lpszClassName = className;
 
-		ATOM atom = RegisterClass(&wc);
-		if (atom == 0) {
+		class_ = RegisterClass(&wc);
+		if (class_ == 0) {
 			DWORD error = GetLastError();
 			printf("Error registering class: %lu\n", error);
 			return; // For now. I will set up a different class registertion system later.
@@ -64,7 +66,7 @@ namespace cle {
 
 		hwnd_ = CreateWindowEx(
 			0,
-			className,
+			MAKEINTATOM(class_),
 			nameW,
 			WS_OVERLAPPEDWINDOW,
 
@@ -91,6 +93,12 @@ namespace cle {
 	}
 
 	const char* WndWindow::name() const {
+		int len = GetWindowTextLengthA(hwnd_);
+		if (len > 0) {
+			char* buffer = new char[len + 1];
+			GetWindowTextA(hwnd_, buffer, len + 1);
+			return buffer;
+		}
 		return "";
 	}
 
@@ -119,7 +127,8 @@ namespace cle {
 	}
 
 	WndWindow::~WndWindow() {
-
+		DestroyWindow(hwnd_);
+		UnregisterClassW(MAKEINTATOM(class_), GetModuleHandle(NULL));
 	}
 
 }

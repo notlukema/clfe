@@ -15,6 +15,7 @@ namespace cle {
 	protected:
 		const WCHAR* className;
 		HWND hwnd_;
+		ATOM class_;
 
 	public:
 		LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

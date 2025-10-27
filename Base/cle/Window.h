@@ -7,14 +7,15 @@
 #include <map>
 
 namespace cle {
+	class WindowHints {
+
+	};
+
 	class Window {
 	private:
 		const long id_;
 
 	protected:
-		bool active_;
-		int x_, y_, width_, height_;
-
 	public:
 		Window(long id) : id_(id) {
 			windows.insert({ id, this });
@@ -24,33 +25,21 @@ namespace cle {
 			return id_;
 		}
 
-		bool isActive() const {
-			return active_;
-		}
-
+		virtual bool isActive() const = 0;
 		virtual bool isVisible() const = 0;
 		virtual const char* name() const = 0;
+		virtual const wchar_t* wname() const = 0;
 
-		int x() const {
-			return x_;
-		}
-
-		int y() const {
-			return y_;
-		}
-
-		int width() const {
-			return width_;
-		}
-
-		int height() const {
-			return height_;
-		}
+		virtual int x() const = 0;
+		virtual int y() const = 0;
+		virtual int width() const = 0;
+		virtual int height() const = 0;
 
 		virtual void x(int x) = 0;
 		virtual void y(int y) = 0;
 		virtual void width(int width) = 0;
 		virtual void height(int height) = 0;
+
 		virtual void show() = 0;
 		virtual void hide() = 0;
 
@@ -62,9 +51,8 @@ namespace cle {
 		static std::map<long, Window*> windows;
 
 	public:
-		static void init() {
-			windows = std::map<long, Window*>();
-		}
+		static void init();
+		static void terminate();
 
 		static long genID() {
 			// Placeholder

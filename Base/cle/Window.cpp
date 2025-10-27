@@ -5,6 +5,20 @@
 namespace cle {
 	std::map<long, cle::Window*> Window::windows;
 
+	void Window::init() {
+		windows = std::map<long, Window*>();
+
+#ifdef CLE_WND
+		// hit the wndwindow with init for windows-specific initiliazation
+#endif
+
+	}
+
+	void Window::terminate() {
+		// delete wndwindow instance if cle_wnd
+		windows.clear();
+	}
+
 	Window* cleCreateWindowTrue(int x, int y, int width, int height, const char* name, long id) {
 #ifdef CLE_WND
 		return new cle::WndWindow(x, y, width, height, name, id);

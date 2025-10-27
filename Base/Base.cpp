@@ -17,8 +17,11 @@ int main()
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
+
         TranslateMessage(&msg); // Translates virtual-key messages into character messages
         DispatchMessage(&msg);  // Dispatches the message to the window procedure
+
+        std::cout << "Data- x:" << w->x() << " y:" << w->y() << " width:" << w->width() << " height:" << w-> height() << "\n";
     }
     return (int)msg.wParam;
 }

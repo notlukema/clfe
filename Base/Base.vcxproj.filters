@@ -35,9 +35,6 @@
     <ClInclude Include="cle\Window.h">
       <Filter>Header Files\win</Filter>
     </ClInclude>
-    <ClInclude Include="cle\WindowManager.h">
-      <Filter>Header Files\win</Filter>
-    </ClInclude>
     <ClInclude Include="cle\CLE.h">
       <Filter>Header Files</Filter>
     </ClInclude>

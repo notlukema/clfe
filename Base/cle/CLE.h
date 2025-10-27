@@ -16,6 +16,19 @@ namespace cle {
 		cle::Window::init();
 #endif
 	}
+
+	void terminate() {
+#ifdef CLE_WINDOW_H
+		cle::Window::terminate();
+#endif
+	}
+
+	void update() {
+		// Maybe implement a threading system later on
+#ifdef CLE_WINDOW_H
+		// update
+#endif
+	}
 }
 
 #endif

@@ -31,6 +31,8 @@ namespace cle {
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			return 0;
+		case 0:
+			return 0;
 		}
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);
 	}
@@ -43,15 +45,17 @@ namespace cle {
 
 	// Less complicated instance data
 
-	WndWindow::WndWindow(int x, int y, int width, int height, const CHAR* name, long id) : Window(id) {
+	WndWindow::WndWindow(int x, int y, int width, int height, const CHAR* name, long id, WNDPROC wndproc) : Window(id) {
 		HINSTANCE hInstance = GetModuleHandle(NULL);
 		const WCHAR* nameW = toWChar(name);
+
+		active_ = false;
 
 		className = GenClassName(id);
 		std::wcout << L"Registering class: " << className << std::endl;
 
 		WNDCLASS wc = { };
-		wc.lpfnWndProc = WndProcWrapper;
+		wc.lpfnWndProc = wndproc;
 		wc.hInstance = hInstance;
 		wc.lpszClassName = className;
 
@@ -85,11 +89,16 @@ namespace cle {
 			return;
 		}
 
+		active_ = true;
 		ShowWindow(hwnd_, SW_SHOWNORMAL);
 	}
 
+	bool WndWindow::isActive() const {
+		return active_;
+	}
+
 	bool WndWindow::isVisible() const {
-		return true;
+		return IsWindowVisible(hwnd_);
 	}
 
 	const char* WndWindow::name() const {
@@ -102,8 +111,42 @@ namespace cle {
 		return "";
 	}
 
-	void WndWindow::x(int x) {
+	const wchar_t* WndWindow::wname() const {
+		int len = GetWindowTextLengthW(hwnd_);
+		if (len > 0) {
+			wchar_t* buffer = new wchar_t[len + 1];
+			GetWindowTextW(hwnd_, buffer, len + 1);
+			return buffer;
+		}
+		return L"";
+	}
 
+
+	int WndWindow::x() const {
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.left;
+	}
+
+	int WndWindow::y() const {
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.top;
+	}
+
+	int WndWindow::width() const {
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.right - rect.left;
+	}
+
+	int WndWindow::height() const {
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.bottom - rect.top;
+	}
+
+	void WndWindow::x(int x) {
 	}
 
 	void WndWindow::y(int y) {
@@ -115,7 +158,6 @@ namespace cle {
 	}
 
 	void WndWindow::height(int height) {
-
 	}
 
 	void WndWindow::show() {
@@ -127,6 +169,7 @@ namespace cle {
 	}
 
 	WndWindow::~WndWindow() {
+		active_ = false;
 		DestroyWindow(hwnd_);
 		UnregisterClassW(MAKEINTATOM(class_), GetModuleHandle(NULL));
 	}

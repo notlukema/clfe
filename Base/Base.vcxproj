@@ -136,7 +136,6 @@
     <ClInclude Include="cle\Errors.h" />
     <ClInclude Include="cle\utils\StringUtils.h" />
     <ClInclude Include="cle\Window.h" />
-    <ClInclude Include="cle\WindowManager.h" />
     <ClInclude Include="cle\window\WndWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

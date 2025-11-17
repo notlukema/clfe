@@ -1,9 +1,9 @@
-#ifndef CLFE_CLF_H
-#define CLFE_CLF_H
+#ifndef CLFE_CLFE_H
+#define CLFE_CLFE_H
 
-namespace clf
+namespace clfe
 {
-	class CLF
+	class CLFE
 	{
 	public:
 		bool init();

@@ -3,4 +3,13 @@
 
 #include "../clu/Mathf.h"
 
+namespace clf
+{
+	class System
+	{
+	public:
+
+	};
+}
+
 #endif

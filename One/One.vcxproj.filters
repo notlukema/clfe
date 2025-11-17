@@ -18,27 +18,18 @@
     <ClCompile Include="One.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clu\Mathf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clf\CLF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cle\CLE.cpp">
+    <ClCompile Include="clfe\CLFE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clf\System.h">
+    <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\CLF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cle\CLE.h">
+    <ClInclude Include="clfe\CLFE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

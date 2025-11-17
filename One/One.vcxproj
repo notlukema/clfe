@@ -24,6 +24,7 @@
     <ProjectGuid>{73abf471-f17a-4110-9f9e-27f7a6939d02}</ProjectGuid>
     <RootNamespace>One</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Two</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,15 +124,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cle\CLE.cpp" />
-    <ClCompile Include="clf\CLF.cpp" />
-    <ClCompile Include="clu\Mathf.cpp" />
+    <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="One.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cle\CLE.h" />
-    <ClInclude Include="clf\CLF.h" />
-    <ClInclude Include="clf\System.h" />
+    <ClInclude Include="clfe\CLFE.h" />
+    <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clu\Mathf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

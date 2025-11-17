@@ -8,7 +8,7 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    std::cout << asin(1.1f);
+	clu::Mathf::fastSin(4.0f);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

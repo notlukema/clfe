@@ -13,16 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\glad">
-      <UniqueIdentifier>{3a1f3861-2d50-4b1a-918e-62b5435a1bdd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Thing.cpp">
+    <ClCompile Include="One.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad-4.6-core-allext\glad.c">
-      <Filter>Source Files\glad</Filter>
+    <ClCompile Include="clu\Mathf.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clf\CLF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cle\CLE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clf\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\Mathf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\CLF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cle\CLE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

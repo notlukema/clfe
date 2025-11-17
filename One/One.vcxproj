@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0b0430d9-b227-4b39-90cc-651fad5fd6dc}</ProjectGuid>
-    <RootNamespace>Thing</RootNamespace>
+    <ProjectGuid>{73abf471-f17a-4110-9f9e-27f7a6939d02}</ProjectGuid>
+    <RootNamespace>One</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -102,13 +102,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\896660\.code\vs\Project\Thing\glad-4.6-core-allext;C:\Users\896660\.lib\cpp\glm-1.0.1-light;C:\Users\896660\.lib\cpp\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\896660\.lib\cpp\glfw-3.4.bin.WIN64\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -126,8 +123,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad-4.6-core-allext\glad.c" />
-    <ClCompile Include="Thing.cpp" />
+    <ClCompile Include="cle\CLE.cpp" />
+    <ClCompile Include="clf\CLF.cpp" />
+    <ClCompile Include="clu\Mathf.cpp" />
+    <ClCompile Include="One.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cle\CLE.h" />
+    <ClInclude Include="clf\CLF.h" />
+    <ClInclude Include="clf\System.h" />
+    <ClInclude Include="clu\Mathf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

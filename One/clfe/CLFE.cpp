@@ -2,15 +2,17 @@
 
 namespace clfe
 {
-	bool CLFE::init()
+	bool init()
 	{
 		return true;
 	}
-	bool CLFE::step()
+
+	bool step()
 	{
 		return true;
 	}
-	void CLFE::terminate()
+
+	void terminate()
 	{
 	}
 

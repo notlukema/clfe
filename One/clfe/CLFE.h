@@ -3,14 +3,10 @@
 
 namespace clfe
 {
-	class CLFE
-	{
-	public:
-		bool init();
-		bool step();
-		void terminate();
+	bool init();
+	bool step();
+	void terminate();
 
-	};
 }
 
 #endif

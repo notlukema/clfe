@@ -15,10 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="One.cpp">
+    <ClCompile Include="Two.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\CLFE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clf\window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clf\window\WinWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,10 +35,28 @@
     <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clu\Mathf.h">
+    <ClInclude Include="clu\math\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CLFE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\window\WinWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CrossPlatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

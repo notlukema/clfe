@@ -1,7 +1,10 @@
 #ifndef CLFE_SYSTEM_H
 #define CLFE_SYSTEM_H
 
-#include "../clu/Mathf.h"
+#include "CrossPlatform.h"
+#include "Error.h"
+
+#include "../clu/math/Mathf.h"
 
 namespace clf
 {

@@ -125,12 +125,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\CLFE.cpp" />
-    <ClCompile Include="One.cpp" />
+    <ClCompile Include="clf\window\Window.cpp" />
+    <ClCompile Include="clf\window\WinWnd.cpp" />
+    <ClCompile Include="clu\StringUtils.cpp" />
+    <ClCompile Include="Two.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\CLFE.h" />
+    <ClInclude Include="clfe\CrossPlatform.h" />
+    <ClInclude Include="clfe\Error.h" />
     <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clu\Mathf.h" />
+    <ClInclude Include="clf\window\Window.h" />
+    <ClInclude Include="clf\window\WinWnd.h" />
+    <ClInclude Include="clu\math\Mathf.h" />
+    <ClInclude Include="clu\StringUtils.h" />
+    <ClInclude Include="stb\stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

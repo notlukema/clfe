@@ -2,13 +2,30 @@
 //
 
 #include <iostream>
-#include "clf/System.h"
+#include "clfe/System.h"
+#include "clf/window/Window.h"
+
+#include "clfe/CLFE.h"
+
+using namespace clfe;
 
 int main()
 {
     std::cout << "Hello World!\n";
 
-	clu::Mathf::fastSin(4.0f);
+    if (!clfe::init()) {
+        return -1;
+    }
+
+    Window* wnd1 = createWindow("thing");
+
+    while (wnd1->exists())
+    {
+        clfe::step();
+    }
+
+    clfe::terminate();
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

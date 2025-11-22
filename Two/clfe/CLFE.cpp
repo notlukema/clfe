@@ -2,6 +2,7 @@
 
 namespace clfe
 {
+
 	bool init()
 	{
 		return true;

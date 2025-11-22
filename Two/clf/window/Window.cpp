@@ -2,6 +2,7 @@
 
 namespace clfe
 {
+
 	Window* createWindow(int x, int y, int width, int height, const char* name) {
 
 	}

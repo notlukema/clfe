@@ -8,11 +8,13 @@
 
 namespace clf
 {
+
 	class System
 	{
 	public:
 
 	};
+
 }
 
 #endif

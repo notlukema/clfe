@@ -5,6 +5,7 @@
 
 namespace clfe
 {
+
 	class WinWnd : public Window
 	{
 	private:

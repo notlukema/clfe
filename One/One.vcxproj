@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{73abf471-f17a-4110-9f9e-27f7a6939d02}</ProjectGuid>
-    <RootNamespace>One</RootNamespace>
+    <ProjectGuid>{1fe169dd-4557-48b4-aa46-26c714483e2a}</ProjectGuid>
+    <RootNamespace>Base</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Two</ProjectName>
+    <ProjectName>One</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,6 +103,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,22 +126,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="clfe\CLFE.cpp" />
-    <ClCompile Include="clf\window\Window.cpp" />
-    <ClCompile Include="clf\window\WinWnd.cpp" />
-    <ClCompile Include="clu\StringUtils.cpp" />
-    <ClCompile Include="Two.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="cle\Errors.cpp" />
+    <ClCompile Include="cle\Window.cpp" />
+    <ClCompile Include="cle\window\WndWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clfe\CLFE.h" />
-    <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\Error.h" />
-    <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clf\window\Window.h" />
-    <ClInclude Include="clf\window\WinWnd.h" />
-    <ClInclude Include="clu\math\Mathf.h" />
-    <ClInclude Include="clu\StringUtils.h" />
-    <ClInclude Include="stb\stb_image.h" />
+    <ClInclude Include="cle\CLE.h" />
+    <ClInclude Include="cle\CrossPlatform.h" />
+    <ClInclude Include="cle\Errors.h" />
+    <ClInclude Include="cle\utils\StringUtils.h" />
+    <ClInclude Include="cle\Window.h" />
+    <ClInclude Include="cle\window\WndWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

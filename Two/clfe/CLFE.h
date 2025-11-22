@@ -3,6 +3,7 @@
 
 namespace clfe
 {
+
 	bool init();
 	bool step();
 	void terminate();

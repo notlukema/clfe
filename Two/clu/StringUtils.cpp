@@ -10,6 +10,7 @@
 
 namespace clu
 {
+
 	const wchar_t* toWideString(const char* str)
 	{
 		// Obtain required size of new wide string

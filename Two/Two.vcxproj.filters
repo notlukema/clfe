@@ -13,41 +13,56 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\win">
-      <UniqueIdentifier>{a8aecb72-5ee1-4857-bccb-08e5827ce7cd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Base.cpp">
+    <ClCompile Include="Two.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cle\window\WndWindow.cpp">
-      <Filter>Header Files\win</Filter>
-    </ClCompile>
-    <ClCompile Include="cle\Window.cpp">
+    <ClCompile Include="clfe\CLFE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cle\Errors.cpp">
+    <ClCompile Include="clu\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clf\window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clf\window\WinWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cle\Window.h">
-      <Filter>Header Files\win</Filter>
-    </ClInclude>
-    <ClInclude Include="cle\CLE.h">
+    <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cle\window\WndWindow.h">
+    <ClInclude Include="clu\math\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cle\CrossPlatform.h">
+    <ClInclude Include="clfe\CLFE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cle\utils\StringUtils.h">
+    <ClInclude Include="stb\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cle\Errors.h">
+    <ClInclude Include="clf\window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\window\WinWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CrossPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\benchmarking\Benchmark.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

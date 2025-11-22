@@ -6,6 +6,7 @@
 
 namespace clfe
 {
+
 	static const int WND_DEFAULT = -1; // Any negative (invalid) parameters will be treated as default values
 
 	class Window

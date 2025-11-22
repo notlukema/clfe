@@ -5,6 +5,7 @@
 
 namespace cle
 {
+
 	void inline logError(const char* message)
 	{
 		// For now, just print to console

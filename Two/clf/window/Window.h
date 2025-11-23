@@ -3,6 +3,7 @@
 
 // ARTIFACT1: Should already be included by System.h
 #include "../../clfe/CrossPlatform.h"
+//#include "../../clfe/ISteppable.h"
 
 namespace clfe
 {
@@ -12,16 +13,16 @@ namespace clfe
 	class Window
 	{
 	public:
-		Window();
+		Window(); // Remove eventually if not needed
 		virtual ~Window() = 0;
 
-		virtual const bool exists() const = 0;
+		virtual bool exists() const = 0;
 		virtual void destroy() = 0;
 
-		virtual const int getX() const = 0;
-		virtual const int getY() const = 0;
-		virtual const int getWidth() const = 0;
-		virtual const int getHeight() const = 0;
+		virtual int getX() const = 0;
+		virtual int getY() const = 0;
+		virtual int getWidth() const = 0;
+		virtual int getHeight() const = 0;
 
 		virtual void setX(int x) = 0;
 		virtual void setY(int y) = 0;
@@ -31,7 +32,7 @@ namespace clfe
 		virtual void show() = 0;
 		virtual void hide() = 0;
 		virtual void setVisible(bool visible) = 0;
-		virtual const bool isVisible() = 0;
+		virtual bool isVisible() = 0;
 
 		inline const char* const getName()
 		{
@@ -47,6 +48,9 @@ namespace clfe
 		// Icons, cursors, fullscreen, borderless, resizable, etc.
 	};
 
+	Window* createWindow(int x, int y, int width, int height, const char* name);
+	Window* createWindow(int x, int y, int width, int height, const wchar_t* name);
+
 	inline Window* createWindow(const char* name, int x = WND_DEFAULT, int y = WND_DEFAULT, int width = WND_DEFAULT, int height = WND_DEFAULT)
 	{
 		return createWindow(x, y, width, height, name);
@@ -56,9 +60,6 @@ namespace clfe
 	{
 		return createWindow(x, y, width, height, name);
 	}
-
-	Window* createWindow(int x, int y, int width, int height, const char* name);
-	Window* createWindow(int x, int y, int width, int height, const wchar_t* name);
 
 }
 

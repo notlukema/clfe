@@ -121,7 +121,7 @@ namespace clu
 	// Fast
 
 	static inline float constexpr fastSinf(float x) {
-		// Hit it later
+		return x;
 	}
 
 	/*

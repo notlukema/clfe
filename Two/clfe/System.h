@@ -3,10 +3,11 @@
 
 #include "CrossPlatform.h"
 #include "Error.h"
+#include "ISteppable.h"
 
 #include "../clu/math/Mathf.h"
 
-namespace clf
+namespace clfe
 {
 
 	class System

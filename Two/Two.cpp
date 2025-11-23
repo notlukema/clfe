@@ -10,15 +10,17 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    if (!clfe::init()) {
+    if (!init()) {
         return -1;
     }
 
     Window* wnd1 = createWindow("thing");
+    Window* wnd2 = createWindow("thing2");
+    Window* wnd3 = createWindow("tig");
 
     while (wnd1->exists())
     {
-        clfe::step();
+        step();
     }
 
     clfe::terminate();

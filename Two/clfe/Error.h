@@ -3,7 +3,7 @@
 
 #include <cstdio>
 
-namespace cle
+namespace clfe
 {
 
 	void inline logError(const char* message)

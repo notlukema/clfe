@@ -124,7 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="clfe\CLFE.cpp" />
+    <ClCompile Include="clf\window\WinClass.cpp" />
     <ClCompile Include="clf\window\Window.cpp" />
     <ClCompile Include="clf\window\WinWnd.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
@@ -135,6 +135,7 @@
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Error.h" />
+    <ClInclude Include="clfe\ISteppable.h" />
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clf\window\Window.h" />
     <ClInclude Include="clf\window\WinWnd.h" />
@@ -142,6 +143,9 @@
     <ClInclude Include="clu\math\Mathf.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="stb\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

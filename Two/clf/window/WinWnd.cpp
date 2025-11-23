@@ -34,6 +34,7 @@ namespace clfe
 
 	void WinWnd::step()
 	{
+		// TODO: consider threading and stuff and also improve algorithm
 		MSG msg;
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
@@ -41,21 +42,49 @@ namespace clfe
 		}
 	}
 
+
+	// Split section
+
+
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name)
+	{
+		const WCHAR* wName = clu::toWideString(name);
+		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
+		delete wName;
+	}
+
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name)
+	{
+		createWindow(x, y, width, height, name, WinClass::getDefaultClass());
+	}
+
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
+	{
+		const WCHAR* wName = clu::toWideString(name);
+		createWindow(x, y, width, height, wName, wClass);
+		delete wName;
+	}
+
 	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
+	{
+		createWindow(x, y, width, height, name, wClass);
+	}
+
+	void WinWnd::createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
 	{
 		HINSTANCE hInstance = GetModuleHandle(NULL);
 
 		// Handle defaults
-		if (x <= 0) {
+		if (x < 0) {
 			x = CW_USEDEFAULT;
 		}
-		if (y <= 0) {
+		if (y < 0) {
 			y = CW_USEDEFAULT;
 		}
-		if (width <= 0) {
+		if (width < 0) {
 			width = CW_USEDEFAULT;
 		}
-		if (height <= 0) {
+		if (height < 0) {
 			height = CW_USEDEFAULT;
 		}
 
@@ -72,16 +101,16 @@ namespace clfe
 			NULL,
 			hInstance,
 			this
-			);
+		);
 
-			if (hwnd_ == NULL)
-			{
-				DWORD errorCode = GetLastError();
-				logError("Placeholder error, fix later!"); // TODO: fix error
-				return;
-			}
+		if (hwnd_ == NULL)
+		{
+			DWORD errorCode = GetLastError();
+			logError("Placeholder error, fix later!"); // TODO: fix error
+			return;
+		}
 
-			ShowWindow(hwnd_, SW_SHOWNORMAL);
+		ShowWindow(hwnd_, SW_SHOWNORMAL);
 	}
 
 	WinWnd::~WinWnd()

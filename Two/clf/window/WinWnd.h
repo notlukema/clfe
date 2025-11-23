@@ -60,27 +60,13 @@ namespace clfe
 		const WinClass* wClass_;
 		HWND hwnd_;
 
+		void createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
+
 	public: // Interface implementations
+		WinWnd(int x, int y, int width, int height, const char* name);
+		WinWnd(int x, int y, int width, int height, const WCHAR* name);
+		WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass);
 		WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
-
-		inline WinWnd(int x, int y, int width, int height, const char* name)
-		{
-			const WCHAR* wName = clu::toWideString(name);
-			WinWnd(x, y, width, height, wName, WinClass::getDefaultClass());
-			delete wName;
-		}
-
-		inline WinWnd(int x, int y, int width, int height, const WCHAR* name)
-		{
-			WinWnd(x, y, width, height, name, WinClass::getDefaultClass());
-		}
-
-		inline WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
-		{
-			const WCHAR* wName = clu::toWideString(name);
-			WinWnd(x, y, width, height, wName, wClass);
-			delete wName;
-		}
 
 		virtual ~WinWnd() override;
 

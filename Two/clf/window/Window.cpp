@@ -29,6 +29,11 @@ namespace clfe
 
 	Window::~Window()
 	{
+		destroy();
+	}
+
+	void Window::terminate()
+	{
 
 	}
 

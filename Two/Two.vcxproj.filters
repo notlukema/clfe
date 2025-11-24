@@ -33,6 +33,9 @@
     <ClCompile Include="clf\window\WinClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clf\window\WinDefProc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\System.h">

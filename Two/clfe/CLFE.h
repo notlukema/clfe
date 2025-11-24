@@ -32,6 +32,9 @@ namespace clfe
 #ifdef CLFE_WINWND_H
 		WinClass::terminate();
 #endif
+#ifdef CLFE_WINDOW_H
+
+#endif
 	}
 
 }

@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clf\window\WinClass.cpp" />
+    <ClCompile Include="clf\window\WinDefProc.cpp" />
     <ClCompile Include="clf\window\Window.cpp" />
     <ClCompile Include="clf\window\WinWnd.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />

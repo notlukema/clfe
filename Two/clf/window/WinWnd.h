@@ -3,8 +3,6 @@
 
 #include "Window.h"
 #include "../../clu/StringUtils.h"
-// ARTIFACT1: Should already be included by System.h and Window.h
-#include "../../clfe/ISteppable.h"
 
 #include <Windows.h>
 

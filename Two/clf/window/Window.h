@@ -12,6 +12,9 @@ namespace clfe
 
 	class Window
 	{
+	public: // Static functions
+		static void terminate();
+
 	public:
 		Window(); // Remove eventually if not needed
 		virtual ~Window() = 0;

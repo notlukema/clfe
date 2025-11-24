@@ -16,7 +16,8 @@ int main()
 
     Window* wnd1 = createWindow("thing");
     Window* wnd2 = createWindow("thing2");
-    Window* wnd3 = createWindow("tig");
+    Window* wnd3 = createWindow("tig");\
+    // r
 
     while (wnd1->exists())
     {

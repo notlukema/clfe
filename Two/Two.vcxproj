@@ -129,6 +129,7 @@
     <ClCompile Include="clf\window\Window.cpp" />
     <ClCompile Include="clf\window\WinWnd.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
+    <ClCompile Include="clu\InstanceList.cpp" />
     <ClCompile Include="clu\StringUtils.cpp" />
     <ClCompile Include="Two.cpp" />
   </ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="clf\window\Window.h" />
     <ClInclude Include="clf\window\WinWnd.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
+    <ClInclude Include="clu\InstanceList.h" />
     <ClInclude Include="clu\math\Mathf.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="stb\stb_image.h" />

@@ -10,6 +10,7 @@ namespace clfe
 		bool success = true;
 
 #ifdef CLFE_WINWND_H
+		WinWnd::init();
 		WinClass::init();
 #endif
 
@@ -30,6 +31,7 @@ namespace clfe
 	void terminate()
 	{
 #ifdef CLFE_WINWND_H
+		WinWnd::terminate();
 		WinClass::terminate();
 #endif
 #ifdef CLFE_WINDOW_H

@@ -5,10 +5,14 @@
 // ARTIFACT1: Should already be included in WinWnd.h
 #include <Windows.h>
 
-#include <iostream>
-
 namespace clfe
 {
+	HINSTANCE whInstance_ = (HINSTANCE)NULL;
+
+	void WinWnd::init()
+	{
+		whInstance_ = GetModuleHandle(NULL);
+	}
 
 	void WinWnd::step()
 	{
@@ -18,6 +22,11 @@ namespace clfe
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+	}
+
+	void WinWnd::terminate()
+	{
+		// delete windows, probably will move to parent class Window to call delete though
 	}
 
 

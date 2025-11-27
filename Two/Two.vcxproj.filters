@@ -36,6 +36,9 @@
     <ClCompile Include="clf\window\WinDefProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clu\InstanceList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\System.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\ISteppable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\InstanceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
+#include "../../clu/InstanceList.h"
 #include "../../clu/StringUtils.h"
 
 #include <Windows.h>
@@ -9,13 +10,13 @@
 namespace clfe
 {
 
+	HINSTANCE whInstance_;
+
 	class WinClass // TODO: Add more utility functions here
 	{
 	private:
 		static WinClass* defaultClass_;
-		static WinClass** classes_;
-		static int classCount, arrLen;
-		static HINSTANCE hInstance_;
+		static clu::InstanceList<const WCHAR*, WinClass>* classes_;
 
 	public:
 		static inline WinClass* getDefaultClass()
@@ -52,7 +53,9 @@ namespace clfe
 	public: // Window processes
 		static LRESULT CALLBACK defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+		static void init();
 		static void step();
+		static void terminate();
 
 	private:
 		const WinClass* wClass_;

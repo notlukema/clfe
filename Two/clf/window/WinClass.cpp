@@ -2,32 +2,23 @@
 
 #include "../../clfe/Error.h"
 
-#include <string>
-
 // ARTIFACT1: Should already be included by Window.h
+#include "../../clu/InstanceList.h"
 #include "../../clu/StringUtils.h"
 #include <Windows.h>
-
-#include <iostream>
 
 namespace clfe
 {
 
 	// Current implementation uses a basic array thingamajig
 	WinClass* WinClass::defaultClass_ = nullptr;
-	WinClass** WinClass::classes_ = nullptr;
-	int WinClass::arrLen = 0;
-	int WinClass::classCount = 0;
-	HINSTANCE WinClass::hInstance_ = NULL;
+	clu::InstanceList<const WCHAR*, WinClass>* classes_ = nullptr;
+
 
 	void WinClass::init()
 	{
-		arrLen = 1;
-		classes_ = new WinClass*[arrLen];
-		classCount = 0;
+		classes_ = new clu::InstanceList<const WCHAR*, WinClass>();
 		defaultClass_ = createClass("Default", WinWnd::defWndProc);
-
-		hInstance_ = GetModuleHandle(NULL);
 	}
 
 	void WinClass::terminate()

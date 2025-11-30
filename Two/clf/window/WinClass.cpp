@@ -1,45 +1,35 @@
 #include "WinWnd.h"
 
 #include "../../clfe/Error.h"
+#include "../../clfe/System.h"
+#include "../../clu/InstanceList.h"
+#include "../../clu/StringUtils.h"
 
 #include <string>
-
-// ARTIFACT1: Should already be included by Window.h
-#include "../../clu/StringUtils.h"
 #include <Windows.h>
-
-#include <iostream>
 
 namespace clfe
 {
-
-	// Current implementation uses a basic array thingamajig
+	
+	HINSTANCE WinClass::hInstance_;
 	WinClass* WinClass::defaultClass_ = nullptr;
-	WinClass** WinClass::classes_ = nullptr;
-	int WinClass::arrLen = 0;
-	int WinClass::classCount = 0;
-	HINSTANCE WinClass::hInstance_ = NULL;
+	clu::InstanceList<WinClass>* WinClass::classes_ = nullptr;
 
 	void WinClass::init()
 	{
-		arrLen = 1;
-		classes_ = new WinClass*[arrLen];
-		classCount = 0;
-		defaultClass_ = createClass("Default", WinWnd::defWndProc);
-
 		hInstance_ = GetModuleHandle(NULL);
+		classes_ = new clu::InstanceList<WinClass>();
+		defaultClass_ = createClass("Default", WinWnd::defWndProc);
 	}
 
 	void WinClass::terminate()
 	{
-		for (int i = 0; i < classCount; i++) {
-			delete classes_[i];
-		}
+		delete classes_;
 	}
 
 	WinClass* WinClass::createClass(const WCHAR* name, WNDPROC wndProc)
 	{
-		const WCHAR* className = clu::concatWide(std::to_wstring(classCount).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
+		const WCHAR* className = clu::concatWide(std::to_wstring(classes_->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
 		// Class 1 -> 0_clfewnd-Class 1
 
 		WNDCLASS wc = {}; // TODO: Check out WNDCLASSEX later on
@@ -54,36 +44,26 @@ namespace clfe
 			return nullptr;
 		}
 
-		WinClass* wClass = new WinClass(clu::copyWide(name), className, atom);
+		clid clid = System::genNextID();
 
-		if (classCount >= arrLen) {  // TODO: fix warnings
-			arrLen = classCount + 3; // Increment array size 3 at a time (2 extra slots)
-			WinClass** newArr = new WinClass*[arrLen];
-			for (int i = 0; i < classCount; i++) {
-				newArr[i] = classes_[i];
-			}
-			newArr[classCount] = wClass; // It doesn't?
-			delete classes_;
-			classes_ = newArr;
-		}
-		else {
-			classes_[classCount] = wClass;
-		}
-		classCount++;
+		WinClass* wClass = new WinClass(clid, clu::copyWide(name), className, atom);
+
+		classes_->add(clid, wClass);
+		//classes_->add(wClass->getID(), wClass);
 
 		return wClass;
 	}
 
-	WinClass::WinClass(const WCHAR* name, const WCHAR* className, ATOM wClass)
-	{
-		name_ = name;
-		className_ = className;
-		wClass_ = wClass;
-	}
+	WinClass::WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass) : clid_(clid), name_(name), className_(className), wClass_(wClass) {}
 
 	WinClass::~WinClass()
 	{
 		UnregisterClassW(MAKEINTATOM(wClass_), hInstance_);
+	}
+
+	clid WinClass::getID() const
+	{
+		return clid_;
 	}
 
 	const WCHAR* WinClass::getName() const

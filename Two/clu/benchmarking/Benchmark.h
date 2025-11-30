@@ -6,31 +6,47 @@
 namespace clu
 {
 
-	struct BenchmarkResult
-	{
-
-	};
-	typedef void (*BenchmarkFunction)();
-	typedef void (*ResultCallback)(BenchmarkResult* results);
+	using BenchmarkFunction = void (*)();
 
 	class Benchmark
 	{
 	public:
 
-		static std::vector<BenchmarkFunction> functions;
+		struct BenchmarkTimeResults
+		{
+			int length;
+			float* times;
 
-		static void addFunction(BenchmarkFunction);
-		static void removeFunction(BenchmarkFunction);
+			BenchmarkTimeResults(int length, float* times);
+			~BenchmarkTimeResults();
+		};
 
-		static BenchmarkResult* runAll_LoopSequential(uint32_t iterations);
-		static BenchmarkResult* runAll_TimeSequential(unsigned long long milliseconds);
-		static BenchmarkResult* runAll_LoopParallel(uint32_t iterations);
-		static BenchmarkResult* runAll_TimeParallel(unsigned long long milliseconds);
+		struct BenchmarkCountResults
+		{
+			int length;
+			int* counts;
 
-		static void dispatchAll_LoopSequential(uint32_t iterations, ResultCallback callback);
-		static void dispatchAll_TimeSequential(unsigned long long milliseconds, ResultCallback callback);
-		static void dispatchAll_LoopParallel(uint32_t iterations, ResultCallback callback);
-		static void dispatchAll_TimeParallel(unsigned long long milliseconds, ResultCallback callback);
+			BenchmarkCountResults(int length, int* counts);
+			~BenchmarkCountResults();
+		};
+
+		using TimeResultCallback = void (*)(BenchmarkTimeResults results);
+		using CountResultCallback = void (*)(BenchmarkCountResults results);
+
+		static std::vector<BenchmarkFunction*> functions;
+
+		static void addFunction(BenchmarkFunction*);
+		static void removeFunction(BenchmarkFunction*);
+
+		static BenchmarkTimeResults runAll_LoopSequential(unsigned int iterations);
+		static BenchmarkCountResults runAll_TimeSequential(unsigned long long milliseconds);
+		static BenchmarkTimeResults runAll_LoopParallel(unsigned int iterations);
+		static BenchmarkCountResults runAll_TimeParallel(unsigned long long milliseconds);
+
+		static void dispatchAll_LoopSequential(unsigned int iterations, TimeResultCallback* callback);
+		static void dispatchAll_TimeSequential(unsigned long long milliseconds, CountResultCallback* callback);
+		static void dispatchAll_LoopParallel(unsigned int iterations, TimeResultCallback* callback);
+		static void dispatchAll_TimeParallel(unsigned long long milliseconds, CountResultCallback* callback);
 		
 	};
 

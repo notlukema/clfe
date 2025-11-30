@@ -3,16 +3,28 @@
 
 #include "CrossPlatform.h"
 #include "Error.h"
-#include "ISteppable.h"
 
-#include "../clu/math/Mathf.h"
+using clid = unsigned int;
+
+#ifdef CLU_USEWIDESTRING
+using clchar = wchar_t;
+#else
+using clchar = char;
+#endif
 
 namespace clfe
 {
 
 	class System
 	{
+	private:
+		static clid nextID;
+
 	public:
+		static void init();
+		static clid genNextID();
+
+		// create recording system to record these ids and associated names
 
 	};
 

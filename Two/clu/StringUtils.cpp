@@ -1,12 +1,10 @@
 #include "StringUtils.h"
 
-// ARTIFACT1: Should already be included by System.h
 #include "../clfe/Error.h"
 
 #include <cstdlib>
 #include <malloc.h>
 #include <corecrt.h>
-
 #include <string.h>
 #include <wchar.h>
 

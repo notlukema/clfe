@@ -1,6 +1,5 @@
 #include "WinWnd.h"
 
-// ARTIFACT1: ARTIFACT1: Should already be included by WinWnd.h
 #include <Windows.h>
 
 namespace clfe

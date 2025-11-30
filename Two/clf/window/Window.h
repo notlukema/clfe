@@ -1,9 +1,7 @@
 #ifndef CLFE_WINDOW_H
 #define CLFE_WINDOW_H
 
-// ARTIFACT1: Should already be included by System.h
 #include "../../clfe/CrossPlatform.h"
-//#include "../../clfe/ISteppable.h"
 
 namespace clfe
 {

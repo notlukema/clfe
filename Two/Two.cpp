@@ -19,7 +19,7 @@ int main()
     Window* wnd3 = createWindow("tig");
 
 
-    Window* wnd12 = createWindow(0, 0, 100, 100, "eat some ethane gas");
+    Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
 
     // r

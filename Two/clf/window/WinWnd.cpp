@@ -2,7 +2,6 @@
 
 #include "../../clfe/Error.h"
 
-// ARTIFACT1: Should already be included in WinWnd.h
 #include <Windows.h>
 
 namespace clfe

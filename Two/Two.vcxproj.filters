@@ -36,7 +36,7 @@
     <ClCompile Include="clf\window\WinDefProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clu\InstanceList.cpp">
+    <ClCompile Include="clfe\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,8 +77,14 @@
     <ClInclude Include="clu\InstanceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clu\UniString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
   </ItemGroup>
 </Project>

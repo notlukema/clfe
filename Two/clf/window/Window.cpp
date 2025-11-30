@@ -1,6 +1,5 @@
 #include "Window.h"
 
-// ARTIFACT1: Should already be included by System.h and Window.h
 #include "../../clfe/CrossPlatform.h"
 
 namespace clfe

@@ -2,6 +2,7 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
+#include "../../clfe/System.h"
 #include "../../clu/InstanceList.h"
 #include "../../clu/StringUtils.h"
 
@@ -10,15 +11,19 @@
 namespace clfe
 {
 
-	HINSTANCE whInstance_;
-
 	class WinClass // TODO: Add more utility functions here
 	{
 	private:
+		static HINSTANCE hInstance_;
 		static WinClass* defaultClass_;
-		static clu::InstanceList<const WCHAR*, WinClass>* classes_;
+		static clu::InstanceList<WinClass>* classes_;
 
 	public:
+		static inline HINSTANCE getHInstance()
+		{
+			return hInstance_;
+		}
+
 		static inline WinClass* getDefaultClass()
 		{
 			return defaultClass_;
@@ -35,12 +40,14 @@ namespace clfe
 		static void terminate();
 
 	private:
+		clid clid_;
 		const WCHAR* name_,* className_;
 		ATOM wClass_;
 
-		WinClass(const WCHAR* name, const WCHAR* className, ATOM wClass);
+		WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass);
 
 	public:
+		clid getID() const;
 		const WCHAR* getName() const;
 		const WCHAR* getClassName() const;
 		ATOM getClassAtom() const;

@@ -19,7 +19,7 @@ namespace clu
 	const char* copyNarrow(const char* str);
 	const wchar_t* copyWide(const wchar_t* str);
 
-	inline const char* copyStr(const char* str)
+	inline const char* copy(const char* str)
 	{
 		return copyNarrow(str);
 	}

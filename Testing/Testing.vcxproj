@@ -19,37 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>17.0</VCProjectVersion>
+    <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{73abf471-f17a-4110-9f9e-27f7a6939d02}</ProjectGuid>
-    <RootNamespace>One</RootNamespace>
+    <ProjectGuid>{1917518e-b707-4963-81f0-4d0ed81ac322}</ProjectGuid>
+    <RootNamespace>Testing</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Two</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -77,6 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -117,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,35 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="clfe\System.cpp" />
-    <ClCompile Include="clf\window\WinClass.cpp" />
-    <ClCompile Include="clf\window\WinDefProc.cpp" />
-    <ClCompile Include="clf\window\Window.cpp" />
-    <ClCompile Include="clf\window\WinWnd.cpp" />
-    <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
-    <ClCompile Include="clu\StringUtils.cpp" />
-    <ClCompile Include="Two.cpp" />
+    <ClCompile Include="Between-Source-Macros\b\thingamajig.cpp" />
+    <ClCompile Include="Between-Source-Macros\Testing.cpp" />
+    <ClCompile Include="Template-Source-Linking\Testing.cpp" />
+    <ClCompile Include="Pointer-Pointer-Deletion\Testing.cpp" />
+    <ClCompile Include="Template-Source-Linking\Thing.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clfe\CLFE.h" />
-    <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\Error.h" />
-    <ClInclude Include="clfe\ISteppable.h" />
-    <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clf\window\Window.h" />
-    <ClInclude Include="clf\window\WinWnd.h" />
-    <ClInclude Include="clu\benchmarking\Benchmark.h" />
-    <ClInclude Include="clu\InstanceList.h" />
-    <ClInclude Include="clu\UniString.h" />
-    <ClInclude Include="clu\math\Mathf.h" />
-    <ClInclude Include="clu\StringUtils.h" />
-    <ClInclude Include="stb\stb_image.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="README.txt" />
+    <ClInclude Include="Between-Source-Macros\a\TypeDefine.h" />
+    <ClInclude Include="Between-Source-Macros\b\thingamajig.h" />
+    <ClInclude Include="Template-Source-Linking\Template.h" />
+    <ClInclude Include="Template-Source-Linking\Thing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,12 +1,6 @@
 #ifndef CLFE_ISTEPPABLE_H
 #define CLFE_ISTEPPABLE_H
 
-#ifndef LAYER_TYPE
-#define LAYER_TYPE int
-#endif
-
-typedef LAYER_TYPE layer_t;
-
 namespace clfe
 {
 
@@ -17,6 +11,8 @@ namespace clfe
 		virtual bool step() = 0;
 		virtual void terminate() = 0;
 		virtual ~ISteppable() {}
+
+		using layer_t = int;
 
 		virtual layer_t layer() const
 		{

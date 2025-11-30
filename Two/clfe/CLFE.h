@@ -1,13 +1,18 @@
 #ifndef CLFE_CLFE_H
 #define CLFE_CLFE_H
 
+// Ties togethor the init, step, and terminate functions of various modules
+
 namespace clfe
 {
-	// Shouldn't be included in more than one source file so... fine to use non-inline functions?
 
 	bool init()
 	{
 		bool success = true;
+
+#ifdef CLFE_SYSTEM_H
+		System::init();
+#endif
 
 #ifdef CLFE_WINWND_H
 		WinWnd::init();

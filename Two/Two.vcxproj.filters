@@ -80,6 +80,12 @@
     <ClInclude Include="clu\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clf\comp\Bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\comp\Images.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

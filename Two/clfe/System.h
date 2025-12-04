@@ -6,7 +6,7 @@
 
 using clid = unsigned int;
 
-#ifdef CLU_USEWIDESTRING
+#ifdef CLU_USEWIDESTRING // check
 using clchar = wchar_t;
 #else
 using clchar = char;

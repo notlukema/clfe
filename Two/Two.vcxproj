@@ -139,6 +139,8 @@
     <ClInclude Include="clfe\Error.h" />
     <ClInclude Include="clfe\ISteppable.h" />
     <ClInclude Include="clfe\System.h" />
+    <ClInclude Include="clf\comp\Bitmap.h" />
+    <ClInclude Include="clf\comp\Images.h" />
     <ClInclude Include="clf\window\Window.h" />
     <ClInclude Include="clf\window\WinWnd.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />

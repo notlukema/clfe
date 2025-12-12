@@ -3,7 +3,7 @@
 
 #include "../clfe/System.h"
 
-namespace clu // Might change namespace due to special usage
+namespace clfe // Might change namespace due to special usage
 {
 
 	// This list uses basic incremental searching, unoptimized but works for now
@@ -27,7 +27,7 @@ namespace clu // Might change namespace due to special usage
 			int length;
 
 			ValueArray(T** arr, int length);
-			//~ValueArray(); Unneeded
+			~ValueArray();
 		};
 
 	private:
@@ -46,14 +46,14 @@ namespace clu // Might change namespace due to special usage
 
 		using FilterFunc = bool (*)(clid, T*);
 
-		ValueArray* filter(FilterFunc func, bool remove);
+		ValueArray filter(FilterFunc func, bool remove);
 
-		inline ValueArray* filterOut(FilterFunc func)
+		inline ValueArray filterOut(FilterFunc func)
 		{
 			return filter(func, true);
 		}
 
-		inline ValueArray* filterGet(FilterFunc func)
+		inline ValueArray filterGet(FilterFunc func)
 		{
 			return filter(func, false);
 		}
@@ -64,7 +64,7 @@ namespace clu // Might change namespace due to special usage
 
 // Definitions
 
-namespace clu
+namespace clfe
 {
 
 	template <typename T>
@@ -72,6 +72,12 @@ namespace clu
 
 	template <typename T>
 	InstanceList<T>::ValueArray::ValueArray(T** arr, int length) : array(arr), length(length) {}
+
+	template <typename T>
+	InstanceList<T>::ValueArray::~ValueArray()
+	{
+		delete[] array;
+	}
 
 	template <typename T>
 	InstanceList<T>::InstanceList()
@@ -157,7 +163,7 @@ namespace clu
 	}
 	
 	template <typename T>
-	typename InstanceList<T>::ValueArray* InstanceList<T>::filter(FilterFunc func, bool remove)
+	typename InstanceList<T>::ValueArray InstanceList<T>::filter(FilterFunc func, bool remove)
 	{
 		T** array = new T * [len];
 		int size = 0;
@@ -193,7 +199,7 @@ namespace clu
 			node = node->next;
 		}
 
-		return new ValueArray(array, size);
+		return ValueArray(array, size);
 	}
 
 }

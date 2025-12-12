@@ -3,7 +3,7 @@
 
 #include "Window.h"
 #include "../../clfe/System.h"
-#include "../../clu/InstanceList.h"
+#include "../../clfe/InstanceList.h"
 #include "../../clu/StringUtils.h"
 
 #include <Windows.h>
@@ -16,7 +16,7 @@ namespace clfe
 	private:
 		static HINSTANCE hInstance_;
 		static WinClass* defaultClass_;
-		static clu::InstanceList<WinClass>* classes_;
+		static InstanceList<WinClass>* classes_;
 
 	public:
 		static inline HINSTANCE getHInstance()

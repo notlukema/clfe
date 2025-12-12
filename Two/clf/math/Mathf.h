@@ -1,5 +1,5 @@
-#ifndef CLU_MATHF_H
-#define CLU_MATHF_H
+#ifndef CLFE_MATHF_H
+#define CLFE_MATHF_H
 
 #include <cmath>
 

@@ -2,7 +2,7 @@
 
 #include "../../clfe/Error.h"
 #include "../../clfe/System.h"
-#include "../../clu/InstanceList.h"
+#include "../../clfe/InstanceList.h"
 #include "../../clu/StringUtils.h"
 
 #include <string>
@@ -13,12 +13,12 @@ namespace clfe
 	
 	HINSTANCE WinClass::hInstance_;
 	WinClass* WinClass::defaultClass_ = nullptr;
-	clu::InstanceList<WinClass>* WinClass::classes_ = nullptr;
+	InstanceList<WinClass>* WinClass::classes_ = nullptr;
 
 	void WinClass::init()
 	{
 		hInstance_ = GetModuleHandle(NULL);
-		classes_ = new clu::InstanceList<WinClass>();
+		classes_ = new InstanceList<WinClass>();
 		defaultClass_ = createClass("Default", WinWnd::defWndProc);
 	}
 

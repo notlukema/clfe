@@ -2,6 +2,8 @@
 #include "clfe/System.h"
 #include "clf/window/Window.h"
 
+#include "clf/comp/tex/BitmapRGBA.h"
+
 #include "clfe/CLFE.h"
 
 using namespace clfe;
@@ -21,6 +23,8 @@ int main()
 
     Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
+    BitmapRGBAf* f = new BitmapRGBAf(5, 5);
+    Vector4<float> f2 = f->pixel(1, 1);
 
     // r
 

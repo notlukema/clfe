@@ -39,12 +39,15 @@
     <ClCompile Include="clfe\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clf\math\vec\Vector2i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clu\math\Mathf.h">
+    <ClInclude Include="clf\math\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CLFE.h">
@@ -74,16 +77,28 @@
     <ClInclude Include="clfe\ISteppable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clu\InstanceList.h">
+    <ClInclude Include="clfe\InstanceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\comp\Bitmap.h">
+    <ClInclude Include="clf\comp\tex\Bitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\comp\Images.h">
+    <ClInclude Include="clf\math\vec\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\vec\Vector2i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\comp\tex\BitmapRGBA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\vec\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\vec\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

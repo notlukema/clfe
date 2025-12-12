@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\System.cpp" />
+    <ClCompile Include="clf\math\vec\Vector2i.cpp" />
     <ClCompile Include="clf\window\WinClass.cpp" />
     <ClCompile Include="clf\window\WinDefProc.cpp" />
     <ClCompile Include="clf\window\Window.cpp" />
@@ -139,14 +140,18 @@
     <ClInclude Include="clfe\Error.h" />
     <ClInclude Include="clfe\ISteppable.h" />
     <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clf\comp\Bitmap.h" />
-    <ClInclude Include="clf\comp\Images.h" />
+    <ClInclude Include="clf\comp\tex\Bitmap.h" />
+    <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
+    <ClInclude Include="clf\math\vec\Vector.h" />
+    <ClInclude Include="clf\math\vec\Vector2i.h" />
+    <ClInclude Include="clf\math\vec\Vector3.h" />
+    <ClInclude Include="clf\math\vec\Vector4.h" />
     <ClInclude Include="clf\window\Window.h" />
     <ClInclude Include="clf\window\WinWnd.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
-    <ClInclude Include="clu\InstanceList.h" />
+    <ClInclude Include="clfe\InstanceList.h" />
     <ClInclude Include="clu\UniString.h" />
-    <ClInclude Include="clu\math\Mathf.h" />
+    <ClInclude Include="clf\math\Mathf.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="stb\stb_image.h" />
   </ItemGroup>

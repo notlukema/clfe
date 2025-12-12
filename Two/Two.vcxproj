@@ -125,7 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\System.cpp" />
-    <ClCompile Include="clf\math\vec\Vector2i.cpp" />
+    <ClCompile Include="clf\math\Mathd.h" />
     <ClCompile Include="clf\window\WinClass.cpp" />
     <ClCompile Include="clf\window\WinDefProc.cpp" />
     <ClCompile Include="clf\window\Window.cpp" />
@@ -142,8 +142,10 @@
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clf\comp\tex\Bitmap.h" />
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
+    <ClInclude Include="clf\math\MathConst.h" />
+    <ClInclude Include="clf\math\MathUni.h" />
     <ClInclude Include="clf\math\vec\Vector.h" />
-    <ClInclude Include="clf\math\vec\Vector2i.h" />
+    <ClInclude Include="clf\math\vec\Vector2.h" />
     <ClInclude Include="clf\math\vec\Vector3.h" />
     <ClInclude Include="clf\math\vec\Vector4.h" />
     <ClInclude Include="clf\window\Window.h" />

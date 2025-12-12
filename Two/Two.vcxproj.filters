@@ -39,7 +39,7 @@
     <ClCompile Include="clfe\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clf\math\vec\Vector2i.cpp">
+    <ClCompile Include="clf\math\Mathd.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="clf\math\vec\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\vec\Vector2i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -99,6 +96,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clf\math\vec\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\vec\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\MathUni.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\MathConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

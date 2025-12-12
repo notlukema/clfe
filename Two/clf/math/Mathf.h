@@ -1,27 +1,14 @@
-#ifndef CLFE_MATHF_H
-#define CLFE_MATHF_H
+#ifndef CLFE_MATH_F_H
+#define CLFE_MATH_F_H
+
+#include "MathConst.h"
 
 #include <cmath>
 
-namespace clu
+namespace clfe
 {
 
-	static constexpr float PI = 3.1415927f;
-	static constexpr float E = 2.7182818f;
-	// Epsilon
-
-	static constexpr int factorial(int num) {
-		if (num > 1) {
-			return num * factorial(num - 1);
-		}
-		return 1;
-	}
-
-	static constexpr float invFactorial(int num) {
-		return 1.0f / static_cast<float>(factorial(num));
-	}
-
-
+	static constexpr MathConst<float> constf;
 
 	static inline float sinf(float radians) {
 		return std::sinf(radians);
@@ -57,7 +44,7 @@ namespace clu
 		return std::atan2f(y, x);
 	}
 
-
+	//
 
 	static inline float constexpr absf(float value) {
 		return value < 0 ? -value : value;
@@ -71,7 +58,7 @@ namespace clu
 		return std::floor(value);
 	}
 
-
+	//
 
 	static inline float powf(float value, float exponent) {
 		return std::powf(value, exponent);
@@ -98,7 +85,7 @@ namespace clu
 		return std::expf(exponent);
 	}
 
-
+	//
 
 	static inline float constexpr sqrf(float value)
 	{
@@ -116,26 +103,6 @@ namespace clu
 
 	static inline float rootf(float value, float n) {
 		return std::powf(value, 1.0f / n);
-	}
-
-	// Fast
-
-	static inline float constexpr fastSinf(float x) {
-		return x;
-	}
-
-	/*
-	Not necessarily as fast anymore
-	Many cpus now have hardware implementations that are faster than this software implementation
-	*/
-	static float fastInvSqrtf(float value) {
-		long i;
-		float x2, y;
-		const float threehalfs = 1.5F;
-		x2 = value * 0.5F;
-		y = value;
-		i = *(long*)&y;
-		i = 0x5f3759df - (i >> 1);
 	}
 
 }

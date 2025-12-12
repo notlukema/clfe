@@ -10,6 +10,8 @@ namespace clfe
 	class Vector4 : public Vector<T, 4>
 	{
 	public:
+		Vector4();
+		Vector4(const Vector4<T>& vec4);
 		Vector4(T x, T y, T z, T w);
 
 		T x();

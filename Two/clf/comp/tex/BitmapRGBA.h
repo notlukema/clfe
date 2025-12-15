@@ -49,8 +49,8 @@ namespace clfe
 
 	using BitmapRGBAb = BitmapRGBA<uint8_t>;
 	using BitmapRGBAf = BitmapRGBA<float>;
-	using BitmapRGBAi = BitmapRGBA<int>;
 	using BitmapRGBAd = BitmapRGBA<double>;
+	using BitmapRGBAi = BitmapRGBA<int>;
 
 }
 

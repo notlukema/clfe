@@ -10,7 +10,8 @@ namespace clfe
 
 	static constexpr MathConst<float> constf;
 
-	static inline float sinf(float radians) {
+	static inline float sinf(float radians)
+	{
 		return std::sinf(radians);
 	}
 
@@ -46,42 +47,51 @@ namespace clfe
 
 	//
 
-	static inline float constexpr absf(float value) {
+	static inline float constexpr absf(float value)
+	{
 		return value < 0 ? -value : value;
 	}
 
-	static inline float ceilf(float value) {
+	static inline float ceilf(float value)
+	{
 		return std::ceilf(value);
 	}
 
-	static inline float floorf(float value) {
+	static inline float floorf(float value)
+	{
 		return std::floor(value);
 	}
 
 	//
 
-	static inline float powf(float value, float exponent) {
+	static inline float powf(float value, float exponent)
+	{
 		return std::powf(value, exponent);
 	}
 
-	static inline float logf(float value, float base) {
+	static inline float logf(float value, float base)
+	{
 		// Why doesn't cmath have this function?
 		return std::logf(value) / std::logf(base);
 	}
 
-	static inline float log10f(float value) {
+	static inline float log10f(float value)
+	{
 		return std::log10f(value);
 	}
 
-	static inline float log2f(float value) {
+	static inline float log2f(float value)
+	{
 		return std::log2f(value);
 	}
 
-	static inline float lnf(float value) {
+	static inline float lnf(float value)
+	{
 		return std::logf(value);
 	}
 
-	static inline float expf(float exponent) {
+	static inline float expf(float exponent)
+	{
 		return std::expf(exponent);
 	}
 
@@ -97,11 +107,13 @@ namespace clfe
 		return std::sqrtf(value);
 	}
 
-	static inline float invSqrtf(float value) {
+	static inline float invSqrtf(float value)
+	{
 		return 1.0f / std::sqrtf(value);
 	}
 
-	static inline float rootf(float value, float n) {
+	static inline float rootf(float value, float n)
+	{
 		return std::powf(value, 1.0f / n);
 	}
 

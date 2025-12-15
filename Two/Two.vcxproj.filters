@@ -74,13 +74,7 @@
     <ClInclude Include="clu\benchmarking\Benchmark.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\ISteppable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\InstanceList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clu\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clf\comp\tex\Bitmap.h">
@@ -101,10 +95,13 @@
     <ClInclude Include="clf\math\vec\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\MathUni.h">
+    <ClInclude Include="clf\math\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clf\math\MathConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\Print.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

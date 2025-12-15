@@ -8,15 +8,14 @@ namespace clfe
 	class Vector
 	{
 	protected:
-		T* arr;
+		T array[Size];
 
 	public:
-		Vector();
-		// Make sure data length is large enough
-		Vector(T* data);
+		Vector(); // Unnecessary due to variadic constructor, but helps with clarity
+		template <typename... Args>
+		Vector(Args... args); // Study "concepts" and other stuff later to constrain number of args
 
-		void set(T* data);
-		const T* const get();
+		const T* get() const;
 
 	};
 
@@ -28,25 +27,16 @@ namespace clfe
 {
 
 	template <typename T, int Size>
-	Vector<T, Size>::Vector() : arr(nullptr) {};
+	Vector<T, Size>::Vector() : array{} {};
 
 	template <typename T, int Size>
-	Vector<T, Size>::Vector(T* data) : arr(data) {};
+	template <typename... Args>
+	Vector<T, Size>::Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
 	template <typename T, int Size>
-	void Vector<T, Size>::set(T* data)
+	const T* Vector<T, Size>::get() const
 	{
-		if (arr != nullptr) {
-			delete[] arr;
-		}
-
-		arr = data;
-	}
-
-	template <typename T, int Size>
-	const T* const Vector<T, Size>::get()
-	{
-		return arr;
+		return static_cast<const T*>(array);
 	}
 
 }

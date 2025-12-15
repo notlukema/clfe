@@ -10,7 +10,8 @@ namespace clfe
 
 	static constexpr MathConst<double> constf;
 
-	static inline double sind(double radians) {
+	static inline double sind(double radians)
+	{
 		return std::sin(radians);
 	}
 
@@ -46,42 +47,51 @@ namespace clfe
 
 	//
 
-	static inline double constexpr absd(double value) {
+	static inline double constexpr absd(double value)
+	{
 		return value < 0.0 ? -value : value;
 	}
 
-	static inline double ceild(double value) {
+	static inline double ceild(double value)
+	{
 		return std::ceil(value);
 	}
 
-	static inline double floord(double value) {
+	static inline double floord(double value)
+	{
 		return std::floor(value);
 	}
 
 	//
 
-	static inline double powd(double value, double exponent) {
+	static inline double powd(double value, double exponent)
+	{
 		return std::pow(value, exponent);
 	}
 
-	static inline double logd(double value, double base) {
+	static inline double logd(double value, double base)
+	{
 		// Why doesn't cmath have this function?
 		return std::log(value) / std::log(base);
 	}
 
-	static inline double log10d(double value) {
+	static inline double log10d(double value)
+	{
 		return std::log10(value);
 	}
 
-	static inline double log2d(double value) {
+	static inline double log2d(double value)
+	{
 		return std::log2(value);
 	}
 
-	static inline double lnd(double value) {
+	static inline double lnd(double value) 
+{
 		return std::log(value);
 	}
 
-	static inline double expd(double exponent) {
+	static inline double expd(double exponent)
+	{
 		return std::exp(exponent);
 	}
 
@@ -97,11 +107,13 @@ namespace clfe
 		return std::sqrt(value);
 	}
 
-	static inline double invSqrtd(double value) {
+	static inline double invSqrtd(double value)
+	{
 		return 1.0 / std::sqrt(value);
 	}
 
-	static inline double rootd(double value, double n) {
+	static inline double rootd(double value, double n)
+	{
 		return std::pow(value, 1.0 / n);
 	}
 

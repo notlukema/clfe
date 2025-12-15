@@ -3,10 +3,17 @@
 #include "clf/window/Window.h"
 
 #include "clf/math/Mathf.h"
+#include "clf/math/vec/Vector.h"
+#include "clf/math/vec/Vector2.h"
+#include "clf/math/vec/Vector3.h"
+#include "clf/math/vec/Vector4.h"
 
 #include "clfe/CLFE.h"
 
+#include "clu/Print.h"
+
 using namespace clfe;
+using namespace clu;
 
 int main()
 {
@@ -24,6 +31,7 @@ int main()
     Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
     // r
+
 
     while (wnd1->exists())
     {

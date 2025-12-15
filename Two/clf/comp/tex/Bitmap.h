@@ -15,7 +15,7 @@ namespace clfe
 	public:
 		Bitmap(int width, int height);
 		Bitmap(int width, int height, bool init);
-		// Initialize without data using nullptr here. Also, make sure data is large enough otherwise there will be problems
+		// Initialize without data using nullptr here. Also, make sure data is large enough
 		Bitmap(int width, int height, T* data);
 
 		// Make sure data is large enough

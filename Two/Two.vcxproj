@@ -30,26 +30,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -138,12 +138,11 @@
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Error.h" />
-    <ClInclude Include="clfe\ISteppable.h" />
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clf\comp\tex\Bitmap.h" />
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
     <ClInclude Include="clf\math\MathConst.h" />
-    <ClInclude Include="clf\math\MathUni.h" />
+    <ClInclude Include="clf\math\Math.h" />
     <ClInclude Include="clf\math\vec\Vector.h" />
     <ClInclude Include="clf\math\vec\Vector2.h" />
     <ClInclude Include="clf\math\vec\Vector3.h" />
@@ -152,7 +151,7 @@
     <ClInclude Include="clf\window\WinWnd.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
     <ClInclude Include="clfe\InstanceList.h" />
-    <ClInclude Include="clu\UniString.h" />
+    <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clf\math\Mathf.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="stb\stb_image.h" />

@@ -31,6 +31,7 @@ int main()
     Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
     // r
+    
 
 
     while (wnd1->exists())

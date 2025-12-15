@@ -23,6 +23,30 @@ namespace clfe
 		void x(T x);
 		void y(T y);
 
+	public:
+		bool operator==(const Vector2<T>& vec2) const;
+		bool operator!=(const Vector2<T>& vec2) const;
+
+		Vector2<T> operator+(T value);
+		Vector2<T> operator-(T value);
+		Vector2<T> operator*(T value);
+		Vector2<T> operator/(T value);
+
+		Vector2<T>& operator+=(T value);
+		Vector2<T>& operator-=(T value);
+		Vector2<T>& operator*=(T value);
+		Vector2<T>& operator/=(T value);
+
+		Vector2<T> operator+(const Vector2<T>& vec2);
+		Vector2<T> operator-(const Vector2<T>& vec2);
+		Vector2<T> operator*(const Vector2<T>& vec2);
+		Vector2<T> operator/(const Vector2<T>& vec2);
+
+		Vector2<T>& operator+=(const Vector2<T>& vec2);
+		Vector2<T>& operator-=(const Vector2<T>& vec2);
+		Vector2<T>& operator*=(const Vector2<T>& vec2);
+		Vector2<T>& operator/=(const Vector2<T>& vec2);
+
 	};
 
 }
@@ -80,6 +104,70 @@ namespace clfe
 	void Vector2<T>::y(T y)
 	{
 		this->array[1] = y;
+	}
+
+	// Operator overloads
+
+	template <typename T>
+	Vector2<T> Vector2<T>::operator+(T value)
+	{
+		return Vector2<T>(this->array[0] + value, this->array[1] + value);
+	}
+
+	template <typename T>
+	Vector2<T> Vector2<T>::operator-(T value)
+	{
+		return Vector2<T>(this->array[0] - value, this->array[1] - value);
+	}
+
+	template <typename T>
+	Vector2<T> Vector2<T>::operator*(T value)
+	{
+		return Vector2<T>(this->array[0] * value, this->array[1] * value);
+	}
+
+	template <typename T>
+	Vector2<T> Vector2<T>::operator/(T value)
+	{
+		return Vector2<T>(this->array[0] / value, this->array[1] / value);
+	}
+
+	template <typename T>
+	Vector2<T>& Vector2<T>::operator+=(T value)
+	{
+		this->array[0] += value;
+		this->array[1] += value;
+		return *this;
+	}
+
+	template <typename T>
+	Vector2<T>& Vector2<T>::operator-=(T value)
+	{
+		this->array[0] -= value;
+		this->array[1] -= value;
+		return *this;
+	}
+
+	template <typename T>
+	Vector2<T>& Vector2<T>::operator*=(T value)
+	{
+		this->array[0] *= value;
+		this->array[1] *= value;
+		return *this;
+	}
+
+	template <typename T>
+	Vector2<T>& Vector2<T>::operator/=(T value)
+	{
+		this->array[0] /= value;
+		this->array[1] /= value;
+		return *this;
+	}
+
+	template <typename T>
+	Vector2<T> Vector2<T>::operator+(const Vector2<T>& vec2)
+	{
+		return Vector2<T>(this->array[0] + vec2.x(), this->array[1] + vec2.y());
 	}
 
 }

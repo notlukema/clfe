@@ -31,7 +31,10 @@ int main()
     Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
     // r
-    
+
+	Vector2f v2f(1.0f, 2.0f);
+
+    print(v2f);
 
 
     while (wnd1->exists())

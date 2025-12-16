@@ -2,6 +2,7 @@
 #define CLU_PRINT_H
 
 #include <cstdio>
+#include <type_traits>
 
 // Supplies simple print functions for whichever types are included
 
@@ -9,6 +10,7 @@ namespace clu
 {
 #ifdef CLFE_VECTOR_H
 	template <typename T, int Size>
+	requires std::is_arithmetic_v<T> && (Size > 0)
 	inline void print(const clfe::Vector<T, Size>& vec)
 	{
 		const T* const data = vec.get();
@@ -27,6 +29,7 @@ namespace clu
 
 #ifdef CLFE_VECTOR_2_H
 	template <typename T>
+	requires std::is_arithmetic_v<T>
 	inline void print(const clfe::Vector2<T>& vec2)
 	{
 		printf("(%.3f, %.3f)\n", (double)vec2.x(), (double)vec2.y());
@@ -35,6 +38,7 @@ namespace clu
 
 #ifdef CLFE_VECTOR_3_H
 	template <typename T>
+	requires std::is_arithmetic_v<T>
 	inline void print(const clfe::Vector3<T>& vec3)
 	{
 		printf("(%.3f, %.3f, %.3f)\n", (double)vec3.x(), (double)vec3.y(), (double)vec3.z());
@@ -43,6 +47,7 @@ namespace clu
 
 #ifdef CLFE_VECTOR_4_H
 	template <typename T>
+	requires std::is_arithmetic_v<T>
 	inline void print(const clfe::Vector4<T>& vec4)
 	{
 		printf("(%.3f, %.3f, %.3f, %.3f)\n", vec4.x(), vec4.y(), vec4.z(), vec4.w());

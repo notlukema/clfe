@@ -15,6 +15,12 @@
 using namespace clfe;
 using namespace clu;
 
+template <typename T>
+void thig(T val)
+{
+    std::cout << val << "\n";
+}
+
 int main()
 {
     std::cout << "Hello World!\n";
@@ -32,7 +38,10 @@ int main()
 
     // r
 
+
 	Vector2f v2f(1.0f, 2.0f);
+
+	//Vector<float, 2>* v = &static_cast<Vector<float, 2>>(v2f);
 
     print(v2f);
 

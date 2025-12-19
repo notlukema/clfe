@@ -5,8 +5,8 @@
 #include "clf/math/Mathf.h"
 #include "clf/math/vec/Vector.h"
 #include "clf/math/vec/Vector2.h"
-#include "clf/math/vec/Vector3.h"
-#include "clf/math/vec/Vector4.h"
+//#include "clf/math/vec/Vector3.h"
+//#include "clf/math/vec/Vector4.h"
 
 #include "clfe/CLFE.h"
 
@@ -14,12 +14,6 @@
 
 using namespace clfe;
 using namespace clu;
-
-template <typename T>
-void thig(T val)
-{
-    std::cout << val << "\n";
-}
 
 int main()
 {
@@ -38,12 +32,21 @@ int main()
 
     // r
 
+	Vector<3, float, double> vec2f(1.0f, 2.0f);
+	Vector<3, double> vec2i(3, 4);
 
-	Vector2f v2f(1.0f, 2.0f);
+    print(vec2f);
+    print(vec2i);
+    std::cout << "dot: " << dot(vec2f, vec2i) << '\n';
+    std::cout << "cross: ";
+	print(cross(vec2f, vec2i));
 
-	//Vector<float, 2>* v = &static_cast<Vector<float, 2>>(v2f);
+    Vector2f thig1 = Vector2f(5.0f, 2.0f);
+    Vector2f thig2(-1.0f, 0.5f);
 
-    print(v2f);
+    std::cout << "dot2: " << dot(thig1, thig2) << '\n';
+
+    print(Vector2f());
 
 
     while (wnd1->exists())

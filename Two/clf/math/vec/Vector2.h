@@ -9,144 +9,160 @@
 namespace clfe
 {
 
-	template <typename T>
-	requires std::is_arithmetic_v<T>
-	class Vector2 : public Vector<T, 2>
+	template <typename T, typename P>
+	class Vector<2, T, P>
 	{
+	protected: // Reimplementation
+		T array[2];
+
 	public:
-		Vector2() : Vector<T, 2>() {}
+		template <typename... Args>
+			requires (sizeof...(Args) <= 2)
+		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector2(const Vector2<T>& vec2) : Vector<T, 2>(vec2.x(), vec2.y()) {}
-
-		Vector2(T x, T y) : Vector<T, 2>(x, y) {}
-
-		T x() const
+		template <typename P1>
+		Vector(const Vector<2, T, P1>& vec) : array{}
 		{
-			return this->array[0];
+			array[0] = vec.array[0];
+			array[1] = vec.array[1];
 		}
 
-		T y() const
+		int size() const
 		{
-			return this->array[1];
+			return 2;
 		}
 
-		void set(T x, T y)
+		const T* get() const
 		{
-			this->array[0] = x;
-			this->array[1] = y;
+			return static_cast<const T*>(array);
 		}
 
-		void x(T x)
+		T get(int i) const
 		{
-			this->array[0] = x;
+			return array[i];
 		}
 
-		void y(T y)
+		void set(int i, T value)
 		{
-			this->array[1] = y;
+			array[i] = value;
 		}
 
-	public:/*
-		bool operator==(const Vector2<T>& vec2) const;
-		bool operator!=(const Vector2<T>& vec2) const;
-
-		Vector2<T> operator+(T value);
-		Vector2<T> operator-(T value);
-		Vector2<T> operator*(T value);
-		Vector2<T> operator/(T value);
-
-		Vector2<T>& operator+=(T value);
-		Vector2<T>& operator-=(T value);
-		Vector2<T>& operator*=(T value);
-		Vector2<T>& operator/=(T value);
-
-		Vector2<T> operator+(const Vector2<T>& vec2);
-		Vector2<T> operator-(const Vector2<T>& vec2);
-		Vector2<T> operator*(const Vector2<T>& vec2);
-		Vector2<T> operator/(const Vector2<T>& vec2);
-
-		Vector2<T>& operator+=(const Vector2<T>& vec2);
-		Vector2<T>& operator-=(const Vector2<T>& vec2);
-		Vector2<T>& operator*=(const Vector2<T>& vec2);
-		Vector2<T>& operator/=(const Vector2<T>& vec2);
-		*/
-
-		// Operator overloads
-		/*
-		template <typename T>
-		Vector2<T> Vector2<T>::operator+(T value)
+		P distance() const requires Arithmetic2<T, P>
 		{
-			return Vector2<T>(this->array[0] + value, this->array[1] + value);
+			return static_cast<P>(sqrt(
+				static_cast<P>(array[0] * array[0]) +
+				static_cast<P>(array[1] * array[1])
+			));
 		}
 
-		template <typename T>
-		Vector2<T> Vector2<T>::operator-(T value)
+		P distSqr() const requires Arithmetic2<T, P>
 		{
-			return Vector2<T>(this->array[0] - value, this->array[1] - value);
+			return static_cast<P>(array[0] * array[0]) +
+				static_cast<P>(array[1] * array[1]);
 		}
 
-		template <typename T>
-		Vector2<T> Vector2<T>::operator*(T value)
+		T nativeDist() const requires Arithmetic<T>
 		{
-			return Vector2<T>(this->array[0] * value, this->array[1] * value);
+			return static_cast<T>(sqrt(
+				array[0] * array[0] +
+				array[1] * array[1]
+			));
 		}
 
-		template <typename T>
-		Vector2<T> Vector2<T>::operator/(T value)
+		T nativeDistSqr() const requires Arithmetic<T>
 		{
-			return Vector2<T>(this->array[0] / value, this->array[1] / value);
+			return array[0] * array[0] +
+				array[1] * array[1];
 		}
 
-		template <typename T>
-		Vector2<T>& Vector2<T>::operator+=(T value)
+		void normalize() requires Arithmetic<T>
 		{
-			this->array[0] += value;
-			this->array[1] += value;
-			return *this;
+			T dist = nativeDist();
+			array[0] = array[0] / dist;
+			array[1] = array[1] / dist;
 		}
 
-		template <typename T>
-		Vector2<T>& Vector2<T>::operator-=(T value)
+		template <int Size0, typename T0, typename U0, typename P1, typename P2>
+			requires (Size0 > 0) && Arithmetic<T0>&& Arithmetic<U0>
+		friend auto dot(const Vector<Size0, T0, P1>& vec1, const Vector<Size0, U0, P2>& vec2) -> decltype(static_cast<T0>(0) + static_cast<U0>(0));
+
+	public: // Vector2 specific
+		T x() const;
+		T y() const;
+
+		void set(T x, T y);
+		void x(T x);
+		void y(T y);
+
+		inline T u() const
 		{
-			this->array[0] -= value;
-			this->array[1] -= value;
-			return *this;
+			return x();
 		}
 
-		template <typename T>
-		Vector2<T>& Vector2<T>::operator*=(T value)
+		inline T v() const
 		{
-			this->array[0] *= value;
-			this->array[1] *= value;
-			return *this;
+			return y();
 		}
 
-		template <typename T>
-		Vector2<T>& Vector2<T>::operator/=(T value)
+		void u(T u)
 		{
-			this->array[0] /= value;
-			this->array[1] /= value;
-			return *this;
+			x(u);
 		}
 
-		template <typename T>
-		Vector2<T> Vector2<T>::operator+(const Vector2<T>& vec2)
+		void v(T v)
 		{
-			return Vector2<T>(this->array[0] + vec2.x(), this->array[1] + vec2.y());
+			y(v);
 		}
-		*/
-		
 
 	};
+
 }
 
 namespace clfe
 {
 
-	using Vector2b = Vector2<uint8_t>;
-	using Vector2f = Vector2<float>;
-	using Vector2d = Vector2<double>;
-	using Vector2i = Vector2<int>;
+	using Vector2b = Vector<2, uint8_t>;
+	using Vector2f = Vector<2, float>;
+	using Vector2d = Vector<2, double>;
+	using Vector2i = Vector<2, int>;
+
+}
+
+// Definitions
+
+namespace clfe
+{
+
+	template <typename T, typename P>
+	T Vector<2, T, P>::x() const
+	{
+		return this->array[0];
+	}
+
+	template <typename T, typename P>
+	T Vector<2, T, P>::y() const
+	{
+		return this->array[1];
+	}
+
+	template <typename T, typename P>
+	void Vector<2, T, P>::set(T x, T y)
+	{
+		this->array[0] = x;
+		this->array[1] = y;
+	}
+
+	template <typename T, typename P>
+	void Vector<2, T, P>::x(T x)
+	{
+		this->array[0] = x;
+	}
+
+	template <typename T, typename P>
+	void Vector<2, T, P>::y(T y)
+	{
+		this->array[1] = y;
+	}
 
 }
 

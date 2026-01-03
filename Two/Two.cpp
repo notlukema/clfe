@@ -19,7 +19,7 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    if (!init()) {
+    if (!clfe::init()) {
         return -1;
     }
 
@@ -32,21 +32,25 @@ int main()
 
     // r
 
-	Vector<3, float, double> vec2f(1.0f, 2.0f);
-	Vector<3, double> vec2i(3, 4);
+    Vector2<float> vec2f_1(1.0f);
+    print(vec2f_1);
+    Vector<3, double> vec3i_1(3, 4, -15);
+    print(vec3i_1);
 
-    print(vec2f);
-    print(vec2i);
-    std::cout << "dot: " << dot(vec2f, vec2i) << '\n';
-    std::cout << "cross: ";
-	print(cross(vec2f, vec2i));
+    Vector<3, double> vec_1 = vec2f_1 + vec3i_1;
+	Vector2f vec2_1 = operator+(vec2f_1, Vector2f(5.0f, 6.0f));
+    print(vec_1);
+    print(vec2_1);
 
-    Vector2f thig1 = Vector2f(5.0f, 2.0f);
-    Vector2f thig2(-1.0f, 0.5f);
+    std::cout << "LINE SPLIT\n";
 
-    std::cout << "dot2: " << dot(thig1, thig2) << '\n';
+	Vector2f vec2f_2(2.5f, 3.0f);
+	vec2f_2 += Vector2f(1.5f, -1.0f);
+    print(vec2f_2);
 
-    print(Vector2f());
+    print(vec2f_2 / 0.15f);
+    print(vec2f_2);
+
 
 
     while (wnd1->exists())

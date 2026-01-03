@@ -4,7 +4,6 @@
 #include "Vector.h"
 
 #include <cstdint>
-#include <type_traits>
 
 namespace clfe
 {
@@ -27,22 +26,37 @@ namespace clfe
 			array[1] = vec.array[1];
 		}
 
-		int size() const
+		template <int Size1, typename P1>
+			requires (Size1 > 0) && (Size1 != 2)
+		Vector(const Vector<Size1, T, P1>& vec) : array{}
+		{
+			int minSize = (2 < Size1) ? 2 : Size1;
+			for (int i = 0; i < minSize; i++)
+			{
+				array[i] = vec.get(i);
+			}
+			for (int i = minSize; i < 2; i++)
+			{
+				array[i] = static_cast<T>(0);
+			}
+		}
+
+		inline int size() const
 		{
 			return 2;
 		}
 
-		const T* get() const
+		inline const T* get() const
 		{
 			return static_cast<const T*>(array);
 		}
 
-		T get(int i) const
+		inline T get(int i) const
 		{
 			return array[i];
 		}
 
-		void set(int i, T value)
+		inline void setAt(int i, T value)
 		{
 			array[i] = value;
 		}
@@ -82,9 +96,14 @@ namespace clfe
 			array[1] = array[1] / dist;
 		}
 
-		template <int Size0, typename T0, typename U0, typename P1, typename P2>
-			requires (Size0 > 0) && Arithmetic<T0>&& Arithmetic<U0>
-		friend auto dot(const Vector<Size0, T0, P1>& vec1, const Vector<Size0, U0, P2>& vec2) -> decltype(static_cast<T0>(0) + static_cast<U0>(0));
+		Vector<2, P, P> normalized() const requires Arithmetic<T>
+		{
+			P dist = distance();
+			return Vector<2, P, P>(
+				static_cast<P>(array[0]) / dist,
+				static_cast<P>(array[1]) / dist
+			);
+		}
 
 	public: // Vector2 specific
 		T x() const;
@@ -121,10 +140,28 @@ namespace clfe
 namespace clfe
 {
 
+	template <typename T, typename P = lowp>
+	using Vector2 = Vector<2, T, P>;
+
 	using Vector2b = Vector<2, uint8_t>;
 	using Vector2f = Vector<2, float>;
 	using Vector2d = Vector<2, double>;
 	using Vector2i = Vector<2, int>;
+
+	using Vector2b_lp = Vector<2, uint8_t, lowp>;
+	using Vector2f_lp = Vector<2, float, lowp>;
+	using Vector2d_lp = Vector<2, double, lowp>;
+	using Vector2i_lp = Vector<2, int, lowp>;
+
+	using Vector2b_mp = Vector<2, uint8_t, mediump>;
+	using Vector2f_mp = Vector<2, float, mediump>;
+	using Vector2d_mp = Vector<2, double, mediump>;
+	using Vector2i_mp = Vector<2, int, mediump>;
+
+	using Vector2b_hp = Vector<2, uint8_t, highp>;
+	using Vector2f_hp = Vector<2, float, highp>;
+	using Vector2d_hp = Vector<2, double, highp>;
+	using Vector2i_hp = Vector<2, int, highp>;
 
 }
 

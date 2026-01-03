@@ -42,6 +42,9 @@
     <ClCompile Include="clf\math\Mathd.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clf\math\vec\VecOp.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\System.h">
@@ -102,6 +105,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\VecMatOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\mat\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clf\math\mat\MatOp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

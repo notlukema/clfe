@@ -2,8 +2,9 @@
 #define CLFE_BITMAP_RGBA_H
 
 #include "Bitmap.h"
-#include "../../math/vec/Vector4.h"
+#include "../../math/vec/Vector.h"
 #include "../../math/vec/Vector3.h"
+#include "../../math/vec/Vector4.h"
 
 #include <cstdint>
 
@@ -30,7 +31,8 @@ namespace clfe
 		T b(int x, int y) const;
 		T a(int x, int y) const;
 
-		Vector3<T> rgb(int x, int y) const;
+		template <typename P>
+		Vector<3, T, P> rgb(int x, int y) const;
 
 		void r(int x, int y, T r);
 		void g(int x, int y, T g);
@@ -38,7 +40,8 @@ namespace clfe
 		void a(int x, int y, T a);
 
 		void rgb(int x, int y, T r, T g, T b);
-		void rgb(int x, int y, const Vector3<T>& rgb);
+		template <typename P>
+		void rgb(int x, int y, const Vector<3, T, P>& rgb);
 
 	};
 
@@ -142,10 +145,10 @@ namespace clfe
 	}
 
 	template <typename T>
-	Vector3<T> BitmapRGBA<T>::rgb(int x, int y) const
+	Vector<3, T, float> BitmapRGBA<T>::rgb(int x, int y) const
 	{
 		int i = this->index(x, y);
-		return Vector3<T>(this->data[i], this->data[i + 1], this->data[i + 2]);
+		return Vector<3, T, float>(this->data[i], this->data[i + 1], this->data[i + 2]);
 	}
 
 	template <typename T>
@@ -181,8 +184,8 @@ namespace clfe
 		this->data[i + 2] = b;
 	}
 
-	template <typename T>
-	void BitmapRGBA<T>::rgb(int x, int y, const Vector3<T>& rgb)
+	template <typename T, typename P>
+	void BitmapRGBA<T>::rgb(int x, int y, const Vector<3, T, P>& rgb)
 	{
 		int i = this->index(x, y);
 		this->data[i] = rgb.r();

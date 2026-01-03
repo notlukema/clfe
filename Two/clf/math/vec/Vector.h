@@ -1,10 +1,7 @@
 #ifndef CLFE_VECTOR_H
 #define CLFE_VECTOR_H
 
-#include "../Math.h"
-
 #include <type_traits>
-#include <concepts>
 
 namespace clfe
 {
@@ -19,7 +16,7 @@ namespace clfe
 	template <typename T, typename P>
 	concept Arithmetic2 = std::is_arithmetic_v<T> && std::is_arithmetic_v<P> && std::is_convertible_v<T, P>;
 
-	template <int Size, typename T, typename P = float>
+	template <int Size, typename T, typename P = lowp>
 		requires (Size > 0)
 	class Vector
 	{
@@ -34,29 +31,43 @@ namespace clfe
 		template <typename P1>
 		Vector(const Vector<Size, T, P1>& vec) : array{}
 		{
-			// The compiler should automatically unroll smaller loops... I think?
 			for (int i = 0; i < Size; i++)
 			{
-				array[i] = vec.array[i];
+				array[i] = vec.get(i);
 			}
 		}
 
-		int size() const
+		template <int Size1, typename P1>
+			requires (Size1 > 0) && (Size1 != Size)
+		Vector(const Vector<Size1, T, P1>& vec) : array{}
+		{
+			int minSize = (Size < Size1) ? Size : Size1;
+			for (int i = 0; i < minSize; i++)
+			{
+				array[i] = vec.get(i);
+			}
+			for (int i = minSize; i < Size; i++)
+			{
+				array[i] = static_cast<T>(0);
+			}
+		}
+
+		inline int size() const
 		{
 			return Size;
 		}
 
-		const T* get() const
+		inline const T* get() const
 		{
 			return static_cast<const T*>(array);
 		}
 
-		T get(int i) const
+		inline T get(int i) const
 		{
 			return array[i];
 		}
 
-		void set(int i, T value)
+		inline void setAt(int i, T value)
 		{
 			array[i] = value;
 		}
@@ -110,36 +121,24 @@ namespace clfe
 			}
 		}
 
-		template <int Size0, typename T0, typename U0, typename P1, typename P2>
-			requires (Size0 > 0) && Arithmetic<T0>&& Arithmetic<U0>
-		friend auto dot(const Vector<Size0, T0, P1>& vec1, const Vector<Size0, U0, P2>& vec2) -> decltype(static_cast<T0>(0) + static_cast<U0>(0));
+		Vector<Size, P, P> normalized() const requires Arithmetic<T>
+		{
+			P dist = distance();
+			Vector<Size, P, P> result;
+			for (int i = 0; i < Size; i++)
+			{
+				result.setAt(i, static_cast<P>(array[i]) / dist);
+			}
+			return result;
+		}
 
 	};
 
-	template <int Size, typename T, typename U, typename P1, typename P2>
-		requires (Size > 0) && Arithmetic<T> && Arithmetic<U>
-	auto dot(const Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2) -> decltype(static_cast<T>(0) + static_cast<U>(0))
-	{
-		auto result = static_cast<decltype(static_cast<T>(0) + static_cast<U>(0))>(0);
-		for (int i = 0; i < Size; i++)
-		{
-			result += vec1.array[i] * vec2.array[i];
-			//result += vec1.get(i) * vec2.get(i);
-		}
-		return result;
-	}
-
-	template <int Size, typename T, typename U, typename P1, typename P2>
-		requires (Size == 3) && Arithmetic<T> && Arithmetic<U>
-	auto cross(const Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P1>
-	{
-		return Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P1>(
-			vec1.get(1) * vec2.get(2) - vec1.get(2) * vec2.get(1),
-			vec1.get(2) * vec2.get(0) - vec1.get(0) * vec2.get(2),
-			vec1.get(0) * vec2.get(1) - vec1.get(1) * vec2.get(0)
-		);
-	}
-
 }
+
+#include "VecOp.h"
+#ifdef CLFE_MATRIX_H
+#include "../VecMatOp.h"
+#endif
 
 #endif

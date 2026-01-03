@@ -8,14 +8,111 @@
 namespace clfe
 {
 
-	template <typename T>
-	class Vector3 : public Vector<T, 3>
+	template <typename T, typename P>
+	class Vector<3, T, P>
 	{
-	public:
-		Vector3();
-		Vector3(const Vector3<T>& vec3);
-		Vector3(T x, T y, T z);
+	protected: // Reimplementation
+		T array[3];
 
+	public:
+		template <typename... Args>
+			requires (sizeof...(Args) <= 3)
+		Vector(Args... args) : array{ static_cast<T>(args)... } {}
+
+		template <typename P1>
+		Vector(const Vector<3, T, P1>& vec) : array{}
+		{
+			array[0] = vec.array[0];
+			array[1] = vec.array[1];
+			array[2] = vec.array[2];
+		}
+
+		template <int Size1, typename P1>
+			requires (Size1 > 0) && (Size1 != 3)
+		Vector(const Vector<Size1, T, P1>& vec) : array{}
+		{
+			int minSize = (3 < Size1) ? 3 : Size1;
+			for (int i = 0; i < minSize; i++)
+			{
+				array[i] = vec.get(i);
+			}
+			for (int i = minSize; i < 3; i++)
+			{
+				array[i] = static_cast<T>(0);
+			}
+		}
+
+		inline int size() const
+		{
+			return 3;
+		}
+
+		inline const T* get() const
+		{
+			return static_cast<const T*>(array);
+		}
+
+		inline T get(int i) const
+		{
+			return array[i];
+		}
+
+		inline void setAt(int i, T value)
+		{
+			array[i] = value;
+		}
+
+		P distance() const requires Arithmetic2<T, P>
+		{
+			return static_cast<P>(sqrt(
+				static_cast<P>(array[0] * array[0]) +
+				static_cast<P>(array[1] * array[1]) +
+				static_cast<P>(array[2] * array[2])
+			));
+		}
+
+		P distSqr() const requires Arithmetic2<T, P>
+		{
+			return static_cast<P>(array[0] * array[0]) +
+				static_cast<P>(array[1] * array[1]) +
+				static_cast<P>(array[2] * array[2]);
+		}
+
+		T nativeDist() const requires Arithmetic<T>
+		{
+			return static_cast<T>(sqrt(
+				array[0] * array[0] +
+				array[1] * array[1] +
+				array[2] * array[2]
+			));
+		}
+
+		T nativeDistSqr() const requires Arithmetic<T>
+		{
+			return array[0] * array[0] +
+				array[1] * array[1] +
+				array[2] * array[2];
+		}
+
+		void normalize() requires Arithmetic<T>
+		{
+			T dist = nativeDist();
+			array[0] = array[0] / dist;
+			array[1] = array[1] / dist;
+			array[2] = array[2] / dist;
+		}
+
+		Vector<3, P, P> normalized() const requires Arithmetic<T>
+		{
+			P dist = distance();
+			return Vector<3, P, P>(
+				static_cast<P>(array[0]) / dist,
+				static_cast<P>(array[1]) / dist,
+				static_cast<P>(array[2]) / dist
+			);
+		}
+
+	public: // Vector3 specific
 		T x() const;
 		T y() const;
 		T z() const;
@@ -62,10 +159,28 @@ namespace clfe
 namespace clfe
 {
 
-	using Vector3b = Vector3<uint8_t>;
-	using Vector3f = Vector3<float>;
-	using Vector3d = Vector3<double>;
-	using Vector3i = Vector3<int>;
+	template <typename T, typename P = lowp>
+	using Vector3 = Vector<3, T, P>;
+
+	using Vector3b = Vector<3, uint8_t>;
+	using Vector3f = Vector<3, float>;
+	using Vector3d = Vector<3, double>;
+	using Vector3i = Vector<3, int>;
+
+	using Vector3b_lp = Vector<3, uint8_t, lowp>;
+	using Vector3f_lp = Vector<3, float, lowp>;
+	using Vector3d_lp = Vector<3, double, lowp>;
+	using Vector3i_lp = Vector<3, int, lowp>;
+
+	using Vector3b_mp = Vector<3, uint8_t, mediump>;
+	using Vector3f_mp = Vector<3, float, mediump>;
+	using Vector3d_mp = Vector<3, double, mediump>;
+	using Vector3i_mp = Vector<3, int, mediump>;
+
+	using Vector3b_hp = Vector<3, uint8_t, highp>;
+	using Vector3f_hp = Vector<3, float, highp>;
+	using Vector3d_hp = Vector<3, double, highp>;
+	using Vector3i_hp = Vector<3, int, highp>;
 
 }
 
@@ -74,55 +189,46 @@ namespace clfe
 namespace clfe
 {
 
-	template <typename T>
-	Vector3<T>::Vector3() : Vector<T, 3>() {}
-
-	template <typename T>
-	Vector3<T>::Vector3(const Vector3<T>& vec3) : Vector<T, 3>(vec3.x(), vec3.y(), vec3.z()) {}
-
-	template <typename T>
-	Vector3<T>::Vector3(T x, T y, T z) : Vector<T, 3>(x, y, z) {}
-
-	template <typename T>
-	T Vector3<T>::x() const
+	template <typename T, typename P>
+	T Vector<3, T, P>::x() const
 	{
 		return this->array[0];
 	}
 
-	template <typename T>
-	T Vector3<T>::y() const
+	template <typename T, typename P>
+	T Vector<3, T, P>::y() const
 	{
 		return this->array[1];
 	}
 
-	template <typename T>
-	T Vector3<T>::z() const
+	template <typename T, typename P>
+	T Vector<3, T, P>::z() const
 	{
 		return this->array[2];
 	}
 
-	template <typename T>
-	void Vector3<T>::set(T x, T y, T z)
+	template <typename T, typename P>
+	void Vector<3, T, P>::set(T x, T y, T z)
 	{
 		this->array[0] = x;
 		this->array[1] = y;
 		this->array[2] = z;
 	}
 
-	template <typename T>
-	void Vector3<T>::x(T x)
+	template <typename T, typename P>
+	void Vector<3, T, P>::x(T x)
 	{
 		this->array[0] = x;
 	}
 
-	template <typename T>
-	void Vector3<T>::y(T y)
+	template <typename T, typename P>
+	void Vector<3, T, P>::y(T y)
 	{
 		this->array[1] = y;
 	}
 
-	template <typename T>
-	void Vector3<T>::z(T z)
+	template <typename T, typename P>
+	void Vector<3, T, P>::z(T z)
 	{
 		this->array[2] = z;
 	}

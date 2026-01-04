@@ -1,23 +1,12 @@
 #ifndef CLFE_VECTOR_H
 #define CLFE_VECTOR_H
 
-#include <type_traits>
+#include "../VecMatCommon.h"
 
 namespace clfe
 {
 
-	using lowp = float;
-	using mediump = double;
-	using highp = long double;
-
-	template <typename T>
-	concept Arithmetic = std::is_arithmetic_v<T>;
-
-	template <typename T, typename P>
-	concept Arithmetic2 = std::is_arithmetic_v<T> && std::is_arithmetic_v<P> && std::is_convertible_v<T, P>;
-
-	template <int Size, typename T, typename P = lowp>
-		requires (Size > 0)
+	template <msize_t Size, typename T, typename P = lowp>
 	class Vector
 	{
 	protected:
@@ -28,27 +17,25 @@ namespace clfe
 			requires (sizeof...(Args) <= Size)
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		template <typename P1>
-		Vector(const Vector<Size, T, P1>& vec) : array{}
+		Vector(const T* arr) : array{}
 		{
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
-				array[i] = vec.get(i);
+				array[i] = arr[i];
 			}
 		}
 
-		template <int Size1, typename P1>
-			requires (Size1 > 0) && (Size1 != Size)
+		template <msize_t Size1, typename P1>
+			requires (Size1 <= Size)
+		Vector(const Vector<Size1, T, P1>& vec) : array{ vec.array } {}
+
+		template <msize_t Size1, typename P1>
+			requires (Size1 > Size)
 		Vector(const Vector<Size1, T, P1>& vec) : array{}
 		{
-			int minSize = (Size < Size1) ? Size : Size1;
-			for (int i = 0; i < minSize; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				array[i] = vec.get(i);
-			}
-			for (int i = minSize; i < Size; i++)
-			{
-				array[i] = static_cast<T>(0);
 			}
 		}
 
@@ -75,7 +62,7 @@ namespace clfe
 		P distance() const requires Arithmetic2<T, P>
 		{
 			P sum = static_cast<P>(0);
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				sum += static_cast<P>(array[i] * array[i]);
 			}
@@ -85,7 +72,7 @@ namespace clfe
 		P distSqr() const requires Arithmetic2<T, P>
 		{
 			P sum = static_cast<P>(0);
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				sum += static_cast<P>(array[i] * array[i]);
 			}
@@ -95,7 +82,7 @@ namespace clfe
 		T nativeDist() const requires Arithmetic<T>
 		{
 			T sum = static_cast<T>(0);
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				sum += array[i] * array[i];
 			}
@@ -105,7 +92,7 @@ namespace clfe
 		T nativeDistSqr() const requires Arithmetic<T>
 		{
 			T sum = static_cast<T>(0);
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				sum += array[i] * array[i];
 			}
@@ -115,7 +102,7 @@ namespace clfe
 		void normalize() requires Arithmetic<T>
 		{
 			T dist = nativeDist();
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				array[i] = array[i] / dist;
 			}
@@ -125,7 +112,7 @@ namespace clfe
 		{
 			P dist = distance();
 			Vector<Size, P, P> result;
-			for (int i = 0; i < Size; i++)
+			for (msize_t i = 0; i < Size; i++)
 			{
 				result.setAt(i, static_cast<P>(array[i]) / dist);
 			}

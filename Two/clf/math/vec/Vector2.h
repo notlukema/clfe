@@ -1,6 +1,7 @@
 #ifndef CLFE_VECTOR_2_H
 #define CLFE_VECTOR_2_H
 
+#include "../VecMatCommon.h"
 #include "Vector.h"
 
 #include <cstdint>
@@ -19,6 +20,25 @@ namespace clfe
 			requires (sizeof...(Args) <= 2)
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
+		Vector(const T* arr) : array{}
+		{
+			array[0] = arr[0];
+			array[1] = arr[1];
+		}
+
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 0) && (Size1 <= 2)
+		Vector(const Vector<Size1, T, P1>& vec) : array{ vec.array } {}
+
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 2)
+		Vector(const Vector<Size1, T, P1>& vec) : array{}
+		{
+			array[0] = vec.get(0);
+			array[1] = vec.get(1);
+		}
+
+		/*
 		template <typename P1>
 		Vector(const Vector<2, T, P1>& vec) : array{}
 		{
@@ -40,6 +60,7 @@ namespace clfe
 				array[i] = static_cast<T>(0);
 			}
 		}
+		*/
 
 		inline int size() const
 		{

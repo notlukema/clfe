@@ -143,6 +143,7 @@
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clf\comp\tex\Bitmap.h" />
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
+    <ClInclude Include="clf\math\VecMatCommon.h" />
     <ClInclude Include="clf\math\MathConst.h" />
     <ClInclude Include="clf\math\Math.h" />
     <ClInclude Include="clf\math\mat\MatOp.h" />

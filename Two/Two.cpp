@@ -5,12 +5,16 @@
 #include "clf/math/Mathf.h"
 #include "clf/math/vec/Vector.h"
 #include "clf/math/vec/Vector2.h"
-//#include "clf/math/vec/Vector3.h"
-//#include "clf/math/vec/Vector4.h"
+#include "clf/math/vec/Vector3.h"
+#include "clf/math/vec/Vector4.h"
+
+#include "clf/math/mat/Matrix.h"
 
 #include "clfe/CLFE.h"
 
 #include "clu/Print.h"
+
+#include <cstdlib>
 
 using namespace clfe;
 using namespace clu;
@@ -31,7 +35,7 @@ int main()
     Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
     // r
-
+    /*
     Vector2<float> vec2f_1(1.0f);
     print(vec2f_1);
     Vector<3, double> vec3i_1(3, 4, -15);
@@ -51,6 +55,30 @@ int main()
     print(vec2f_2 / 0.15f);
     print(vec2f_2);
 
+    std::cout << "LINE SPLIT\n";
+    */
+
+    const int f[] = {5, 2, 5};
+    Vector2<int> vec2i(f);
+    print(vec2i);
+
+    const int size = 12;
+    for (int i = 0; i < 100; i++) {
+        int arr[size];
+        std::cout << "arr(" << size << "): {";
+        for (int j = 0; j < size; j++) {
+            arr[j] = std::rand() % 2001 - 1000;
+            std::cout << arr[j];
+            if (j < size - 1) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << "}\n";
+
+        std::cout << "size comp: " << sizeof(arr) << " vs " << sizeof(Vector<size, int>(arr));
+
+        std::cout << "\n\n";
+    }
 
 
     while (wnd1->exists())

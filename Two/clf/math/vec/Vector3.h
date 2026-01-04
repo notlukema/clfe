@@ -1,6 +1,7 @@
 #ifndef CLFE_VECTOR_3_H
 #define CLFE_VECTOR_3_H
 
+#include "../VecMatCommon.h"
 #include "Vector.h"
 
 #include <cstdint>
@@ -19,27 +20,24 @@ namespace clfe
 			requires (sizeof...(Args) <= 3)
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		template <typename P1>
-		Vector(const Vector<3, T, P1>& vec) : array{}
+		Vector(const T* arr) : array{}
 		{
-			array[0] = vec.array[0];
-			array[1] = vec.array[1];
-			array[2] = vec.array[2];
+			array[0] = arr[0];
+			array[1] = arr[1];
+			array[2] = arr[2];
 		}
 
-		template <int Size1, typename P1>
-			requires (Size1 > 0) && (Size1 != 3)
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 0) && (Size1 <= 3)
+		Vector(const Vector<Size1, T, P1>& vec) : array{ vec.array } {}
+
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 3)
 		Vector(const Vector<Size1, T, P1>& vec) : array{}
 		{
-			int minSize = (3 < Size1) ? 3 : Size1;
-			for (int i = 0; i < minSize; i++)
-			{
-				array[i] = vec.get(i);
-			}
-			for (int i = minSize; i < 3; i++)
-			{
-				array[i] = static_cast<T>(0);
-			}
+			array[0] = vec.get(0);
+			array[1] = vec.get(1);
+			array[2] = vec.get(2);
 		}
 
 		inline int size() const

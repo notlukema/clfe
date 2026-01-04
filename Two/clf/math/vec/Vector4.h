@@ -1,6 +1,7 @@
 #ifndef CLFE_VECTOR_4_H
 #define CLFE_VECTOR_4_H
 
+#include "../VecMatCommon.h"
 #include "Vector.h"
 
 #include <cstdint>
@@ -19,28 +20,26 @@ namespace clfe
 			requires (sizeof...(Args) <= 4)
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		template <typename P1>
-		Vector(const Vector<4, T, P1>& vec) : array{}
+		Vector(const T* arr) : array{}
 		{
-			array[0] = vec.array[0];
-			array[1] = vec.array[1];
-			array[2] = vec.array[2];
-			array[3] = vec.array[3];
+			array[0] = arr[0];
+			array[1] = arr[1];
+			array[2] = arr[2];
+			array[3] = arr[3];
 		}
 
-		template <int Size1, typename P1>
-			requires (Size1 > 0) && (Size1 != 4)
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 0) && (Size1 <= 4)
+		Vector(const Vector<Size1, T, P1>& vec) : array{ vec.array } {}
+
+		template <msize_t Size1, typename P1>
+			requires (Size1 > 4)
 		Vector(const Vector<Size1, T, P1>& vec) : array{}
 		{
-			int minSize = (4 < Size1) ? 4 : Size1;
-			for (int i = 0; i < minSize; i++)
-			{
-				array[i] = vec.get(i);
-			}
-			for (int i = minSize; i < 4; i++)
-			{
-				array[i] = static_cast<T>(0);
-			}
+			array[0] = vec.get(0);
+			array[1] = vec.get(1);
+			array[2] = vec.get(2);
+			array[3] = vec.get(3);
 		}
 
 		inline int size() const

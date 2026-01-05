@@ -8,7 +8,7 @@ namespace clfe
 {
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires Arithmetic<T>&& Arithmetic<U>
+		requires Arithmetic<T> && Arithmetic<U>
 	auto dot(const Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2) -> decltype(static_cast<T>(0) + static_cast<U>(0))
 	{
 		auto result = static_cast<decltype(static_cast<T>(0) + static_cast<U>(0))>(0);
@@ -20,7 +20,7 @@ namespace clfe
 	}
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires (Size == 3) && Arithmetic<T>&& Arithmetic<U>
+		requires (Size == 3) && Arithmetic<T> && Arithmetic<U>
 	auto cross(const Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P1>
 	{
 		return Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P1>(
@@ -69,7 +69,7 @@ namespace clfe
 	}
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires Arithmetic2<T, U>
+		requires Arithmetic3<T, U>
 	Vector<Size, T, P1>& operator+=(Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2)
 	{
 		for (msize_t i = 0; i < Size; i++)
@@ -109,7 +109,7 @@ namespace clfe
 	}
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires Arithmetic2<T, U>
+		requires Arithmetic3<T, U>
 	Vector<Size, T, P1>& operator-=(Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2)
 	{
 		for (msize_t i = 0; i < Size; i++)
@@ -134,7 +134,7 @@ namespace clfe
 	}
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires Arithmetic2<T, U>
+		requires Arithmetic3<T, U>
 	Vector<Size, T, P1>& operator*=(Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2)
 	{
 		for (msize_t i = 0; i < Size; i++)
@@ -159,7 +159,7 @@ namespace clfe
 	}
 
 	template <msize_t Size, typename T, typename U, typename P1, typename P2>
-		requires Arithmetic2<T, U>
+		requires Arithmetic3<T, U>
 	Vector<Size, T, P1>& operator/=(Vector<Size, T, P1>& vec1, const Vector<Size, U, P2>& vec2)
 	{
 		for (msize_t i = 0; i < Size; i++)
@@ -190,11 +190,11 @@ namespace clfe
 	}
 	*/
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P> operator+(const Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic<T> && Arithmetic<U>
+	auto operator+(const Vector<Size, T, P>& vec, U scalar) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>
 	{
-		auto result = Vector<Size, T, P>();
+		auto result = Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>();
 		for (msize_t i = 0; i < Size; i++)
 		{
 			result.setAt(i, vec.get(i) + scalar);
@@ -202,24 +202,24 @@ namespace clfe
 		return result;
 	}
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P>& operator+=(Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic3<T, U>
+	Vector<Size, T, P>& operator+=(Vector<Size, T, P>& vec, U scalar)
 	{
 		for (msize_t i = 0; i < Size; i++)
 		{
-			vec.setAt(i, vec.get(i) + scalar);
+			vec.setAt(i, static_cast<T>(vec.get(i) + scalar));
 		}
 		return vec;
 	}
 
 	// Subtraction
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P> operator-(const Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic<T>&& Arithmetic<U>
+	auto operator-(const Vector<Size, T, P>& vec, U scalar) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>
 	{
-		auto result = Vector<Size, T, P>();
+		auto result = Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>();
 		for (msize_t i = 0; i < Size; i++)
 		{
 			result.setAt(i, vec.get(i) - scalar);
@@ -227,24 +227,24 @@ namespace clfe
 		return result;
 	}
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P>& operator-=(Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic3<T, U>
+	Vector<Size, T, P>& operator-=(Vector<Size, T, P>& vec, U scalar)
 	{
 		for (msize_t i = 0; i < Size; i++)
 		{
-			vec.setAt(i, vec.get(i) - scalar);
+			vec.setAt(i, static_cast<T>(vec.get(i) - scalar));
 		}
 		return vec;
 	}
 
 	// Multiplication
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P> operator*(const Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic<T>&& Arithmetic<U>
+	auto operator*(const Vector<Size, T, P>& vec, U scalar) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>
 	{
-		auto result = Vector<Size, T, P>();
+		auto result = Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>();
 		for (msize_t i = 0; i < Size; i++)
 		{
 			result.setAt(i, vec.get(i) * scalar);
@@ -252,24 +252,24 @@ namespace clfe
 		return result;
 	}
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P>& operator*=(Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic3<T, U>
+	Vector<Size, T, P>& operator*=(Vector<Size, T, P>& vec, U scalar)
 	{
 		for (msize_t i = 0; i < Size; i++)
 		{
-			vec.setAt(i, vec.get(i) * scalar);
+			vec.setAt(i, static_cast<T>(vec.get(i) * scalar));
 		}
 		return vec;
 	}
 
 	// Division
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P> operator/(const Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic<T>&& Arithmetic<U>
+	auto operator/(const Vector<Size, T, P>& vec, U scalar) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>
 	{
-		auto result = Vector<Size, T, P>();
+		auto result = Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0)), P>();
 		for (msize_t i = 0; i < Size; i++)
 		{
 			result.setAt(i, vec.get(i) / scalar);
@@ -277,13 +277,13 @@ namespace clfe
 		return result;
 	}
 
-	template <msize_t Size, typename T, typename P>
-		requires Arithmetic<T>
-	Vector<Size, T, P>& operator/=(Vector<Size, T, P>& vec, T scalar)
+	template <msize_t Size, typename T, typename U, typename P>
+		requires Arithmetic3<T, U>
+	Vector<Size, T, P>& operator/=(Vector<Size, T, P>& vec, U scalar)
 	{
 		for (msize_t i = 0; i < Size; i++)
 		{
-			vec.setAt(i, vec.get(i) / scalar);
+			vec.setAt(i, static_cast<T>(vec.get(i) / scalar));
 		}
 		return vec;
 	}

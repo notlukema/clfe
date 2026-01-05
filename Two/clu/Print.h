@@ -26,39 +26,36 @@ namespace clu
 		printf(")\n");
 	}
 #endif
-	/*
+	
 #ifdef CLFE_MATRIX_H
-	template <msize_t Rows, msize_t Cols, typename T, typename P>
+	template <clfe::msize_t Rows, clfe::msize_t Cols, typename T, typename P>
 	void print(const clfe::Matrix<Rows, Cols, T, P>& mat)
 	{
-		const T* const data[] = mat.get();
-		printf("[");
-		for (msize_t r = 0; r < Rows; r++)
+		const clfe::Vector<Cols, T, P>* const data = mat.get();
+		printf("[ ");
+		for (clfe::msize_t r = 0; r < Rows; r++)
 		{
-			for (msize_t c = 0; c < Cols; c++)
+			if (r > 0)
 			{
-				if (r > 0)
+				printf("  ");
+			}
+			for (clfe::msize_t c = 0; c < Cols; c++)
+			{
+				printf("%.3f", (double)data[r].get(c));
+				if (r < Rows - 1 || c < Cols - 1)
 				{
-					printf(" ");
-				}
-				for (msize_t c = 0; c < Cols; c++)
-				{
-					printf("%.3f", (double)data[r][c]);
-					if (c < Cols - 1 || r < Rows - 1)
-					{
-						printf(", ");
-					}
+					printf(", ");
 				}
 			}
 			if (r < Rows - 1)
 			{
-				printf(",\n");
+				printf("\n");
 			}
 		}
-		printf("]\n");
+		printf("  ]\n");
 	}
 #endif
-	*/
+	
 }
 
 #endif

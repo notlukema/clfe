@@ -28,11 +28,6 @@ int main()
     }
 
     Window* wnd1 = createWindow("thing");
-    Window* wnd2 = createWindow("thing2");
-    Window* wnd3 = createWindow("tig");
-
-
-    Window* wnd12 = createWindow(0, 0, 300, 300, "eat some ethane gas");
 
     // r
     /*
@@ -61,24 +56,26 @@ int main()
     const int f[] = {5, 2, 5};
     Vector2<int> vec2i(f);
     print(vec2i);
+    print((vec2i.normalized() * 12));
 
-    const int size = 12;
-    for (int i = 0; i < 100; i++) {
-        int arr[size];
-        std::cout << "arr(" << size << "): {";
-        for (int j = 0; j < size; j++) {
-            arr[j] = std::rand() % 2001 - 1000;
-            std::cout << arr[j];
-            if (j < size - 1) {
-                std::cout << ", ";
-            }
-        }
-        std::cout << "}\n";
+    Matrix<3, 3, float> mat33f(
+        1.0f, 2.0f, 3.0f,
+        0.0f, 1.0f, 4.0f,
+        5.0f, 6.0f, 0.0f
+	);
+    print(mat33f);
+    mat33f.transpose();
+    print(mat33f);
 
-        std::cout << "size comp: " << sizeof(arr) << " vs " << sizeof(Vector<size, int>(arr));
+    std::cout << "\nLINE SPLIT\n\n";
 
-        std::cout << "\n\n";
-    }
+    Matrix<2, 4, float> mat24f(
+		{ 1.0f, 2.0f, 3.0f, 4.0f,
+        5.0f, 6.0f, 7.0f, 8.0f }
+	);
+    print(mat24f);
+	auto mat42f = mat24f.transposed();
+	print(mat42f);
 
 
     while (wnd1->exists())

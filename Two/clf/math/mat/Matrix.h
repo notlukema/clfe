@@ -11,7 +11,7 @@ namespace clfe
 	class Matrix
 	{
 	protected:
-		T array[Rows][Cols];
+		Vector<Cols, T, P> array[Rows];
 
 	public:
 		Matrix(bool identity = true) requires (Rows == Cols) : array{} // Only works for square matrices
@@ -19,7 +19,7 @@ namespace clfe
 			if (identity) {
 				for (msize_t i = 0; i < Rows; i++)
 				{
-					array[i][i] = static_cast<T>(1);
+					array[i].setAt(i, static_cast<T>(1));
 				}
 			}
 		}
@@ -37,22 +37,22 @@ namespace clfe
 		Matrix(Args... args) : array{}
 		{
 			T temp[] = { static_cast<T>(args)... };
-			for (int r = 0; r < Rows; r++)
+			for (msize_t r = 0; r < Rows; r++)
 			{
-				for (int c = 0; c < Cols; c++)
+				for (msize_t c = 0; c < Cols; c++)
 				{
-					array[r][c] = temp[r * Cols + c];
+					array[r].setAt(c, temp[r * Cols + c]);
 				}
 			}
 		}
 
 		Matrix(const T* arr[])
 		{
-			for (int r = 0; r < Rows; r++)
+			for (msize_t r = 0; r < Rows; r++)
 			{
-				for (int c = 0; c < Cols; c++)
+				for (msize_t c = 0; c < Cols; c++)
 				{
-					array[r][c] = arr[r][c];
+					array[r].setAt(c, arr[r * Cols + c]);
 				}
 			}
 		}
@@ -81,33 +81,61 @@ namespace clfe
 			return Cols;
 		}
 
-		/*
-		inline Vector<Cols, T, P> getRowVec(int r) const
+		inline Vector<Cols, T, P> getRow(int r) const
 		{
-			return Vector<Cols, T, P>();
-		}
-		*/
-
-		inline const T* getRow(int r) const
-		{
-			return static_cast<const T*>(array[r]);
+			return array[r];
 		}
 
-		template <typename... Args>
-			requires (sizeof...(Args) == Cols)
-		void setRow(int r, Args... args)
+		Vector<Cols, T, P>& getRowr(int r)
 		{
-			array[r] = { static_cast<T>(args)... };
+			return array[r];
+		}
+
+		template <typename P1>
+		void setRow(int r, const Vector<Cols, T, P1>& vec)
+		{
+			array[r] = Vector<Cols, T, P>(vec);
+		}
+
+		inline const Vector<Cols, T, P>* const get() const
+		{
+			return static_cast<const Vector<Cols, T, P>* const>(array);
 		}
 
 		inline T get(int r, int c) const
 		{
-			return array[r][c];
+			return array[r].get(c);
 		}
 
 		inline void setAt(int r, int c, T value)
 		{
-			array[r][c] = value;
+			array[r].setAt(c, value);
+		}
+
+		void transpose() requires (Rows == Cols)
+		{
+			for (msize_t i = 1; i < Rows; i++)
+			{
+				for (msize_t j = 0; j < i; j++) {
+					T temp = get(i, j);
+					setAt(i, j, get(j, i));
+					setAt(j, i, temp);
+				}
+			}
+		}
+
+		Matrix<Cols, Rows, T, P> transposed()
+		{
+			Matrix<Cols, Rows, T, P> result;
+			for (msize_t r = 0; r < Cols; r++)
+			{
+				Vector<Rows, T, P>& row = result.getRowr(r);
+				for (msize_t c = 0; c < Rows; c++)
+				{
+					row.setAt(c, get(c, r));
+				}
+			}
+			return result;
 		}
 
 	};

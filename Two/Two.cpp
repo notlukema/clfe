@@ -77,6 +77,15 @@ int main()
 	auto mat42f = mat24f.transposed();
 	print(mat42f);
 
+    std::cout << "\nLINE SPLIT\n\n";
+
+    Matrix<2, 3, float> mat23f(
+        { 1.0f, 2.0f, 3.0f,
+        4.0f, 5.0f, 6.0f }
+	);
+    print(mat23f);
+
+
 
     while (wnd1->exists())
     {

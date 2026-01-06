@@ -14,17 +14,15 @@ namespace clfe
 		Vector<Cols, T, P> array[Rows];
 
 	public:
-		Matrix(bool identity = true) requires (Rows == Cols) : array{} // Only works for square matrices
+		Matrix(T scalar = static_cast<T>(1)) requires (Rows == Cols) : array{} // Only works for square matrices
 		{
-			if (identity) {
-				for (msize_t i = 0; i < Rows; i++)
-				{
-					array[i].setAt(i, static_cast<T>(1));
-				}
+			for (msize_t i = 0; i < Rows; i++)
+			{
+				array[i].setAt(i, scalar);
 			}
 		}
 
-		Matrix(bool identity = true) requires (Rows != Cols) : array{} {} // Always all 0 if not a square matrix
+		Matrix() requires (Rows != Cols) : array{} {} // Always all 0 if not a square matrix
 
 		/* Initializes like:
 		* 1  2  3  4
@@ -46,7 +44,7 @@ namespace clfe
 			}
 		}
 
-		Matrix(const T* arr[])
+		Matrix(const T* arr[]) : array{}
 		{
 			for (msize_t r = 0; r < Rows; r++)
 			{

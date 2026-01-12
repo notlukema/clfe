@@ -18,11 +18,50 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="clfe\System.cpp" />
+    <ClCompile Include="clf\window\WinClass.cpp" />
+    <ClCompile Include="clf\window\WinDefProc.cpp" />
+    <ClCompile Include="clf\window\Window.cpp" />
+    <ClCompile Include="clf\window\WinWnd.cpp" />
+    <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
+    <ClCompile Include="clu\StringUtils.cpp" />
+    <ClCompile Include="Three.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clfe\CLFE.h" />
+    <ClInclude Include="clfe\CrossPlatform.h" />
+    <ClInclude Include="clfe\Error.h" />
+    <ClInclude Include="clfe\InstanceList.h" />
+    <ClInclude Include="clfe\System.h" />
+    <ClInclude Include="clf\comp\tex\Bitmap.h" />
+    <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
+    <ClInclude Include="clf\window\Window.h" />
+    <ClInclude Include="clf\window\WinWnd.h" />
+    <ClInclude Include="clm\CLM.h" />
+    <ClInclude Include="clm\Math.h" />
+    <ClInclude Include="clm\MathConst.h" />
+    <ClInclude Include="clm\Mathd.h" />
+    <ClInclude Include="clm\Mathf.h" />
+    <ClInclude Include="clm\mat\MatOp.h" />
+    <ClInclude Include="clm\mat\Matrix.h" />
+    <ClInclude Include="clm\VecMatCommon.h" />
+    <ClInclude Include="clm\VecMatOp.h" />
+    <ClInclude Include="clm\vec\VecOp.h" />
+    <ClInclude Include="clm\vec\Vector.h" />
+    <ClInclude Include="clm\vec\Vector2.h" />
+    <ClInclude Include="clm\vec\Vector3.h" />
+    <ClInclude Include="clm\vec\Vector4.h" />
+    <ClInclude Include="clu\benchmarking\Benchmark.h" />
+    <ClInclude Include="clu\Print.h" />
+    <ClInclude Include="clu\StringUtils.h" />
+    <ClInclude Include="stb\stb_image.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{1917518e-b707-4963-81f0-4d0ed81ac322}</ProjectGuid>
-    <RootNamespace>Testing</RootNamespace>
+    <ProjectGuid>{8429d540-2f67-4de9-b522-66e1a9abcd14}</ProjectGuid>
+    <RootNamespace>Three</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -126,19 +165,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Between-Source-Macros\b\thingamajig.cpp" />
-    <ClCompile Include="Between-Source-Macros\Testing.cpp" />
-    <ClCompile Include="Template-Source-Linking\Testing.cpp" />
-    <ClCompile Include="Pointer-Pointer-Deletion\Testing.cpp" />
-    <ClCompile Include="Template-Source-Linking\Thing.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Between-Source-Macros\a\TypeDefine.h" />
-    <ClInclude Include="Between-Source-Macros\b\thingamajig.h" />
-    <ClInclude Include="Template-Source-Linking\Template.h" />
-    <ClInclude Include="Template-Source-Linking\Thing.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

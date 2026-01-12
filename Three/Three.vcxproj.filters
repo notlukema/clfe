@@ -15,19 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Two.cpp">
+    <ClCompile Include="Three.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clu\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clf\window\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clf\window\WinWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
+    <ClCompile Include="clfe\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clf\window\WinClass.cpp">
@@ -36,91 +33,94 @@
     <ClCompile Include="clf\window\WinDefProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\System.cpp">
+    <ClCompile Include="clf\window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clf\math\Mathd.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clf\math\vec\VecOp.h">
+    <ClCompile Include="clf\window\WinWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clfe\System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clf\math\Mathf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\CLFE.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stb\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clf\window\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clu\StringUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clf\window\WinWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\CrossPlatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\benchmarking\Benchmark.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clu\Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CLFE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CrossPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="clfe\InstanceList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clf\comp\tex\Bitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\vec\Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\vec\Vector4.h">
+    <ClInclude Include="clf\window\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\vec\Vector3.h">
+    <ClInclude Include="clf\window\WinWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\vec\Vector2.h">
+    <ClInclude Include="clm\mat\MatOp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\Math.h">
+    <ClInclude Include="clm\mat\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\MathConst.h">
+    <ClInclude Include="clm\vec\VecOp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clu\Print.h">
+    <ClInclude Include="clm\vec\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\VecMatOp.h">
+    <ClInclude Include="clm\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\mat\Matrix.h">
+    <ClInclude Include="clm\MathConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\mat\MatOp.h">
+    <ClInclude Include="clm\Mathd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clf\math\VecMatCommon.h">
+    <ClInclude Include="clm\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClInclude Include="clm\VecMatCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VecMatOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\CLM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

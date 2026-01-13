@@ -45,6 +45,7 @@
     <ClInclude Include="clm\Mathf.h" />
     <ClInclude Include="clm\mat\MatOp.h" />
     <ClInclude Include="clm\mat\Matrix.h" />
+    <ClInclude Include="clm\mat\Matrix2x2.h" />
     <ClInclude Include="clm\VecMatCommon.h" />
     <ClInclude Include="clm\VecMatOp.h" />
     <ClInclude Include="clm\vec\VecOp.h" />

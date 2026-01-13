@@ -14,7 +14,7 @@ namespace clfe
 		Vector<Cols, T> array[Rows];
 
 	public:
-		Matrix(T scalar = static_cast<T>(1)) requires (Rows == Cols) : array{} // Only works for square matrices
+		Matrix(T scalar = static_cast<T>(1)) requires (Rows == Cols) && (Rows > 1 && Cols > 1) : array{} // Only works for square matrices
 		{
 			for (msize_t i = 0; i < Rows; i++)
 			{
@@ -31,8 +31,8 @@ namespace clfe
 		* 13 14 15 16
 		*/
 		template <typename... Args>
-			requires (sizeof...(Args) == Rows * Cols)
-		Matrix(Args... args) : array{}
+			requires (sizeof...(Args) == Rows * Cols) && AllCompatible<T, Args...>
+		Matrix(Args... args)
 		{
 			T temp[] = { static_cast<T>(args)... };
 			for (msize_t r = 0; r < Rows; r++)
@@ -44,7 +44,7 @@ namespace clfe
 			}
 		}
 
-		Matrix(const T* arr[]) : array{}
+		Matrix(const T* arr[])
 		{
 			for (msize_t r = 0; r < Rows; r++)
 			{

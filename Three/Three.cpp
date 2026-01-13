@@ -2,12 +2,7 @@
 #include "clfe/System.h"
 #include "clf/window/Window.h"
 
-#include "clm/vec/Vector.h"
-#include "clm/vec/Vector2.h"
-#include "clm/vec/Vector3.h"
-#include "clm/vec/Vector4.h"
-
-#include "clm/mat/Matrix.h"
+#include "clm/CLM.h"
 
 #include "clfe/CLFE.h"
 
@@ -33,15 +28,15 @@ int main()
     Vector2<float> vec2f(1.0f);
     print(vec2f);
 
-    Matrix<2, 3, int> mat23i(
-        5, 9, 12,
-        5, 8, -89
-    );
-    print(mat23i);
-
-    print(mat23i + Matrix<4, 4, float>(5));
 
     std::cout << "LINE SPLIT\n";
+
+    Matrix<2, 2, float> mat22f(
+        1.0f, 2.0f,
+        3.0f, 4.0f
+	);
+
+    print(mat22f);
 
 
 

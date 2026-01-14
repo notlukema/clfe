@@ -13,11 +13,21 @@ namespace clfe
 		T array[Size];
 
 	public:
+		Vector() : array{} {}
+
+		Vector(T scalar) requires (Size > 1)
+		{
+			for (msize_t i = 0; i < Size; i++)
+			{
+				array[i] = scalar;
+			}
+		}
+
 		template <typename... Args>
-			requires (sizeof...(Args) <= Size)
+			requires (sizeof...(Args) == Size) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector(const T* arr) : array{}
+		Vector(const T* arr)
 		{
 			for (msize_t i = 0; i < Size; i++)
 			{
@@ -25,26 +35,20 @@ namespace clfe
 			}
 		}
 
-		template <msize_t Size1>
-			requires (Size1 <= Size)
-		Vector(const Vector<Size1, T>& vec) : array{ vec.array } {}
-
-		template <msize_t Size1>
-			requires (Size1 > Size)
-		Vector(const Vector<Size1, T>& vec) : array{}
+		Vector(const Vector<Size, T>& vec)
 		{
 			for (msize_t i = 0; i < Size; i++)
 			{
-				array[i] = vec.get(i);
+				array[i] = vec.array[i];
 			}
 		}
 
-		inline int size() const
+		inline msize_t size() const
 		{
 			return Size;
 		}
 
-		inline T& operator[](int i)
+		inline T& operator[](msize_t i)
 		{
 			return array[i];
 		}
@@ -54,12 +58,12 @@ namespace clfe
 			return static_cast<const T*>(array);
 		}
 
-		inline T get(int i) const
+		inline T get(msize_t i) const
 		{
 			return array[i];
 		}
 
-		inline void setAt(int i, T value)
+		inline void setAt(msize_t i, T value)
 		{
 			array[i] = value;
 		}
@@ -98,6 +102,24 @@ namespace clfe
 		}
 
 	};
+
+}
+
+namespace clfe // Utility functions
+{
+	/*
+	template <msize_t Size1, msize_t Size2, typename T>
+	Vector<Size1, T> swap(const Vector<Size2, T>& vec) requires (Size1 != Size2)
+	{
+		return swapImpl<Size1, T>(vec, std::make_index_sequence<Size1>{});
+	}
+
+	template <msize_t Size, typename T, size_t... I>
+	inline Vector<Size, T> swapImpl(const Vector<Size, T>& vec, std::index_sequence<I...>)
+	{
+		return Vector<Size, T>(vec.array[I]...);
+	}
+	*/
 
 }
 

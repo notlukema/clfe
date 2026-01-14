@@ -9,5 +9,6 @@
 #include "vec/Vector4.h"
 
 #include "mat/Matrix.h"
+#include "mat/Matrix2x2.h"
 
 #endif

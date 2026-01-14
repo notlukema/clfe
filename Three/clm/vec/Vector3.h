@@ -13,36 +13,24 @@ namespace clfe
 		T array[3];
 
 	public:
+		Vector() : array{} {}
+
+		Vector(T scalar) : array{ scalar, scalar, scalar } {}
+
 		template <typename... Args>
-			requires (sizeof...(Args) <= 3)
+			requires (sizeof...(Args) == 3) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector(const T* arr) : array{}
-		{
-			array[0] = arr[0];
-			array[1] = arr[1];
-			array[2] = arr[2];
-		}
+		Vector(const T* arr) : array{ arr[0], arr[1], arr[2] } {}
 
-		template <msize_t Size1>
-			requires (Size1 <= 3)
-		Vector(const Vector<Size1, T>& vec) : array{ vec.array } {}
+		Vector(const Vector<3, T>& vec) : array{ vec.array[0], vec.array[1], vec.array[2] } {}
 
-		template <msize_t Size1>
-			requires (Size1 > 3)
-		Vector(const Vector<Size1, T>& vec) : array{}
-		{
-			array[0] = vec.get(0);
-			array[1] = vec.get(1);
-			array[2] = vec.get(2);
-		}
-
-		inline int size() const
+		inline msize_t size() const
 		{
 			return 3;
 		}
 
-		T& operator[](int i)
+		inline T& operator[](msize_t i)
 		{
 			return array[i];
 		}
@@ -52,12 +40,12 @@ namespace clfe
 			return static_cast<const T*>(array);
 		}
 
-		inline T get(int i) const
+		inline T get(msize_t i) const
 		{
 			return array[i];
 		}
 
-		inline void setAt(int i, T value)
+		inline void setAt(msize_t i, T value)
 		{
 			array[i] = value;
 		}
@@ -148,7 +136,7 @@ namespace clfe
 
 }
 
-
+// Implementation
 namespace clfe
 {
 

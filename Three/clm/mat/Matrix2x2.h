@@ -9,8 +9,7 @@ namespace clfe
 	template <typename T>
 	class Matrix<2, 2, T>
 	{
-
-	protected:
+	protected: // Matrix reimplementation
 		using ct = Vector<2, T>;
 		ct array[2];
 
@@ -20,25 +19,18 @@ namespace clfe
 			ct(0, scalar)
 		} {}
 
-		template <typename... Args>
-			requires (sizeof...(Args) == Rows * Cols) && AllCompatible<T, Args...>
-		Matrix(Unpack(Args...) unpack) : array{
-			ct(unpack[0], unpack[1]),
-			ct(unpack[2], unpack[3])
-		} {
-			for (msize_t i = 0; i < Rows * Cols; i++)
-			{
-				std::cout << unpack[i] << ", ";
-			}
-			std::cout << "\n";
-		}
+		Matrix(T m00, T m01,
+			T m10, T m11) : array{
+			ct(m00, m01),
+			ct(m10, m11)
+		} {}
 
 		Matrix(const T* arr[]) : array{
 			ct(arr[0], arr[1]),
 			ct(arr[2], arr[3])
 		} {}
 
-		Matrix(const Matrix<Rows, Cols, T>& mat) : array{
+		Matrix(const Matrix<2, 2, T>& mat) : array{
 			ct(mat.get(0)),
 			ct(mat.get(1))
 		} {}
@@ -84,11 +76,11 @@ namespace clfe
 		}
 
 	private:
-		constexpr swap(msize_t i1, msize_t j1, msize_t i2, msize_t j2)
+		inline void swap(msize_t c1, msize_t r1, msize_t c2, msize_t r2)
 		{
-			T temp = get(i1, j1);
-			setAt(i1, j1, get(i2, j2));
-			setAt(i2, j2, temp);
+			T temp = get(c1, r1);
+			setAt(c1, r1, get(c2, r2));
+			setAt(c2, r2, temp);
 		}
 
 	public:
@@ -97,13 +89,15 @@ namespace clfe
 			swap(0, 1, 1, 0);
 		}
 
-		Matrix<2, 2, T> transposed()
+		Matrix<2, 2, T> transposed() const
 		{
 			return Matrix<2, 2, T>(
-				get(0, 0), get(1, 0),
-				get(0, 1), get(1, 1)
+				get(0, 0), get(0, 1),
+				get(1, 0), get(1, 1)
 			);
 		}
+
+	public: // Matrix2x2 specific
 
 	};
 

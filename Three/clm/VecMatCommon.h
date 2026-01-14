@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <cstdint>
 #include <utility>
+#include <concepts>
 
 namespace clfe
 {
@@ -12,11 +13,11 @@ namespace clfe
 
 	// Guarentees that all types are the same as T
 	template <typename T, typename... Args>
-	concept AllSame = (std::is_same_v<T, Args> && ...);
+	concept AllSame = (std::same_as<T, Args> && ...);
 
 	// Guarentees that all types can be converted to T
 	template <typename T, typename... Args>
-	concept AllCompatible = (std::is_convertible_v<Args, T> && ...);
+	concept AllCompatible = (std::convertible_to<Args, T> && ...);
 
 	// Guarentees that T is an arithmetic type
 	template <typename T>
@@ -24,11 +25,11 @@ namespace clfe
 
 	// Guarentees that T and U are arithmetic types and that T can be converted to U
 	template <typename T, typename U>
-	concept Arithmetic2 = std::is_arithmetic_v<T> && std::is_arithmetic_v<U> && std::is_convertible_v<T, U>;
+	concept Arithmetic2 = std::is_arithmetic_v<T> && std::is_arithmetic_v<U> && std::convertible_to<T, U>;
 
 	// Guarentees that T and U are arithmetic types and that the result of T + U can be converted to T
 	template <typename T, typename U>
-	concept Arithmetic3 = std::is_arithmetic_v<T> && std::is_arithmetic_v<U> && std::is_convertible_v<decltype(static_cast<T>(0) + static_cast<U>(0)), T>;
+	concept Arithmetic3 = std::is_arithmetic_v<T> && std::is_arithmetic_v<U> && std::convertible_to<decltype(static_cast<T>(0) + static_cast<U>(0)), T>;
 
 	template <typename T, msize_t size>
 	class Unpack

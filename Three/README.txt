@@ -9,6 +9,8 @@ CLU - c library utilities
 CLM - c library math
 
 
+Math library is currently usable but lacks many utility functions. Will add when time is given and/or I need them.
+
 
 macros:
 
@@ -16,8 +18,9 @@ CLFE_XX_H - header guards for components in clfe, clf, and cle
 CLU_XX_H - header guards for components in clu
 CLM_XX_H - header guards for components in clm
 
-CLS_XX - c library settings, mostly used for system settings
+CLX_XX - c library settings, mostly used for system settings
 * CLS_USEWIDESTRING - use wide strings as the system default
+* CLM_USEREALMULT - use common value-to-value multiplication for matrices
 
 
 

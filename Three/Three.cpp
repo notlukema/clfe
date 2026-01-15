@@ -39,13 +39,23 @@ int main()
 
     print(mat22f);
 
-    Matrix<3, 3, float> mat33f(
-        5, 5, 5,
-        2, 1, 3,
-        7, 4, 2
+    Matrix<4, 3, float> mat43f(
+        5, 5, 5, 7,
+        2, 1, 3, -4,
+        7, 4, 2, 5
     );
-    print(mat33f);
-    std::cout << mat33f.determinant() << "\n";
+    print(mat43f);
+
+    Matrix<4, 4, int> mat44i(
+        1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12,
+        13, 14, 15, 16
+	);
+
+    print(mat44i);
+
+    print(mat44i * Matrix<4, 4, int>(2));
 
 
     while (wnd1->exists())

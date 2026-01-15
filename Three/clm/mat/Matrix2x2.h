@@ -31,8 +31,8 @@ namespace clfe
 		} {}
 
 		Matrix(const Matrix<2, 2, T>& mat) : array{
-			ct(mat.get(0)),
-			ct(mat.get(1))
+			ct(mat.getRow(0)),
+			ct(mat.getRow(1))
 		} {}
 
 		inline int rows() const
@@ -98,8 +98,39 @@ namespace clfe
 		}
 
 	public: // Matrix2x2 specific
+		inline T m00() const
+		{
+			return get(0, 0);
+		}
+
+		inline T m01() const
+		{
+			return get(0, 1);
+		}
+
+		inline T m10() const
+		{
+			return get(1, 0);
+		}
+
+		inline T m11() const
+		{
+			return get(1, 1);
+		}
 
 	};
+
+}
+
+namespace clfe
+{
+
+	template <typename T>
+	using Matrix2x2 = Matrix<2, 2, T>;
+
+	using Matrix2x2f = Matrix2x2<float>;
+	using Matrix2x2d = Matrix2x2<double>;
+	using Matrix2x2i = Matrix2x2<int>;
 
 }
 

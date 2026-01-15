@@ -107,19 +107,9 @@ namespace clfe
 
 namespace clfe // Utility functions
 {
-	/*
-	template <msize_t Size1, msize_t Size2, typename T>
-	Vector<Size1, T> swap(const Vector<Size2, T>& vec) requires (Size1 != Size2)
-	{
-		return swapImpl<Size1, T>(vec, std::make_index_sequence<Size1>{});
-	}
 
-	template <msize_t Size, typename T, size_t... I>
-	inline Vector<Size, T> swapImpl(const Vector<Size, T>& vec, std::index_sequence<I...>)
-	{
-		return Vector<Size, T>(vec.array[I]...);
-	}
-	*/
+	// Non here for now
+	// Add when needed
 
 }
 

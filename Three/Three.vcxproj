@@ -43,9 +43,11 @@
     <ClInclude Include="clm\MathConst.h" />
     <ClInclude Include="clm\Mathd.h" />
     <ClInclude Include="clm\Mathf.h" />
+    <ClInclude Include="clm\mat\MatMul.h" />
     <ClInclude Include="clm\mat\MatOp.h" />
     <ClInclude Include="clm\mat\Matrix.h" />
     <ClInclude Include="clm\mat\Matrix2x2.h" />
+    <ClInclude Include="clm\mat\MatUtils.h" />
     <ClInclude Include="clm\VecMatCommon.h" />
     <ClInclude Include="clm\VecMatOp.h" />
     <ClInclude Include="clm\vec\VecOp.h" />
@@ -53,6 +55,7 @@
     <ClInclude Include="clm\vec\Vector2.h" />
     <ClInclude Include="clm\vec\Vector3.h" />
     <ClInclude Include="clm\vec\Vector4.h" />
+    <ClInclude Include="clm\vec\VecUtils.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />

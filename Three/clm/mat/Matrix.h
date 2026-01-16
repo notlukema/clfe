@@ -13,6 +13,13 @@ namespace clfe
 	protected:
 		Vector<Cols, T> array[Rows];
 
+		inline void swap(msize_t c1, msize_t r1, msize_t c2, msize_t r2)
+		{
+			T temp = get(c1, r1);
+			setAt(c1, r1, get(c2, r2));
+			setAt(c2, r2, temp);
+		}
+
 	public:
 		Matrix(T scalar = static_cast<T>(1)) requires (Cols == Rows) : array{} // Only works for square matrices
 		{
@@ -55,11 +62,13 @@ namespace clfe
 			}
 		}
 
-		Matrix(const Matrix<Cols, Rows, T>& mat)
+		template <typename U>
+			requires Compatible<T, U>
+		Matrix(const Matrix<Cols, Rows, U>& mat)
 		{
 			for (msize_t r = 0; r < Rows; r++)
 			{
-				array[r] = mat.getRow(r);
+				array[r] = cast<T>(mat.getRow(r));
 			}
 		}
 
@@ -191,102 +200,7 @@ namespace clfe
 
 }
 
-namespace clfe
-{
-
-	template <typename T = float>
-	Matrix<4, 4, T> scale(T scale)
-	{
-		return Matrix<4, 4, T>(
-			scale, 0, 0, 0,
-			0, scale, 0, 0,
-			0, 0, scale, 0,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-	Matrix<4, 4, T> scale(T scaleX, T scaleY, T scaleZ)
-	{
-		return Matrix<4, 4, T>(
-			scaleX, 0, 0, 0,
-			0, scaleY, 0, 0,
-			0, 0, scaleZ, 0,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-	Matrix<4, 4, T> translate(T tx, T ty, T tz)
-	{
-		return Matrix<4, 4, T>(
-			1, 0, 0, tx,
-			0, 1, 0, ty,
-			0, 0, 1, tz,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-	Matrix<4, 4, T> rotateX(float rad)
-	{
-		T c = static_cast<T>(cos(rad));
-		T s = static_cast<T>(sin(rad));
-		return Matrix<4, 4, T>(
-			1, 0, 0, 0,
-			0, c, -s, 0,
-			0, s, c, 0,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-	Matrix<4, 4, T> rotateY(float rad)
-	{
-		T c = static_cast<T>(cos(rad));
-		T s = static_cast<T>(sin(rad));
-		return Matrix<4, 4, T>(
-			c, 0, s, 0,
-			0, 1, 0, 0,
-			-s, 0, c, 0,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-	Matrix<4, 4, T> rotateZ(float rad)
-	{
-		T c = static_cast<T>(cos(rad));
-		T s = static_cast<T>(sin(rad));
-		return Matrix<4, 4, T>(
-			c, -s, 0, 0,
-			s, c, 0, 0,
-			0, 0, 1, 0,
-			0, 0, 0, 1
-		);
-	}
-
-	template <typename T = float>
-		requires Arithmetic<T>
-	Matrix<4, 4, T> rotate(float rad, Vector<3, T> axis)
-	{
-		axis = axis.normalized();
-		T c = static_cast<T>(cos(rad));
-		T s = static_cast<T>(sin(rad));
-		T t = static_cast<T>(1) - c;
-		T x = axis.get(0);
-		T y = axis.get(1);
-		T z = axis.get(2);
-		return Matrix<4, 4, T>(
-			t * x * x + c,       t * x * y - s * z,   t * x * z + s * y, 0,
-			t * x * y + s * z,   t * y * y + c,       t * y * z - s * x, 0,
-			t * x * z - s * y,   t * y * z + s * x,   t * z * z + c,     0,
-			0, 0, 0, 1
-		);
-	}
-
-}
-
+#include "MatUtils.h"
 #include "MatOp.h"
 #ifdef CLM_VECTOR_H // Unnecessary but whatever
 #include "../VecMatOp.h"

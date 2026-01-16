@@ -57,6 +57,8 @@ int main()
 
     print(mat44i * Matrix<4, 4, int>(2));
 
+    print(mat22f + mat43f);
+
 
     while (wnd1->exists())
     {

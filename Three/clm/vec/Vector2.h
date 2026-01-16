@@ -7,6 +7,18 @@ namespace clfe
 {
 
 	template <typename T>
+	using Vector2 = Vector<2, T>;
+
+	using Vector2f = Vector2<float>;
+	using Vector2d = Vector2<double>;
+	using Vector2i = Vector2<int>;
+
+}
+
+namespace clfe
+{
+
+	template <typename T>
 	class Vector<2, T>
 	{
 	protected: // Vector reimplementation
@@ -21,9 +33,17 @@ namespace clfe
 			requires (sizeof...(Args) == 2) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector(const T* arr) : array{ arr[0], arr[1] } {}
+		Vector(const T* arr) : array{
+			arr[0],
+			arr[1]
+		} {}
 
-		Vector(const Vector<2, T>& vec) : array{ vec.array[0], vec.array[1] } {}
+		template <typename U>
+			requires Compatible<T, U>
+		Vector(const Vector<2, U>& vec) : array{
+			static_cast<T>(vec.array[0]),
+			static_cast<T>(vec.array[1])
+		} {}
 
 		inline msize_t size() const
 		{
@@ -78,12 +98,31 @@ namespace clfe
 		}
 
 	public: // Vector2 specific
-		T x() const;
-		T y() const;
+		T x() const
+		{
+			return array[0];
+		}
 
-		void set(T x, T y);
-		void x(T x);
-		void y(T y);
+		T y() const
+		{
+			return array[1];
+		}
+
+		void set(T x, T y)
+		{
+			array[0] = x;
+			array[1] = y;
+		}
+
+		void x(T x)
+		{
+			array[0] = x;
+		}
+
+		void y(T y)
+		{
+			array[1] = y;
+		}
 
 		inline T u() const
 		{
@@ -106,55 +145,6 @@ namespace clfe
 		}
 
 	};
-
-}
-
-namespace clfe
-{
-
-	template <typename T>
-	using Vector2 = Vector<2, T>;
-
-	using Vector2f = Vector2<float>;
-	using Vector2d = Vector2<double>;
-	using Vector2i = Vector2<int>;
-
-}
-
-// Implementation
-namespace clfe
-{
-
-	template <typename T>
-	T Vector<2, T>::x() const
-	{
-		return this->array[0];
-	}
-
-	template <typename T>
-	T Vector<2, T>::y() const
-	{
-		return this->array[1];
-	}
-
-	template <typename T>
-	void Vector<2, T>::set(T x, T y)
-	{
-		this->array[0] = x;
-		this->array[1] = y;
-	}
-
-	template <typename T>
-	void Vector<2, T>::x(T x)
-	{
-		this->array[0] = x;
-	}
-
-	template <typename T>
-	void Vector<2, T>::y(T y)
-	{
-		this->array[1] = y;
-	}
 
 }
 

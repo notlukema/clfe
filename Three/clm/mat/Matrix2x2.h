@@ -7,11 +7,30 @@ namespace clfe
 {
 
 	template <typename T>
+	using Matrix2x2 = Matrix<2, 2, T>;
+
+	using Matrix2x2f = Matrix2x2<float>;
+	using Matrix2x2d = Matrix2x2<double>;
+	using Matrix2x2i = Matrix2x2<int>;
+
+}
+
+namespace clfe
+{
+
+	template <typename T>
 	class Matrix<2, 2, T>
 	{
 	protected: // Matrix reimplementation
 		using ct = Vector<2, T>;
 		ct array[2];
+
+		inline void swap(msize_t c1, msize_t r1, msize_t c2, msize_t r2)
+		{
+			T temp = get(c1, r1);
+			setAt(c1, r1, get(c2, r2));
+			setAt(c2, r2, temp);
+		}
 
 	public:
 		Matrix(T scalar = static_cast<T>(1)) : array{
@@ -30,7 +49,9 @@ namespace clfe
 			ct(arr[2], arr[3])
 		} {}
 
-		Matrix(const Matrix<2, 2, T>& mat) : array{
+		template <typename U>
+			requires Compatible<T, U>
+		Matrix(const Matrix<2, 2, U>& mat) : array{
 			ct(mat.getRow(0)),
 			ct(mat.getRow(1))
 		} {}
@@ -45,24 +66,24 @@ namespace clfe
 			return 2;
 		}
 
-		inline Vector<2, T>& operator[](int i)
+		inline ct& operator[](int i)
 		{
 			return array[i];
 		}
 
-		inline Vector<2, T> getRow(int i) const
+		inline ct getRow(int i) const
 		{
 			return array[i];
 		}
 
-		inline void setRow(int r, const Vector<2, T>& vec)
+		inline void setRow(int r, const ct& vec)
 		{
 			array[r] = vec;
 		}
 
-		inline const Vector<2, T>* const get() const
+		inline const ct* const get() const
 		{
-			return static_cast<const Vector<2, T>* const>(array);
+			return static_cast<const ct* const>(array);
 		}
 
 		inline T get(int r, int c) const
@@ -73,14 +94,6 @@ namespace clfe
 		inline void setAt(int r, int c, T value)
 		{
 			array[r].setAt(c, value);
-		}
-
-	private:
-		inline void swap(msize_t c1, msize_t r1, msize_t c2, msize_t r2)
-		{
-			T temp = get(c1, r1);
-			setAt(c1, r1, get(c2, r2));
-			setAt(c2, r2, temp);
 		}
 
 	public:
@@ -119,18 +132,6 @@ namespace clfe
 		}
 
 	};
-
-}
-
-namespace clfe
-{
-
-	template <typename T>
-	using Matrix2x2 = Matrix<2, 2, T>;
-
-	using Matrix2x2f = Matrix2x2<float>;
-	using Matrix2x2d = Matrix2x2<double>;
-	using Matrix2x2i = Matrix2x2<int>;
 
 }
 

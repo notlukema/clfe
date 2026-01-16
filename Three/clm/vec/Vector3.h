@@ -7,6 +7,18 @@ namespace clfe
 {
 
 	template <typename T>
+	using Vector3 = Vector<3, T>;
+
+	using Vector3f = Vector3<float>;
+	using Vector3d = Vector3<double>;
+	using Vector3i = Vector3<int>;
+
+}
+
+namespace clfe
+{
+
+	template <typename T>
 	class Vector<3, T>
 	{
 	protected: // Vector reimplementation
@@ -21,9 +33,19 @@ namespace clfe
 			requires (sizeof...(Args) == 3) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector(const T* arr) : array{ arr[0], arr[1], arr[2] } {}
+		Vector(const T* arr) : array{
+			arr[0],
+			arr[1],
+			arr[2]
+		} {}
 
-		Vector(const Vector<3, T>& vec) : array{ vec.array[0], vec.array[1], vec.array[2] } {}
+		template <typename U>
+			requires Compatible<T, U>
+		Vector(const Vector<3, U>& vec) : array{
+			static_cast<T>(vec.array[0]),
+			static_cast<T>(vec.array[1]),
+			static_cast<T>(vec.array[2])
+		} {}
 
 		inline msize_t size() const
 		{
@@ -57,7 +79,7 @@ namespace clfe
 				array[0] * array[0] +
 				array[1] * array[1] +
 				array[2] * array[2]
-				)));
+			)));
 		}
 
 		template <typename U = T>
@@ -80,15 +102,43 @@ namespace clfe
 			return *this;
 		}
 
-	public: // Vector2 specific
-		T x() const;
-		T y() const;
-		T z() const;
+	public: // Vector3 specific
+		T x() const
+		{
+			return array[0];
+		}
 
-		void set(T x, T y, T z);
-		void x(T x);
-		void y(T y);
-		void z(T z);
+		T y() const
+		{
+			return array[1];
+		}
+
+		T z() const
+		{
+			return array[2];
+		}
+
+		void set(T x, T y, T z)
+		{
+			array[0] = x;
+			array[1] = y;
+			array[2] = z;
+		}
+
+		void x(T x)
+		{
+			array[0] = x;
+		}
+
+		void y(T y)
+		{
+			array[1] = y;
+		}
+
+		void z(T z)
+		{
+			array[2] = z;
+		}
 
 		inline T r() const
 		{
@@ -121,68 +171,6 @@ namespace clfe
 		}
 
 	};
-
-}
-
-namespace clfe
-{
-
-	template <typename T>
-	using Vector3 = Vector<3, T>;
-
-	using Vector3f = Vector3<float>;
-	using Vector3d = Vector3<double>;
-	using Vector3i = Vector3<int>;
-
-}
-
-// Implementation
-namespace clfe
-{
-
-	template <typename T>
-	T Vector<3, T>::x() const
-	{
-		return this->array[0];
-	}
-
-	template <typename T>
-	T Vector<3, T>::y() const
-	{
-		return this->array[1];
-	}
-
-	template <typename T>
-	T Vector<3, T>::z() const
-	{
-		return this->array[2];
-	}
-
-	template <typename T>
-	void Vector<3, T>::set(T x, T y, T z)
-	{
-		this->array[0] = x;
-		this->array[1] = y;
-		this->array[2] = z;
-	}
-
-	template <typename T>
-	void Vector<3, T>::x(T x)
-	{
-		this->array[0] = x;
-	}
-
-	template <typename T>
-	void Vector<3, T>::y(T y)
-	{
-		this->array[1] = y;
-	}
-
-	template <typename T>
-	void Vector<3, T>::z(T z)
-	{
-		this->array[2] = z;
-	}
 
 }
 

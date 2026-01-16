@@ -34,11 +34,6 @@ namespace clfe
 	// Inter-vector operations
 	//
 
-	static constexpr int smax(int a, int b)
-	{
-		return (a > b) ? a : b;
-	}
-
 	// Addition
 
 	template <msize_t Size, typename T, typename U>

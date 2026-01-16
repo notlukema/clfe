@@ -125,5 +125,14 @@
     <ClInclude Include="clm\mat\Matrix2x2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clm\mat\MatMul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\VecUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\MatUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,11 +35,13 @@ namespace clfe
 			}
 		}
 
-		Vector(const Vector<Size, T>& vec)
+		template <typename U>
+			requires Compatible<T, U>
+		Vector(const Vector<Size, U>& vec)
 		{
 			for (msize_t i = 0; i < Size; i++)
 			{
-				array[i] = vec.array[i];
+				array[i] = static_cast<T>(vec.array[i]);
 			}
 		}
 
@@ -105,14 +107,7 @@ namespace clfe
 
 }
 
-namespace clfe // Utility functions
-{
-
-	// Non here for now
-	// Add when needed
-
-}
-
+#include "VecUtils.h"
 #include "VecOp.h"
 #ifdef CLM_MATRIX_H
 #include "../VecMatOp.h"

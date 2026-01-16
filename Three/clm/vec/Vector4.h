@@ -1,7 +1,19 @@
-#ifndef CLM_VECTOR_3_H
-#define CLM_VECTOR_3_H
+#ifndef CLM_VECTOR_4_H
+#define CLM_VECTOR_4_H
 
 #include "Vector.h"
+
+namespace clfe
+{
+
+	template <typename T>
+	using Vector4 = Vector<4, T>;
+
+	using Vector4f = Vector4<float>;
+	using Vector4d = Vector4<double>;
+	using Vector4i = Vector4<int>;
+
+}
 
 namespace clfe
 {
@@ -21,9 +33,21 @@ namespace clfe
 			requires (sizeof...(Args) == 4) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
-		Vector(const T* arr) : { arr[0], arr[1], arr[2], arr[3] } {}
+		Vector(const T* arr) : array{
+			arr[0],
+			arr[1],
+			arr[2],
+			arr[3]
+		} {}
 
-		Vector(const Vector<4, T>& vec) : array{ vec.array[0], vec.array[1], vec.array[2], vec.array[3] } {}
+		template <typename U>
+			requires Compatible<T, U>
+		Vector(const Vector<4, U>& vec) : array{
+			static_cast<T>(vec.array[0]),
+			static_cast<T>(vec.array[1]),
+			static_cast<T>(vec.array[2]),
+			static_cast<T>(vec.array[3])
+		} {}
 
 		inline msize_t size() const
 		{
@@ -58,7 +82,7 @@ namespace clfe
 				array[1] * array[1] +
 				array[2] * array[2] +
 				array[3] * array[3]
-				)));
+			)));
 		}
 
 		template <typename U = T>
@@ -83,17 +107,54 @@ namespace clfe
 			return *this;
 		}
 
-	public: // Vector2 specific
-		T x() const;
-		T y() const;
-		T z() const;
-		T w() const;
+	public: // Vector4 specific
+		T x() const
+		{
+			return array[0];
+		}
 
-		void set(T x, T y, T z, T w);
-		void x(T x);
-		void y(T y);
-		void z(T z);
-		void w(T w);
+		T y() const
+		{
+			return array[1];
+		}
+
+		T z() const
+		{
+			return array[2];
+		}
+
+		T w() const
+		{
+			return array[3];
+		}
+
+		void set(T x, T y, T z, T w)
+		{
+			array[0] = x;
+			array[1] = y;
+			array[2] = z;
+			array[3] = w;
+		}
+
+		void x(T x)
+		{
+			array[0] = x;
+		}
+
+		void y(T y)
+		{
+			array[1] = y;
+		}
+
+		void z(T z)
+		{
+			array[2] = z;
+		}
+
+		void w(T w)
+		{
+			array[3] = w;
+		}
 
 		inline T r() const
 		{
@@ -136,81 +197,6 @@ namespace clfe
 		}
 
 	};
-
-}
-
-namespace clfe
-{
-
-	template <typename T>
-	using Vector4 = Vector<4, T>;
-
-	using Vector4f = Vector4<float>;
-	using Vector4d = Vector4<double>;
-	using Vector4i = Vector4<int>;
-
-}
-
-// Implementation
-namespace clfe
-{
-
-	template <typename T>
-	T Vector<4, T>::x() const
-	{
-		return this->array[0];
-	}
-
-	template <typename T>
-	T Vector<4, T>::y() const
-	{
-		return this->array[1];
-	}
-
-	template <typename T>
-	T Vector<4, T>::z() const
-	{
-		return this->array[2];
-	}
-
-	template <typename T>
-	T Vector<4, T>::w() const
-	{
-		return this->array[3];
-	}
-
-	template <typename T>
-	void Vector<4, T>::set(T x, T y, T z, T w)
-	{
-		this->array[0] = x;
-		this->array[1] = y;
-		this->array[2] = z;
-		this->array[3] = w;
-	}
-
-	template <typename T>
-	void Vector<4, T>::x(T x)
-	{
-		this->array[0] = x;
-	}
-
-	template <typename T>
-	void Vector<4, T>::y(T y)
-	{
-		this->array[1] = y;
-	}
-
-	template <typename T>
-	void Vector<4, T>::z(T z)
-	{
-		this->array[2] = z;
-	}
-
-	template <typename T>
-	void Vector<4, T>::w(T w)
-	{
-		this->array[3] = w;
-	}
 
 }
 

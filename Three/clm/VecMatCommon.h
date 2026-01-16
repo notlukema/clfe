@@ -21,6 +21,10 @@ namespace clfe
 	template <typename T, typename... Args>
 	concept AllCompatible = (std::convertible_to<Args, T> && ...);
 
+	// Guarentees that U can be converted to T
+	template <typename T, typename U>
+	concept Compatible = std::convertible_to<U, T>;
+
 	// Guarentees that T is an arithmetic type
 	template <typename T>
 	concept Arithmetic = std::is_arithmetic_v<T>;
@@ -33,23 +37,15 @@ namespace clfe
 	template <typename T, typename U>
 	concept Arithmetic3 = std::is_arithmetic_v<T> && std::is_arithmetic_v<U> && std::convertible_to<decltype(static_cast<T>(0) + static_cast<U>(0)), T>;
 
-	template <typename T, msize_t size>
-	class Unpack
+	constexpr msize_t smax(msize_t a, msize_t b)
 	{
-	private:
-		T values[size];
+		return (a > b) ? a : b;
+	}
 
-	public:
-		template <typename... Args>
-		constexpr Unpack(Args&&... args) : values{ std::forward<Args>(args)... } {}
-
-		// This access operator cannot change values (does not return a reference)
-		constexpr T operator[](msize_t i)
-		{
-			return values[i];
-		}
-
-	};
+	constexpr msize_t smin(msize_t a, msize_t b)
+	{
+		return (a < b) ? a : b;
+	}
 
 }
 

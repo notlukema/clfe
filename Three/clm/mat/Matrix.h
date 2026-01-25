@@ -203,6 +203,7 @@ namespace clfe
 #include "MatUtils.h"
 #include "MatOp.h"
 #ifdef CLM_VECTOR_H // Unnecessary but whatever
+#include "../VecMatUtils.h"
 #include "../VecMatOp.h"
 #endif
 

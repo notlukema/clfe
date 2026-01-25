@@ -8,6 +8,8 @@
 namespace clfe
 {
 
+	// Nothing for now
+
 }
 
 #endif

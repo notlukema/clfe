@@ -105,6 +105,7 @@ namespace clfe // Utility functions
 		);
 	}
 
+	// Weird
 	template <typename T = float>
 		requires Arithmetic<T>
 	Matrix<4, 4, T> rotate(float rad, Vector<3, T> axis)

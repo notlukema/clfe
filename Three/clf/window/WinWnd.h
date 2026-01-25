@@ -5,6 +5,7 @@
 #include "../../clfe/System.h"
 #include "../../clfe/InstanceList.h"
 #include "../../clu/StringUtils.h"
+#include "../input/KeyTables.h"
 
 #include <Windows.h>
 

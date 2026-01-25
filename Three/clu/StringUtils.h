@@ -16,14 +16,30 @@ namespace clfe
 		return concatNarrow(str1, str2);
 	}
 
-	const char* copyNarrow(const char* str);
-	const wchar_t* copyWide(const wchar_t* str);
+	char* copyNarrow(const char* str);
+	wchar_t* copyWide(const wchar_t* str);
 
-	inline const char* copy(const char* str)
+	inline char* copy(const char* str)
 	{
 		return copyNarrow(str);
 	}
 
+	inline wchar_t* copy(const wchar_t* str)
+	{
+		return copyWide(str);
+	}
+
+	// Special
+
+	template <typename To, typename From>
+		requires false // Always false, to trigger specialization
+	To* convertString(const From* str)
+	{
+		
+	}
+
 }
+
+#include "ManyConvertString.h"
 
 #endif

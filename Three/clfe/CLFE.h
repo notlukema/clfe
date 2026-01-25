@@ -14,6 +14,10 @@ namespace clfe
 		System::init();
 #endif
 
+#ifdef CLFE_INPUT_CENTRAL_H
+		InputCentral::init();
+#endif
+
 #ifdef CLFE_WINWND_H
 		WinWnd::init();
 		WinClass::init();
@@ -26,8 +30,16 @@ namespace clfe
 	{
 		bool success = true;
 
+#ifdef CLFE_WINDOW_H
+		Window::step();
+#endif
+
 #ifdef CLFE_WINWND_H
 		WinWnd::step();
+#endif
+
+#ifdef CLFE_INPUT_CENTRAL_H
+		InputCentral::step();
 #endif
 
 		return success;
@@ -35,13 +47,15 @@ namespace clfe
 
 	void terminate()
 	{
+#ifdef CLFE_WINDOW_H
+		Window::terminate();
+#endif
+
 #ifdef CLFE_WINWND_H
 		WinWnd::terminate();
 		WinClass::terminate();
 #endif
-#ifdef CLFE_WINDOW_H
 
-#endif
 	}
 
 }

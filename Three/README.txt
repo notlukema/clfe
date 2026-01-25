@@ -10,6 +10,7 @@ CLM - c library math
 
 
 Math library is currently usable but lacks many utility functions. Will add when time is given and/or I need them.
+Does not yet support string types other than char and wchar (such as char32 or char16 etc).
 
 
 macros:

@@ -6,11 +6,9 @@
 
 namespace clfe
 {
-	HINSTANCE whInstance_ = (HINSTANCE)NULL;
 
 	void WinWnd::init()
 	{
-		whInstance_ = GetModuleHandle(NULL);
 	}
 
 	void WinWnd::step()

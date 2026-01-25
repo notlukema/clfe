@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="clfe\System.cpp" />
+    <ClCompile Include="clf\input\InputCentral.cpp" />
     <ClCompile Include="clf\window\WinClass.cpp" />
     <ClCompile Include="clf\window\WinDefProc.cpp" />
     <ClCompile Include="clf\window\Window.cpp" />
@@ -33,9 +34,14 @@
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Error.h" />
     <ClInclude Include="clfe\InstanceList.h" />
+    <ClInclude Include="clfe\string\UniString.h" />
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clf\comp\tex\Bitmap.h" />
     <ClInclude Include="clf\comp\tex\BitmapRGBA.h" />
+    <ClInclude Include="clf\input\InputCentral.h" />
+    <ClInclude Include="clf\input\InputParams.h" />
+    <ClInclude Include="clf\input\Key.h" />
+    <ClInclude Include="clf\input\KeyTables.h" />
     <ClInclude Include="clf\window\Window.h" />
     <ClInclude Include="clf\window\WinWnd.h" />
     <ClInclude Include="clm\CLM.h" />
@@ -50,6 +56,7 @@
     <ClInclude Include="clm\mat\MatUtils.h" />
     <ClInclude Include="clm\VecMatCommon.h" />
     <ClInclude Include="clm\VecMatOp.h" />
+    <ClInclude Include="clm\VecMatUtils.h" />
     <ClInclude Include="clm\vec\VecOp.h" />
     <ClInclude Include="clm\vec\Vector.h" />
     <ClInclude Include="clm\vec\Vector2.h" />
@@ -57,6 +64,8 @@
     <ClInclude Include="clm\vec\Vector4.h" />
     <ClInclude Include="clm\vec\VecUtils.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
+    <ClInclude Include="clu\LongBoolList.h" />
+    <ClInclude Include="clu\ManyConvertString.h" />
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="stb\stb_image.h" />

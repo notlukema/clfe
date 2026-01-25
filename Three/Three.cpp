@@ -7,6 +7,7 @@
 #include "clfe/CLFE.h"
 
 #include "clu/Print.h"
+#include "clfe/string/UniString.h"
 
 #include <cstdlib>
 
@@ -24,40 +25,10 @@ int main()
 
     // r
 
+    UniString str("Hello");
+	std::cout << str.get() << std::endl;
 
-    std::cout << "LINE SPLIT\n";
-
-
-    Matrix<2, 2, float> mat22f(
-        1.0f, 2.0f,
-        3.0f, 4.0f
-	);
-
-    print(mat22f);
-
-    mat22f.transpose();
-
-    print(mat22f);
-
-    Matrix<4, 3, float> mat43f(
-        5, 5, 5, 7,
-        2, 1, 3, -4,
-        7, 4, 2, 5
-    );
-    print(mat43f);
-
-    Matrix<4, 4, int> mat44i(
-        1, 2, 3, 4,
-        5, 6, 7, 8,
-        9, 10, 11, 12,
-        13, 14, 15, 16
-	);
-
-    print(mat44i);
-
-    print(mat44i * Matrix<4, 4, int>(2));
-
-    print(mat22f + mat43f);
+	//convertString<char, wchar_t>(L"Hello");
 
 
     while (wnd1->exists())

@@ -11,6 +11,8 @@ namespace clfe
 	class Window
 	{
 	public: // Static functions
+		static void init();
+		static void step();
 		static void terminate();
 
 	public:

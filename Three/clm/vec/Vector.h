@@ -110,6 +110,7 @@ namespace clfe
 #include "VecUtils.h"
 #include "VecOp.h"
 #ifdef CLM_MATRIX_H
+#include "../VecMatUtils.h"
 #include "../VecMatOp.h"
 #endif
 

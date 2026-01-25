@@ -30,9 +30,16 @@ namespace clfe
 	{
 	}
 
+	void Window::init()
+	{
+	}
+
+	void Window::step()
+	{
+	}
+
 	void Window::terminate()
 	{
-
 	}
 
 }

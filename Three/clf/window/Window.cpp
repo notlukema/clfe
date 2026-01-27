@@ -21,6 +21,8 @@ namespace clfe
 #endif
 	}
 
+	Attachment Window::windowAttachment = Attachment(50, Window::init, Window::step, Window::terminate);
+
 	Window::Window()
 	{
 		// Something here?
@@ -30,11 +32,12 @@ namespace clfe
 	{
 	}
 
-	void Window::init()
+	bool Window::init()
 	{
+		return true;
 	}
 
-	void Window::step()
+	void Window::step(float delf, double deld)
 	{
 	}
 

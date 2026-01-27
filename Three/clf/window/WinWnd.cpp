@@ -7,10 +7,6 @@
 namespace clfe
 {
 
-	void WinWnd::init()
-	{
-	}
-
 	void WinWnd::step()
 	{
 		// TODO: consider threading and stuff and also improve algorithm
@@ -19,11 +15,6 @@ namespace clfe
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-	}
-
-	void WinWnd::terminate()
-	{
-		// delete windows, probably will move to parent class Window to call delete though
 	}
 
 
@@ -102,6 +93,11 @@ namespace clfe
 		destroy();
 	}
 
+	HWND WinWnd::getHWND() const
+	{
+		return hwnd_;
+	}
+
 	bool WinWnd::exists() const
 	{
 		return true;
@@ -123,12 +119,16 @@ namespace clfe
 
 	int WinWnd::getWidth() const
 	{
-		return 0;
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.right - rect.left;
 	}
 
 	int WinWnd::getHeight() const
 	{
-		return 0;
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.bottom - rect.top;
 	}
 
 	void WinWnd::setX(int x)

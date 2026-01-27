@@ -32,7 +32,7 @@ namespace clfe // Might change namespace due to special usage
 
 	private:
 		Node* first;
-		int len; // Intresting ahh decision, may or may not remove
+		int len; // Intresting decision, may or may not remove
 
 	public:
 		InstanceList();

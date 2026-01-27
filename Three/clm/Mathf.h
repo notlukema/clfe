@@ -8,7 +8,7 @@
 namespace clfe
 {
 
-	static constexpr MathConst<float> constf;
+	static constexpr MathConst<float> Constf;
 
 	static inline float sinf(float radians)
 	{

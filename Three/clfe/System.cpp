@@ -3,11 +3,15 @@
 namespace clfe
 {
 
+	Attachment System::systemAttachment = Attachment(10, System::init, nullptr, nullptr);
+
 	clid System::nextID = 0;
 
-	void System::init()
+	bool System::init()
 	{
 		nextID = 0;
+
+		return true;
 	}
 
 	clid System::genNextID()

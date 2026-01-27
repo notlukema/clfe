@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clf\input\InputCentral.cpp" />
     <ClCompile Include="clf\window\WinClass.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="clf\window\WinWnd.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
     <ClCompile Include="clu\StringUtils.cpp" />
+    <ClCompile Include="glad\src\glad.c" />
     <ClCompile Include="Three.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +70,9 @@
     <ClInclude Include="clu\ManyConvertString.h" />
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
+    <ClInclude Include="FastDraw.h" />
+    <ClInclude Include="glad\include\glad\glad.h" />
+    <ClInclude Include="glad\include\KHR\khrplatform.h" />
     <ClInclude Include="stb\stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -157,10 +162,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\lukem\.code\vs\clfe\Three\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

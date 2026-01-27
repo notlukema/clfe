@@ -19,8 +19,8 @@ namespace clfe
 		static void init();
 		static void step();
 
-		static void activateKey(IncType key);
-		static void deactivateKey(IncType key);
+		static void keyDown(IncType key);
+		static void keyUp(IncType key);
 
 		static bool keyPressed(IncType key);
 

@@ -6,6 +6,7 @@
 #include "../../clfe/InstanceList.h"
 #include "../../clu/StringUtils.h"
 #include "../input/KeyTables.h"
+#include "../../clfe/CLFE.h"
 
 #include <Windows.h>
 
@@ -37,7 +38,9 @@ namespace clfe
 			return createClass(toWideString(name), wndProc);
 		}
 
-		static void init();
+		static Attachment winWndAttachment;
+		static bool init();
+		static void step(float delf, double deld);
 		static void terminate();
 
 	private:
@@ -61,9 +64,7 @@ namespace clfe
 	public: // Window processes
 		static LRESULT CALLBACK defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-		static void init();
 		static void step();
-		static void terminate();
 
 	private:
 		const WinClass* wClass_;
@@ -78,6 +79,8 @@ namespace clfe
 		WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
 
 		virtual ~WinWnd() override;
+
+		HWND getHWND() const;
 
 		virtual bool exists() const override;
 		virtual void destroy() override;

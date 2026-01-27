@@ -10,6 +10,9 @@
 #include "clfe/string/UniString.h"
 
 #include <cstdlib>
+#include <chrono>
+
+#include "FastDraw.h"
 
 using namespace clfe;
 
@@ -25,15 +28,20 @@ int main()
 
     // r
 
-    UniString str("Hello");
-	std::cout << str.get() << std::endl;
+	std::cout << fastDrawInit((WinWnd*)wnd1) << "-complete\n";
 
-	//convertString<char, wchar_t>(L"Hello");
-
+    static auto lastTime = std::chrono::steady_clock::now();
 
     while (wnd1->exists())
     {
+        auto currentTime = std::chrono::steady_clock::now();
+        std::chrono::duration<double> duration = currentTime - lastTime;
+        lastTime = currentTime;
+        double deltaTime = duration.count();
+        //std::cout << deltaTime << "\n";
+
         step();
+        fastDraw((WinWnd*)wnd1, (float)deltaTime);
     }
 
     clfe::terminate();

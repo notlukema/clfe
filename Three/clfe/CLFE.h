@@ -3,60 +3,43 @@
 
 // Ties togethor the init, step, and terminate functions of various modules
 
+#include <List>
+#include <cstdint>
+
 namespace clfe
 {
 
-	bool init()
+	// Part placeholder (all "attachments" and the std::list)
+	
+	// Lower number = higher priority (0 = highest priority)
+	struct Attachment
 	{
-		bool success = true;
 
-#ifdef CLFE_SYSTEM_H
-		System::init();
-#endif
+		bool (*const init)();
+		void (*const step)(float delf, double deld);
+		void (*const terminate)();
 
-#ifdef CLFE_INPUT_CENTRAL_H
-		InputCentral::init();
-#endif
+		const uint32_t priority; // Lower number = higher priority (0 = highest priority)
+		
+		Attachment(uint32_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)());
 
-#ifdef CLFE_WINWND_H
-		WinWnd::init();
-		WinClass::init();
-#endif
+	};
 
-		return success;
-	}
-
-	bool step()
+	struct AttachmentHolder
 	{
-		bool success = true;
 
-#ifdef CLFE_WINDOW_H
-		Window::step();
-#endif
+		static std::list<Attachment*> attachments;
 
-#ifdef CLFE_WINWND_H
-		WinWnd::step();
-#endif
+		static void sort();
 
-#ifdef CLFE_INPUT_CENTRAL_H
-		InputCentral::step();
-#endif
-
-		return success;
-	}
-
-	void terminate()
-	{
-#ifdef CLFE_WINDOW_H
-		Window::terminate();
-#endif
-
-#ifdef CLFE_WINWND_H
-		WinWnd::terminate();
-		WinClass::terminate();
-#endif
-
-	}
+	};
+	
+	static void addAttachment(Attachment* attachment);
+	static void removeAttachment(Attachment* attachment);
+	
+	bool init();
+	void step();
+	void terminate();
 
 }
 

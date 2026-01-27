@@ -15,11 +15,20 @@ namespace clfe
 	WinClass* WinClass::defaultClass_ = nullptr;
 	InstanceList<WinClass>* WinClass::classes_ = nullptr;
 
-	void WinClass::init()
+	Attachment WinClass::winWndAttachment = Attachment(70, WinClass::init, WinClass::step, WinClass::terminate);
+
+	bool WinClass::init()
 	{
 		hInstance_ = GetModuleHandle(NULL);
 		classes_ = new InstanceList<WinClass>();
 		defaultClass_ = createClass("Default", WinWnd::defWndProc);
+
+		return defaultClass_ != nullptr;
+	}
+
+	void WinClass::step(float delf, double deld)
+	{
+		WinWnd::step();
 	}
 
 	void WinClass::terminate()

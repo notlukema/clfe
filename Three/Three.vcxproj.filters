@@ -42,6 +42,12 @@
     <ClCompile Include="clf\input\InputCentral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\CLFE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb\stb_image.h">
@@ -159,6 +165,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\LongBoolList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FastDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\KHR\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

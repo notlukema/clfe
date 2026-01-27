@@ -29,3 +29,16 @@ type aliases:
 
 clid - unsigned int, used for global ids
 clchar - system char type, either char or wchar_t
+
+
+
+
+
+
+
+Component priorities:
+System - 10
+Window - 50
+Windows Window - 70
+Mac Window - 71
+Linux Window - 72

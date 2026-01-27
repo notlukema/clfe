@@ -3,6 +3,7 @@
 
 #include "CrossPlatform.h"
 #include "Error.h"
+#include "CLFE.h"
 
 using clid = unsigned int;
 
@@ -18,10 +19,11 @@ namespace clfe
 	class System
 	{
 	private:
+		static Attachment systemAttachment;
 		static clid nextID;
 
 	public:
-		static void init();
+		static bool init();
 		static clid genNextID();
 
 		// create recording system to record these ids and associated names

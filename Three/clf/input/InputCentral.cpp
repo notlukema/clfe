@@ -40,12 +40,12 @@ namespace clfe
 		}
 	}
 
-	void InputCentral::activateKey(IncType key)
+	void InputCentral::keyDown(IncType key)
 	{
 		keysDown[key] = true;
 	}
 
-	void InputCentral::deactivateKey(IncType key)
+	void InputCentral::keyUp(IncType key)
 	{
 		keysDown[key] = false;
 	}

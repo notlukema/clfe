@@ -8,7 +8,7 @@
 namespace clfe
 {
 
-	static constexpr MathConst<double> constd;
+	static constexpr MathConst<double> Constd;
 
 	static inline double sind(double radians)
 	{

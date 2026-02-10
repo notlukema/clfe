@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Four.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\input\InputCentral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\window\WinClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\window\WinDefProc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\window\WinWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\CLFE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clfe\input\InputCentral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\input\InputParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\input\Key.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\input\KeyTables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\window\WinWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\string\UniString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CLFE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\CrossPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\InstanceList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\MatMul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\MatOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\Matrix2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\MatUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\VecOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\vec\VecUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\CLM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\MathConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Mathd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Mathf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VecMatCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VecMatOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VecMatUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\benchmarking\Benchmark.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\LongBoolList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\ManyConvertString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\KHR\khrplatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FastDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

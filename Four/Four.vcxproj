@@ -129,9 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clfe\Attachment.cpp" />
+    <ClCompile Include="clfe\AttachmentLayers.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
+    <ClCompile Include="clfe\input\SystemInput.cpp" />
     <ClCompile Include="clfe\System.cpp" />
-    <ClCompile Include="clfe\input\InputCentral.cpp" />
+    <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />
     <ClCompile Include="clfe\window\WinDefProc.cpp" />
     <ClCompile Include="clfe\window\Window.cpp" />
@@ -142,13 +145,16 @@
     <ClCompile Include="glad\src\glad.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clfe\Attachment.h" />
+    <ClInclude Include="clfe\AttachmentLayers.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Error.h" />
+    <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\InstanceList.h" />
     <ClInclude Include="clfe\string\UniString.h" />
     <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clfe\input\InputCentral.h" />
+    <ClInclude Include="clfe\input\InputCore.h" />
     <ClInclude Include="clfe\input\InputParams.h" />
     <ClInclude Include="clfe\input\Key.h" />
     <ClInclude Include="clfe\input\KeyTables.h" />
@@ -175,7 +181,6 @@
     <ClInclude Include="clm\vec\VecUtils.h" />
     <ClInclude Include="clu\benchmarking\Benchmark.h" />
     <ClInclude Include="clu\LongBoolList.h" />
-    <ClInclude Include="clu\ManyConvertString.h" />
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="FastDraw.h" />

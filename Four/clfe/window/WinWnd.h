@@ -6,7 +6,7 @@
 #include "../InstanceList.h"
 #include "../../clu/StringUtils.h"
 #include "../input/KeyTables.h"
-#include "../CLFE.h"
+#include "../Attachment.h"
 
 #include <Windows.h>
 
@@ -38,7 +38,7 @@ namespace clfe
 			return createClass(toWideString(name), wndProc);
 		}
 
-		static Attachment winWndAttachment;
+		static Attachment WinWndAttachment;
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();

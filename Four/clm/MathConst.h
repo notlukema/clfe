@@ -8,10 +8,10 @@ namespace clfe
 	struct MathConst
 	{
 
-		static constexpr T pi = static_cast<T>(3.14159265358979323846);
+		static constexpr T Pi = static_cast<T>(3.14159265358979323846);
 		//static constexpr T TwoPi = static_cast<T>(6.28318530717958647692);
 		//static constexpr T HalfPi = static_cast<T>(1.57079632679489661923);
-		static constexpr T e = static_cast<T>(2.71828182845904523536);
+		static constexpr T E = static_cast<T>(2.71828182845904523536);
 		//static constexpr T GoldenRatio = static_cast<T>(1.618033988749895);
 		//static constexpr T Sqrt2 = static_cast<T>(1.41421356237309504880);
 		//static constexpr T Sqrt3 = static_cast<T>(1.73205080756887729353);

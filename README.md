@@ -1,6 +1,8 @@
 # Project
 Incomplete; ignore if not here to view the code
 
+Note: no AI used, someone told me that I should mention this here
+
 Folders:
 * One - Iteration 1, only has windows api window creation
 * Two - Iteration 2, has part of math library

@@ -35,11 +35,9 @@ namespace clfe
 		requires false // Always false, to trigger specialization
 	To* convertString(const From* str)
 	{
-		
+
 	}
 
 }
-
-#include "ManyConvertString.h"
 
 #endif

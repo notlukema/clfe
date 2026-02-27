@@ -6,8 +6,9 @@
 namespace clfe
 {
 
-	using IncType = uint16_t;
-	const uint32_t KEY_COUNT = 512; // "Placeholder"
+	using Inc_t = uint16_t;
+	using Key_t = int32_t;
+	const uint32_t KEY_COUNT = 512;
 
 	struct InputParams
 	{

@@ -15,7 +15,7 @@ namespace clfe
 	WinClass* WinClass::defaultClass_ = nullptr;
 	InstanceList<WinClass>* WinClass::classes_ = nullptr;
 
-	Attachment WinClass::winWndAttachment = Attachment(70, WinClass::init, WinClass::step, WinClass::terminate);
+	Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
 
 	bool WinClass::init()
 	{

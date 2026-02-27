@@ -212,9 +212,9 @@ namespace clfe
 
         dothefunny(
             translate(-3.0f, 0.5f*sinf(rot * 1.5f), 0.0f)
-            * rotateX(Constf.pi * sinf(rot * 3))
-            * rotateY(Constf.pi * sinf(rot * 2 + 1))
-            * rotateZ(Constf.pi * sinf(rot + 5))
+            * rotateX(Constf.Pi * sinf(rot * 3))
+            * rotateY(Constf.Pi * sinf(rot * 2 + 1))
+            * rotateZ(Constf.Pi * sinf(rot + 5))
         , 0.2);
 
         dothefunny(

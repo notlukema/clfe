@@ -21,7 +21,7 @@ namespace clfe
 #endif
 	}
 
-	Attachment Window::windowAttachment = Attachment(50, Window::init, Window::step, Window::terminate);
+	Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
 
 	Window::Window()
 	{

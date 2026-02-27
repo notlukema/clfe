@@ -6,8 +6,6 @@
 
 #include "clfe/window/Window.h"
 
-
-
 #include "clu/Print.h"
 #include "clfe/string/UniString.h"
 
@@ -21,6 +19,8 @@ using namespace clfe;
 int main()
 {
     std::cout << "Hello World!\n";
+
+    auto time = std::chrono::high_resolution_clock::now();
 
     if (!clfe::init()) {
         return -1;

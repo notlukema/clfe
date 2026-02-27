@@ -27,23 +27,6 @@ namespace clfe
 		return result;
 	}
 
-	template <msize_t Cols, msize_t Rows, msize_t Size, typename T, typename U>
-		requires (Cols == Size) && Arithmetic<T> && Arithmetic<U>
-	auto operator*(const Matrix<Cols, Rows, T>& mat1, const Vector<Size, U>& vec2) -> Vector<Rows, decltype(static_cast<T>(0) + static_cast<U>(0))>
-	{
-		auto result = Vector<Rows, decltype(static_cast<T>(0) + static_cast<U>(0))>();
-		for (msize_t r = 0; r < Rows; r++)
-		{
-			decltype(static_cast<T>(0) + static_cast<U>(0)) sum = 0;
-			for (msize_t k = 0; k < Cols; k++)
-			{
-				sum += mat1.get(k, r) * vec2.get(k);
-			}
-			result.setAt(r, sum);
-		}
-		return result;
-	}
-
 	template <msize_t Cols, msize_t Rows, typename T, typename U>
 		requires Arithmetic<T> && Arithmetic<U>
 	auto flatmatmul(const Matrix<Cols, Rows, T>& mat1, const Matrix<Cols, Rows, U>& mat2) -> Matrix<Cols, Rows, decltype(static_cast<T>(0) + static_cast<U>(0))>

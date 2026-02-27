@@ -18,7 +18,7 @@
     <ClCompile Include="Four.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\input\InputCentral.cpp">
+    <ClCompile Include="clfe\input\InputCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\window\WinClass.cpp">
@@ -48,9 +48,18 @@
     <ClCompile Include="glad\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\Attachment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\input\SystemInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\AttachmentLayers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clfe\input\InputCentral.h">
+    <ClInclude Include="clfe\input\InputCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\input\InputParams.h">
@@ -149,9 +158,6 @@
     <ClInclude Include="clu\LongBoolList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clu\ManyConvertString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clu\Print.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -165,6 +171,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FastDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Attachment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\input\SystemInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\AttachmentLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

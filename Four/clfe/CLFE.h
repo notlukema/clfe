@@ -3,43 +3,30 @@
 
 // Ties togethor the init, step, and terminate functions of various modules
 
-#include <List>
-#include <cstdint>
+#include "Attachment.h"
+
+#include <chrono>
 
 namespace clfe
 {
 
-	// Part placeholder (all "attachments" and the std::list)
-	
-	// Lower number = higher priority (0 = highest priority)
-	struct Attachment
-	{
-
-		bool (*const init)();
-		void (*const step)(float delf, double deld);
-		void (*const terminate)();
-
-		const uint32_t priority; // Lower number = higher priority (0 = highest priority)
-		
-		Attachment(uint32_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)());
-
-	};
-
-	struct AttachmentHolder
-	{
-
-		static std::list<Attachment*> attachments;
-
-		static void sort();
-
-	};
-	
-	static void addAttachment(Attachment* attachment);
-	static void removeAttachment(Attachment* attachment);
-	
 	bool init();
-	void step();
+	void step(float dt);
+	void step(double dt);
 	void terminate();
+
+	// Use own timer
+	using Timer_t = std::chrono::steady_clock::time_point;
+	extern Timer_t StepTimer;
+
+	void resetTimer();
+	float stepf();
+	double stepd();
+
+	inline float step()
+	{
+		return stepf();
+	}
 
 }
 

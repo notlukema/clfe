@@ -4,6 +4,7 @@
 #include "CrossPlatform.h"
 #include "Error.h"
 #include "CLFE.h"
+#include "Attachment.h"
 
 using clid = unsigned int;
 
@@ -19,7 +20,7 @@ namespace clfe
 	class System
 	{
 	private:
-		static Attachment systemAttachment;
+		static Attachment SystemAttachment;
 		static clid nextID;
 
 	public:

@@ -2,7 +2,7 @@
 #define CLFE_WINDOW_H
 
 #include "../CrossPlatform.h"
-#include "../CLFE.h"
+#include "../Attachment.h"
 
 namespace clfe
 {
@@ -12,7 +12,7 @@ namespace clfe
 	class Window
 	{
 	public: // Static functions
-		static Attachment windowAttachment;
+		static Attachment WindowAttachment;
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();

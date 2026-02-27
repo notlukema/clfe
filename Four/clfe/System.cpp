@@ -3,7 +3,7 @@
 namespace clfe
 {
 
-	Attachment System::systemAttachment = Attachment(10, System::init, nullptr, nullptr);
+	Attachment System::SystemAttachment = Attachment(AttachmentLayers::System, System::init, nullptr, nullptr);
 
 	clid System::nextID = 0;
 

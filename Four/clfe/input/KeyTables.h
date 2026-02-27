@@ -20,8 +20,8 @@ namespace clfe
 	class KeyTable<WINDOWS_KEYS>
 	{
 	public:
-		static constexpr int Size = 90;
-		static constexpr int keyMap[] = {
+		static constexpr Key_t Size = 90;
+		static constexpr Key_t keyMap[] = {
 			-1, /* 1 */
 			-1, /* 2 */
 			-1, /* 3 */

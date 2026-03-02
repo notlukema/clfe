@@ -2,6 +2,9 @@
 
 #include <Windows.h>
 
+////////
+#include <iostream>
+
 namespace clfe
 {
 
@@ -20,14 +23,17 @@ namespace clfe
 			window = (WinWnd*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 		}
 
-		if (uMsg == WM_KEYDOWN)
-		{
-
-		}
-
 		if (window)
 		{
-			// TODO: replace with something more comprehensive
+			if (uMsg == WM_KEYDOWN)
+			{
+				std::cout << "Key down: " << wParam << "\n";
+			}
+			if (uMsg == WM_KEYUP)
+			{
+
+			}
+
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		}
 		else

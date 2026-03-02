@@ -11,19 +11,19 @@
 namespace clfe
 {
 	
-	HINSTANCE WinClass::hInstance_;
-	WinClass* WinClass::defaultClass_ = nullptr;
-	InstanceList<WinClass>* WinClass::classes_ = nullptr;
+	HINSTANCE WinClass::HInstance;
+	WinClass* WinClass::DefaultClass = nullptr;
+	InstanceList<WinClass>* WinClass::Classes = nullptr;
 
 	Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
 
 	bool WinClass::init()
 	{
-		hInstance_ = GetModuleHandle(NULL);
-		classes_ = new InstanceList<WinClass>();
-		defaultClass_ = createClass("Default", WinWnd::defWndProc);
+		HInstance = GetModuleHandle(NULL);
+		Classes = new InstanceList<WinClass>();
+		DefaultClass = createClass("Default", WinWnd::defWndProc);
 
-		return defaultClass_ != nullptr;
+		return DefaultClass != nullptr;
 	}
 
 	void WinClass::step(float delf, double deld)
@@ -33,17 +33,18 @@ namespace clfe
 
 	void WinClass::terminate()
 	{
-		delete classes_;
+		Classes->deleteAll(); // Delete all Windows Classes
+		delete Classes;
 	}
 
 	WinClass* WinClass::createClass(const WCHAR* name, WNDPROC wndProc)
 	{
-		const WCHAR* className = concatWide(std::to_wstring(classes_->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
+		const WCHAR* className = concatWide(std::to_wstring(Classes->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
 		// Class 1 -> 0_clfewnd-Class 1
 
 		WNDCLASS wc = {}; // TODO: Check out WNDCLASSEX later on
 		wc.lpfnWndProc = wndProc;
-		wc.hInstance = hInstance_;
+		wc.hInstance = HInstance;
 		wc.lpszClassName = className;
 
 		ATOM atom = RegisterClass(&wc);
@@ -57,37 +58,36 @@ namespace clfe
 
 		WinClass* wClass = new WinClass(clid, copyWide(name), className, atom);
 
-		classes_->add(clid, wClass);
-		//classes_->add(wClass->getID(), wClass);
+		Classes->add(clid, wClass);
 
 		return wClass;
 	}
 
-	WinClass::WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass) : clid_(clid), name_(name), className_(className), wClass_(wClass) {}
+	WinClass::WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(clid), name(name), className(className), wClass(wClass) {}
 
 	WinClass::~WinClass()
 	{
-		UnregisterClassW(MAKEINTATOM(wClass_), hInstance_);
+		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
 	}
 
 	clid WinClass::getID() const
 	{
-		return clid_;
+		return thisid;
 	}
 
 	const WCHAR* WinClass::getName() const
 	{
-		return name_;
+		return name;
 	}
 
 	const WCHAR* WinClass::getClassName() const
 	{
-		return className_;
+		return className;
 	}
 
 	ATOM WinClass::getClassAtom() const
 	{
-		return wClass_;
+		return wClass;
 	}
 
 }

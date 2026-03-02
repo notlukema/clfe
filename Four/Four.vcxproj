@@ -132,7 +132,6 @@
     <ClCompile Include="clfe\Attachment.cpp" />
     <ClCompile Include="clfe\AttachmentLayers.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
-    <ClCompile Include="clfe\input\SystemInput.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />

@@ -37,6 +37,7 @@ namespace clfe // Might change namespace due to special usage
 	public:
 		InstanceList();
 		~InstanceList();
+		void deleteAll(); // Deletes objects within as well
 
 		int length();
 
@@ -98,6 +99,22 @@ namespace clfe
 
 			node = next;
 		}
+	}
+
+	template <typename T>
+	void InstanceList<T>::deleteAll()
+	{
+		Node* node = first;
+		//for (int i = 0; i < len; i++) {
+		while (node != nullptr) {
+			Node* next = node->next;
+			delete node->value; // Delete value as well
+			delete node;
+
+			node = next;
+		}
+		first = nullptr;
+		len = 0;
 	}
 
 	template <typename T>

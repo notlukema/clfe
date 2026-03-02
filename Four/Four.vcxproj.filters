@@ -51,9 +51,6 @@
     <ClCompile Include="clfe\Attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\input\SystemInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clfe\AttachmentLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -176,10 +173,10 @@
     <ClInclude Include="clfe\Attachment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\input\SystemInput.h">
+    <ClInclude Include="clfe\AttachmentLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\AttachmentLayers.h">
+    <ClInclude Include="clfe\input\SystemInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

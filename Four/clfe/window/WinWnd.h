@@ -16,19 +16,19 @@ namespace clfe
 	class WinClass // TODO: Add more utility functions here
 	{
 	private:
-		static HINSTANCE hInstance_;
-		static WinClass* defaultClass_;
-		static InstanceList<WinClass>* classes_;
+		static HINSTANCE HInstance;
+		static WinClass* DefaultClass;
+		static InstanceList<WinClass>* Classes;
 
 	public:
 		static inline HINSTANCE getHInstance()
 		{
-			return hInstance_;
+			return HInstance;
 		}
 
 		static inline WinClass* getDefaultClass()
 		{
-			return defaultClass_;
+			return DefaultClass;
 		}
 
 		static WinClass* createClass(const WCHAR* name, WNDPROC wndProc);
@@ -44,9 +44,9 @@ namespace clfe
 		static void terminate();
 
 	private:
-		clid clid_;
-		const WCHAR* name_,* className_;
-		ATOM wClass_;
+		clid thisid;
+		const WCHAR* name,* className;
+		ATOM wClass;
 
 		WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass);
 

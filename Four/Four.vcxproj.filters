@@ -54,6 +54,9 @@
     <ClCompile Include="clfe\AttachmentLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\InstanceTypes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -84,9 +87,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\Error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\InstanceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\System.h">
@@ -177,6 +177,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\input\SystemInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\InstanceTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

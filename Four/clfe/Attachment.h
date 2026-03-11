@@ -27,17 +27,24 @@ namespace clfe
 
 	};
 
-	struct AttachmentHolder
+	class AttachmentHolder
 	{
+	private:
+		friend struct Attachment;
 
 		static std::list<Attachment*> attachments;
 
 		static void sort();
+		static void addAttachment(Attachment* attachment);
+		static void removeAttachment(Attachment* attachment);
+
+	public:
+		static inline const std::list<Attachment*>& getAttachments()
+		{
+			return attachments;
+		}
 
 	};
-
-	static void addAttachment(Attachment* attachment);
-	static void removeAttachment(Attachment* attachment);
 
 }
 

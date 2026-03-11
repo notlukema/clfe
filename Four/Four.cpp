@@ -27,10 +27,11 @@ int main()
     }
 
     Window* wnd1 = createWindow("thing");
+    clid id = wnd1->getID();
 
     // r
 
-    std::cout << fastDrawInit((WinWnd*)wnd1) << "-complete\n";
+    std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
 
     static auto lastTime = std::chrono::steady_clock::now();
 
@@ -44,6 +45,15 @@ int main()
 
         step();
         fastDraw((WinWnd*)wnd1, (float)deltaTime);
+
+        /*
+		std::list<InstanceBase*> instances = System::getInstances();
+        for (int i = 0; i < instances.size(); i++)
+        {
+            InstanceBase* instance = instances[i];
+
+        }
+        */
     }
 
     clfe::terminate();

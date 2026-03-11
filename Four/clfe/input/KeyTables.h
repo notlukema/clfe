@@ -7,9 +7,9 @@
 namespace clfe
 {
 
-	constexpr auto WINDOWS_KEYS = 1;
-	constexpr auto MAC_KEYS = 2;
-	constexpr auto LINUX_KEYS = 3;
+	constexpr int WINDOWS_KEYS = 1;
+	constexpr int MAC_KEYS = 2;
+	constexpr int LINUX_KEYS = 3;
 
 	template <int Platform>
 	class KeyTable

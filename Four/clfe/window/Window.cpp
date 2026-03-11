@@ -1,6 +1,6 @@
 #include "Window.h"
 
-#include "../CrossPlatform.h"
+#include "../InstanceTypes.h"
 
 namespace clfe
 {
@@ -21,15 +21,17 @@ namespace clfe
 #endif
 	}
 
-	Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
+	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
+	InstanceList<Window>* Window::WindowsList = new InstanceList<Window>(InstanceTypes::Window);
 
-	Window::Window()
+	Window::Window(clid id) : thisid(id)
 	{
-		// Something here?
+		WindowsList->add(id, this);
 	}
 
 	Window::~Window()
 	{
+		WindowsList->remove(thisid);
 	}
 
 	bool Window::init()
@@ -43,6 +45,11 @@ namespace clfe
 
 	void Window::terminate()
 	{
+	}
+
+	clid Window::getID() const
+	{
+		return thisid;
 	}
 
 }

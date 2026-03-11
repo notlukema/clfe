@@ -21,26 +21,26 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name)
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name) : Window(System::genNextID())
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name)
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name) : Window(System::genNextID())
 	{
 		createWindow(x, y, width, height, name, WinClass::getDefaultClass());
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass) : Window(System::genNextID())
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, wClass);
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass) : Window(System::genNextID())
 	{
 		createWindow(x, y, width, height, name, wClass);
 	}

@@ -2,7 +2,6 @@
 
 #include "../Error.h"
 #include "../System.h"
-#include "../InstanceList.h"
 #include "../../clu/StringUtils.h"
 
 #include <string>
@@ -15,12 +14,12 @@ namespace clfe
 	WinClass* WinClass::DefaultClass = nullptr;
 	InstanceList<WinClass>* WinClass::Classes = nullptr;
 
-	Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
+	const Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
 
 	bool WinClass::init()
 	{
 		HInstance = GetModuleHandle(NULL);
-		Classes = new InstanceList<WinClass>();
+		Classes = new InstanceList<WinClass>(InstanceTypes::WinClass); // Constructor or in init func?? Decide later
 		DefaultClass = createClass("Default", WinWnd::defWndProc);
 
 		return DefaultClass != nullptr;
@@ -33,7 +32,7 @@ namespace clfe
 
 	void WinClass::terminate()
 	{
-		Classes->deleteAll(); // Delete all Windows Classes
+		Classes->deepDelete(); // Delete all Windows Classes
 		delete Classes;
 	}
 
@@ -58,16 +57,18 @@ namespace clfe
 
 		WinClass* wClass = new WinClass(clid, copyWide(name), className, atom);
 
-		Classes->add(clid, wClass);
-
 		return wClass;
 	}
 
-	WinClass::WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(clid), name(name), className(className), wClass(wClass) {}
+	WinClass::WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(id), name(name), className(className), wClass(wClass)
+	{
+		Classes->add(id, this);
+	}
 
 	WinClass::~WinClass()
 	{
 		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
+		Classes->remove(thisid);
 	}
 
 	clid WinClass::getID() const

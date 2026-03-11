@@ -5,8 +5,15 @@
 
 namespace clfe
 {
+	
+	// TODO: finish later
+	class SystemInput
+	{
+	private:
+		//static const Attachment SystemInputAttachment;
+		//static InputCore SystemInputCore;
 
-	// do with os-specific parts
+	};
 
 }
 

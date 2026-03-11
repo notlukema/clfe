@@ -71,35 +71,30 @@ namespace clfe
         };
 
 		hDC = GetDC(window->getHWND());
-        std::cout << "1 " << hDC << "\n";
         if (!hDC) {
             return false;
 		}
 
 		int pixelFormat = ChoosePixelFormat(hDC, &pfd);
-        std::cout << "2 " << pixelFormat << "\n";
         if (pixelFormat == 0) {
             return false;
         }
 
-        std::cout << "3" << "\n";
         if (!SetPixelFormat(hDC, pixelFormat, &pfd)) {
             return false;
         }
 
         static HGLRC hRC = wglCreateContext(hDC);
-        std::cout << "4 " << hRC << "\n";
         if (!hRC) {
             return false;
         }
 
-        std::cout << "5" << "\n";
         if (!wglMakeCurrent(hDC, hRC)) {
             return false;
         }
 
-        std::cout << gladLoadGL() << "\n";
-        //std::cout << gladLoadGLLoader((GLADloadproc)wglGetProcAddress) << "\n";
+        std::cout << "Load gl? " << gladLoadGL() << "\n";
+        //std::cout << "Load gl? " << gladLoadGLLoader((GLADloadproc)wglGetProcAddress) << "\n";
 
         std::cout << glGetString(GL_VENDOR) << "\n";
         std::cout << glGetString(GL_RENDERER) << "\n";

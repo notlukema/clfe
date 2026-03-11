@@ -7,7 +7,7 @@ namespace clfe
 	{
 		bool success = true;
 
-		for (Attachment* attachment : AttachmentHolder::attachments)
+		for (Attachment* attachment : AttachmentHolder::getAttachments())
 		{
 			if (attachment->init == nullptr)
 			{
@@ -23,7 +23,7 @@ namespace clfe
 
 	void step(float dt)
 	{
-		for (Attachment* attachment : AttachmentHolder::attachments)
+		for (Attachment* attachment : AttachmentHolder::getAttachments())
 		{
 			if (attachment->step == nullptr)
 			{
@@ -35,7 +35,7 @@ namespace clfe
 
 	void step(double dt)
 	{
-		for (Attachment* attachment : AttachmentHolder::attachments)
+		for (Attachment* attachment : AttachmentHolder::getAttachments())
 		{
 			if (attachment->step == nullptr)
 			{
@@ -47,7 +47,7 @@ namespace clfe
 
 	void terminate()
 	{
-		for (Attachment* attachment : AttachmentHolder::attachments)
+		for (Attachment* attachment : AttachmentHolder::getAttachments())
 		{
 			if (attachment->terminate == nullptr)
 			{

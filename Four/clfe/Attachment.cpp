@@ -8,12 +8,12 @@ namespace clfe
 	Attachment::Attachment(uint32_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)())
 		: init(initFunc), step(stepFunc), terminate(termFunc), priority(priority)
 	{
-		addAttachment(this);
+		AttachmentHolder::addAttachment(this);
 	}
 
 	Attachment::~Attachment()
 	{
-		removeAttachment(this);
+		AttachmentHolder::removeAttachment(this);
 	}
 
 	// AttachmentHolder struct
@@ -29,15 +29,15 @@ namespace clfe
 
 	//
 
-	void addAttachment(Attachment* attachment)
+	void AttachmentHolder::addAttachment(Attachment* attachment)
 	{
-		AttachmentHolder::attachments.push_back(attachment);
-		AttachmentHolder::attachments.sort();
+		attachments.push_back(attachment);
+		attachments.sort();
 	}
 
-	void removeAttachment(Attachment* attachment)
+	void AttachmentHolder::removeAttachment(Attachment* attachment)
 	{
-		AttachmentHolder::attachments.remove(attachment);
+		attachments.remove(attachment);
 	}
 
 }

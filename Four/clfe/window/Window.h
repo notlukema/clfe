@@ -3,6 +3,7 @@
 
 #include "../CrossPlatform.h"
 #include "../Attachment.h"
+#include "../System.h"
 
 namespace clfe
 {
@@ -11,16 +12,28 @@ namespace clfe
 
 	class Window
 	{
-	public: // Static functions
-		static Attachment WindowAttachment;
+	private:
+		static InstanceList<Window>* WindowsList;
+
+	public:
+		static const Attachment WindowAttachment;
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();
 
-	public:
-		Window(); // Remove eventually if not needed
-		virtual ~Window() = 0;
+		static InstanceListWrapper<Window>* getWindowsList()
+		{
+			return WindowsList->getWrapper();
+		}
 
+	protected:
+		clid thisid;
+		Window(clid id);
+
+	public:
+		virtual ~Window();
+		clid getID() const;
+		
 		virtual bool exists() const = 0;
 		virtual void destroy() = 0;
 

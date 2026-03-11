@@ -2,18 +2,15 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
-#include "../System.h"
-#include "../InstanceList.h"
 #include "../../clu/StringUtils.h"
 #include "../input/KeyTables.h"
-#include "../Attachment.h"
 
 #include <Windows.h>
 
 namespace clfe
 {
 
-	class WinClass // TODO: Add more utility functions here
+	class WinClass
 	{
 	private:
 		static HINSTANCE HInstance;
@@ -31,6 +28,16 @@ namespace clfe
 			return DefaultClass;
 		}
 
+		static InstanceListWrapper<WinClass>* getClassesList()
+		{
+			return Classes->getWrapper();
+		}
+
+		static const Attachment WinWndAttachment;
+		static bool init();
+		static void step(float delf, double deld);
+		static void terminate();
+
 		static WinClass* createClass(const WCHAR* name, WNDPROC wndProc);
 
 		static inline WinClass* createClass(const char* name, WNDPROC wndProc)
@@ -38,24 +45,20 @@ namespace clfe
 			return createClass(toWideString(name), wndProc);
 		}
 
-		static Attachment WinWndAttachment;
-		static bool init();
-		static void step(float delf, double deld);
-		static void terminate();
-
 	private:
 		clid thisid;
 		const WCHAR* name,* className;
 		ATOM wClass;
 
-		WinClass(clid clid, const WCHAR* name, const WCHAR* className, ATOM wClass);
+		WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass);
 
 	public:
+		~WinClass();
+
 		clid getID() const;
 		const WCHAR* getName() const;
 		const WCHAR* getClassName() const;
 		ATOM getClassAtom() const;
-		~WinClass();
 
 	};
 

@@ -2,7 +2,7 @@
 
 namespace clfe
 {
-#define AL_T2 const uint32_t
+#define AL_T2 const AttLayer_t
 
 	AL_T2 AttachmentLayers::System = 10;
 	AL_T2 AttachmentLayers::Window = 50;

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{844018f2-24e5-40e9-957b-f0c7c6a99000}</ProjectGuid>
-    <RootNamespace>Four</RootNamespace>
+    <ProjectGuid>{bfda2e90-99d2-4318-b58b-79b4adf78d2f}</ProjectGuid>
+    <RootNamespace>Test</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -105,12 +105,10 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,63 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="clfe\Attachment.cpp" />
-    <ClCompile Include="clfe\AttachmentLayers.cpp" />
-    <ClCompile Include="clfe\CLFE.cpp" />
-    <ClCompile Include="clfe\InstanceTypes.cpp" />
-    <ClCompile Include="clfe\System.cpp" />
-    <ClCompile Include="clfe\input\InputCore.cpp" />
-    <ClCompile Include="clfe\window\WinClass.cpp" />
-    <ClCompile Include="clfe\window\WinDefProc.cpp" />
-    <ClCompile Include="clfe\window\Window.cpp" />
-    <ClCompile Include="clfe\window\WinWnd.cpp" />
-    <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
-    <ClCompile Include="clu\StringUtils.cpp" />
-    <ClCompile Include="Four.cpp" />
-    <ClCompile Include="glad\src\glad.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="clfe\Attachment.h" />
-    <ClInclude Include="clfe\AttachmentLayers.h" />
-    <ClInclude Include="clfe\CLFE.h" />
-    <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\Error.h" />
-    <ClInclude Include="clfe\input\SystemInput.h" />
-    <ClInclude Include="clfe\InstanceTypes.h" />
-    <ClInclude Include="clfe\string\UniString.h" />
-    <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clfe\input\InputCore.h" />
-    <ClInclude Include="clfe\input\InputParams.h" />
-    <ClInclude Include="clfe\input\Key.h" />
-    <ClInclude Include="clfe\input\KeyTables.h" />
-    <ClInclude Include="clfe\window\Window.h" />
-    <ClInclude Include="clfe\window\WinWnd.h" />
-    <ClInclude Include="clm\CLM.h" />
-    <ClInclude Include="clm\Math.h" />
-    <ClInclude Include="clm\MathConst.h" />
-    <ClInclude Include="clm\Mathd.h" />
-    <ClInclude Include="clm\Mathf.h" />
-    <ClInclude Include="clm\mat\MatMul.h" />
-    <ClInclude Include="clm\mat\MatOp.h" />
-    <ClInclude Include="clm\mat\Matrix.h" />
-    <ClInclude Include="clm\mat\Matrix2x2.h" />
-    <ClInclude Include="clm\mat\MatUtils.h" />
-    <ClInclude Include="clm\VecMatCommon.h" />
-    <ClInclude Include="clm\VecMatOp.h" />
-    <ClInclude Include="clm\VecMatUtils.h" />
-    <ClInclude Include="clm\vec\VecOp.h" />
-    <ClInclude Include="clm\vec\Vector.h" />
-    <ClInclude Include="clm\vec\Vector2.h" />
-    <ClInclude Include="clm\vec\Vector3.h" />
-    <ClInclude Include="clm\vec\Vector4.h" />
-    <ClInclude Include="clm\vec\VecUtils.h" />
-    <ClInclude Include="clu\benchmarking\Benchmark.h" />
-    <ClInclude Include="clu\LongBoolList.h" />
-    <ClInclude Include="clu\Print.h" />
-    <ClInclude Include="clu\StringUtils.h" />
-    <ClInclude Include="FastDraw.h" />
-    <ClInclude Include="glad\include\glad\glad.h" />
-    <ClInclude Include="glad\include\KHR\khrplatform.h" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

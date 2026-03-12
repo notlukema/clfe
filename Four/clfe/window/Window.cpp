@@ -22,20 +22,17 @@ namespace clfe
 	}
 
 	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
-	InstanceList<Window>* Window::WindowsList = new InstanceList<Window>(InstanceTypes::Window);
+	InstanceList<Window>* Window::WindowsList = nullptr;
 
-	Window::Window(clid id) : thisid(id)
+	InstanceListWrapper<Window>* Window::getWindowsList()
 	{
-		WindowsList->add(id, this);
-	}
-
-	Window::~Window()
-	{
-		WindowsList->remove(thisid);
+		return WindowsList->getWrapper();
 	}
 
 	bool Window::init()
 	{
+		WindowsList = new InstanceList<Window>(InstanceTypes::Window);
+
 		return true;
 	}
 
@@ -45,6 +42,19 @@ namespace clfe
 
 	void Window::terminate()
 	{
+		WindowsList->deepDelete();
+		delete WindowsList;
+		WindowsList = nullptr;
+	}
+
+	Window::Window(clid id) : thisid(id)
+	{
+		WindowsList->add(id, this);
+	}
+
+	Window::~Window()
+	{
+		WindowsList->remove(thisid);
 	}
 
 	clid Window::getID() const

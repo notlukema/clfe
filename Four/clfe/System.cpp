@@ -4,9 +4,9 @@ namespace clfe
 {
 
 	Attachment System::SystemAttachment = Attachment(AttachmentLayers::System, System::init, nullptr, System::terminate);
-	clid System::NextID = 0;
 
 	std::list<InstanceBase*> System::Instances = std::list<InstanceBase*>();
+	clid System::NextID = 0;
 
 	void System::addInstance(InstanceBase* instance)
 	{
@@ -20,6 +20,7 @@ namespace clfe
 
 	bool System::init()
 	{
+		Instances = std::list<InstanceBase*>();
 		NextID = 0;
 
 		return true;
@@ -27,14 +28,7 @@ namespace clfe
 
 	void System::terminate()
 	{
-		while (!Instances.empty())
-		{
-			// Also delete all the recorded components?
-			// Not sure which steps should be made necessary since the inner components are most likely handled by their respective attachments and the system deleting them all too feels a bit intrusive
-			// 
-			// Instances.front()->deepDelete();
-			delete Instances.front(); // Deletion also causes the instance list to remove itself from the big list
-		}
+		// theoretically all instances will be handled by their respective components
 	}
 
 	clid System::genNextID()
@@ -43,6 +37,19 @@ namespace clfe
 		NextID++;
 
 		return thisID;
+	}
+
+	InsType_t System::getInstanceType(clid id)
+	{
+		for (InstanceBase* instance : Instances)
+		{
+			if (instance->hasInstance(id))
+			{
+				return instance->getType();
+			}
+		}
+
+		return InstanceTypes::Invalid;
 	}
 
 	InstanceBase::InstanceBase(InsType_t type) : type(type)

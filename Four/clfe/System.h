@@ -26,8 +26,8 @@ namespace clfe
 	{
 	private:
 		static Attachment SystemAttachment;
-		static clid NextID;
 		static std::list<InstanceBase*> Instances;
+		static clid NextID;
 
 		friend class InstanceBase;
 
@@ -55,6 +55,8 @@ namespace clfe
 		static bool init();
 		static void terminate();
 		static clid genNextID();
+
+		static InsType_t getInstanceType(clid id);
 
 		static inline const std::list<InstanceBase*>& getInstances()
 		{
@@ -124,6 +126,8 @@ namespace clfe
 			return type;
 		}
 
+		virtual bool hasInstance(clid id) = 0;
+
 	};
 
 	template <typename T>
@@ -182,6 +186,7 @@ namespace clfe
 
 				node = next;
 			}
+
 			first = nullptr;
 			len = 0;
 		}
@@ -229,6 +234,22 @@ namespace clfe
 			}
 
 			return nullptr;
+		}
+
+		bool hasInstance(clid id) override
+		{
+			Node* node = first;
+			while (node != nullptr)
+			{
+				if (node->id == id)
+				{
+					return true;
+				}
+
+				node = node->next;
+			}
+
+			return false;
 		}
 
 		T* find(clid id)

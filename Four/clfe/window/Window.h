@@ -17,14 +17,11 @@ namespace clfe
 
 	public:
 		static const Attachment WindowAttachment;
+		static InstanceListWrapper<Window>* getWindowsList();
+
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();
-
-		static InstanceListWrapper<Window>* getWindowsList()
-		{
-			return WindowsList->getWrapper();
-		}
 
 	protected:
 		clid thisid;

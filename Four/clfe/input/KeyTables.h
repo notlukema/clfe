@@ -20,8 +20,9 @@ namespace clfe
 	class KeyTable<WINDOWS_KEYS>
 	{
 	public:
-		static constexpr Key_t Size = 90;
-		static constexpr Key_t keyMap[] = {
+		static constexpr int Size = 100;
+		static constexpr Key_t KeyMap[Size] = {
+			-1, /* 0 */
 			-1, /* 1 */
 			-1, /* 2 */
 			-1, /* 3 */
@@ -69,16 +70,16 @@ namespace clfe
 			-1, /* 45 */
 			-1, /* 46 */
 			-1, /* 47 */
-			Key::D0, /* 48 */
-			Key::D1, /* 49 */
-			Key::D2, /* 50 */
-			Key::D3, /* 51 */
-			Key::D4, /* 52 */
-			Key::D5, /* 53 */
-			Key::D6, /* 54 */
-			Key::D7, /* 55 */
-			Key::D8, /* 56 */
-			Key::D9, /* 57 */
+			Key::N0, /* 48 */
+			Key::N1, /* 49 */
+			Key::N2, /* 50 */
+			Key::N3, /* 51 */
+			Key::N4, /* 52 */
+			Key::N5, /* 53 */
+			Key::N6, /* 54 */
+			Key::N7, /* 55 */
+			Key::N8, /* 56 */
+			Key::N9, /* 57 */
 			-1, /* 58 */
 			-1, /* 59 */
 			-1, /* 60 */
@@ -112,6 +113,15 @@ namespace clfe
 			Key::X, /* 88 */
 			Key::Y, /* 89 */
 			Key::Z, /* 90 */
+			-1, /* 91 */
+			-1, /* 92 */
+			-1, /* 93 */
+			-1, /* 94 */
+			-1, /* 95 */
+			-1, /* 96 */
+			-1, /* 97 */
+			-1, /* 98 */
+			-1, /* 99 */
 
 		};
 

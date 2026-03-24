@@ -2,9 +2,6 @@
 
 #include <Windows.h>
 
-////////
-#include <iostream>
-
 namespace clfe
 {
 
@@ -27,17 +24,18 @@ namespace clfe
 		{
 			if (uMsg == WM_KEYDOWN)
 			{
-				std::cout << "Key down: " << wParam << "\n";
+				window->getInput()->trigKeyDown(KeyTable<WINDOWS_KEYS>::KeyMap[wParam]);
 			}
 			if (uMsg == WM_KEYUP)
 			{
-
+				window->getInput()->trigKeyUp(KeyTable<WINDOWS_KEYS>::KeyMap[wParam]);
 			}
 
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		}
 		else
 		{ // Shouldn't happen
+			CLFE_ERROR("");
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		}
 	}

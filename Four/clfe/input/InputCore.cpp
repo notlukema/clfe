@@ -1,9 +1,10 @@
 #include "InputCore.h"
+#include "../Error.h"
 
 namespace clfe
 {
 
-	InputCore::InputCore() : keysDown{ false }, keys{ 1 } {}
+	InputCore::InputCore() : keysDown{ false }, keys{ 1 }, OnKeyDown(nullptr), OnKeyUp(nullptr) {}
 
 	void InputCore::step()
 	{
@@ -15,6 +16,10 @@ namespace clfe
 
 	void InputCore::trigKeyDown(Key_t key)
 	{
+		if (OnKeyDown != nullptr)
+		{
+			OnKeyDown(key);
+		}
 		if (key >= 0 && key < KEY_COUNT)
 		{
 			keysDown[key] = true;
@@ -24,11 +29,25 @@ namespace clfe
 
 	void InputCore::trigKeyUp(Key_t key)
 	{
+		if (OnKeyUp != nullptr)
+		{
+			OnKeyUp(key);
+		}
 		if (key >= 0 && key < KEY_COUNT)
 		{
 			keysDown[key] = false;
 			keys[key] = 0;
 		}
+	}
+
+	void InputCore::setKeyDownCallback(void (*callback)(Key_t key))
+	{
+		OnKeyDown = callback;
+	}
+
+	void InputCore::setKeyUpCallback(void (*callback)(Key_t key))
+	{
+		OnKeyUp = callback;
 	}
 
 	bool InputCore::keyDown(Key_t key) const

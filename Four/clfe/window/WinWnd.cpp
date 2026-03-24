@@ -105,6 +105,12 @@ namespace clfe
 
 	void WinWnd::destroy()
 	{
+		if (!exists())
+		{
+			return;
+		}
+
+		// Destroy windows window
 	}
 
 	int WinWnd::getX() const

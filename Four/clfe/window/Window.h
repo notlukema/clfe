@@ -4,6 +4,7 @@
 #include "../CrossPlatform.h"
 #include "../Attachment.h"
 #include "../System.h"
+#include "../input/InputCore.h"
 
 namespace clfe
 {
@@ -25,11 +26,13 @@ namespace clfe
 
 	protected:
 		clid thisid;
+		InputCore* inputCore;
 		Window(clid id);
 
 	public:
 		virtual ~Window();
 		clid getID() const;
+		InputCore* getInput() const;
 		
 		virtual bool exists() const = 0;
 		virtual void destroy() = 0;

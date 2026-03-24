@@ -50,16 +50,23 @@ namespace clfe
 	Window::Window(clid id) : thisid(id)
 	{
 		WindowsList->add(id, this);
+		inputCore = new InputCore();
 	}
 
 	Window::~Window()
 	{
 		WindowsList->remove(thisid);
+		delete inputCore;
 	}
 
 	clid Window::getID() const
 	{
 		return thisid;
+	}
+
+	InputCore* Window::getInput() const
+	{
+		return inputCore;
 	}
 
 }

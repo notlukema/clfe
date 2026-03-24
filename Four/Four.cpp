@@ -27,12 +27,21 @@ int main()
     }
 
     Window* wnd1 = createWindow("thing");
-    clid id = wnd1->getID();
+    
+    wnd1->getInput()->setKeyDownCallback([](Key_t key) {
+		// figure out how to filter out repeated key down events
+        std::cout << "Key down: " << KeyChars::CharMap[key] << "\n";
+	});
+
+    wnd1->getInput()->setKeyUpCallback([](Key_t key) {
+        std::cout << "Key up: " << KeyChars::CharMap[key] << "\n";
+        });
+
 
     // r
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
-
+    
     static auto lastTime = std::chrono::steady_clock::now();
 
     while (wnd1->exists())

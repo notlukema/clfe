@@ -12,7 +12,8 @@
 namespace clfe
 {
 
-	using clid = unsigned int;
+	using clid = uint32_t;
+	constexpr clid BlankID = 0;
 
 	class InstanceBase;
 
@@ -149,6 +150,7 @@ namespace clfe
 
 		InstanceListWrapper<T>* wrapper;
 
+
 	public:
 		InstanceList(InsType_t type) : InstanceBase(type), first(nullptr), len(0)
 		{
@@ -177,18 +179,46 @@ namespace clfe
 
 		void deepDelete() override
 		{
+			// Since all objects should remove themselves from the list, let them have the chance to do that first
+			const int len2 = len;
+			T** objs = new T*[len2];
+
 			Node* node = first;
+			for (int i = 0; i < len2; i++)
+			{
+				if (node == nullptr)
+				{
+					CLFE_ERROR("Recorded length was shorter than actual length in InstanceList!");
+					return;
+				}
+
+				objs[i] = node->object;
+				node = node->next;
+			}
+
+			for (int i = 0; i < len2; i++)
+			{
+				delete objs[i];
+			}
+
+			delete[] objs;
+
+			if (len != 0)
+			{
+				CLFE_ERROR("Not all objects were deleted from InstanceList during deepDelete!");
+			}
+			/*
+			node = first;
 			while (node != nullptr)
 			{
 				Node* next = node->next;
-				delete node->object;
 				delete node;
 
 				node = next;
 			}
 
-			first = nullptr;
 			len = 0;
+			*/
 		}
 
 		int length()
@@ -205,23 +235,27 @@ namespace clfe
 
 		T* remove(clid id)
 		{
-			Node* lastNode = nullptr;
-			Node* node = first;
+			if (first != nullptr && first->id == id)
+			{
+				T* ret = first->object;
+				Node* next = first->next;
+
+				delete first;
+				first = next;
+				len--;
+
+				return ret;
+			}
+
+			Node* lastNode = first;
+			Node* node = first->next;
 
 			while (node != nullptr)
 			{
 				if (node->id == id)
 				{
 					T* ret = node->object;
-
-					if (lastNode == nullptr)
-					{
-						first = node->next;
-					}
-					else
-					{
-						lastNode->next = node->next;
-					}
+					lastNode->next = node->next;
 
 					len--;
 					delete node;

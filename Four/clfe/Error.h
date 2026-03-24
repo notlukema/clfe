@@ -5,7 +5,7 @@
 
 namespace clfe
 {
-
+	
 	void inline logError(const char* message)
 	{
 		// For now, just print to console
@@ -13,5 +13,7 @@ namespace clfe
 	}
 
 }
+
+#define CLFE_ERROR(msg) clfe::logError(msg)
 
 #endif

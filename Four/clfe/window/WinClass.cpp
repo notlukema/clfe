@@ -34,6 +34,8 @@ namespace clfe
 	{
 		Classes->deepDelete(); // Delete all Windows Classes
 		delete Classes;
+		Classes = nullptr;
+		DefaultClass = nullptr;
 	}
 
 	WinClass* WinClass::createClass(const WCHAR* name, WNDPROC wndProc)

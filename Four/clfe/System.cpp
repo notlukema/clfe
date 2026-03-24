@@ -21,7 +21,7 @@ namespace clfe
 	bool System::init()
 	{
 		Instances = std::list<InstanceBase*>();
-		NextID = 0;
+		NextID = 1;
 
 		return true;
 	}
@@ -29,6 +29,7 @@ namespace clfe
 	void System::terminate()
 	{
 		// theoretically all instances will be handled by their respective components
+		// figure out whether or not to add more priorty types so this function is run last
 	}
 
 	clid System::genNextID()

@@ -38,6 +38,7 @@ namespace clfe
 
 	void Window::step(float delf, double deld)
 	{
+
 	}
 
 	void Window::terminate()

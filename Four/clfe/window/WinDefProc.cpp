@@ -31,6 +31,12 @@ namespace clfe
 				window->getInput()->trigKeyUp(KeyTable<WINDOWS_KEYS>::KeyMap[wParam]);
 			}
 
+			if (uMsg == WM_CLOSE)
+			{
+				CLFE_ERROR("close called");
+				return 0;
+			}
+
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		}
 		else

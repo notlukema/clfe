@@ -8,6 +8,7 @@ namespace clfe
 
 	void InputCore::step()
 	{
+		CLFE_ERROR("called");
 		for (uint32_t i = 0; i < KEY_COUNT; i++)
 		{
 			keys[i]++;
@@ -16,27 +17,37 @@ namespace clfe
 
 	void InputCore::trigKeyDown(Key_t key)
 	{
-		if (OnKeyDown != nullptr)
-		{
-			OnKeyDown(key);
-		}
 		if (key >= 0 && key < KEY_COUNT)
 		{
+			if (!keysDown[key])
+			{
+				keys[key] = 0;
+			}
+			else if (keys[key] == 0)
+			{
+				keys[key] = 1; // Prevent repeated key down events
+			}
+
 			keysDown[key] = true;
-			keys[key] = 0;
+
+			if (OnKeyDown != nullptr && keys[key] == 0)
+			{
+				OnKeyDown(key);
+			}
 		}
 	}
 
 	void InputCore::trigKeyUp(Key_t key)
 	{
-		if (OnKeyUp != nullptr)
-		{
-			OnKeyUp(key);
-		}
 		if (key >= 0 && key < KEY_COUNT)
 		{
 			keysDown[key] = false;
 			keys[key] = 0;
+
+			if (OnKeyUp != nullptr)
+			{
+				OnKeyUp(key);
+			}
 		}
 	}
 

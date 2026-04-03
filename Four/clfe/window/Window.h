@@ -29,6 +29,8 @@ namespace clfe
 		InputCore* inputCore;
 		Window(clid id);
 
+		bool (*CloseCallback)();
+
 	public:
 		virtual ~Window();
 		clid getID() const;

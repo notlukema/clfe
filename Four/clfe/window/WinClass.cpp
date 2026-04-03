@@ -19,7 +19,7 @@ namespace clfe
 	bool WinClass::init()
 	{
 		HInstance = GetModuleHandle(NULL);
-		Classes = new InstanceList<WinClass>(InstanceTypes::WinClass); // Constructor or in init func?? Decide later
+		Classes = new InstanceList<WinClass>(InstanceTypes::WinClass);
 		DefaultClass = createClass("Default", WinWnd::defWndProc);
 
 		return DefaultClass != nullptr;

@@ -235,7 +235,12 @@ namespace clfe
 
 		T* remove(clid id)
 		{
-			if (first != nullptr && first->id == id)
+			if (first == nullptr)
+			{
+				return nullptr;
+			}
+
+			if (first->id == id)
 			{
 				T* ret = first->object;
 				Node* next = first->next;

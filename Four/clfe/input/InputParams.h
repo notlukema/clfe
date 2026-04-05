@@ -6,11 +6,11 @@
 namespace clfe
 {
 
-	using Inc_t = uint16_t;
-	using Key_t = int32_t;
-	const uint32_t KEY_COUNT = 50; // Add more later
+	using Inc_t = int32_t;
+	using Key_t = int32_t; // Would use uint32_t but -1 is used for invalid keys and there isn't that much of a need to preserve memory here
+	const uint32_t KeyCount = 50; // Add more later
 
-	struct InputParams
+	struct InputParams // Unused right now, just here for potential reference
 	{
 		bool stickyKeysEnabled = false;
 		bool stickyMouseButtonsEnabled = false;

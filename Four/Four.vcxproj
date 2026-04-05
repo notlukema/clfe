@@ -149,7 +149,7 @@
     <ClInclude Include="clfe\AttachmentLayers.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\Error.h" />
+    <ClInclude Include="clfe\Log.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\InstanceTypes.h" />
     <ClInclude Include="clfe\string\UniString.h" />

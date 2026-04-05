@@ -23,8 +23,8 @@ namespace clfe
 	void AttachmentHolder::sort()
 	{
 		attachments.sort([](Attachment* a, Attachment* b) {
-			return a->priority > b->priority;
-			});
+			return a->priority < b->priority;
+		});
 	}
 
 	//
@@ -32,7 +32,7 @@ namespace clfe
 	void AttachmentHolder::addAttachment(Attachment* attachment)
 	{
 		attachments.push_back(attachment);
-		attachments.sort();
+		sort();
 	}
 
 	void AttachmentHolder::removeAttachment(Attachment* attachment)

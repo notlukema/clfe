@@ -28,41 +28,50 @@ int main()
 
     Window* wnd1 = createWindow("thing");
     
-    wnd1->getInput()->setKeyDownCallback([](Key_t key) {
+    wnd1->getInput()->setKeyDownCallback([wnd1](Key_t key) { // TODO: decide whether to use std::function or just function pointers
 		// figure out how to filter out repeated key down events
-        std::cout << "Key down: " << KeyChars::CharMap[key] << "\n";
+        std::cout << "Key down: " << KeyChars::CharMap[key] << " ";
+
+        // funky lambda stuff
+        if (key == Key::W)
+        {
+			//wnd1->setY(wnd1->getY() - 10);
+        }
+        if (key == Key::S)
+        {
+            //wnd1->setY(wnd1->getY() + 10);
+        }
+        if (key == Key::A)
+        {
+            //wnd1->setX(wnd1->getX() - 10);
+        }
+        if (key == Key::D)
+        {
+            //wnd1->setX(wnd1->getX() + 10);
+        }
 	});
 
-    wnd1->getInput()->setKeyUpCallback([](Key_t key) {
-        std::cout << "Key up: " << KeyChars::CharMap[key] << "\n";
-        });
+    wnd1->getInput()->setRepeatedKeyDownCallback([](Key_t key) {
+        std::cout << KeyChars::CharMap[key];
+    });
 
+    wnd1->getInput()->setKeyUpCallback([](Key_t key) {
+        std::cout << "\nKey up: " << KeyChars::CharMap[key] << "\n";
+    });
+    
 
     // r
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
     
+    // Timer, currently unused
     static auto lastTime = std::chrono::steady_clock::now();
 
     while (wnd1->exists())
     {
-        auto currentTime = std::chrono::steady_clock::now();
-        std::chrono::duration<double> duration = currentTime - lastTime;
-        lastTime = currentTime;
-        double deltaTime = duration.count();
-        //std::cout << deltaTime << "\n";
+        float deltaTime = step();
+        fastDraw((WinWnd*)wnd1, deltaTime);
 
-        step();
-        fastDraw((WinWnd*)wnd1, (float)deltaTime);
-
-        /*
-		std::list<InstanceBase*> instances = System::getInstances();
-        for (int i = 0; i < instances.size(); i++)
-        {
-            InstanceBase* instance = instances[i];
-
-        }
-        */
     }
 
     clfe::terminate();

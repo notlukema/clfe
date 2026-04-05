@@ -9,7 +9,7 @@
 namespace clfe
 {
 
-	static const int WND_DEFAULT = -1; // Any negative (invalid) parameters will be treated as default values
+	static const int WindowDefault = -1; // Any negative (invalid) parameters will be treated as default values
 
 	class Window
 	{
@@ -29,7 +29,7 @@ namespace clfe
 		InputCore* inputCore;
 		Window(clid id);
 
-		bool (*CloseCallback)();
+		//bool (*CloseCallback)();
 
 	public:
 		virtual ~Window();
@@ -71,12 +71,12 @@ namespace clfe
 	Window* createWindow(int x, int y, int width, int height, const char* name);
 	Window* createWindow(int x, int y, int width, int height, const wchar_t* name);
 
-	inline Window* createWindow(const char* name, int x = WND_DEFAULT, int y = WND_DEFAULT, int width = WND_DEFAULT, int height = WND_DEFAULT)
+	inline Window* createWindow(const char* name, int x = WindowDefault, int y = WindowDefault, int width = WindowDefault, int height = WindowDefault)
 	{
 		return createWindow(x, y, width, height, name);
 	}
 
-	inline Window* createWindow(const wchar_t* name, int x = WND_DEFAULT, int y = WND_DEFAULT, int width = WND_DEFAULT, int height = WND_DEFAULT)
+	inline Window* createWindow(const wchar_t* name, int x = WindowDefault, int y = WindowDefault, int width = WindowDefault, int height = WindowDefault)
 	{
 		return createWindow(x, y, width, height, name);
 	}

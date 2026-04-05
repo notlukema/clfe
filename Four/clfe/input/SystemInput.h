@@ -2,6 +2,12 @@
 #define CLFE_INPUT_SYSTEM_H
 
 #include "InputCore.h"
+#include "../CrossPlatform.h"
+
+#if defined(CLFE_OS_WIN)
+// something
+
+#endif // add others later
 
 namespace clfe
 {

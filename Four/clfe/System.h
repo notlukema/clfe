@@ -2,7 +2,7 @@
 #define CLFE_SYSTEM_H
 
 #include "CrossPlatform.h"
-#include "Error.h"
+#include "Log.h"
 #include "CLFE.h"
 #include "Attachment.h"
 #include "InstanceTypes.h"
@@ -110,6 +110,11 @@ namespace clfe
 			return list->length();
 		}
 
+		InstanceList<T>::Node* first() const
+		{
+			return list->firstNode();
+		}
+
 	};
 
 	class InstanceBase
@@ -131,6 +136,49 @@ namespace clfe
 
 	};
 
+	// Range based list implementation
+	struct inslist_null {};
+
+	template <typename T>
+	struct inslist_iterator
+	{
+		InstanceList<T>* list;
+		InstanceList<T>::Node* current;
+		inslist_iterator(InstanceList<T>* list) : list(list), current(list->firstNode()) {}
+
+		void operator++()
+		{
+			if (current != nullptr)
+			{
+				current = current->next;
+			}
+		}
+
+		T* operator*() const
+		{
+			return current->object;
+		}
+
+		bool operator!=(inslist_null end) const
+		{
+			return current != nullptr;
+		}
+
+	};
+
+	template <typename T>
+	inslist_iterator<T> begin(InstanceList<T>& list)
+	{
+		return inslist_iterator<T>(&list);
+	};
+
+	template <typename T>
+	inslist_null end(InstanceList<T>& list)
+	{
+		return inslist_null();
+	};
+
+	// Actual list implementation
 	template <typename T>
 	class InstanceList : public InstanceBase
 	{
@@ -202,12 +250,14 @@ namespace clfe
 			}
 
 			delete[] objs;
-
-			if (len != 0)
+			
+			// Delete any leftovers that weren't removed by the objects themselves, just in case
+			// Not that it's illegal in the context of the code, but generally objects that use InstanceLists should be expected to remove themselves
+			if (first != nullptr)
 			{
-				CLFE_ERROR("Not all objects were deleted from InstanceList during deepDelete!");
+				CLFE_LOG("InstanceList has leftover object entries after DeepDelete! It is recommended for objects that use InstanceList to remove themselves upon deletion.");
 			}
-			/*
+
 			node = first;
 			while (node != nullptr)
 			{
@@ -218,12 +268,17 @@ namespace clfe
 			}
 
 			len = 0;
-			*/
+			
 		}
 
 		int length()
 		{
 			return len;
+		}
+
+		Node* firstNode() const
+		{
+			return first;
 		}
 
 		void add(clid id, T* object)

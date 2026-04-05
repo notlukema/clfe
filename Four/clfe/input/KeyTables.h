@@ -7,9 +7,9 @@
 namespace clfe
 {
 
-	constexpr int WINDOWS_KEYS = 1;
-	constexpr int MAC_KEYS = 2;
-	constexpr int LINUX_KEYS = 3;
+	constexpr int WindowsKeys = 1;
+	constexpr int MacKeys = 2;
+	constexpr int LinuxKeys = 3;
 
 	template <int Platform>
 	class KeyTable
@@ -17,7 +17,7 @@ namespace clfe
 	};
 
 	template <>
-	class KeyTable<WINDOWS_KEYS>
+	class KeyTable<WindowsKeys>
 	{
 	public:
 		static constexpr int Size = 100;
@@ -127,7 +127,7 @@ namespace clfe
 
 	};
 
-	template class KeyTable<WINDOWS_KEYS>;
+	template class KeyTable<WindowsKeys>;
 
 }
 

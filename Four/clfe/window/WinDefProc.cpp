@@ -1,5 +1,7 @@
 #include "WinWnd.h"
 
+#include "../Log.h"
+
 #include <Windows.h>
 
 namespace clfe
@@ -24,16 +26,16 @@ namespace clfe
 		{
 			if (uMsg == WM_KEYDOWN)
 			{
-				window->getInput()->trigKeyDown(KeyTable<WINDOWS_KEYS>::KeyMap[wParam]);
+				window->getInput()->trigKeyDown(KeyTable<WindowsKeys>::KeyMap[wParam]);
 			}
 			if (uMsg == WM_KEYUP)
 			{
-				window->getInput()->trigKeyUp(KeyTable<WINDOWS_KEYS>::KeyMap[wParam]);
+				window->getInput()->trigKeyUp(KeyTable<WindowsKeys>::KeyMap[wParam]);
 			}
 
 			if (uMsg == WM_CLOSE)
 			{
-				CLFE_ERROR("close called");
+				CLFE_LOG("close called"); // Handle later
 				return 0;
 			}
 

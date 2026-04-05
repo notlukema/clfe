@@ -1,5 +1,7 @@
 #include "CLFE.h"
 
+#include <iostream>
+
 namespace clfe
 {
 

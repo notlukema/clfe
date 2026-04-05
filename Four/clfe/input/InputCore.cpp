@@ -1,15 +1,20 @@
 #include "InputCore.h"
-#include "../Error.h"
 
 namespace clfe
 {
 
-	InputCore::InputCore() : keysDown{ false }, keys{ 1 }, OnKeyDown(nullptr), OnKeyUp(nullptr) {}
+	InputCore::InputCore() : keysDown{ false }, keys{}, OnKeyDown(nullptr), OnKeyUp(nullptr)
+	{
+		// Could just throw in a step()
+		for (uint32_t i = 0; i < KeyCount; i++)
+		{
+			keys[i] = 1;
+		}
+	}
 
 	void InputCore::step()
 	{
-		CLFE_ERROR("called");
-		for (uint32_t i = 0; i < KEY_COUNT; i++)
+		for (uint32_t i = 0; i < KeyCount; i++)
 		{
 			keys[i]++;
 		}
@@ -17,41 +22,55 @@ namespace clfe
 
 	void InputCore::trigKeyDown(Key_t key)
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			if (!keysDown[key])
-			{
-				keys[key] = 0;
-			}
-			else if (keys[key] == 0)
-			{
-				keys[key] = 1; // Prevent repeated key down events
-			}
+			return;
+		}
 
-			keysDown[key] = true;
+		if (!keysDown[key])
+		{
+			keys[key] = 0;
+		}
+		else if (keys[key] == 0)
+		{
+			keys[key] = 1; // Prevent repeated key down events
+		}
 
-			if (OnKeyDown != nullptr && keys[key] == 0)
+		keysDown[key] = true;
+
+		if (keys[key] == 0)
+		{
+			if (OnKeyDown != nullptr)
 			{
 				OnKeyDown(key);
+			}
+		}
+		else
+		{
+			if (RepeatedKeyDown != nullptr)
+			{
+				RepeatedKeyDown(key);
 			}
 		}
 	}
 
 	void InputCore::trigKeyUp(Key_t key)
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			keysDown[key] = false;
-			keys[key] = 0;
+			return;
+		}
 
-			if (OnKeyUp != nullptr)
-			{
-				OnKeyUp(key);
-			}
+		keys[key] = 0; // No need to prevent repeated key up events since they shouldn't be possible in any way, shape, or form
+		keysDown[key] = false;
+
+		if (OnKeyUp != nullptr)
+		{
+			OnKeyUp(key);
 		}
 	}
 
-	void InputCore::setKeyDownCallback(void (*callback)(Key_t key))
+	void InputCore::setKeyDownCallback(std::function<void(Key_t)> callback)
 	{
 		OnKeyDown = callback;
 	}
@@ -61,40 +80,59 @@ namespace clfe
 		OnKeyUp = callback;
 	}
 
+	void InputCore::setRepeatedKeyDownCallback(void (*callback)(Key_t key))
+	{
+		RepeatedKeyDown = callback;
+	}
+
+	Inc_t InputCore::getKeyInc(Key_t key) const
+	{
+		if (key < 0 || key >= KeyCount)
+		{
+			return 0;
+		}
+
+		return keys[key];
+	}
+
 	bool InputCore::keyDown(Key_t key) const
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			return keysDown[key];
+			return false;
 		}
-		return false;
+
+		return keysDown[key];
 	}
 
 	bool InputCore::keyUp(Key_t key) const
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			return !keysDown[key];
+			return false;
 		}
-		return false;
+
+		return !keysDown[key];
 	}
 
 	bool InputCore::keyPressed(Key_t key) const
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			return keysDown[key] && keys[key] == 0;
+			return false;
 		}
-		return false;
+
+		return keysDown[key] && keys[key] == 0;
 	}
 
 	bool InputCore::keyReleased(Key_t key) const
 	{
-		if (key >= 0 && key < KEY_COUNT)
+		if (key < 0 || key >= KeyCount)
 		{
-			return !keysDown[key] && keys[key] == 0;
+			return false;
 		}
-		return false;
+
+		return !keysDown[key] && keys[key] == 0;
 	}
 
 }

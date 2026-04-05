@@ -1,4 +1,14 @@
 
+TODO:
+- Decide on std::function or function pointers for callbacks (input core, window events, etc)
+- Update window code with all utility functions
+- Create universal screen coordinate system
+- Create better string system (unify wide and narrow strings)
+- Keep developing math library utilities
+
+
+
+
 Slight documentation:
 
 

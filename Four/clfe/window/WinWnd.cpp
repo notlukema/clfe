@@ -1,7 +1,5 @@
 #include "WinWnd.h"
 
-#include "../Error.h"
-
 #include <Windows.h>
 
 namespace clfe
@@ -115,12 +113,16 @@ namespace clfe
 
 	int WinWnd::getX() const
 	{
-		return 0;
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.left;
 	}
 
 	int WinWnd::getY() const
 	{
-		return 0;
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return rect.top;
 	}
 
 	int WinWnd::getWidth() const
@@ -139,30 +141,37 @@ namespace clfe
 
 	void WinWnd::setX(int x)
 	{
+		SetWindowPos(hwnd_, NULL, x, getY(), 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 	}
 
 	void WinWnd::setY(int y)
 	{
+		SetWindowPos(hwnd_, NULL, getX(), y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 	}
 
 	void WinWnd::setWidth(int width)
 	{
+		SetWindowPos(hwnd_, NULL, 0, 0, width, getHeight(), SWP_NOZORDER | SWP_NOMOVE);
 	}
 
 	void WinWnd::setHeight(int height)
 	{
+		SetWindowPos(hwnd_, NULL, 0, 0, getWidth(), height, SWP_NOZORDER | SWP_NOMOVE);
 	}
 
 	void WinWnd::show()
 	{
+		ShowWindow(hwnd_, SW_SHOW);
 	}
 
 	void WinWnd::hide()
 	{
+		ShowWindow(hwnd_, SW_HIDE);
 	}
 
 	void WinWnd::setVisible(bool visible)
 	{
+		ShowWindow(hwnd_, visible ? SW_SHOW : SW_HIDE);
 	}
 
 	bool WinWnd::isVisible()

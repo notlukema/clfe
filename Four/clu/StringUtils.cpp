@@ -1,6 +1,6 @@
 #include "StringUtils.h"
 
-#include "../clfe/Error.h"
+#include "../clfe/Log.h"
 
 #include <cstdlib>
 #include <malloc.h>
@@ -17,7 +17,7 @@ namespace clfe
 		size_t required_size;
 		errno_t err = wcstombs_s(&required_size, NULL, 0, wstr, _TRUNCATE);
 		if (err != 0) {
-			logError("Error determining required size of new narrow string!");
+			CLFE_ERROR("Error determining required size of new narrow string!");
 			return nullptr;
 		}
 
@@ -27,7 +27,7 @@ namespace clfe
 		// Convert to wide string
 		err = wcstombs_s(nullptr, buffer, required_size, wstr, _TRUNCATE);
 		if (err != 0) {
-			logError("Error converting wide string to narrow string!");
+			CLFE_ERROR("Error converting wide string to narrow string!");
 			return nullptr;
 		}
 
@@ -40,7 +40,7 @@ namespace clfe
 		size_t required_size;
 		errno_t err = mbstowcs_s(&required_size, NULL, 0, str, _TRUNCATE);
 		if (err != 0) {
-			logError("Error determining required size of new wide string!");
+			CLFE_ERROR("Error determining required size of new wide string!");
 			return nullptr;
 		}
 
@@ -50,7 +50,7 @@ namespace clfe
 		// Convert to wide string
 		err = mbstowcs_s(nullptr, buffer, required_size, str, _TRUNCATE);
 		if (err != 0) {
-			logError("Error converting narrow string to wide string!");
+			CLFE_ERROR("Error converting narrow string to wide string!");
 			return nullptr;
 		}
 
@@ -64,19 +64,19 @@ namespace clfe
 
 		char* buffer = (char*)malloc((len1 + len2 + 1) * sizeof(char));
 		if (!buffer) {
-			logError("Memory allocation failed while concatenating narrow strings!");
+			CLFE_ERROR("Memory allocation failed while concatenating narrow strings!");
 			return nullptr;
 		}
 
 		errno_t err = strcpy_s(buffer, len1 + 1, str1);
 		if (err != 0) {
-			logError("Error copying narrow string!");
+			CLFE_ERROR("Error copying narrow string!");
 			return nullptr;
 		}
 
 		err = strcat_s(buffer, len1 + len2 + 1, str2);
 		if (err != 0) {
-			logError("Error concatenating narrow string!");
+			CLFE_ERROR("Error concatenating narrow string!");
 			return nullptr;
 		}
 
@@ -90,19 +90,19 @@ namespace clfe
 
 		wchar_t* buffer = (wchar_t*)malloc((len1 + len2 + 1) * sizeof(wchar_t));
 		if (!buffer) {
-			logError("Memory allocation failed while concatenating wide strings!");
+			CLFE_ERROR("Memory allocation failed while concatenating wide strings!");
 			return nullptr;
 		}
 
 		errno_t err = wcscpy_s(buffer, len1 + 1, str1);
 		if (err != 0) {
-			logError("Error copying wide string!");
+			CLFE_ERROR("Error copying wide string!");
 			return nullptr;
 		}
 
 		err = wcscat_s(buffer, len1 + len2 + 1, str2);
 		if (err != 0) {
-			logError("Error concatenating wide string!");
+			CLFE_ERROR("Error concatenating wide string!");
 			return nullptr;
 		}
 
@@ -115,13 +115,13 @@ namespace clfe
 
 		char* buffer = (char*)malloc(len * sizeof(char));
 		if (!buffer) {
-			logError("Memory allocation failed while copying narrow string!");
+			CLFE_ERROR("Memory allocation failed while copying narrow string!");
 			return nullptr;
 		}
 
 		errno_t err = strcpy_s(buffer, len, str);
 		if (err != 0) {
-			logError("Error copying narrow string!");
+			CLFE_ERROR("Error copying narrow string!");
 			return nullptr;
 		}
 
@@ -134,13 +134,13 @@ namespace clfe
 
 		wchar_t* buffer = (wchar_t*)malloc(len * sizeof(wchar_t));
 		if (!buffer) {
-			logError("Memory allocation failed while copying wide string!");
+			CLFE_ERROR("Memory allocation failed while copying wide string!");
 			return nullptr;
 		}
 
 		errno_t err = wcscpy_s(buffer, len, str);
 		if (err != 0) {
-			logError("Error copying wide string!");
+			CLFE_ERROR("Error copying wide string!");
 			return nullptr;
 		}
 

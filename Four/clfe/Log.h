@@ -12,8 +12,15 @@ namespace clfe
 		printf("CLFE Error: %s\n", message);
 	}
 
+	void inline logMsg(const char* message)
+	{
+		// For now, just print to console
+		printf("CLFE Message: %s\n", message);
+	}
+
 }
 
 #define CLFE_ERROR(msg) clfe::logError(msg)
+#define CLFE_LOG(msg) clfe::logMsg(msg)
 
 #endif

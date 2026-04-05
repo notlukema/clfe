@@ -58,8 +58,7 @@ namespace clfe
 	struct KeyChars
 	{
 
-		static constexpr int Size = 45;
-		static constexpr const char* CharMap[Size] = {
+		static constexpr const char* CharMap[KeyCount] = {
 			" ", /* 0 */
 			"0", /* 1 */
 			"1", /* 2 */
@@ -105,6 +104,11 @@ namespace clfe
 			"Escape", /* 42 */
 			" ", /* 43 */
 			" ", /* 44 */
+			" ", /* 45 */
+			" ", /* 46 */
+			" ", /* 47 */
+			" ", /* 48 */
+			" ", /* 49 */
 
 		};
 

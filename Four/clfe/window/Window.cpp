@@ -38,7 +38,10 @@ namespace clfe
 
 	void Window::step(float delf, double deld)
 	{
-
+		for (Window* window : *WindowsList)
+		{
+			window->getInput()->step();
+		}
 	}
 
 	void Window::terminate()

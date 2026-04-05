@@ -1,6 +1,6 @@
 #include "WinWnd.h"
 
-#include "../Error.h"
+#include "../Log.h"
 #include "../System.h"
 #include "../../clu/StringUtils.h"
 

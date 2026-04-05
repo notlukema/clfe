@@ -152,6 +152,8 @@
     <ClInclude Include="clfe\Log.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\InstanceTypes.h" />
+    <ClInclude Include="clfe\object\Object.h" />
+    <ClInclude Include="clfe\object\ObjectData.h" />
     <ClInclude Include="clfe\string\UniString.h" />
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clfe\input\InputCore.h" />

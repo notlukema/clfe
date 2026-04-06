@@ -3,7 +3,6 @@
 
 #include "CrossPlatform.h"
 #include "Log.h"
-#include "CLFE.h"
 #include "Attachment.h"
 #include "InstanceTypes.h"
 

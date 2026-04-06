@@ -1,11 +1,13 @@
 #ifndef CLFE_ATTACHMENT_H
 #define CLFE_ATTACHMENT_H
 
-// Always include the layers because it will most likely be used
-#include "AttachmentLayers.h"
-
-#include <List>
 #include <cstdint>
+
+// Always include the layers because it will most likely be used
+import AttachmentLayers;
+
+#include <list>
+//import List_t;
 
 namespace clfe
 {

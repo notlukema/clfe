@@ -106,6 +106,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>.\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +131,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\Attachment.cpp" />
-    <ClCompile Include="clfe\AttachmentLayers.cpp" />
+    <ClCompile Include="temp\AttachmentLayers.cpp" />
+    <ClCompile Include="clfe\AttachmentLayers.ixx" />
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\InstanceTypes.cpp" />
     <ClCompile Include="clfe\System.cpp" />
@@ -143,10 +145,13 @@
     <ClCompile Include="clu\StringUtils.cpp" />
     <ClCompile Include="Four.cpp" />
     <ClCompile Include="glad\src\glad.c" />
+    <ClCompile Include="interface\List.ixx" />
+    <ClCompile Include="interface\Function.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
-    <ClInclude Include="clfe\AttachmentLayers.h" />
+    <ClInclude Include="clfe\fast.h" />
+    <ClInclude Include="temp\AttachmentLayers.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Log.h" />

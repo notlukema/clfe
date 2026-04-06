@@ -59,6 +59,9 @@ int main()
         std::cout << "\nKey up: " << KeyChars::CharMap[key] << "\n";
     });
     
+    std::cout << AttachmentLayers::System << "\n";
+    std::cout << AttachmentLayers::Window << "\n";
+    std::cout << AttachmentLayers::WinWindow << "\n";
 
     // r
 

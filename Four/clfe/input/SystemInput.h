@@ -2,7 +2,7 @@
 #define CLFE_INPUT_SYSTEM_H
 
 #include "InputCore.h"
-#include "../CrossPlatform.h"
+#include "clfe/CrossPlatform.h"
 
 #if defined(CLFE_OS_WIN)
 // something

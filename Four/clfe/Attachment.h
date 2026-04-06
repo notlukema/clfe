@@ -1,13 +1,10 @@
 #ifndef CLFE_ATTACHMENT_H
 #define CLFE_ATTACHMENT_H
 
+#include "Attachment.h"
+#include "List.h"
+
 #include <cstdint>
-
-// Always include the layers because it will most likely be used
-import AttachmentLayers;
-
-#include <list>
-//import List_t;
 
 namespace clfe
 {
@@ -34,14 +31,14 @@ namespace clfe
 	private:
 		friend struct Attachment;
 
-		static std::list<Attachment*> attachments;
+		static List<Attachment*> attachments;
 
 		static void sort();
 		static void addAttachment(Attachment* attachment);
 		static void removeAttachment(Attachment* attachment);
 
 	public:
-		static inline const std::list<Attachment*>& getAttachments()
+		static inline const List<Attachment*>& getAttachments()
 		{
 			return attachments;
 		}

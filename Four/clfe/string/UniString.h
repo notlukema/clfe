@@ -1,7 +1,7 @@
 #ifndef CLFE_UNISTRING_H
 #define CLFE_UNISTRING_H
 
-#include "../../clu/StringUtils.h"
+#include "clu/StringUtils.h"
 
 #include <type_traits>
 

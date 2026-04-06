@@ -1,8 +1,7 @@
 #include "WinWnd.h"
 
-#include "../Log.h"
-
-#include <Windows.h>
+#include "clfe/input/KeyTables.h"
+#include "clfe/Log.h"
 
 namespace clfe
 {

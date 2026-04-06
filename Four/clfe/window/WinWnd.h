@@ -2,8 +2,7 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
-#include "../../clu/StringUtils.h"
-#include "../input/KeyTables.h"
+#include "clu/StringUtils.h"
 
 #include <Windows.h>
 

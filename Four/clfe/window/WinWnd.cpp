@@ -1,7 +1,5 @@
 #include "WinWnd.h"
 
-#include <Windows.h>
-
 namespace clfe
 {
 

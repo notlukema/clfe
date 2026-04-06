@@ -1,11 +1,8 @@
 #include "WinWnd.h"
 
-#include "../Log.h"
-#include "../System.h"
-#include "../../clu/StringUtils.h"
+#include "clfe/AttachmentLayers.h"
 
-#include <string>
-#include <Windows.h>
+#include <string> // tenmporary for std::to_wstring, consider replacing with custom implementation later
 
 namespace clfe
 {

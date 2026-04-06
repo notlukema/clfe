@@ -18,7 +18,7 @@ namespace clfe
 
 	// AttachmentHolder struct
 
-	std::list<Attachment*> AttachmentHolder::attachments = std::list<Attachment*>();
+	List<Attachment*> AttachmentHolder::attachments = List<Attachment*>();
 
 	void AttachmentHolder::sort()
 	{

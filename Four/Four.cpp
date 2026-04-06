@@ -14,6 +14,8 @@
 
 #include "FastDraw.h"
 
+#include "clfe/input/KeyTables.h"
+
 using namespace clfe;
 
 int main()
@@ -58,10 +60,6 @@ int main()
     wnd1->getInput()->setKeyUpCallback([](Key_t key) {
         std::cout << "\nKey up: " << KeyChars::CharMap[key] << "\n";
     });
-    
-    std::cout << AttachmentLayers::System << "\n";
-    std::cout << AttachmentLayers::Window << "\n";
-    std::cout << AttachmentLayers::WinWindow << "\n";
 
     // r
 

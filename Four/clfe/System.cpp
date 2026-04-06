@@ -1,5 +1,7 @@
 #include "System.h"
 
+#include "AttachmentLayers.h"
+
 namespace clfe
 {
 

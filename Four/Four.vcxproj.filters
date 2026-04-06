@@ -51,10 +51,10 @@
     <ClCompile Include="clfe\Attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\AttachmentLayers.cpp">
+    <ClCompile Include="clfe\InstanceTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\InstanceTypes.cpp">
+    <ClCompile Include="clfe\AttachmentLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,9 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CrossPlatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\System.h">
@@ -173,13 +170,28 @@
     <ClInclude Include="clfe\Attachment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\AttachmentLayers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\input\SystemInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\InstanceTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\AttachmentLayers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\ObjectData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\Function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

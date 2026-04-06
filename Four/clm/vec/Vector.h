@@ -1,7 +1,7 @@
 #ifndef CLM_VECTOR_H
 #define CLM_VECTOR_H
 
-#include "../VecMatCommon.h"
+#include "clm/VecMatCommon.h"
 
 namespace clfe
 {

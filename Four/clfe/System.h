@@ -1,12 +1,13 @@
 #ifndef CLFE_SYSTEM_H
 #define CLFE_SYSTEM_H
 
-#include "CrossPlatform.h"
-#include "Log.h"
 #include "Attachment.h"
 #include "InstanceTypes.h"
+#include "List.h"
 
-#include <list>
+// Included for the sake of being "part of the system"
+#include "CrossPlatform.h"
+#include "Log.h"
 
 namespace clfe
 {
@@ -26,7 +27,7 @@ namespace clfe
 	{
 	private:
 		static Attachment SystemAttachment;
-		static std::list<InstanceBase*> Instances;
+		static List<InstanceBase*> Instances;
 		static clid NextID;
 
 		friend class InstanceBase;

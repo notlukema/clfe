@@ -70,17 +70,17 @@ namespace clfe
 		}
 	}
 
-	void InputCore::setKeyDownCallback(std::function<void(Key_t)> callback)
+	void InputCore::setKeyDownCallback(Function<void(Key_t)> callback)
 	{
 		OnKeyDown = callback;
 	}
 
-	void InputCore::setKeyUpCallback(void (*callback)(Key_t key))
+	void InputCore::setKeyUpCallback(Function<void(Key_t)> callback)
 	{
 		OnKeyUp = callback;
 	}
 
-	void InputCore::setRepeatedKeyDownCallback(void (*callback)(Key_t key))
+	void InputCore::setRepeatedKeyDownCallback(Function<void(Key_t)> callback)
 	{
 		RepeatedKeyDown = callback;
 	}

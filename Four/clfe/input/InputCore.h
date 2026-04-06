@@ -2,8 +2,7 @@
 #define CLFE_INPUT_CORE_H
 
 #include "InputParams.h"
-
-#include <functional>
+#include "Function.h"
 
 namespace clfe
 {
@@ -14,10 +13,9 @@ namespace clfe
 		bool keysDown[KeyCount];
 		Inc_t keys[KeyCount];
 
-		//void (*OnKeyDown)(Key_t key);
-		std::function<void(Key_t)> OnKeyDown; // decision here
-		void (*OnKeyUp)(Key_t key);
-		void (*RepeatedKeyDown)(Key_t key);
+		Function<void(Key_t)> OnKeyDown;
+		Function<void(Key_t)> OnKeyUp;
+		Function<void(Key_t)> RepeatedKeyDown;
 
 	public:
 		InputCore();
@@ -27,9 +25,9 @@ namespace clfe
 		void trigKeyDown(Key_t key);
 		void trigKeyUp(Key_t key);
 
-		void setKeyDownCallback(std::function<void(Key_t)> callback);
-		void setKeyUpCallback(void (*callback)(Key_t key));
-		void setRepeatedKeyDownCallback(void (*callback)(Key_t key));
+		void setKeyDownCallback(Function<void(Key_t)> callback);
+		void setKeyUpCallback(Function<void(Key_t)> callback);
+		void setRepeatedKeyDownCallback(Function<void(Key_t)> callback);
 
 		Inc_t getKeyInc(Key_t key) const;
 		bool keyDown(Key_t key) const;

@@ -1,6 +1,7 @@
 #include "Window.h"
 
-#include "../InstanceTypes.h"
+#include "clfe/InstanceTypes.h"
+#include "clfe/AttachmentLayers.h"
 
 namespace clfe
 {

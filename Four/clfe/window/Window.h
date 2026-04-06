@@ -1,10 +1,11 @@
 #ifndef CLFE_WINDOW_H
 #define CLFE_WINDOW_H
 
-#include "../CrossPlatform.h"
-#include "../Attachment.h"
-#include "../System.h"
-#include "../input/InputCore.h"
+#include "clfe/CrossPlatform.h"
+#include "clfe/Attachment.h"
+#include "clfe/System.h"
+#include "clfe/input/InputCore.h"
+#include "Function.h"
 
 namespace clfe
 {
@@ -29,7 +30,8 @@ namespace clfe
 		InputCore* inputCore;
 		Window(clid id);
 
-		//bool (*CloseCallback)();
+		//Function<void()> CloseCallback;
+		// + others
 
 	public:
 		virtual ~Window();

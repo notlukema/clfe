@@ -1,8 +1,8 @@
 #ifndef CLM_MATRIX_H
 #define CLM_MATRIX_H
 
-#include "../VecMatCommon.h"
-#include "../vec/Vector.h"
+#include "clm/VecMatCommon.h"
+#include "clm/vec/Vector.h"
 
 namespace clfe
 {

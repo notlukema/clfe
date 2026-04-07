@@ -3,10 +3,6 @@
 
 // Ties togethor the init, step, and terminate functions of various modules
 
-#include "Attachment.h"
-
-#include <chrono>
-
 namespace clfe
 {
 
@@ -14,10 +10,6 @@ namespace clfe
 	void step(float dt);
 	void step(double dt);
 	void terminate();
-
-	// Use own timer
-	using Timer_t = std::chrono::steady_clock::time_point;
-	extern Timer_t StepTimer;
 
 	void resetTimer();
 	float stepf();

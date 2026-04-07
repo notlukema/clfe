@@ -7,7 +7,7 @@ namespace clfe
 
 	Attachment System::SystemAttachment = Attachment(AttachmentLayers::System, System::init, nullptr, System::terminate);
 
-	std::list<InstanceBase*> System::Instances = std::list<InstanceBase*>();
+	List<InstanceBase*> System::Instances = List<InstanceBase*>();
 	clid System::NextID = 0;
 
 	void System::addInstance(InstanceBase* instance)
@@ -22,7 +22,7 @@ namespace clfe
 
 	bool System::init()
 	{
-		Instances = std::list<InstanceBase*>();
+		Instances = List<InstanceBase*>();
 		NextID = 1;
 
 		return true;

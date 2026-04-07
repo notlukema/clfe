@@ -8,7 +8,7 @@ namespace clfe
 
 	using Inc_t = int32_t;
 	using Key_t = int32_t; // Would use uint32_t but -1 is used for invalid keys and there isn't that much of a need to preserve memory here
-	const uint32_t KeyCount = 50; // Add more later
+	inline constexpr uint32_t KeyCount = 50; // Add more later
 
 	struct InputParams // Unused right now, just here for potential reference
 	{

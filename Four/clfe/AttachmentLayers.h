@@ -10,14 +10,14 @@ namespace clfe
 
 	struct AttachmentLayers
 	{
-#define AL_T static const AttLayer_t
+#define AL_T static constexpr AttLayer_t
 
-		AL_T System;
-		AL_T Window;
-		AL_T WinWindow;
-		AL_T MacWindow;
-		AL_T LnxWindow;
-		AL_T SystemInput;
+		AL_T System = 10;
+		AL_T Window = 50;
+		AL_T WinWindow = 70;
+		AL_T MacWindow = 75;
+		AL_T LnxWindow = 80;
+		AL_T SystemInput = 100;
 
 	};
 

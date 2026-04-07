@@ -10,11 +10,11 @@ namespace clfe
 
 	struct InstanceTypes
 	{
-#define IT_T static const InsType_t
+#define IT_T static constexpr InsType_t
 
-		IT_T Invalid;
-		IT_T Window;
-		IT_T WinClass;
+		IT_T Invalid = 0;
+		IT_T Window = 1;
+		IT_T WinClass = 2;
 
 	};
 

@@ -51,10 +51,7 @@
     <ClCompile Include="clfe\Attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\InstanceTypes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\AttachmentLayers.cpp">
+    <ClCompile Include="clfe\input\Keys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -192,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\Chrono.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

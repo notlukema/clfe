@@ -58,6 +58,9 @@ namespace clfe
 	struct KeyChars
 	{
 
+		static const char* getChar(Key_t key);
+
+		// Avoid direct access to discourage inline code bloat
 		static constexpr const char* CharMap[KeyCount] = {
 			" ", /* 0 */
 			"0", /* 1 */

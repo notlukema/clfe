@@ -7,9 +7,9 @@
 namespace clfe
 {
 
-	constexpr int WindowsKeys = 1;
-	constexpr int MacKeys = 2;
-	constexpr int LinuxKeys = 3;
+	inline constexpr int WindowsKeys = 1;
+	inline constexpr int MacKeys = 2;
+	inline constexpr int LinuxKeys = 3;
 
 	template <int Platform>
 	class KeyTable
@@ -21,6 +21,8 @@ namespace clfe
 	{
 	public:
 		static constexpr int Size = 100;
+
+		// Avoid direct access to discourage inline code bloat
 		static constexpr Key_t KeyMap[Size] = {
 			-1, /* 0 */
 			-1, /* 1 */

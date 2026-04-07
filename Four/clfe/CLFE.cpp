@@ -1,5 +1,8 @@
 #include "CLFE.h"
 
+#include "Attachment.h"
+#include "Chrono.h"
+
 namespace clfe
 {
 
@@ -61,17 +64,18 @@ namespace clfe
 
 	// Self-timed stepping
 
-	Timer_t StepTimer = std::chrono::high_resolution_clock::now();
+	using Timer_t = chrono::SteadyClock::time_point;
+	Timer_t StepTimer = chrono::HighResClock::now();
 
 	void resetTimer()
 	{
-		StepTimer = std::chrono::high_resolution_clock::now();
+		StepTimer = chrono::HighResClock::now();
 	}
 
 	float stepf()
 	{
-		auto currentTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<double> duration = currentTime - StepTimer;
+		auto currentTime = chrono::HighResClock::now();
+		chrono::Duration<double> duration = currentTime - StepTimer;
 		StepTimer = currentTime;
 
 		double dt = duration.count();
@@ -82,8 +86,8 @@ namespace clfe
 
 	double stepd()
 	{
-		auto currentTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<double> duration = currentTime - StepTimer;
+		auto currentTime = chrono::HighResClock::now();
+		chrono::Duration<double> duration = currentTime - StepTimer;
 		StepTimer = currentTime;
 
 		double dt = duration.count();

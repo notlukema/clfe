@@ -131,9 +131,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\Attachment.cpp" />
-    <ClCompile Include="clfe\AttachmentLayers.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
-    <ClCompile Include="clfe\InstanceTypes.cpp" />
+    <ClCompile Include="clfe\input\Keys.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />
@@ -147,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
+    <ClInclude Include="interface\Chrono.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />
     <ClInclude Include="clfe\AttachmentLayers.h" />

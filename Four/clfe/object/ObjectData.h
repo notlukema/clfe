@@ -10,11 +10,11 @@ namespace clfe
 
 	struct ObjectDataIDs
 	{
-#define DID_T static const DataID_t
+#define DID_T static constexpr DataID_t
 
-		DID_T a;
-		DID_T b;
-		DID_T c;
+		DID_T a = 0;
+		DID_T b = 1;
+		DID_T c = 2;
 
 	};
 

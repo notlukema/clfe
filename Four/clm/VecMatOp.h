@@ -2,8 +2,8 @@
 #define CLFE_VECMAT_OP_H
 
 // Guards against if anyone decides to include this file directly
-#include "vec/Vector.h"
-#include "mat/Matrix.h"
+#include "vec/Vector_i.h"
+#include "mat/Matrix_i.h"
 
 namespace clfe
 {

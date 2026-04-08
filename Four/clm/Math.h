@@ -1,5 +1,5 @@
-#ifndef CLM_MATH_UNI_H
-#define CLM_MATH_UNI_H
+#ifndef CLM_MATH_H
+#define CLM_MATH_H
 
 #include "Mathf.h"
 #include "Mathd.h"

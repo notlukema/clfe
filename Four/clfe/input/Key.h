@@ -58,7 +58,16 @@ namespace clfe
 	struct KeyChars
 	{
 
-		static const char* getChar(Key_t key);
+		static constexpr const char* getChar(Key_t key)
+		{
+			if (key < 0 || key >= KeyCount)
+			{
+				return InvalidKeyChar;
+			}
+			return CharMap[key];
+		}
+
+		static constexpr const char* InvalidKeyChar = "Invalid";
 
 		// Avoid direct access to discourage inline code bloat
 		static constexpr const char* CharMap[KeyCount] = {

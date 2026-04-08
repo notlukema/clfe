@@ -25,11 +25,11 @@ namespace clfe
 		{
 			if (uMsg == WM_KEYDOWN)
 			{
-				window->getInput()->trigKeyDown(KeyTable<WindowsKeys>::KeyMap[wParam]);
+				window->getInput()->trigKeyDown(KeyTables::translateKey<WindowsKeys>(wParam));
 			}
 			if (uMsg == WM_KEYUP)
 			{
-				window->getInput()->trigKeyUp(KeyTable<WindowsKeys>::KeyMap[wParam]);
+				window->getInput()->trigKeyUp(KeyTables::translateKey<WindowsKeys>(wParam));
 			}
 
 			if (uMsg == WM_CLOSE)

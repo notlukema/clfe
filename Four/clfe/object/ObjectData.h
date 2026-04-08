@@ -12,7 +12,7 @@ namespace clfe
 	{
 #define DID_T static constexpr DataID_t
 
-		DID_T a = 0;
+		DID_T Invalid = 0;
 		DID_T b = 1;
 		DID_T c = 2;
 
@@ -20,6 +20,13 @@ namespace clfe
 
 	struct ObjectData
 	{
+
+		ObjectData();
+		const DataID_t id;
+		inline DataID_t getType() const
+		{
+			return id;
+		}
 
 	};
 

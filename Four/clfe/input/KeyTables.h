@@ -3,6 +3,7 @@
 
 #include "InputParams.h"
 #include "Key.h"
+#include "TypeTraits.h"
 
 namespace clfe
 {
@@ -14,6 +15,22 @@ namespace clfe
 	template <int Platform>
 	class KeyTable
 	{
+	};
+
+	struct KeyTables
+	{
+
+		template <int Platform, typename T>
+			requires IsIntegral<T>
+		static constexpr Key_t translateKey(T key)
+		{
+			if (key < 0 || key >= KeyTable<Platform>::Size) {
+				return Key::Unknown;
+			}
+			return KeyTable<Platform>::KeyMap[key];
+		}
+
+
 	};
 
 	template <>
@@ -129,7 +146,7 @@ namespace clfe
 
 	};
 
-	template class KeyTable<WindowsKeys>;
+	template <> class KeyTable<WindowsKeys>;
 
 }
 

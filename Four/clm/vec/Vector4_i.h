@@ -1,7 +1,7 @@
 #ifndef CLM_VECTOR_4_H
 #define CLM_VECTOR_4_H
 
-#include "Vector.h"
+#include "Vector_i.h"
 
 namespace clfe
 {

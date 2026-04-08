@@ -1,5 +1,5 @@
-#ifndef CLM_VECTOR_H
-#define CLM_VECTOR_H
+#ifndef CLM_VECTOR_I_H
+#define CLM_VECTOR_I_H
 
 #include "clm/VecMatCommon.h"
 

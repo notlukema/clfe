@@ -1,17 +1,17 @@
-#ifndef CLM_VECTOR_2_H
-#define CLM_VECTOR_2_H
+#ifndef CLM_VECTOR_3_H
+#define CLM_VECTOR_3_H
 
-#include "Vector.h"
+#include "Vector_i.h"
 
 namespace clfe
 {
 
 	template <typename T>
-	using Vector2 = Vector<2, T>;
+	using Vector3 = Vector<3, T>;
 
-	using Vector2f = Vector2<float>;
-	using Vector2d = Vector2<double>;
-	using Vector2i = Vector2<int>;
+	using Vector3f = Vector3<float>;
+	using Vector3d = Vector3<double>;
+	using Vector3i = Vector3<int>;
 
 }
 
@@ -19,35 +19,37 @@ namespace clfe
 {
 
 	template <typename T>
-	class Vector<2, T>
+	class Vector<3, T>
 	{
 	protected: // Vector reimplementation
-		T array[2];
+		T array[3];
 
 	public:
 		Vector() : array{} {}
 
-		Vector(T scalar) : array{ scalar, scalar } {}
+		Vector(T scalar) : array{ scalar, scalar, scalar } {}
 
 		template <typename... Args>
-			requires (sizeof...(Args) == 2) && AllCompatible<T, Args...>
+			requires (sizeof...(Args) == 3) && AllCompatible<T, Args...>
 		Vector(Args... args) : array{ static_cast<T>(args)... } {}
 
 		Vector(const T* arr) : array{
 			arr[0],
-			arr[1]
+			arr[1],
+			arr[2]
 		} {}
 
 		template <typename U>
 			requires Compatible<T, U>
-		Vector(const Vector<2, U>& vec) : array{
+		Vector(const Vector<3, U>& vec) : array{
 			static_cast<T>(vec.array[0]),
-			static_cast<T>(vec.array[1])
+			static_cast<T>(vec.array[1]),
+			static_cast<T>(vec.array[2])
 		} {}
 
 		inline msize_t size() const
 		{
-			return 2;
+			return 3;
 		}
 
 		inline T& operator[](msize_t i)
@@ -75,29 +77,32 @@ namespace clfe
 		{
 			return static_cast<U>(sqrt(static_cast<U>(
 				array[0] * array[0] +
-				array[1] * array[1]
+				array[1] * array[1] +
+				array[2] * array[2]
 			)));
 		}
 
 		template <typename U = T>
-		Vector<2, U> normalized() const requires Arithmetic2<T, U>
+		Vector<3, U> normalized() const requires Arithmetic2<T, U>
 		{
 			T dist = distance<T>();
-			return Vector<2, U>(
+			return Vector<3, U>(
 				static_cast<U>(array[0] / dist),
-				static_cast<U>(array[1] / dist)
+				static_cast<U>(array[1] / dist),
+				static_cast<U>(array[2] / dist)
 			);
 		}
 
-		Vector<2, T>& normalize() requires Arithmetic<T>
+		Vector<3, T>& normalize() requires Arithmetic<T>
 		{
 			T dist = distance<T>();
 			array[0] = array[0] / dist;
 			array[1] = array[1] / dist;
+			array[2] = array[2] / dist;
 			return *this;
 		}
 
-	public: // Vector2 specific
+	public: // Vector3 specific
 		T x() const
 		{
 			return array[0];
@@ -108,10 +113,16 @@ namespace clfe
 			return array[1];
 		}
 
-		void set(T x, T y)
+		T z() const
+		{
+			return array[2];
+		}
+
+		void set(T x, T y, T z)
 		{
 			array[0] = x;
 			array[1] = y;
+			array[2] = z;
 		}
 
 		void x(T x)
@@ -124,24 +135,39 @@ namespace clfe
 			array[1] = y;
 		}
 
-		inline T u() const
+		void z(T z)
+		{
+			array[2] = z;
+		}
+
+		inline T r() const
 		{
 			return x();
 		}
 
-		inline T v() const
+		inline T g() const
 		{
 			return y();
 		}
 
-		void u(T u)
+		inline T b() const
 		{
-			x(u);
+			return z();
 		}
 
-		void v(T v)
+		inline void r(T r)
 		{
-			y(v);
+			x(r);
+		}
+
+		inline void g(T g)
+		{
+			y(g);
+		}
+
+		inline void b(T b)
+		{
+			z(b);
 		}
 
 	};

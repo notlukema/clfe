@@ -9,6 +9,8 @@
 #include "CrossPlatform.h"
 #include "Log.h"
 
+#include <cstdint>
+
 namespace clfe
 {
 

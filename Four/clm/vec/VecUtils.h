@@ -2,7 +2,7 @@
 #define CLM_VECTOR_UTILS_H
 
 // Guards against if anyone decides to include this file directly
-#include "Vector.h"
+#include "Vector_i.h"
 
 namespace clfe // Utility functions
 {

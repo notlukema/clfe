@@ -1,7 +1,7 @@
 #ifndef CLM_MATRIX_2X2_H
 #define CLM_MATRIX_2X2_H
 
-#include "Matrix.h"
+#include "Matrix_i.h"
 
 namespace clfe
 {

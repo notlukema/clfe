@@ -10,7 +10,7 @@
 #include "clfe/string/UniString.h"
 
 #include <cstdlib>
-#include <chrono>
+#include "Chrono.h"
 
 #include "FastDraw.h"
 
@@ -22,51 +22,30 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    auto time = std::chrono::high_resolution_clock::now();
-
     if (!clfe::init()) {
         return -1;
     }
 
     Window* wnd1 = createWindow("thing");
     
-    wnd1->getInput()->setKeyDownCallback([wnd1](Key_t key) { // TODO: decide whether to use std::function or just function pointers
-		// figure out how to filter out repeated key down events
-        std::cout << "Key down: " << KeyChars::CharMap[key] << " ";
-
-        // funky lambda stuff
-        if (key == Key::W)
-        {
-			//wnd1->setY(wnd1->getY() - 10);
-        }
-        if (key == Key::S)
-        {
-            //wnd1->setY(wnd1->getY() + 10);
-        }
-        if (key == Key::A)
-        {
-            //wnd1->setX(wnd1->getX() - 10);
-        }
-        if (key == Key::D)
-        {
-            //wnd1->setX(wnd1->getX() + 10);
-        }
+    wnd1->getInput()->setKeyDownCallback([wnd1](Key_t key) {
+        std::cout << "Key down: " << KeyChars::getChar(key) << " ";
 	});
 
     wnd1->getInput()->setRepeatedKeyDownCallback([](Key_t key) {
-        std::cout << KeyChars::CharMap[key];
+        std::cout << KeyChars::getChar(key);
     });
 
     wnd1->getInput()->setKeyUpCallback([](Key_t key) {
-        std::cout << "\nKey up: " << KeyChars::CharMap[key] << "\n";
+        std::cout << "\nKey up: " << KeyChars::getChar(key) << "\n";
     });
 
-    // r
+    // f
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
     
     // Timer, currently unused
-    static auto lastTime = std::chrono::steady_clock::now();
+    static auto time = chrono::HighResClock::now();
 
     while (wnd1->exists())
     {

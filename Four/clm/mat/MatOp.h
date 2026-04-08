@@ -2,7 +2,7 @@
 #define CLM_MATRIX_OP_H
 
 // Guards against if anyone decides to include this file directly
-#include "Matrix.h"
+#include "Matrix_i.h"
 
 // Multiplication
 #include "MatMul.h"

@@ -2,7 +2,7 @@
 #define CLM_MATRIX_UTILS_H
 
 // Guards against if anyone decides to include this file directly
-#include "Matrix.h"
+#include "Matrix_i.h"
 
 namespace clfe // Utility functions
 {

@@ -45,19 +45,19 @@
     <ClCompile Include="clu\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad\src\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clfe\Attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\object\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
+    <ClCompile Include="clfe\object\ObjectData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\ObjectData.cpp">
+    <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\window\WinWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\string\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CLFE.h">
@@ -140,13 +137,13 @@
     <ClInclude Include="clm\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VecMatCommon.h">
+    <ClInclude Include="clm\impl\VecMatCommon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VecMatOp.h">
+    <ClInclude Include="clm\impl\VecMatOp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VecMatUtils.h">
+    <ClInclude Include="clm\impl\VecMatUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\benchmarking\Benchmark.h">
@@ -159,12 +156,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\StringUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glad\include\glad\glad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glad\include\KHR\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FastDraw.h">
@@ -207,6 +198,42 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clm\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\impl\Pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\impl\PixelFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

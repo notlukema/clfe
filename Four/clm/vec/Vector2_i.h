@@ -1,5 +1,5 @@
-#ifndef CLM_VECTOR_2_H
-#define CLM_VECTOR_2_H
+#ifndef CLM_VECTOR_2I_H
+#define CLM_VECTOR_2I_H
 
 #include "Vector_i.h"
 

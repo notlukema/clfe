@@ -134,6 +134,8 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\object\Object.cpp" />
     <ClCompile Include="clfe\object\ObjectData.cpp" />
+    <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp" />
+    <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />
@@ -143,13 +145,23 @@
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
     <ClCompile Include="clu\StringUtils.cpp" />
     <ClCompile Include="Four.cpp" />
-    <ClCompile Include="glad\src\glad.c" />
-    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
+    <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
+    <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
+    <ClInclude Include="clfe\pipeline\impl\PixelFormat.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h" />
     <ClInclude Include="clm\Matrix.h" />
+    <ClInclude Include="clm\Matrix2x2.h" />
     <ClInclude Include="clm\Vector.h" />
+    <ClInclude Include="clm\Vector2.h" />
+    <ClInclude Include="clm\Vector3.h" />
+    <ClInclude Include="clm\Vector4.h" />
     <ClInclude Include="interface\Chrono.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />
@@ -161,7 +173,6 @@
     <ClInclude Include="clfe\InstanceTypes.h" />
     <ClInclude Include="clfe\object\Object.h" />
     <ClInclude Include="clfe\object\ObjectData.h" />
-    <ClInclude Include="clfe\string\UniString.h" />
     <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clfe\input\InputCore.h" />
     <ClInclude Include="clfe\input\InputParams.h" />
@@ -179,9 +190,9 @@
     <ClInclude Include="clm\mat\Matrix_i.h" />
     <ClInclude Include="clm\mat\Matrix2x2_i.h" />
     <ClInclude Include="clm\mat\MatUtils.h" />
-    <ClInclude Include="clm\VecMatCommon.h" />
-    <ClInclude Include="clm\VecMatOp.h" />
-    <ClInclude Include="clm\VecMatUtils.h" />
+    <ClInclude Include="clm\impl\VecMatCommon.h" />
+    <ClInclude Include="clm\impl\VecMatOp.h" />
+    <ClInclude Include="clm\impl\VecMatUtils.h" />
     <ClInclude Include="clm\vec\VecOp.h" />
     <ClInclude Include="clm\vec\Vector_i.h" />
     <ClInclude Include="clm\vec\Vector2_i.h" />
@@ -193,8 +204,6 @@
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="FastDraw.h" />
-    <ClInclude Include="glad\include\glad\glad.h" />
-    <ClInclude Include="glad\include\KHR\khrplatform.h" />
     <ClInclude Include="interface\TypeTraits.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

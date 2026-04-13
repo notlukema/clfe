@@ -5,7 +5,7 @@ namespace clfe
 
 	// Attachment struct
 
-	Attachment::Attachment(uint32_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)())
+	Attachment::Attachment(Priority_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)())
 		: init(initFunc), step(stepFunc), terminate(termFunc), priority(priority)
 	{
 		AttachmentHolder::addAttachment(this);

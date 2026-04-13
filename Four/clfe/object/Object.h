@@ -2,7 +2,7 @@
 #define CLFE_OBJECT_H
 
 #include "ObjectData.h"
-#include "clm/Vector.h"
+#include "clm/Vector3.h"
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef CLM_MATRIX_2X2_H
-#define CLM_MATRIX_2X2_H
+#ifndef CLM_MATRIX_2X2I_H
+#define CLM_MATRIX_2X2I_H
 
 #include "Matrix_i.h"
 

@@ -1,9 +1,9 @@
-#ifndef CLFE_VECMAT_UTILS_H
-#define CLFE_VECMAT_UTILS_H
+#ifndef CLM_VECMAT_UTILS_H
+#define CLM_VECMAT_UTILS_H
 
 // Guards against if anyone decides to include this file directly
-#include "vec/Vector_i.h"
-#include "mat/Matrix_i.h"
+#include "clm/vec/Vector_i.h"
+#include "clm/mat/Matrix_i.h"
 
 namespace clfe
 {

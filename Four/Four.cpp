@@ -7,7 +7,6 @@
 #include "clfe/window/Window.h"
 
 #include "clu/Print.h"
-#include "clfe/string/UniString.h"
 
 #include <cstdlib>
 #include "Chrono.h"
@@ -15,6 +14,8 @@
 #include "FastDraw.h"
 
 #include "clfe/input/KeyTables.h"
+
+#include "clfe/pipeline/Opengl4_6.h"
 
 using namespace clfe;
 

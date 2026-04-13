@@ -4,7 +4,8 @@
 #include "clfe/window/Window.h"
 #include "clfe/window/WinWnd.h"
 #include <windows.h>
-#include "glad/glad.h"
+//#include "glad/glad.h"
+#include "clfe/pipeline/Opengl4_6/glad/glad.h"
 #include "gl/GL.h"
 #include "gl/GLU.h"
 #include <random>

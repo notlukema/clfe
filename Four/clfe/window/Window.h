@@ -96,7 +96,7 @@ namespace clfe
 //#include "LnxWnd.h"
 
 #else
-#warning "Windowing system not implemented for this OS! Or did you forget to include System.h?"
+#warning "Windowing system not implemented for this OS!"
 
 #endif
 

@@ -200,7 +200,6 @@ namespace clfe
 
 		InstanceListWrapper<T>* wrapper;
 
-
 	public:
 		InstanceList(InsType_t type) : InstanceBase(type), first(nullptr), len(0)
 		{

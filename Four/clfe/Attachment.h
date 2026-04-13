@@ -10,7 +10,7 @@ namespace clfe
 {
 
 	// Lower number = higher priority (0 = highest priority)
-	using priority_t = uint32_t;
+	using Priority_t = uint32_t;
 
 	struct Attachment
 	{
@@ -19,9 +19,9 @@ namespace clfe
 		void (* const step)(float delf, double deld);
 		void (* const terminate)();
 
-		const uint32_t priority; // Lower number = higher priority (0 = highest priority)
+		const Priority_t priority; // Lower number = higher priority (0 = highest priority)
 
-		Attachment(uint32_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)());
+		Attachment(Priority_t priority, bool (*initFunc)(), void (*stepFunc)(float delf, double deld), void (*termFunc)());
 		~Attachment();
 
 	};

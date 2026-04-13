@@ -53,6 +53,7 @@ int main()
         float deltaTime = step();
         fastDraw((WinWnd*)wnd1, deltaTime);
 
+		MainPipeline().initWindow(wnd1);
     }
 
     clfe::terminate();

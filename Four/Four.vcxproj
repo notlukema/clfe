@@ -136,6 +136,7 @@
     <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
+    <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="clm\Vector3.h" />
     <ClInclude Include="clm\Vector4.h" />
     <ClInclude Include="interface\Chrono.h" />
+    <ClInclude Include="interface\Exception.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />
     <ClInclude Include="clfe\AttachmentLayers.h" />

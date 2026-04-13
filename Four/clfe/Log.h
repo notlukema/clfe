@@ -1,10 +1,14 @@
 #ifndef CLFE_ERROR_H
 #define CLFE_ERROR_H
 
+#include "Exception.h"
+
 #include <cstdio>
 
 namespace clfe
 {
+
+	// very much a placeholder
 	
 	void inline logError(const char* message)
 	{
@@ -18,9 +22,15 @@ namespace clfe
 		printf("CLFE Message: %s\n", message);
 	}
 
+	void inline runtimeError(const char* message)
+	{
+		throw RuntimeError(message);
+	}
+
 }
 
 #define CLFE_ERROR(msg) clfe::logError(msg)
 #define CLFE_LOG(msg) clfe::logMsg(msg)
+#define CLFE_RUNTIME_ERROR(msg) clfe::runtimeError(msg)
 
 #endif

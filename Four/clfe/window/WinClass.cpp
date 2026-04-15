@@ -30,7 +30,6 @@ namespace clfe
 
 	void WinClass::terminate()
 	{
-		Classes->deepDelete(); // Delete all Windows Classes
 		delete Classes;
 		Classes = nullptr;
 		DefaultClass = nullptr;
@@ -62,13 +61,17 @@ namespace clfe
 
 	WinClass::WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(id), name(name), className(className), wClass(wClass)
 	{
-		Classes->add(id, this);
+		instanceLink = Classes->add(id, this, [this]() { this->instanceDelete(); });
 	}
 
 	WinClass::~WinClass()
 	{
+		delete instanceLink;
+	}
+
+	void WinClass::instanceDelete()
+	{
 		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
-		Classes->remove(thisid);
 	}
 
 	clid WinClass::getID() const

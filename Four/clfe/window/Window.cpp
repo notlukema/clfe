@@ -47,19 +47,25 @@ namespace clfe
 
 	void Window::terminate()
 	{
-		WindowsList->deepDelete();
 		delete WindowsList;
 		WindowsList = nullptr;
 	}
 
 	Window::Window(clid id) : thisid(id)
 	{
-		WindowsList->add(id, this);
+		instanceLink = WindowsList->add(id, this, [this]() { this->instanceDelete(); });
 		inputCore = new InputCore();
 	}
 
 	Window::~Window()
 	{
+		destroy();
+	}
+
+	void Window::instanceDelete()
+	{
+		innerDestroy();
+		instanceLink = nullptr;
 		delete inputCore;
 	}
 

@@ -25,13 +25,9 @@ CLM_XX_H - header guards for components in clm
 
 
 
-Attachment priorities: (the lower the number the higher the priority, the earlier it is called in the chain)
-System - 10
-Window - 50
-Windows Window - 70
-Mac Window - 75
-Linux Window - 80
-System Input - 100
+Mutual Links represent the existence of certain components of both objects attached to the link. The deletion of a Mutual Link represents the deletion of such components.
+In the case of InstanceLink (Mutual Link for InstanceLists), the link represents the entry of the object in the InstanceList and the functionality (usually the whole object itself) of the object.
+In the case of PipelineLink (Mutual Link for Pipelines), the link represents the entry of the object and attached contexts in the Pipeline.
 
 
 

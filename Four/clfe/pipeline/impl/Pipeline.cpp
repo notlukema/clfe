@@ -24,7 +24,6 @@ namespace clfe
 
 	void Pipeline::sterminate()
 	{
-		Pipelines->deepDelete();
 		delete Pipelines;
 		Pipelines = nullptr;
 	}
@@ -33,7 +32,7 @@ namespace clfe
 
 	Pipeline::Pipeline(clid id) : thisid(id)
 	{
-		Pipelines->add(id, this);
+		Pipelines->add(id, this, [this]() {});
 	}
 
 	Pipeline::~Pipeline()

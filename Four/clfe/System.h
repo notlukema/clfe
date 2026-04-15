@@ -1,9 +1,11 @@
 #ifndef CLFE_SYSTEM_H
 #define CLFE_SYSTEM_H
 
+#include "MutualLink.h"
 #include "Attachment.h"
 #include "InstanceTypes.h"
 #include "List.h"
+#include "Function.h"
 
 // Included for the sake of being "part of the system"
 #include "CrossPlatform.h"
@@ -61,7 +63,7 @@ namespace clfe
 
 		static InsType_t getInstanceType(clid id);
 
-		static inline const std::list<InstanceBase*>& getInstances()
+		static inline const List<InstanceBase*>& getInstances()
 		{
 			return Instances;
 		}
@@ -111,12 +113,18 @@ namespace clfe
 		{
 			return list->length();
 		}
-
-		InstanceList<T>::Node* first() const
+		/*
+		List<T*> getAll()
 		{
-			return list->firstNode();
+			List<T*> all = List<T*>();
+			for (InstanceLink<T>* link : list->links)
+			{
+				all.push_back(link->obj);
+			}
+			return all;
 		}
-
+		*/
+		
 	};
 
 	class InstanceBase
@@ -127,7 +135,6 @@ namespace clfe
 
 	public:
 		virtual ~InstanceBase();
-		virtual void deepDelete() = 0;
 
 		inline InsType_t getType() const
 		{
@@ -138,32 +145,34 @@ namespace clfe
 
 	};
 
+
 	// Range based list implementation
+	
+
 	struct inslist_null {};
 
 	template <typename T>
 	struct inslist_iterator
 	{
 		InstanceList<T>* list;
-		InstanceList<T>::Node* current;
-		inslist_iterator(InstanceList<T>* list) : list(list), current(list->firstNode()) {}
+		size_t i;
+		inslist_iterator(InstanceList<T>* list) : list(list), i(0) {}
 
 		void operator++()
 		{
-			if (current != nullptr)
-			{
-				current = current->next;
-			}
+			i++;
 		}
 
 		T* operator*() const
 		{
-			return current->object;
+			auto it = std::next(list->links.begin(), i);
+			return (*it)->obj;
 		}
+
 
 		bool operator!=(inslist_null end) const
 		{
-			return current != nullptr;
+			return i != list->length();
 		}
 
 	};
@@ -179,46 +188,55 @@ namespace clfe
 	{
 		return inslist_null();
 	};
+	
+
+	// InstanceList
+
+
+	template <typename T>
+	class MutualLink<T, InstanceList<T>>
+	{
+	public:
+		T* obj;
+		Function<void()> deleteFunc;
+		const clid id;
+		InstanceList<T>* list;
+
+		MutualLink(T* obj, Function<void()> deleteFunc, clid id, InstanceList<T>* list) : obj(obj), deleteFunc(deleteFunc), id(id), list(list) {}
+
+		~MutualLink()
+		{
+			deleteFunc();
+			list->remove(id);
+		}
+
+	};
+
+	template <typename T>
+	using InstanceLink = MutualLink<T, InstanceList<T>>;
 
 	// Actual list implementation
 	template <typename T>
 	class InstanceList : public InstanceBase
 	{
-	public:
-		struct Node
-		{
-			clid id;
-			T* object;
-			Node* next;
-
-			Node(clid id, T* object, Node* next) : id(id), object(object), next(next) {}
-		};
-
 	private:
-		Node* first;
-		int len;
-
+		friend inslist_iterator;
+		List<InstanceLink<T>*> links;
 		InstanceListWrapper<T>* wrapper;
 
 	public:
-		InstanceList(InsType_t type) : InstanceBase(type), first(nullptr), len(0)
+		InstanceList(InsType_t type) : InstanceBase(type)
 		{
+			links = List<InstanceLink<T>*>();
 			wrapper = new InstanceListWrapper(this);
 		}
 
 		~InstanceList()
 		{
-			Node* node = first;
-
-			while (node != nullptr)
+			while (!links.empty())
 			{
-				Node* next = node->next;
-				delete node;
-
-				node = next;
+				delete links.front();
 			}
-
-			delete wrapper;
 		}
 
 		InstanceListWrapper<T>* getWrapper()
@@ -226,122 +244,40 @@ namespace clfe
 			return wrapper;
 		}
 
-		void deepDelete() override
+		size_t length()
 		{
-			// Since all objects should remove themselves from the list, let them have the chance to do that first
-			const int len2 = len;
-			T** objs = new T*[len2];
+			return links.size();
+		}
 
-			Node* node = first;
-			for (int i = 0; i < len2; i++)
+		InstanceLink<T>* add(clid id, T* object, Function<void()> deleteFunc)
+		{
+			InstanceLink<T>* link = new InstanceLink<T>(object, deleteFunc, id, this);
+			links.push_back(link);
+			return link;
+		}
+
+		// Also deletes the object
+		bool remove(clid id)
+		{
+			return links.remove_if([id](InstanceLink<T>* link)
 			{
-				if (node == nullptr)
+				if (link->id == id)
 				{
-					CLFE_ERROR("Recorded length was shorter than actual length in InstanceList!");
-					return;
+					delete link;
+					return true;
 				}
-
-				objs[i] = node->object;
-				node = node->next;
-			}
-
-			for (int i = 0; i < len2; i++)
-			{
-				delete objs[i];
-			}
-
-			delete[] objs;
-			
-			// Delete any leftovers that weren't removed by the objects themselves, just in case
-			// Not that it's illegal in the context of the code, but generally objects that use InstanceLists should be expected to remove themselves
-			if (first != nullptr)
-			{
-				CLFE_LOG("InstanceList has leftover object entries after DeepDelete! It is recommended for objects that use InstanceList to remove themselves upon deletion.");
-			}
-
-			node = first;
-			while (node != nullptr)
-			{
-				Node* next = node->next;
-				delete node;
-
-				node = next;
-			}
-
-			len = 0;
-			
-		}
-
-		int length()
-		{
-			return len;
-		}
-
-		Node* firstNode() const
-		{
-			return first;
-		}
-
-		void add(clid id, T* object)
-		{
-			Node* node = new Node(id, object, first);
-			first = node;
-			len++;
-		}
-
-		T* remove(clid id)
-		{
-			if (first == nullptr)
-			{
-				return nullptr;
-			}
-
-			if (first->id == id)
-			{
-				T* ret = first->object;
-				Node* next = first->next;
-
-				delete first;
-				first = next;
-				len--;
-
-				return ret;
-			}
-
-			Node* lastNode = first;
-			Node* node = first->next;
-
-			while (node != nullptr)
-			{
-				if (node->id == id)
-				{
-					T* ret = node->object;
-					lastNode->next = node->next;
-
-					len--;
-					delete node;
-
-					return ret;
-				}
-
-				lastNode = node;
-				node = node->next;
-			}
-
-			return nullptr;
+				return false;
+			});
 		}
 
 		bool hasInstance(clid id) override
 		{
-			Node* node = first;
-			while (node != nullptr)
+			for (InstanceLink<T>* link : links)
 			{
-				if (node->id == id)
+				if (link->id == id)
 				{
 					return true;
 				}
-
-				node = node->next;
 			}
 
 			return false;
@@ -349,16 +285,12 @@ namespace clfe
 
 		T* find(clid id)
 		{
-			Node* node = first;
-
-			while (node != nullptr)
+			for (InstanceLink<T>* link : links)
 			{
-				if (node->id == id)
+				if (link->id == id)
 				{
-					return node->object;
+					return link->obj;
 				}
-
-				node = node->next;
 			}
 
 			return nullptr;

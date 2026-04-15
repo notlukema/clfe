@@ -46,15 +46,18 @@ namespace clfe
 
 	private:
 		clid thisid;
+		InstanceLink<WinClass>* instanceLink;
+
 		const WCHAR* name,* className;
 		ATOM wClass;
 
 		WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass);
+		void instanceDelete();
 
 	public:
 		~WinClass();
-
 		clid getID() const;
+
 		const WCHAR* getName() const;
 		const WCHAR* getClassName() const;
 		ATOM getClassAtom() const;
@@ -71,9 +74,10 @@ namespace clfe
 	private:
 		const WinClass* wClass_;
 		HWND hwnd_;
-		bool exists_;
 
 		void createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
+
+		virtual void innerDestroy() override;
 
 	public: // Interface implementations
 		WinWnd(int x, int y, int width, int height, const char* name);
@@ -84,9 +88,6 @@ namespace clfe
 		virtual ~WinWnd() override;
 
 		HWND getHWND() const;
-
-		virtual bool exists() const override;
-		virtual void destroy() override;
 
 		virtual int getX() const override;
 		virtual int getY() const override;

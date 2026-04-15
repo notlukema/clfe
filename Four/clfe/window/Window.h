@@ -27,13 +27,14 @@ namespace clfe
 
 	protected:
 		clid thisid;
-		InputCore* inputCore;
-		Window(clid id);
+		InstanceLink<Window>* instanceLink;
 
-		inline void removeFromList()
-		{
-			WindowsList->remove(thisid);
-		}
+		InputCore* inputCore;
+
+		Window(clid id);
+		void instanceDelete();
+
+		virtual void innerDestroy() = 0;
 
 		//Function<void()> CloseCallback;
 		// + others
@@ -41,10 +42,21 @@ namespace clfe
 	public:
 		virtual ~Window();
 		clid getID() const;
+
 		InputCore* getInput() const;
 		
-		virtual bool exists() const = 0;
-		virtual void destroy() = 0;
+		inline bool exists() const
+		{
+			return instanceLink != nullptr;
+		}
+
+		inline void destroy() const
+		{
+			if (exists())
+			{
+				delete instanceLink;
+			}
+		}
 
 		virtual int getX() const = 0;
 		virtual int getY() const = 0;

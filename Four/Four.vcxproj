@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
+    <ClInclude Include="clfe\MutualLink.h" />
     <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="clm\Vector3.h" />
     <ClInclude Include="clm\Vector4.h" />
     <ClInclude Include="interface\Chrono.h" />
+    <ClInclude Include="interface\Concepts.h" />
     <ClInclude Include="interface\Exception.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />

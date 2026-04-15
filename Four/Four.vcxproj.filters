@@ -248,5 +248,11 @@
     <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clfe\MutualLink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\Concepts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,9 +37,7 @@ namespace clfe
 		}
 		while (!Instances.empty())
 		{
-			InstanceBase* instance = Instances.front();
-			instance->deepDelete();
-			delete instance;
+			delete Instances.front();
 		}
 	}
 

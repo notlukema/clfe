@@ -21,34 +21,20 @@ using namespace clfe;
 
 int main()
 {
-    std::cout << "Hello World!\n";
 
     if (!clfe::init()) {
         return -1;
     }
 
+
     Window* wnd1 = createWindow("thing");
-    
-    wnd1->getInput()->setKeyDownCallback([wnd1](Key_t key) {
-        std::cout << "Key down: " << KeyChars::getChar(key) << " ";
-	});
 
-    wnd1->getInput()->setRepeatedKeyDownCallback([](Key_t key) {
-        std::cout << KeyChars::getChar(key);
-    });
-
-    wnd1->getInput()->setKeyUpCallback([](Key_t key) {
-        std::cout << "\nKey up: " << KeyChars::getChar(key) << "\n";
-    });
-
-    // f
 
     Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
 
+
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
     
-    // Timer, currently unused
-    static auto time = chrono::HighResClock::now();
 
     while (wnd1->exists())
     {

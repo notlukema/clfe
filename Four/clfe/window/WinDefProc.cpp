@@ -34,8 +34,8 @@ namespace clfe
 
 			if (uMsg == WM_CLOSE)
 			{
-				CLFE_LOG("close called"); // Handle later
-				return 0;
+				window->destroy();
+				return 0; // Handle later
 			}
 
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);

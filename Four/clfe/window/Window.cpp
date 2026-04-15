@@ -60,7 +60,6 @@ namespace clfe
 
 	Window::~Window()
 	{
-		WindowsList->remove(thisid);
 		delete inputCore;
 	}
 

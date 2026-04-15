@@ -71,6 +71,7 @@ namespace clfe
 	private:
 		const WinClass* wClass_;
 		HWND hwnd_;
+		bool exists_;
 
 		void createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
 

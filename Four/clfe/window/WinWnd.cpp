@@ -17,26 +17,26 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name) : Window(System::genNextID()), exists_(true)
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name) : Window(System::genNextID()), exists_(true)
 	{
 		createWindow(x, y, width, height, name, WinClass::getDefaultClass());
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass) : Window(System::genNextID()), exists_(true)
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, wClass);
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass) : Window(System::genNextID()), exists_(true)
 	{
 		createWindow(x, y, width, height, name, wClass);
 	}
@@ -96,16 +96,18 @@ namespace clfe
 
 	bool WinWnd::exists() const
 	{
-		return true;
+		return exists_;
 	}
 
 	void WinWnd::destroy()
 	{
-		if (!exists())
+		if (!exists_)
 		{
 			return;
 		}
 
+		exists_ = false;
+		removeFromList();
 		// Destroy windows window
 	}
 

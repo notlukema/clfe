@@ -30,6 +30,11 @@ namespace clfe
 		InputCore* inputCore;
 		Window(clid id);
 
+		inline void removeFromList()
+		{
+			WindowsList->remove(thisid);
+		}
+
 		//Function<void()> CloseCallback;
 		// + others
 

@@ -135,6 +135,7 @@
     <ClCompile Include="clfe\object\Object.cpp" />
     <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp" />
+    <ClCompile Include="clfe\pipeline\impl\PixelFormat.cpp" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp" />
     <ClCompile Include="clfe\System.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
     <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />

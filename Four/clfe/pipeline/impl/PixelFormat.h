@@ -1,12 +1,15 @@
-#ifndef CLFE_PIPELINE_PIXELFORMAT_H
-#define CLFE_PIPELINE_PIXELFORMAT_H
+#ifndef CLFE_PIXELFORMAT_H
+#define CLFE_PIXELFORMAT_H
 
 namespace clfe
 {
 
 	class PixelFormat
 	{
-		//implement later
+	public:
+		PixelFormat();
+		~PixelFormat();
+
 	};
 
 }

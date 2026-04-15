@@ -30,8 +30,17 @@ namespace clfe
 
 	void System::terminate()
 	{
-		// theoretically all instances will be handled by their respective components
-		// figure out whether or not to add more priorty types so this function is run last
+		// Delete all instances, although it should technically already all be deleted
+		if (!Instances.empty())
+		{
+			CLFE_LOG("System is terminating with non-empty instance list(s)! It is recommended to handle instance list termination upon the termination call.");
+		}
+		while (!Instances.empty())
+		{
+			InstanceBase* instance = Instances.front();
+			instance->deepDelete();
+			delete instance;
+		}
 	}
 
 	clid System::genNextID()

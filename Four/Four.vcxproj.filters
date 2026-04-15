@@ -63,6 +63,9 @@
     <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\pipeline\impl\PixelFormat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -240,6 +243,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

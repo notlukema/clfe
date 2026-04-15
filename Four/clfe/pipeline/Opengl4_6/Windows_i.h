@@ -2,6 +2,10 @@
 #define CLFE_PIPELINE_OPENGL4_6_WINDOWS_H
 
 #include "../impl/Pipeline.h"
+#include "../impl/PixelFormat.h"
+#include "clfe/window/Window.h"
+
+#include <Windows.h>
 
 namespace clfe
 {
@@ -10,18 +14,12 @@ namespace clfe
 	{
 	public: // Standard pipeline components
 		static const char* const Name;
-		static const PipelineEntry Entry;
-		inline static Pipeline* getInstance()
-		{
-			return Entry.pipeline;
-		}
-
-	protected:
-		Pipeline_OpenGL4_6_Windows();
-		~Pipeline_OpenGL4_6_Windows() override;
 
 	public:
-		virtual bool init() override;
+		Pipeline_OpenGL4_6_Windows(PixelFormat format = PixelFormat(), Window* window = nullptr);
+		Pipeline_OpenGL4_6_Windows(PIXELFORMATDESCRIPTOR pfd, Window* window = nullptr);
+		~Pipeline_OpenGL4_6_Windows() override;
+
 		virtual void initWindow(Window* window) override;
 
 	};

@@ -43,6 +43,8 @@ int main()
 
     // f
 
+    Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
+
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
     
     // Timer, currently unused
@@ -52,8 +54,6 @@ int main()
     {
         float deltaTime = step();
         fastDraw((WinWnd*)wnd1, deltaTime);
-
-		MainPipeline().initWindow(wnd1);
     }
 
     clfe::terminate();

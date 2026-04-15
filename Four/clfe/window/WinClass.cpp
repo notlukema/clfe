@@ -1,6 +1,7 @@
 #include "WinWnd.h"
 
 #include "clfe/AttachmentLayers.h"
+#include "clfe/InstanceTypes.h"
 
 #include <string> // tenmporary for std::to_wstring, consider replacing with custom implementation later
 

@@ -206,7 +206,7 @@ namespace clfe
 			InstanceList<T>* const parent;
 
 		private:
-			friend class InstanceList<T>; // For access to next and last
+			friend class InstanceList<T>; // For access to next and last and acess to parent len and first
 			friend struct inslist_iterator<T>; // For access to next and last
 			InstanceLink* next;
 			InstanceLink* last;

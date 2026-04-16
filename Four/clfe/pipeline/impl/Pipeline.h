@@ -22,6 +22,7 @@ namespace clfe
 	protected:
 		clid thisid;
 		Pipeline(clid id);
+		InstanceHandle<Pipeline>* instlink;
 
 	public:
 		virtual ~Pipeline();

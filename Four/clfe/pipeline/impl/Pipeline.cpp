@@ -32,12 +32,12 @@ namespace clfe
 
 	Pipeline::Pipeline(clid id) : thisid(id)
 	{
-		Pipelines->add(this, id);
+		instlink = Pipelines->add(this, id);
 	}
 
 	Pipeline::~Pipeline()
 	{
-		Pipelines->remove(thisid);
+		delete instlink;
 	}
 
 	clid Pipeline::getID() const

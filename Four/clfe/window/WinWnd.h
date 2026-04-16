@@ -12,11 +12,23 @@ namespace clfe
 	class WinClass
 	{
 	private:
-		static HINSTANCE HInstance;
-		static WinClass* DefaultClass;
 		static InstanceList<WinClass>* Classes;
 
+		static HINSTANCE HInstance;
+		static WinClass* DefaultClass;
+
 	public:
+		static const Attachment WinWndAttachment;
+
+		static bool init();
+		static void step(float delf, double deld);
+		static void terminate();
+
+		static InstanceListHandle<WinClass> getClassesList()
+		{
+			return Classes->getHandle();
+		}
+
 		static inline HINSTANCE getHInstance()
 		{
 			return HInstance;
@@ -27,16 +39,6 @@ namespace clfe
 			return DefaultClass;
 		}
 
-		static InstanceListWrapper<WinClass>* getClassesList()
-		{
-			return Classes->getWrapper();
-		}
-
-		static const Attachment WinWndAttachment;
-		static bool init();
-		static void step(float delf, double deld);
-		static void terminate();
-
 		static WinClass* createClass(const WCHAR* name, WNDPROC wndProc);
 
 		static inline WinClass* createClass(const char* name, WNDPROC wndProc)
@@ -46,21 +48,35 @@ namespace clfe
 
 	private:
 		clid thisid;
-		InstanceLink<WinClass>* instanceLink;
+		InstanceHandle<WinClass>* instlink;
 
 		const WCHAR* name,* className;
 		ATOM wClass;
 
 		WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass);
-		void instanceDelete();
 
 	public:
-		~WinClass();
-		clid getID() const;
+		inline clid getID() const
+		{
+			return thisid;
+		}
 
-		const WCHAR* getName() const;
-		const WCHAR* getClassName() const;
-		ATOM getClassAtom() const;
+		~WinClass();
+
+		inline const WCHAR* getName() const
+		{
+			return name;
+		}
+
+		inline const WCHAR* getClassName() const
+		{
+			return className;
+		}
+
+		inline ATOM getClassAtom() const
+		{
+			return wClass;
+		}
 
 	};
 
@@ -87,7 +103,10 @@ namespace clfe
 
 		virtual ~WinWnd() override;
 
-		HWND getHWND() const;
+		inline HWND getHWND() const
+		{
+			return hwnd_;
+		}
 
 		virtual int getX() const override;
 		virtual int getY() const override;

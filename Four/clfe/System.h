@@ -1,11 +1,9 @@
 #ifndef CLFE_SYSTEM_H
 #define CLFE_SYSTEM_H
 
-#include "MutualLink.h"
 #include "Attachment.h"
 #include "InstanceTypes.h"
 #include "List.h"
-#include "Function.h"
 
 // Included for the sake of being "part of the system"
 #include "CrossPlatform.h"
@@ -19,13 +17,12 @@ namespace clfe
 	using clid = uint32_t;
 	constexpr clid BlankID = 0;
 
+	// Forward declarations
 	class InstanceBase;
-
 	template <typename T>
 	class InstanceList;
-
 	template <typename T>
-	class InstanceListWrapper;
+	class InstanceListHandle;
 
 	class System
 	{
@@ -34,10 +31,7 @@ namespace clfe
 		static List<InstanceBase*> Instances;
 		static clid NextID;
 
-		friend class InstanceBase;
-
-		template <typename T>
-		friend class InstanceList;
+		friend class InstanceBase; // For access to addInstance and removeInstance
 
 		static void addInstance(InstanceBase* instance);
 		static void removeInstance(InstanceBase* instance);
@@ -81,12 +75,12 @@ namespace clfe
 		}
 		
 		template <typename T>
-		static InstanceListWrapper<T>* getInstanceList()
+		static InstanceListHandle<T>* getInstanceList()
 		{
 			InstanceList<T>* list = getInstanceListInner<T>();
 			if (list)
 			{
-				return list->getWrapper();
+				return list->getHandle();
 			}
 
 			return nullptr;
@@ -95,35 +89,33 @@ namespace clfe
 	};
 
 	template <typename T>
-	class InstanceListWrapper
+	class InstanceListHandle
 	{
 	private:
 		InstanceList<T>* list;
 
-		friend class InstanceList<T>;
-		InstanceListWrapper(InstanceList<T>* list) : list(list) {}
-
 	public:
-		T* find(clid id)
-		{
-			return list->find(id);
-		}
+		InstanceListHandle(InstanceList<T>* list) : list(list) {}
 
 		int length()
 		{
 			return list->length();
 		}
-		/*
-		List<T*> getAll()
+
+		bool remove(clid id)
 		{
-			List<T*> all = List<T*>();
-			for (InstanceLink<T>* link : list->links)
-			{
-				all.push_back(link->obj);
-			}
-			return all;
+			return list->remove(id);
 		}
-		*/
+
+		bool hasInstance(clid id)
+		{
+			return list->hasInstance(id);
+		}
+
+		T* find(clid id)
+		{
+			return list->find(id);
+		}
 		
 	};
 
@@ -145,34 +137,31 @@ namespace clfe
 
 	};
 
-
-	// Range based list implementation
-	
+	//
+	// Range based list implementation for InstanceList
+	//
 
 	struct inslist_null {};
 
 	template <typename T>
 	struct inslist_iterator
 	{
-		InstanceList<T>* list;
-		size_t i;
-		inslist_iterator(InstanceList<T>* list) : list(list), i(0) {}
+		InstanceList<T>::InstanceLink* node;
+		inslist_iterator(InstanceList<T>* list) : node(list->getFirstLink()) {}
 
 		void operator++()
 		{
-			i++;
+			node = node->next;
 		}
 
 		T* operator*() const
 		{
-			auto it = std::next(list->links.begin(), i);
-			return (*it)->obj;
+			return node->obj;
 		}
-
 
 		bool operator!=(inslist_null end) const
 		{
-			return i != list->length();
+			return node != nullptr;
 		}
 
 	};
@@ -189,113 +178,155 @@ namespace clfe
 		return inslist_null();
 	};
 	
-
+	//
 	// InstanceList
-
-
-	template <typename T>
-	class MutualLink<T, InstanceList<T>>
-	{
-	public:
-		T* obj;
-		Function<void()> deleteFunc;
-		const clid id;
-		InstanceList<T>* list;
-
-		MutualLink(T* obj, Function<void()> deleteFunc, clid id, InstanceList<T>* list) : obj(obj), deleteFunc(deleteFunc), id(id), list(list) {}
-
-		~MutualLink()
-		{
-			deleteFunc();
-			list->remove(id);
-		}
-
-	};
+	//
 
 	template <typename T>
-	using InstanceLink = MutualLink<T, InstanceList<T>>;
+	class InstanceHandle;
 
-	// Actual list implementation
 	template <typename T>
 	class InstanceList : public InstanceBase
 	{
+	public:
+		struct InstanceLink;
+
 	private:
-		friend inslist_iterator;
-		List<InstanceLink<T>*> links;
-		InstanceListWrapper<T>* wrapper;
+		InstanceLink* first;
+		int len;
 
 	public:
-		InstanceList(InsType_t type) : InstanceBase(type)
+		// Deleting the link deletes the entry in the list, but not the object. However, deleting through the list itself will delete the object.
+		// The link should not be exposed outside of object implmentations, otherwise there is danger of dangling objects.
+		struct InstanceLink
 		{
-			links = List<InstanceLink<T>*>();
-			wrapper = new InstanceListWrapper(this);
-		}
+		public:
+			T* const obj;
+			const clid id;
+			InstanceList<T>* const parent;
+
+		private:
+			friend class InstanceList<T>; // For access to next and last
+			friend struct inslist_iterator<T>; // For access to next and last
+			InstanceLink* next;
+			InstanceLink* last;
+
+		public:
+			InstanceLink(T* obj, clid id, InstanceList<T>* parent, InstanceLink* next, InstanceLink* last) : obj(obj), id(id), parent(parent), next(next), last(last) {}
+
+			// Does not delete the object
+			~InstanceLink()
+			{
+				parent->len--;
+				if (last == nullptr)
+				{
+					parent->first = next;
+				}
+				else
+				{
+					last->next = next;
+				}
+			}
+
+		};
+
+	public:
+		InstanceList(InsType_t type) : InstanceBase(type), first(nullptr), len(0) {}
 
 		~InstanceList()
 		{
-			while (!links.empty())
+			while (first != nullptr)
 			{
-				delete links.front();
+				delete first->obj;
+				//delete first; // solve later
 			}
 		}
 
-		InstanceListWrapper<T>* getWrapper()
+		InstanceListHandle<T> getHandle()
 		{
-			return wrapper;
+			return InstanceListHandle<T>(this);
 		}
 
-		size_t length()
+		InstanceLink* getFirstLink()
 		{
-			return links.size();
+			return first;
 		}
 
-		InstanceLink<T>* add(clid id, T* object, Function<void()> deleteFunc)
+		int length()
 		{
-			InstanceLink<T>* link = new InstanceLink<T>(object, deleteFunc, id, this);
-			links.push_back(link);
-			return link;
+			return len;
+		}
+
+		InstanceHandle<T>* add(T* object, clid id)
+		{
+			InstanceLink* node = new InstanceLink(object, id, this, first, nullptr);
+			if (first != nullptr)
+			{
+				first->last = node;
+			}
+			first = node;
+			len++;
+			return new InstanceHandle<T>(node);
 		}
 
 		// Also deletes the object
 		bool remove(clid id)
 		{
-			return links.remove_if([id](InstanceLink<T>* link)
+			InstanceLink* node = first;
+			while (node != nullptr)
 			{
-				if (link->id == id)
+				if (node->id == id)
 				{
-					delete link;
+					delete node->obj;
+					//delete node; // solve later
 					return true;
 				}
-				return false;
-			});
+				node = node->next;
+			}
+			return false;
 		}
 
 		bool hasInstance(clid id) override
 		{
-			for (InstanceLink<T>* link : links)
+			InstanceLink* node = first;
+			while (node != nullptr)
 			{
-				if (link->id == id)
+				if (node->id == id)
 				{
 					return true;
 				}
+				node = node->next;
 			}
-
 			return false;
 		}
 
 		T* find(clid id)
 		{
-			for (InstanceLink<T>* link : links)
+			InstanceLink* node = first;
+			while (node != nullptr)
 			{
-				if (link->id == id)
+				if (node->id == id)
 				{
-					return link->obj;
+					return node->obj;
 				}
+				node = node->next;
 			}
-
 			return nullptr;
 		}
 
+	};
+
+	template <typename T>
+	class InstanceHandle
+	{
+	private:
+		InstanceList<T>::InstanceLink* link;
+	public:
+		InstanceHandle(InstanceList<T>::InstanceLink* link) : link(link) {}
+		~InstanceHandle()
+		{
+			delete link;
+		}
 	};
 
 }

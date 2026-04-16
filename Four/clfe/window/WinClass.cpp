@@ -8,18 +8,17 @@
 namespace clfe
 {
 	
+	InstanceList<WinClass>* WinClass::Classes = nullptr;
+	const Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
+
 	HINSTANCE WinClass::HInstance;
 	WinClass* WinClass::DefaultClass = nullptr;
-	InstanceList<WinClass>* WinClass::Classes = nullptr;
-
-	const Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
 
 	bool WinClass::init()
 	{
-		HInstance = GetModuleHandle(NULL);
 		Classes = new InstanceList<WinClass>(InstanceTypes::WinClass);
+		HInstance = GetModuleHandle(NULL);
 		DefaultClass = createClass("Default", WinWnd::defWndProc);
-
 		return DefaultClass != nullptr;
 	}
 
@@ -48,7 +47,7 @@ namespace clfe
 		ATOM atom = RegisterClass(&wc);
 		if (atom == NULL) {
 			DWORD error = GetLastError();
-			logError("placeholder error again (class init error)"); // TODO: fix error logging
+			CLFE_ERROR("placeholder error again (class init error)"); // TODO: fix error logging
 			return nullptr;
 		}
 
@@ -61,37 +60,13 @@ namespace clfe
 
 	WinClass::WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(id), name(name), className(className), wClass(wClass)
 	{
-		instanceLink = Classes->add(id, this, [this]() { this->instanceDelete(); });
+		instlink = Classes->add(this, id);
 	}
 
 	WinClass::~WinClass()
 	{
-		delete instanceLink;
-	}
-
-	void WinClass::instanceDelete()
-	{
 		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
-	}
-
-	clid WinClass::getID() const
-	{
-		return thisid;
-	}
-
-	const WCHAR* WinClass::getName() const
-	{
-		return name;
-	}
-
-	const WCHAR* WinClass::getClassName() const
-	{
-		return className;
-	}
-
-	ATOM WinClass::getClassAtom() const
-	{
-		return wClass;
+		delete instlink;
 	}
 
 }

@@ -1,4 +1,6 @@
 #include <iostream>
+#include "clfe/Log.h"
+
 #include "clfe/System.h"
 #include "clfe/CLFE.h"
 
@@ -26,7 +28,6 @@ int main()
         return -1;
     }
 
-
     Window* wnd1 = createWindow("thing");
 
 
@@ -34,7 +35,6 @@ int main()
 
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
-    
 
     while (wnd1->exists())
     {

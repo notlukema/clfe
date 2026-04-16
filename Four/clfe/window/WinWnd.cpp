@@ -86,12 +86,6 @@ namespace clfe
 
 	WinWnd::~WinWnd()
 	{
-		destroy();
-	}
-
-	HWND WinWnd::getHWND() const
-	{
-		return hwnd_;
 	}
 
 	void WinWnd::innerDestroy()

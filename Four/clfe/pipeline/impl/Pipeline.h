@@ -14,7 +14,7 @@ namespace clfe
 
 	public:
 		static const Attachment PipelineAttachment;
-		static InstanceListWrapper<Pipeline>* getPipelinesList();
+		static InstanceListHandle<Pipeline> getPipelinesList();
 
 		static bool sinit();
 		static void sterminate();

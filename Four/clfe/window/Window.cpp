@@ -22,18 +22,14 @@ namespace clfe
 #endif
 	}
 
-	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
-	InstanceList<Window>* Window::WindowsList = nullptr;
+	//
 
-	InstanceListWrapper<Window>* Window::getWindowsList()
-	{
-		return WindowsList->getWrapper();
-	}
+	InstanceList<Window>* Window::WindowsList = nullptr;
+	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
 
 	bool Window::init()
 	{
 		WindowsList = new InstanceList<Window>(InstanceTypes::Window);
-
 		return true;
 	}
 
@@ -51,32 +47,25 @@ namespace clfe
 		WindowsList = nullptr;
 	}
 
-	Window::Window(clid id) : thisid(id)
+	Window::Window(clid id) : thisid(id), exists_(true)
 	{
-		instanceLink = WindowsList->add(id, this, [this]() { this->instanceDelete(); });
+		instlink = WindowsList->add(this, id);
 		inputCore = new InputCore();
 	}
 
 	Window::~Window()
 	{
 		destroy();
+		delete instlink;
 	}
 
-	void Window::instanceDelete()
+	void Window::destroy()
 	{
-		innerDestroy();
-		instanceLink = nullptr;
-		delete inputCore;
-	}
-
-	clid Window::getID() const
-	{
-		return thisid;
-	}
-
-	InputCore* Window::getInput() const
-	{
-		return inputCore;
+		if (exists_)
+		{
+			innerDestroy();
+			exists_ = false;
+		}
 	}
 
 }

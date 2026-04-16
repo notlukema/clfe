@@ -10,9 +10,9 @@ namespace clfe
 	const Attachment Pipeline::PipelineAttachment = Attachment(AttachmentLayers::Pipeline, Pipeline::sinit, nullptr, Pipeline::sterminate);
 	InstanceList<Pipeline>* Pipeline::Pipelines = nullptr;
 
-	InstanceListWrapper<Pipeline>* Pipeline::getPipelinesList()
+	InstanceListHandle<Pipeline> Pipeline::getPipelinesList()
 	{
-		return Pipelines->getWrapper();
+		return Pipelines->getHandle();
 	}
 
 	bool Pipeline::sinit()
@@ -32,7 +32,7 @@ namespace clfe
 
 	Pipeline::Pipeline(clid id) : thisid(id)
 	{
-		Pipelines->add(id, this, [this]() {});
+		Pipelines->add(this, id);
 	}
 
 	Pipeline::~Pipeline()

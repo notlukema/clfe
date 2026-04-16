@@ -19,20 +19,24 @@ namespace clfe
 
 	public:
 		static const Attachment WindowAttachment;
-		static InstanceListWrapper<Window>* getWindowsList();
 
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();
 
+		static inline InstanceListHandle<Window> getWindowsList()
+		{
+			return WindowsList->getHandle();
+		}
+
 	protected:
 		clid thisid;
-		InstanceLink<Window>* instanceLink;
-
-		InputCore* inputCore;
+		InstanceHandle<Window>* instlink;
 
 		Window(clid id);
-		void instanceDelete();
+
+		bool exists_;
+		InputCore* inputCore;
 
 		virtual void innerDestroy() = 0;
 
@@ -40,23 +44,24 @@ namespace clfe
 		// + others
 
 	public:
-		virtual ~Window();
-		clid getID() const;
+		inline clid getID() const
+		{
+			return thisid;
+		}
 
-		InputCore* getInput() const;
+		virtual ~Window();
+
+		inline InputCore* getInput() const
+		{
+			return inputCore;
+		}
 		
 		inline bool exists() const
 		{
-			return instanceLink != nullptr;
+			return exists_;
 		}
 
-		inline void destroy() const
-		{
-			if (exists())
-			{
-				delete instanceLink;
-			}
-		}
+		void destroy();
 
 		virtual int getX() const = 0;
 		virtual int getY() const = 0;

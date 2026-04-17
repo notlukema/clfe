@@ -8,8 +8,6 @@
 
 #include "clfe/window/Window.h"
 
-#include "clu/Print.h"
-
 #include <cstdlib>
 #include "Chrono.h"
 
@@ -18,6 +16,13 @@
 #include "clfe/input/KeyTables.h"
 
 #include "clfe/pipeline/Opengl4_6.h"
+
+#include "clfe/Placeholder.h"
+
+
+
+
+#include "clu/Print.h"
 
 using namespace clfe;
 
@@ -33,8 +38,27 @@ int main()
 
     Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
 
-
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
+
+
+    //a
+
+    Placeholder* a = new Placeholder([]() {
+        std::cout << "init\n";
+     }, nullptr, []() {
+         std::cout << "term\n";
+     });
+
+    Placeholder* b = new Placeholder(nullptr, nullptr, nullptr);
+
+    print(Window::getWindowsList());
+    print(Placeholder::getPlaceholderList());
+
+    delete a;
+
+    print(Placeholder::getPlaceholderList());
+
+    //a
 
     while (wnd1->exists())
     {

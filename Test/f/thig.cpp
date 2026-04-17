@@ -1,26 +1,3 @@
 #include "thig.h"
 
-namespace thig
-{
-
-	int func1()
-	{
-		return 1;
-	}
-
-	static int func2()
-	{
-		return 2;
-	}
-
-	int func3()
-	{
-		return 3;
-	}
-
-	static int func4()
-	{
-		return 4;
-	}
-
-}
+// thig.h is only included in one .cpp (main Test file) so no need to take the extra step in putting it here

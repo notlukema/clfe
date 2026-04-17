@@ -1,8 +1,14 @@
 #ifndef CLU_PRINT_H
 #define CLU_PRINT_H
 
+#include "TypeTraits.h"
+
 #include <cstdio>
-#include <type_traits>
+
+
+#ifdef CLFE_SYSTEM_H
+#include "clfe/InstanceTypes.h"
+#endif
 
 // Supplies simple print functions for whichever types are included
 
@@ -10,15 +16,15 @@ namespace clfe
 {
 
 	template <typename T>
-	static inline void printNum(const T& value) requires std::is_floating_point_v<T>
+	static inline void printNum(const T& value) requires IsFloatingPoint<T>
 	{
 		printf("%.3f", (double)value);
 	}
 
 	template <typename T>
-	static inline void printNum(const T& value) requires std::is_integral_v<T>
+	static inline void printNum(const T& value) requires IsIntegral<T>
 	{
-		printf("%.0f", (double)value);
+		printf("%df", value);
 	}
 
 #ifdef CLM_VECTOR_H
@@ -64,6 +70,42 @@ namespace clfe
 			}
 		}
 		printf("  ]\n");
+	}
+#endif
+
+#ifdef CLFE_SYSTEM_H
+	template <typename T>
+	void print(InstanceListHandle<T>* list)
+	{
+		printf("Instance List <");
+		printf(InstanceNames::getTypeName(list->getType()));
+		printf("> (%d) [", list->length());
+		bool first = true;
+		for (T* obj : *list)
+		{
+			if (first)
+			{
+				first = false;
+				printf("%pf", obj);
+			}
+			else
+			{
+				printf(", %pf", obj);
+			}
+		}
+		printf("]\n");
+	}
+
+	template <typename T>
+	void print(InstanceListHandle<T> list)
+	{
+		print(&list);
+	}
+
+	template <typename T>
+	void print(InstanceList<T>* list)
+	{
+		print(list->getHandle());
 	}
 #endif
 	

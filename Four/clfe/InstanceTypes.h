@@ -19,6 +19,31 @@ namespace clfe
 
 	};
 
+	struct InstanceNames
+	{
+
+		static constexpr const char* getTypeName(InsType_t type)
+		{
+			if (type < 0 || type >= Size)
+			{
+				return Unknown;
+			}
+			return InstanceTypeNames[type];
+		}
+
+		static constexpr int Size = 4;
+		static constexpr const char* Unknown = "Unknown";
+
+		// Avoid direct access to discourage inline code bloat
+		static constexpr const char* InstanceTypeNames[Size] = {
+			Unknown,
+			"Window",
+			"WinClass",
+			"Pipeline",
+		};
+
+	};
+
 }
 
 #endif

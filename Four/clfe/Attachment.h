@@ -1,7 +1,6 @@
 #ifndef CLFE_ATTACHMENT_H
 #define CLFE_ATTACHMENT_H
 
-#include "Attachment.h"
 #include "List.h"
 
 #include <cstdint>

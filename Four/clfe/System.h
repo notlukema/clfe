@@ -88,23 +88,35 @@ namespace clfe
 
 	};
 
+	//
+	// InstanceListHandle
+	//
+
+	template <typename T> // Forward declaration for access to list in iterator constructor
+	struct inslist_iterator;
+	template <typename T>
+	inslist_iterator<T> begin(InstanceListHandle<T>& list);
+
 	template <typename T>
 	class InstanceListHandle
 	{
 	private:
+		template <typename U> // For access to list in iterator constructor
+		friend inslist_iterator<U> begin(InstanceListHandle<U>& list);
+
 		InstanceList<T>* list;
 
 	public:
 		InstanceListHandle(InstanceList<T>* list) : list(list) {}
 
+		InsType_t getType() const
+		{
+			return list->getType();
+		}
+
 		int length()
 		{
 			return list->length();
-		}
-
-		bool remove(clid id)
-		{
-			return list->remove(id);
 		}
 
 		bool hasInstance(clid id)
@@ -118,6 +130,10 @@ namespace clfe
 		}
 		
 	};
+
+	//
+	// InstanceBase
+	//
 
 	class InstanceBase
 	{
@@ -138,7 +154,7 @@ namespace clfe
 	};
 
 	//
-	// Range based list implementation for InstanceList
+	// Range based list implementation for InstanceList and InstanceListHandle
 	//
 
 	struct inslist_null {};
@@ -177,13 +193,22 @@ namespace clfe
 	{
 		return inslist_null();
 	};
+
+	template <typename T>
+	inslist_iterator<T> begin(InstanceListHandle<T>& list)
+	{
+		return inslist_iterator<T>(list.list);
+	};
+
+	template <typename T>
+	inslist_null end(InstanceListHandle<T>& list)
+	{
+		return inslist_null();
+	};
 	
 	//
 	// InstanceList
 	//
-
-	template <typename T>
-	class InstanceHandle;
 
 	template <typename T>
 	class InstanceList : public InstanceBase
@@ -220,6 +245,10 @@ namespace clfe
 				parent->len--;
 				if (last == nullptr)
 				{
+					if (next != nullptr)
+					{
+						next->last = nullptr;
+					}
 					parent->first = next;
 				}
 				else
@@ -235,10 +264,19 @@ namespace clfe
 
 		~InstanceList()
 		{
-			while (first != nullptr)
+			while (first != nullptr) // Statement is a bit redundant with the break
 			{
+				clid id = first->id;
 				delete first->obj;
-				//delete first; // solve later
+				if (first == nullptr)
+				{
+					break;
+				}
+				if (first->id == id)
+				{
+					CLFE_LOG("Object does not delete InstanceLink upon destruction! Cleanup complete but still recommended for the object to delete the link itself.");
+					delete first;
+				}
 			}
 		}
 
@@ -257,7 +295,7 @@ namespace clfe
 			return len;
 		}
 
-		InstanceHandle<T>* add(T* object, clid id)
+		InstanceLink* add(T* object, clid id)
 		{
 			InstanceLink* node = new InstanceLink(object, id, this, first, nullptr);
 			if (first != nullptr)
@@ -266,24 +304,7 @@ namespace clfe
 			}
 			first = node;
 			len++;
-			return new InstanceHandle<T>(node);
-		}
-
-		// Also deletes the object
-		bool remove(clid id)
-		{
-			InstanceLink* node = first;
-			while (node != nullptr)
-			{
-				if (node->id == id)
-				{
-					delete node->obj;
-					//delete node; // solve later
-					return true;
-				}
-				node = node->next;
-			}
-			return false;
+			return node;
 		}
 
 		bool hasInstance(clid id) override
@@ -315,19 +336,9 @@ namespace clfe
 		}
 
 	};
-
+	
 	template <typename T>
-	class InstanceHandle
-	{
-	private:
-		InstanceList<T>::InstanceLink* link;
-	public:
-		InstanceHandle(InstanceList<T>::InstanceLink* link) : link(link) {}
-		~InstanceHandle()
-		{
-			delete link;
-		}
-	};
+	using InstanceHandle = InstanceList<T>::InstanceLink;
 
 }
 

@@ -6,6 +6,8 @@
 namespace clfe
 {
 
+	static const LRESULT BlankReturn = 0;
+
 	LRESULT CALLBACK WinWnd::defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		WinWnd* window;
@@ -26,16 +28,23 @@ namespace clfe
 			if (uMsg == WM_KEYDOWN)
 			{
 				window->getInput()->trigKeyDown(KeyTables::translateKey<WindowsKeys>(wParam));
+				return BlankReturn;
 			}
 			if (uMsg == WM_KEYUP)
 			{
 				window->getInput()->trigKeyUp(KeyTables::translateKey<WindowsKeys>(wParam));
+				return BlankReturn;
 			}
 
 			if (uMsg == WM_CLOSE)
 			{
 				window->destroy();
-				return 0; // Handle later
+				return BlankReturn;
+			}
+
+			if (uMsg == WM_MOVE)
+			{
+				CLFE_LOG("moved");
 			}
 
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);

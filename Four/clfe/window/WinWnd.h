@@ -101,8 +101,6 @@ namespace clfe
 		WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass);
 		WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
 
-		virtual ~WinWnd() override;
-
 		inline HWND getHWND() const
 		{
 			return hwnd_;
@@ -110,18 +108,34 @@ namespace clfe
 
 		virtual int getX() const override;
 		virtual int getY() const override;
-		virtual int getWidth() const override;
-		virtual int getHeight() const override;
-
+		virtual Vector2i getPosition() const override;
 		virtual void setX(int x) override;
 		virtual void setY(int y) override;
+		virtual void setPosition(int x, int y) override;
+		virtual void setPosition(const Vector2i& pos) override;
+
+		virtual int getWidth() const override;
+		virtual int getHeight() const override;
+		virtual Vector2i getSize() const override;
 		virtual void setWidth(int width) override;
 		virtual void setHeight(int height) override;
+		virtual void setSize(int width, int height) override;
+		virtual void setSize(const Vector2i& size) override;
 
 		virtual void show() override;
 		virtual void hide() override;
 		virtual void setVisible(bool visible) override;
 		virtual bool isVisible() override;
+
+		virtual void minimize() override;
+		virtual void unminimize() override;
+		virtual void setMinimized(bool minimize) override;
+		virtual bool isMinimized() override;
+
+		virtual void maximize() override;
+		virtual void unmaximize() override;
+		virtual void setMaximized(bool maximize) override;
+		virtual bool isMaximized() override;
 
 		virtual const char* getNameNarrow() override;
 		virtual const WCHAR* getNameWide() override;

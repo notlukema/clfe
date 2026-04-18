@@ -14,7 +14,6 @@ namespace clfe
 		clid thisid;
 		InstanceHandle<T>* instlink;
 
-	public:
 		InstanceInterface(InstanceList<T>* instlist) : thisid(System::genNextID())
 		{
 			instlink = instlist->add(static_cast<T*>(this), thisid);
@@ -24,6 +23,8 @@ namespace clfe
 		{
 			delete instlink;
 		}
+
+	public:
 
 		inline clid getID() const
 		{

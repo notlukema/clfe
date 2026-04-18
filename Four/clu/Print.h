@@ -86,11 +86,11 @@ namespace clfe
 			if (first)
 			{
 				first = false;
-				printf("%pf", obj);
+				printf("%p", obj);
 			}
 			else
 			{
-				printf(", %pf", obj);
+				printf(", %p", obj);
 			}
 		}
 		printf("]\n");

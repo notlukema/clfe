@@ -17,26 +17,26 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name)
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name)
 	{
 		createWindow(x, y, width, height, name, WinClass::getDefaultClass());
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
 	{
 		const WCHAR* wName = toWideString(name);
 		createWindow(x, y, width, height, wName, wClass);
 		delete wName;
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass) : Window(System::genNextID())
+	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
 	{
 		createWindow(x, y, width, height, name, wClass);
 	}
@@ -84,10 +84,6 @@ namespace clfe
 		ShowWindow(hwnd_, SW_SHOWNORMAL);
 	}
 
-	WinWnd::~WinWnd()
-	{
-	}
-
 	void WinWnd::innerDestroy()
 	{
 		// Detach from pipelines: delete mutuallinks
@@ -108,6 +104,33 @@ namespace clfe
 		return rect.top;
 	}
 
+	Vector2i WinWnd::getPosition() const
+	{
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return Vector2i(rect.left, rect.top);
+	}
+
+	void WinWnd::setX(int x)
+	{
+		SetWindowPos(hwnd_, NULL, x, getY(), 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	}
+
+	void WinWnd::setY(int y)
+	{
+		SetWindowPos(hwnd_, NULL, getX(), y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	}
+
+	void WinWnd::setPosition(int x, int y)
+	{
+		SetWindowPos(hwnd_, NULL, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	}
+
+	void WinWnd::setPosition(const Vector2i& pos)
+	{
+		SetWindowPos(hwnd_, NULL, pos.x(), pos.y(), 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	}
+
 	int WinWnd::getWidth() const
 	{
 		RECT rect;
@@ -122,14 +145,11 @@ namespace clfe
 		return rect.bottom - rect.top;
 	}
 
-	void WinWnd::setX(int x)
+	Vector2i WinWnd::getSize() const
 	{
-		SetWindowPos(hwnd_, NULL, x, getY(), 0, 0, SWP_NOZORDER | SWP_NOSIZE);
-	}
-
-	void WinWnd::setY(int y)
-	{
-		SetWindowPos(hwnd_, NULL, getX(), y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+		RECT rect;
+		GetWindowRect(hwnd_, &rect);
+		return Vector2i(rect.right - rect.left, rect.bottom - rect.top);
 	}
 
 	void WinWnd::setWidth(int width)
@@ -140,6 +160,16 @@ namespace clfe
 	void WinWnd::setHeight(int height)
 	{
 		SetWindowPos(hwnd_, NULL, 0, 0, getWidth(), height, SWP_NOZORDER | SWP_NOMOVE);
+	}
+
+	void WinWnd::setSize(int width, int height)
+	{
+		SetWindowPos(hwnd_, NULL, 0, 0, width, height, SWP_NOZORDER | SWP_NOMOVE);
+	}
+
+	void WinWnd::setSize(const Vector2i& size)
+	{
+		SetWindowPos(hwnd_, NULL, 0, 0, size.x(), size.y(), SWP_NOZORDER | SWP_NOMOVE);
 	}
 
 	void WinWnd::show()
@@ -160,6 +190,46 @@ namespace clfe
 	bool WinWnd::isVisible()
 	{
 		return true;
+	}
+
+	void WinWnd::minimize()
+	{
+
+	}
+
+	void WinWnd::unminimize()
+	{
+
+	}
+
+	void WinWnd::setMinimized(bool minimize)
+	{
+
+	}
+
+	bool WinWnd::isMinimized()
+	{
+		return false;
+	}
+
+	void WinWnd::maximize()
+	{
+
+	}
+
+	void WinWnd::unmaximize()
+	{
+
+	}
+
+	void WinWnd::setMaximized(bool maximize)
+	{
+
+	}
+
+	bool WinWnd::isMaximized()
+	{
+		return false;
 	}
 
 	const char* WinWnd::getNameNarrow()

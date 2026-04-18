@@ -50,11 +50,15 @@ int main()
      });
 
     Placeholder* b = new Placeholder(nullptr, nullptr, nullptr);
+    Placeholder* c = new Placeholder(nullptr, nullptr, nullptr);
+    Placeholder* d = new Placeholder(nullptr, nullptr, nullptr);
 
     print(Window::getWindowsList());
     print(Placeholder::getPlaceholderList());
 
     delete a;
+    delete d;
+    delete c;
 
     print(Placeholder::getPlaceholderList());
 

@@ -6,6 +6,9 @@
 namespace clfe
 {
 
+	template <typename T, typename U>
+	concept IsSame = std::is_same_v<T, U>;
+
 	template <typename T>
 	concept IsIntegral = std::is_integral_v<T>;
 

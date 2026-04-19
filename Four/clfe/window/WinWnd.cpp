@@ -19,7 +19,7 @@ namespace clfe
 
 	WinWnd::WinWnd(int x, int y, int width, int height, const char* name)
 	{
-		const WCHAR* wName = toWideString(name);
+		const WCHAR* wName = toStrWide(name);
 		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
 		delete wName;
 	}
@@ -31,7 +31,7 @@ namespace clfe
 
 	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
 	{
-		const WCHAR* wName = toWideString(name);
+		const WCHAR* wName = toStrWide(name);
 		createWindow(x, y, width, height, wName, wClass);
 		delete wName;
 	}

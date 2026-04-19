@@ -11,7 +11,9 @@
 namespace clfe
 {
 
-	const char* toNarrowString(const wchar_t* wstr)
+	// Convert
+
+	const char* toStrNarrow(const wchar_t* wstr)
 	{
 		// Obtain required size of new wide string
 		size_t required_size;
@@ -34,7 +36,7 @@ namespace clfe
 		return buffer;
 	}
 
-	const wchar_t* toWideString(const char* str)
+	const wchar_t* toStrWide(const char* str)
 	{
 		// Obtain required size of new wide string
 		size_t required_size;
@@ -57,7 +59,9 @@ namespace clfe
 		return buffer;
 	}
 
-	const char* concatNarrow(const char* str1, const char* str2)
+	// Concatenation
+
+	const char* concatStrNarrow(const char* str1, const char* str2)
 	{
 		size_t len1 = strlen(str1);
 		size_t len2 = strlen(str2);
@@ -83,7 +87,7 @@ namespace clfe
 		return buffer;
 	}
 
-	const wchar_t* concatWide(const wchar_t* str1, const wchar_t* str2)
+	const wchar_t* concatStrWide(const wchar_t* str1, const wchar_t* str2)
 	{
 		size_t len1 = wcslen(str1);
 		size_t len2 = wcslen(str2);
@@ -109,7 +113,9 @@ namespace clfe
 		return buffer;
 	}
 
-	char* copyNarrow(const char* str)
+	// Copy
+
+	char* copyStrNarrow(const char* str)
 	{
 		size_t len = strlen(str) + 1;
 
@@ -128,7 +134,7 @@ namespace clfe
 		return buffer;
 	}
 
-	wchar_t* copyWide(const wchar_t* str)
+	wchar_t* copyStrWide(const wchar_t* str)
 	{
 		size_t len = wcslen(str) + 1;
 

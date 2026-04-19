@@ -141,6 +141,7 @@
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
+    <ClCompile Include="clfe\UniString.cpp" />
     <ClCompile Include="clfe\window\WinClass.cpp" />
     <ClCompile Include="clfe\window\WinDefProc.cpp" />
     <ClCompile Include="clfe\window\Window.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="clfe\pipeline\impl\PixelFormat.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h" />
     <ClInclude Include="clfe\Placeholder.h" />
+    <ClInclude Include="clfe\UniString.h" />
     <ClInclude Include="clm\Matrix.h" />
     <ClInclude Include="clm\Matrix2x2.h" />
     <ClInclude Include="clm\Vector.h" />

@@ -43,7 +43,7 @@ namespace clfe
 
 		static inline WinClass* createClass(const char* name, WNDPROC wndProc)
 		{
-			return createClass(toWideString(name), wndProc);
+			return createClass(toStrWide(name), wndProc);
 		}
 
 	private:

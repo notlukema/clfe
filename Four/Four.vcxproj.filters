@@ -69,6 +69,9 @@
     <ClCompile Include="clfe\Placeholder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\UniString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -261,6 +264,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\Placeholder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

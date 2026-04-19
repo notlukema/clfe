@@ -36,7 +36,7 @@ namespace clfe
 
 	WinClass* WinClass::createClass(const WCHAR* name, WNDPROC wndProc)
 	{
-		const WCHAR* className = concatWide(std::to_wstring(Classes->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
+		const WCHAR* className = concatStrWide(std::to_wstring(Classes->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
 		// Class 1 -> 0_clfewnd-Class 1
 
 		WNDCLASS wc = {}; // TODO: Check out WNDCLASSEX later on
@@ -53,7 +53,7 @@ namespace clfe
 
 		clid clid = System::genNextID();
 
-		WinClass* wClass = new WinClass(clid, copyWide(name), className, atom);
+		WinClass* wClass = new WinClass(clid, copyStrWide(name), className, atom);
 
 		return wClass;
 	}

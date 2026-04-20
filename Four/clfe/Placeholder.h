@@ -9,6 +9,7 @@
 namespace clfe
 {
 
+	// Used for testing InstanceList and attachments and as a generic example of usage, though it may also have functionality as a "mini and offset attachment"
 	class Placeholder : public InstanceInterface<Placeholder>
 	{
 	private:
@@ -19,10 +20,10 @@ namespace clfe
 		static void term();
 
 	public:
-		Function<void()> func1;
-		Function<void()> func2;
-		Function<void()> func3;
-		Placeholder(Function<void()> init, Function<void()> step, Function<void()> term);
+		Function<void()> initFunc;
+		Function<void(float delf, double deld)> stepFunc;
+		Function<void()> termFunc;
+		Placeholder(Function<void()> initFunc, Function<void(float delf, double deld)> stepFunc, Function<void()> termFunc);
 		~Placeholder();
 
 		inline static InstanceListHandle<Placeholder> getPlaceholderList()

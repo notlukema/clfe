@@ -194,15 +194,13 @@ namespace clfe
 			return detHelper<U>(0, 0, Cols, Cols);
 		}
 
-		
-
 	};
 
 }
 
 #include "MatUtils.h"
 #include "MatOp.h"
-#ifdef CLM_VECTOR_H // Unnecessary but whatever
+#ifdef CLM_VECTOR_H // Unnecessary but for the sake of consistency
 #include "../VecMatUtils.h"
 #include "../VecMatOp.h"
 #endif

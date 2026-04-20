@@ -42,7 +42,7 @@ int main()
 
 
     //a
-
+    /*
     Placeholder* a = new Placeholder([]() {
         std::cout << "init\n";
      }, nullptr, []() {
@@ -61,8 +61,19 @@ int main()
     delete c;
 
     print(Placeholder::getPlaceholderList());
-
+    */
     //a
+
+    // test stringutils
+
+    const char* f = "Hello World!";
+    std::cout << strLen(f) << "\n";
+    const char* f2 = concatStr(f, " oof");
+    std::cout << f2 << " - " << strlen(f2) << "\n";
+
+    const char* funky = cutStr(f2, 0, 10);
+    std::cout << funky << " - " << strlen(funky) << "\n";
+
 
     while (wnd1->exists())
     {

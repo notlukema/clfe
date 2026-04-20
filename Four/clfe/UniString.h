@@ -10,13 +10,29 @@ namespace clfe
 	class UniString
 	{
 	private:
+		size_t len_;
 		const char* str_char; // The basic char is the common interface of UniString
 		const wchar_t* str_wchar_t;
+
+		friend void deleteData(UniString& str);
 
 	public:
 		UniString(const char* str);
 		UniString(const wchar_t* str);
+
+		UniString(const UniString& str);
+		UniString(UniString&& str) noexcept;
 		~UniString();
+
+		inline size_t length() const
+		{
+			return len_;
+		}
+
+		inline int len() const
+		{
+			return static_cast<int>(len_);
+		}
 
 		const char* get_char();
 		const wchar_t* get_wchar_t();
@@ -35,8 +51,13 @@ namespace clfe
 			return nullptr;
 		}
 
-		// put operations here soon + utility functions
-		// consider = operations and move semantics
+		// Utility
+
+		explicit operator bool() const;
+
+		UniString& operator=(UniString&& str) noexcept;
+
+		UniString operator+(const UniString& str);
 
 	};
 

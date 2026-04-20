@@ -13,56 +13,46 @@ namespace clfe
 
 	// Convert
 
-	const char* toStrNarrow(const wchar_t* str);
-	const wchar_t* toStrWide(const char* str);
+	char* toStrNarrow(const wchar_t* str);
+	wchar_t* toStrWide(const char* str);
 
 	// Concatenation
 
-	const char* concatStrNarrow(const char* str1, const char* str2);
-	const wchar_t* concatStrWide(const wchar_t* str1, const wchar_t* str2);
-
-	inline const char* concatStr(const char* str1, const char* str2)
-	{
-		return concatStrNarrow(str1, str2);
-	}
-
-	inline const wchar_t* concatStr(const wchar_t* str1, const wchar_t* str2)
-	{
-		return concatStrWide(str1, str2);
-	}
+	char* concatStr(const char* str1, const char* str2);
+	wchar_t* concatStr(const wchar_t* str1, const wchar_t* str2);
 
 	// Perhaps include inter-type string concatenation?
 
+	// Length
+
+	size_t strLen(const char* str);
+	size_t strLen(const wchar_t* str);
+
 	// Copy
 
-	char* copyStrNarrow(const char* str);
-	wchar_t* copyStrWide(const wchar_t* str);
+	char* copyStr(const char* str);
+	wchar_t* copyStr(const wchar_t* str);
 
-	inline char* copyStr(const char* str)
-	{
-		return copyStrNarrow(str);
-	}
+	// Cut
 
-	inline wchar_t* copyStr(const wchar_t* str)
-	{
-		return copyStrWide(str);
-	}
+	char* cutStr(const char* str, size_t a, size_t b);
+	wchar_t* cutStr(const wchar_t* str, size_t a, size_t b);
 
 	// Flexible conversion functions
 
-	inline const char* toStrNarrow(const char* str)
+	inline char* toStrNarrow(const char* str)
 	{
-		return copyStrNarrow(str);
+		return copyStr(str);
 	}
 
-	inline const wchar_t* toStrWide(const wchar_t* str)
+	inline wchar_t* toStrWide(const wchar_t* str)
 	{
-		return toStrWide(str);
+		return copyStr(str);
 	}
 
 	template <typename To, typename From>
 		requires UtilsCompatibleString<To> && UtilsCompatibleString<From>
-	const To* toStr(const From* str)
+	To* toStr(const From* str)
 	{
 		if (IsSame<To, char>)
 		{

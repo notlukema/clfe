@@ -19,26 +19,26 @@ namespace clfe
 	{
 		for (Placeholder* obj : *PlaceholderList)
 		{
-			if (obj->func2 != nullptr)
+			if (obj->stepFunc != nullptr)
 			{
-				obj->func2();
+				obj->stepFunc(delf, deld);
 			}
 		}
 	}
 
-	Placeholder::Placeholder(Function<void()> init, Function<void()> step, Function<void()> term) : InstanceInterface(PlaceholderList), func1(init), func2(step), func3(term)
+	Placeholder::Placeholder(Function<void()> initFunc, Function<void(float delf, double deld)> stepFunc, Function<void()> termFunc) : InstanceInterface(PlaceholderList), initFunc(initFunc), stepFunc(stepFunc), termFunc(termFunc)
 	{
-		if (func1 != nullptr)
+		if (initFunc != nullptr)
 		{
-			func1();
+			initFunc();
 		}
 	}
 
 	Placeholder::~Placeholder()
 	{
-		if (func3 != nullptr)
+		if (termFunc != nullptr)
 		{
-			func3();
+			termFunc();
 		}
 	}
 

@@ -1,5 +1,5 @@
-#ifndef CLM_VECTOR_I_H
-#define CLM_VECTOR_I_H
+#ifndef CLM_VECTOR_H
+#define CLM_VECTOR_H
 
 #include "clm/impl/VecMatCommon.h"
 
@@ -32,16 +32,6 @@ namespace clfe
 			for (msize_t i = 0; i < Size; i++)
 			{
 				array[i] = arr[i];
-			}
-		}
-
-		template <typename U>
-			requires Compatible<T, U>
-		Vector(const Vector<Size, U>& vec)
-		{
-			for (msize_t i = 0; i < Size; i++)
-			{
-				array[i] = static_cast<T>(vec.array[i]);
 			}
 		}
 
@@ -110,8 +100,8 @@ namespace clfe
 #include "VecUtils.h"
 #include "VecOp.h"
 #ifdef CLM_MATRIX_H
-#include "../VecMatUtils.h"
-#include "../VecMatOp.h"
+#include "../impl/VecMatUtils.h"
+#include "../impl/VecMatOp.h"
 #endif
 
 #endif

@@ -9,7 +9,7 @@ namespace clfe
 {
 
 	template <msize_t Size, typename T>
-	inline Matrix<Size, 1, T> toMatrix(const Vector<Size, T>& vec)
+	Matrix<Size, 1, T> toMatrix(const Vector<Size, T>& vec)
 	{
 		Matrix<Size, 1, T> result;
 		for (msize_t i = 0; i < Size; i++)

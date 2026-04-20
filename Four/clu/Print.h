@@ -24,7 +24,7 @@ namespace clfe
 	template <typename T>
 	static inline void printNum(const T& value) requires IsIntegral<T>
 	{
-		printf("%df", value);
+		printf("%d", value);
 	}
 
 #ifdef CLM_VECTOR_H

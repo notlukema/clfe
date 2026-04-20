@@ -1,5 +1,5 @@
-#ifndef CLM_MATRIX_2X2I_H
-#define CLM_MATRIX_2X2I_H
+#ifndef CLM_MATRIX_2X2_H
+#define CLM_MATRIX_2X2_H
 
 #include "Matrix_i.h"
 
@@ -49,11 +49,9 @@ namespace clfe
 			ct(arr[2], arr[3])
 		} {}
 
-		template <typename U>
-			requires Compatible<T, U>
-		Matrix(const Matrix<2, 2, U>& mat) : array{
-			ct(mat.getRow(0)),
-			ct(mat.getRow(1))
+		Matrix(const Vector<2, T>* arr) : array{
+			arr[0],
+			arr[1]
 		} {}
 
 		inline int rows() const

@@ -7,29 +7,6 @@
 namespace clfe
 {
 
-	template <msize_t Size, typename T, typename U>
-		requires Arithmetic<T> && Arithmetic<U>
-	auto dot(const Vector<Size, T>& vec1, const Vector<Size, U>& vec2) -> decltype(static_cast<T>(0) + static_cast<U>(0))
-	{
-		auto result = static_cast<decltype(static_cast<T>(0) + static_cast<U>(0))>(0);
-		for (msize_t i = 0; i < Size; i++)
-		{
-			result += vec1.get(i) * vec2.get(i);
-		}
-		return result;
-	}
-
-	template <msize_t Size, typename T, typename U>
-		requires (Size == 3) && Arithmetic<T> && Arithmetic<U>
-	auto cross(const Vector<Size, T>& vec1, const Vector<Size, U>& vec2) -> Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0))>
-	{
-		return Vector<Size, decltype(static_cast<T>(0) + static_cast<U>(0))>(
-			vec1.get(1) * vec2.get(2) - vec1.get(2) * vec2.get(1),
-			vec1.get(2) * vec2.get(0) - vec1.get(0) * vec2.get(2),
-			vec1.get(0) * vec2.get(1) - vec1.get(1) * vec2.get(0)
-		);
-	}
-
 	//
 	// Inter-vector operations
 	//

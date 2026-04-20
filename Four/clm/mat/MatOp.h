@@ -10,6 +10,10 @@
 namespace clfe
 {
 
+	//
+	// Inter-matrix operations
+	//
+
 	// Addition
 
 	template <msize_t Cols, msize_t Rows, typename T, typename U>

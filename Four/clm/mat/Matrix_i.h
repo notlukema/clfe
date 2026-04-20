@@ -1,5 +1,5 @@
-#ifndef CLM_MATRIX_I_H
-#define CLM_MATRIX_I_H
+#ifndef CLM_MATRIX_H
+#define CLM_MATRIX_H
 
 #include "clm/impl/VecMatCommon.h"
 #include "clm/vec/Vector_i.h"
@@ -62,13 +62,11 @@ namespace clfe
 			}
 		}
 
-		template <typename U>
-			requires Compatible<T, U>
-		Matrix(const Matrix<Cols, Rows, U>& mat)
+		Matrix(const Vector<Cols, T>* arr)
 		{
 			for (msize_t r = 0; r < Rows; r++)
 			{
-				array[r] = cast<T>(mat.getRow(r));
+				array[r] = arr[r];
 			}
 		}
 
@@ -201,8 +199,8 @@ namespace clfe
 #include "MatUtils.h"
 #include "MatOp.h"
 #ifdef CLM_VECTOR_H // Unnecessary but for the sake of consistency
-#include "../VecMatUtils.h"
-#include "../VecMatOp.h"
+#include "../impl/VecMatUtils.h"
+#include "../impl/VecMatOp.h"
 #endif
 
 #endif

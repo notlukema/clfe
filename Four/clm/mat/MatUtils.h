@@ -3,18 +3,22 @@
 
 // Guards against if anyone decides to include this file directly
 #include "Matrix_i.h"
+#include "../vec/Vector_i.h" // Redundant
+#include "../vec/VecUtils.h"
 
-namespace clfe // Utility functions
+namespace clfe
 {
 
+	// Default utilities
+
 	template <msize_t Cols, msize_t Rows, msize_t Cols0, msize_t Rows0, typename T> // Could try replacing Cols and Cols0 with one template parameter, same with Rows and Rows0
-	inline Matrix<Cols, Rows, T> resize(const Matrix<Cols0, Rows0, T>& mat) requires (Cols == Cols0) && (Rows == Rows0)
+	inline Matrix<Cols, Rows, T> resizeMat(const Matrix<Cols0, Rows0, T>& mat) requires (Cols == Cols0) && (Rows == Rows0)
 	{
 		return Matrix<Cols, Rows, T>(mat);
 	}
 
 	template <msize_t Cols, msize_t Rows, msize_t Cols0, msize_t Rows0, typename T>
-	Matrix<Cols, Rows, T> resize(const Matrix<Cols0, Rows0, T>& mat) requires (Cols != Cols0) || (Rows != Rows0)
+	Matrix<Cols, Rows, T> resizeMat(const Matrix<Cols0, Rows0, T>& mat) requires (Cols != Cols0) || (Rows != Rows0)
 	{
 		Matrix<Cols, Rows, T> result;
 		for (msize_t r = 0; r < Rows; r++)
@@ -24,15 +28,21 @@ namespace clfe // Utility functions
 		return result;
 	}
 
-	template <typename T, msize_t Cols, msize_t Rows, typename U>
-		requires Compatible<T, U>
-	inline Matrix<Cols, Rows, T> cast(const Matrix<Cols, Rows, U>& mat)
+	template <typename To, msize_t Cols, msize_t Rows, typename From>
+		requires Compatible<From, To>
+	inline Matrix<Cols, Rows, To> castMat(const Matrix<Cols, Rows, From>& mat)
 	{
-		return Matrix<Cols, Rows, T>(mat);
+		Vector<Cols, To> arr[Rows];
+		for (msize_t i = 0; i < Rows; i++)
+		{
+			arr[i] = castVec<To>(mat.getRow(i));
+		}
+		return Matrix<Cols, Rows, To>(arr);
 	}
 
-	// Transformation matrices functions
+	// Transformation matrices
 
+	// mat scale
 	template <typename T = float>
 	Matrix<4, 4, T> scale(T scale)
 	{

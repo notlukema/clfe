@@ -26,11 +26,16 @@ namespace clfe
 		Placeholder(Function<void()> initFunc, Function<void(float delf, double deld)> stepFunc, Function<void()> termFunc);
 		~Placeholder();
 
-		inline static InstanceListHandle<Placeholder> getPlaceholderList()
+		inline static InstanceListHandle<Placeholder> getInstanceList()
 		{
 			return PlaceholderList->getHandle();
 		}
 
 	};
+
+	inline InstanceListHandle<Placeholder> getPlaceholderList()
+	{
+		return Placeholder::getInstanceList();
+	}
 
 }

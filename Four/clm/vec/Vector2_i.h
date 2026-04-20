@@ -1,5 +1,5 @@
-#ifndef CLM_VECTOR_2I_H
-#define CLM_VECTOR_2I_H
+#ifndef CLM_VECTOR_2_H
+#define CLM_VECTOR_2_H
 
 #include "Vector_i.h"
 
@@ -36,13 +36,6 @@ namespace clfe
 		Vector(const T* arr) : array{
 			arr[0],
 			arr[1]
-		} {}
-
-		template <typename U>
-			requires Compatible<T, U>
-		Vector(const Vector<2, U>& vec) : array{
-			static_cast<T>(vec.array[0]),
-			static_cast<T>(vec.array[1])
 		} {}
 
 		inline msize_t size() const

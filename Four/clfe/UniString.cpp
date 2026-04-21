@@ -83,6 +83,21 @@ namespace clfe
 		return len_ > 0;
 	}
 
+	UniString& UniString::operator=(const UniString& str)
+	{
+		if (this == &str)
+		{
+			return *this;
+		}
+		deleteData(*this);
+
+		len_ = str.len_;
+		str_char = str.str_char == nullptr ? nullptr : copyStr(str.str_char);
+		str_wchar_t = str.str_wchar_t == nullptr ? nullptr : copyStr(str.str_wchar_t);
+
+		return *this;
+	}
+
 	UniString& UniString::operator=(UniString&& str) noexcept
 	{
 		if (this == &str)
@@ -102,9 +117,9 @@ namespace clfe
 		return *this;
 	}
 
-	UniString UniString::operator+(const UniString& str)
+	UniString operator+(const UniString& str1, const UniString& str2)
 	{
-		return UniString(concatStr(str_char, str.str_char));
+		return UniString(concatStr(str1.str_char, str2.str_char));
 	}
 
 }

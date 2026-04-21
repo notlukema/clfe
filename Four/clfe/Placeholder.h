@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CLFE_PLACEHOLDER_H
+#define CLFE_PLACEHOLDER_H
 
 #include "System.h"
 #include "InstanceInterface.h"
@@ -39,3 +40,5 @@ namespace clfe
 	}
 
 }
+
+#endif

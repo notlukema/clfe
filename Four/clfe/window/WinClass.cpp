@@ -3,12 +3,12 @@
 #include "clfe/AttachmentLayers.h"
 #include "clfe/InstanceTypes.h"
 
-#include <string> // tenmporary for std::to_wstring, consider replacing with custom implementation later
+#include "clu/FlexibleToString.h"
 
 namespace clfe
 {
 	
-	InstanceList<WinClass>* WinClass::Classes = nullptr;
+	InstanceList<WinClass>* WinClass::ClassList = nullptr;
 	const Attachment WinClass::WinWndAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
 
 	HINSTANCE WinClass::HInstance;
@@ -16,7 +16,7 @@ namespace clfe
 
 	bool WinClass::init()
 	{
-		Classes = new InstanceList<WinClass>(InstanceTypes::WinClass);
+		ClassList = new InstanceList<WinClass>(InstanceTypes::WinClass);
 		HInstance = GetModuleHandle(NULL);
 		DefaultClass = createClass("Default", WinWnd::defWndProc);
 		return DefaultClass != nullptr;
@@ -29,44 +29,40 @@ namespace clfe
 
 	void WinClass::terminate()
 	{
-		delete Classes;
-		Classes = nullptr;
+		delete ClassList;
+		ClassList = nullptr;
 		DefaultClass = nullptr;
 	}
 
-	WinClass* WinClass::createClass(const WCHAR* name, WNDPROC wndProc)
+	WinClass* WinClass::createClass(UniString name, WNDPROC wndProc)
 	{
-		const WCHAR* className = concatStr(std::to_wstring(Classes->length() + 1 /* Placeholder ID */).append(L"_clfewnd-").c_str(), name); // TODO: fix Placeholder I guess
-		// Class 1 -> 0_clfewnd-Class 1
+		UniString className = name + "_clfewinwnd" + toStr(ClassList->length());
+		// Default Class -> Default_clfewinwnd0
 
 		WNDCLASS wc = {}; // TODO: Check out WNDCLASSEX later on
 		wc.lpfnWndProc = wndProc;
 		wc.hInstance = HInstance;
-		wc.lpszClassName = className;
+		wc.lpszClassName = className.get_wchar_t();
 
 		ATOM atom = RegisterClass(&wc);
 		if (atom == NULL) {
-			DWORD error = GetLastError();
-			CLFE_ERROR("placeholder error again (class init error)"); // TODO: fix error logging
+			//DWORD error = GetLastError();
+			CLFE_ERROR("Error registering windows class!");
 			return nullptr;
 		}
 
-		clid clid = System::genNextID();
-
-		WinClass* wClass = new WinClass(clid, copyStr(name), className, atom);
+		WinClass* wClass = new WinClass(name, className, atom);
 
 		return wClass;
 	}
 
-	WinClass::WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass) : thisid(id), name(name), className(className), wClass(wClass)
+	WinClass::WinClass(UniString name, UniString className, ATOM wClass) : InstanceInterface(ClassList), name(name), className(className), wClass(wClass)
 	{
-		instlink = Classes->add(this, id);
 	}
 
 	WinClass::~WinClass()
 	{
 		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
-		delete instlink;
 	}
 
 }

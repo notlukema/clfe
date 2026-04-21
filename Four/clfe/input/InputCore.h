@@ -2,6 +2,7 @@
 #define CLFE_INPUT_CORE_H
 
 #include "InputParams.h"
+
 #include "Function.h"
 
 namespace clfe

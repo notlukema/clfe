@@ -171,6 +171,7 @@
     <ClInclude Include="clm\Vector2.h" />
     <ClInclude Include="clm\Vector3.h" />
     <ClInclude Include="clm\Vector4.h" />
+    <ClInclude Include="clu\FlexibleToString.h" />
     <ClInclude Include="interface\Chrono.h" />
     <ClInclude Include="interface\Concepts.h" />
     <ClInclude Include="interface\Exception.h" />

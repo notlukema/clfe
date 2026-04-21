@@ -2,17 +2,17 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
-#include "clu/StringUtils.h"
+#include "clfe/InstanceInterface.h"
 
 #include <Windows.h>
 
 namespace clfe
 {
 
-	class WinClass
+	class WinClass : public InstanceInterface<WinClass>
 	{
 	private:
-		static InstanceList<WinClass>* Classes;
+		static InstanceList<WinClass>* ClassList;
 
 		static HINSTANCE HInstance;
 		static WinClass* DefaultClass;
@@ -24,9 +24,9 @@ namespace clfe
 		static void step(float delf, double deld);
 		static void terminate();
 
-		static InstanceListHandle<WinClass> getClassesList()
+		static InstanceListHandle<WinClass> getInstanceList()
 		{
-			return Classes->getHandle();
+			return ClassList->getHandle();
 		}
 
 		static inline HINSTANCE getHInstance()
@@ -39,36 +39,23 @@ namespace clfe
 			return DefaultClass;
 		}
 
-		static WinClass* createClass(const WCHAR* name, WNDPROC wndProc);
-
-		static inline WinClass* createClass(const char* name, WNDPROC wndProc)
-		{
-			return createClass(toStrWide(name), wndProc);
-		}
+		static WinClass* createClass(UniString name, WNDPROC wndProc);
 
 	private:
-		clid thisid;
-		InstanceHandle<WinClass>* instlink;
-
-		const WCHAR* name,* className;
+		UniString name, className;
 		ATOM wClass;
 
-		WinClass(clid id, const WCHAR* name, const WCHAR* className, ATOM wClass);
+		WinClass(UniString name, UniString className, ATOM wClass);
 
 	public:
-		inline clid getID() const
-		{
-			return thisid;
-		}
-
 		~WinClass();
 
-		inline const WCHAR* getName() const
+		inline UniString getName() const
 		{
 			return name;
 		}
 
-		inline const WCHAR* getClassName() const
+		inline UniString getClassName() const
 		{
 			return className;
 		}
@@ -79,6 +66,11 @@ namespace clfe
 		}
 
 	};
+
+	inline InstanceListHandle<WinClass> getWinClassList()
+	{
+		return WinClass::getInstanceList();
+	}
 
 	class WinWnd : public Window
 	{
@@ -91,20 +83,21 @@ namespace clfe
 		const WinClass* wClass_;
 		HWND hwnd_;
 
-		void createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
+		void createWindow(UniString name, const WinClass* wClass, int x, int y, int width, int height);
 
 		virtual void innerDestroy() override;
 
 	public: // Interface implementations
-		WinWnd(int x, int y, int width, int height, const char* name);
-		WinWnd(int x, int y, int width, int height, const WCHAR* name);
-		WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass);
-		WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass);
+		WinWnd(UniString name, int x, int y, int width, int height);
+		WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height);
 
 		inline HWND getHWND() const
 		{
 			return hwnd_;
 		}
+
+		virtual UniString getName() override;
+		virtual void setName(UniString name) override;
 
 		virtual int getX() const override;
 		virtual int getY() const override;
@@ -136,11 +129,6 @@ namespace clfe
 		virtual void unmaximize() override;
 		virtual void setMaximized(bool maximize) override;
 		virtual bool isMaximized() override;
-
-		virtual const char* getNameNarrow() override;
-		virtual const WCHAR* getNameWide() override;
-		virtual void setName(const char* name) override;
-		virtual void setName(const WCHAR* name) override;
 
 	};
 

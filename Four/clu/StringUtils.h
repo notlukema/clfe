@@ -38,6 +38,8 @@ namespace clfe
 	char* cutStr(const char* str, size_t a, size_t b);
 	wchar_t* cutStr(const wchar_t* str, size_t a, size_t b);
 
+	// Perhaps add toStr methods?
+
 	// Flexible conversion functions
 
 	inline char* toStrNarrow(const char* str)

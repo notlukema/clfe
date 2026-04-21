@@ -201,31 +201,31 @@ namespace clfe
 
         currentNode = firstNode;
         dothefunny(
-            translate(0.8f, 0.0f, 0.0f)
-            * rotateX(0.3f)
-            * rotateZ(rot * 1.5f)
+            mtranslate(0.8f, 0.0f, 0.0f)
+            * mrotateX(0.3f)
+            * mrotateZ(rot * 1.5f)
         , 0.4);
 
         dothefunny(
-            translate(-3.0f, 0.5f*sinf(rot * 1.5f), 0.0f)
-            * rotateX(Constf.Pi * sinf(rot * 3))
-            * rotateY(Constf.Pi * sinf(rot * 2 + 1))
-            * rotateZ(Constf.Pi * sinf(rot + 5))
+            mtranslate(-3.0f, 0.5f*sinf(rot * 1.5f), 0.0f)
+            * mrotateX(Constf.Pi * sinf(rot * 3))
+            * mrotateY(Constf.Pi * sinf(rot * 2 + 1))
+            * mrotateZ(Constf.Pi * sinf(rot + 5))
         , 0.2);
 
         dothefunny(
-            translate(12.0f * sinf(rot * 5), -14.0f, -50 + 30.0f * cosf(rot * 5))
-            * rotateX(0.2f)
+            mtranslate(12.0f * sinf(rot * 5), -14.0f, -50 + 30.0f * cosf(rot * 5))
+            * mrotateX(0.2f)
         , 3);
 
         dothefunny(
-            translate(-1.2f, 0.3f, 0.0f)
-            * rotateX(rot * 1.2f)
+            mtranslate(-1.2f, 0.3f, 0.0f)
+            * mrotateX(rot * 1.2f)
         , 0.4);
 
         dothefunny(
-            translate(3.0f, 1.0f, 0.0f)
-            * rotateY(rot * 9)
+            mtranslate(3.0f, 1.0f, 0.0f)
+            * mrotateY(rot * 9)
         , 0.2);
 
         SwapBuffers(hDC);

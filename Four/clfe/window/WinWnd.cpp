@@ -17,31 +17,17 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name)
+	WinWnd::WinWnd(UniString name, int x, int y, int width, int height)
 	{
-		const WCHAR* wName = toStrWide(name);
-		createWindow(x, y, width, height, wName, WinClass::getDefaultClass());
-		delete wName;
+		createWindow(name, WinClass::getDefaultClass(), x, y, width, height);
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name)
+	WinWnd::WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height)
 	{
-		createWindow(x, y, width, height, name, WinClass::getDefaultClass());
+		createWindow(name, wClass, x, y, width, height);
 	}
 
-	WinWnd::WinWnd(int x, int y, int width, int height, const char* name, const WinClass* wClass)
-	{
-		const WCHAR* wName = toStrWide(name);
-		createWindow(x, y, width, height, wName, wClass);
-		delete wName;
-	}
-
-	WinWnd::WinWnd(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
-	{
-		createWindow(x, y, width, height, name, wClass);
-	}
-
-	void WinWnd::createWindow(int x, int y, int width, int height, const WCHAR* name, const WinClass* wClass)
+	void WinWnd::createWindow(UniString name, const WinClass* wClass, int x, int y, int width, int height)
 	{
 		HINSTANCE hInstance = GetModuleHandle(NULL);
 
@@ -63,7 +49,7 @@ namespace clfe
 		hwnd_ = CreateWindowExW(
 			NULL,
 			MAKEINTATOM(wClass->getClassAtom()),
-			name,
+			name.get_wchar_t(),
 			WS_OVERLAPPEDWINDOW,
 
 			x, y, width, height,
@@ -88,6 +74,16 @@ namespace clfe
 	{
 		// Detach from pipelines: delete mutuallinks
 		DestroyWindow(hwnd_);
+	}
+
+	UniString WinWnd::getName()
+	{
+		return UniString("funky");
+	}
+
+	void WinWnd::setName(UniString name)
+	{
+
 	}
 
 	int WinWnd::getX() const
@@ -230,25 +226,6 @@ namespace clfe
 	bool WinWnd::isMaximized()
 	{
 		return false;
-	}
-
-	const char* WinWnd::getNameNarrow()
-	{
-		return "";
-	}
-
-	const WCHAR* WinWnd::getNameWide()
-	{
-		return L"";
-	}
-
-	void WinWnd::setName(const char* name)
-	{
-
-	}
-
-	void WinWnd::setName(const WCHAR* name)
-	{
 	}
 
 	// Keep adding them

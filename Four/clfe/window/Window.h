@@ -6,6 +6,7 @@
 #include "clfe/System.h"
 #include "clfe/input/InputCore.h"
 #include "clfe/InstanceInterface.h"
+#include "clfe/UniString.h"
 
 #include "clm/Vector2.h"
 
@@ -20,16 +21,16 @@ namespace clfe
 	{
 	private:
 		static const Attachment WindowAttachment;
-		static InstanceList<Window>* WindowsList;
+		static InstanceList<Window>* WindowList;
 
 	public:
 		static bool init();
 		static void step(float delf, double deld);
 		static void terminate();
 
-		static inline InstanceListHandle<Window> getWindowsList()
+		static inline InstanceListHandle<Window> getInstanceList()
 		{
-			return WindowsList->getHandle();
+			return WindowList->getHandle();
 		}
 
 	protected:
@@ -83,6 +84,19 @@ namespace clfe
 			return destroyRequested;
 		}
 
+		virtual UniString getName() = 0;
+		virtual void setName(UniString name) = 0;
+
+		inline const char* getNameNarrow()
+		{
+			return getName().get_char();
+		}
+
+		inline const wchar_t* getNameWide()
+		{
+			return getName().get_wchar_t();
+		}
+
 		virtual int getX() const = 0;
 		virtual int getY() const = 0;
 		virtual Vector2i getPosition() const = 0;
@@ -117,32 +131,17 @@ namespace clfe
 		virtual void setMaximized(bool maximize) = 0;
 		virtual bool isMaximized() = 0;
 
-		inline const char* const getName()
-		{
-			return getNameNarrow();
-		}
-		virtual const char* getNameNarrow() = 0;
-		virtual const wchar_t* getNameWide() = 0;
-		virtual void setName(const char* name) = 0;
-		virtual void setName(const wchar_t* name) = 0;
-
 		// Other stuff later
 		// Vector position finding with vec2 and stuff
 		// Icons, cursors, fullscreen, borderless, resizable, etc.
 	};
 
-	Window* createWindow(int x, int y, int width, int height, const char* name);
-	Window* createWindow(int x, int y, int width, int height, const wchar_t* name);
-
-	inline Window* createWindow(const char* name, int x = WindowDefault, int y = WindowDefault, int width = WindowDefault, int height = WindowDefault)
+	inline InstanceListHandle<Window> getWindowList()
 	{
-		return createWindow(x, y, width, height, name);
+		return Window::getInstanceList();
 	}
 
-	inline Window* createWindow(const wchar_t* name, int x = WindowDefault, int y = WindowDefault, int width = WindowDefault, int height = WindowDefault)
-	{
-		return createWindow(x, y, width, height, name);
-	}
+	Window* createWindow(UniString name, int x = WindowDefault, int y = WindowDefault, int width = WindowDefault, int height = WindowDefault);
 
 }
 

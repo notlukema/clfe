@@ -11,8 +11,8 @@ namespace clfe
 	{
 	private:
 		size_t len_;
-		const char* str_char; // The basic char is the common interface of UniString
-		const wchar_t* str_wchar_t;
+		char* str_char; // The basic char is the common interface of UniString
+		wchar_t* str_wchar_t;
 
 		friend void deleteData(UniString& str);
 
@@ -55,11 +55,14 @@ namespace clfe
 
 		explicit operator bool() const;
 
+		UniString& operator=(const UniString& str);
 		UniString& operator=(UniString&& str) noexcept;
 
-		UniString operator+(const UniString& str);
+		friend UniString operator+(const UniString& str1, const UniString& str2);
 
 	};
+
+	UniString operator+(const UniString& str1, const UniString& str2);
 
 }
 

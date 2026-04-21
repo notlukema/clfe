@@ -6,17 +6,9 @@
 namespace clfe
 {
 
-	Window* createWindow(int x, int y, int width, int height, const char* name) {
+	Window* createWindow(UniString name, int x, int y, int width, int height) {
 #ifdef CLFE_OS_WIN
-		return new WinWnd(x, y, width, height, name);
-#elif
-		return nullptr;
-#endif
-	}
-
-	Window* createWindow(int x, int y, int width, int height, const wchar_t* name) {
-#ifdef CLFE_OS_WIN
-		return new WinWnd(x, y, width, height, name);
+		return new WinWnd(name, x, y, width, height);
 #elif
 		return nullptr;
 #endif
@@ -25,17 +17,17 @@ namespace clfe
 	//
 
 	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
-	InstanceList<Window>* Window::WindowsList = nullptr;
+	InstanceList<Window>* Window::WindowList = nullptr;
 
 	bool Window::init()
 	{
-		WindowsList = new InstanceList<Window>(InstanceTypes::Window);
+		WindowList = new InstanceList<Window>(InstanceTypes::Window);
 		return true;
 	}
 
 	void Window::step(float delf, double deld)
 	{
-		for (Window* window : *WindowsList)
+		for (Window* window : *WindowList)
 		{
 			window->getInput()->step();
 		}
@@ -43,11 +35,11 @@ namespace clfe
 
 	void Window::terminate()
 	{
-		delete WindowsList;
-		WindowsList = nullptr;
+		delete WindowList;
+		WindowList = nullptr;
 	}
 
-	Window::Window() : InstanceInterface(WindowsList), exists_(true), destroyRequested(false),
+	Window::Window() : InstanceInterface(WindowList), exists_(true), destroyRequested(false),
 		MoveCallback(nullptr), ResizeCallback(nullptr), CloseCallback(nullptr), MinimizeCallback(nullptr), MaximizeCallback(nullptr)//, VisibilityCallback(nullptr)
 	{
 		inputCore = new InputCore();

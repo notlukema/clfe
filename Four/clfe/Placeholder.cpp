@@ -2,13 +2,16 @@
 
 namespace clfe
 {
+
 	const Attachment Placeholder::PlaceholderAttachment = Attachment(1, init, step, term);
 	InstanceList<Placeholder>* Placeholder::PlaceholderList = nullptr;
+
 	bool Placeholder::init()
 	{
 		PlaceholderList = new InstanceList<Placeholder>(99);
 		return true;
 	}
+
 	void Placeholder::term()
 	{
 		delete PlaceholderList;

@@ -44,7 +44,7 @@ namespace clfe
 
 	// mat scale
 	template <typename T = float>
-	Matrix<4, 4, T> scale(T scale)
+	Matrix<4, 4, T> mscale(T scale)
 	{
 		return Matrix<4, 4, T>(
 			scale, 0, 0, 0,
@@ -54,8 +54,9 @@ namespace clfe
 		);
 	}
 
+	// mat scale
 	template <typename T = float>
-	Matrix<4, 4, T> scale(T scaleX, T scaleY, T scaleZ)
+	Matrix<4, 4, T> mscale(T scaleX, T scaleY, T scaleZ)
 	{
 		return Matrix<4, 4, T>(
 			scaleX, 0, 0, 0,
@@ -65,8 +66,9 @@ namespace clfe
 		);
 	}
 
+	// mat translate
 	template <typename T = float>
-	Matrix<4, 4, T> translate(T tx, T ty, T tz)
+	Matrix<4, 4, T> mtranslate(T tx, T ty, T tz)
 	{
 		return Matrix<4, 4, T>(
 			1, 0, 0, tx,
@@ -76,8 +78,9 @@ namespace clfe
 		);
 	}
 
+	// mat rotate x
 	template <typename T = float>
-	Matrix<4, 4, T> rotateX(float rad)
+	Matrix<4, 4, T> mrotateX(float rad)
 	{
 		T c = static_cast<T>(cos(rad));
 		T s = static_cast<T>(sin(rad));
@@ -89,8 +92,9 @@ namespace clfe
 		);
 	}
 
+	// mat rotate y
 	template <typename T = float>
-	Matrix<4, 4, T> rotateY(float rad)
+	Matrix<4, 4, T> mrotateY(float rad)
 	{
 		T c = static_cast<T>(cos(rad));
 		T s = static_cast<T>(sin(rad));
@@ -102,8 +106,9 @@ namespace clfe
 		);
 	}
 
+	// mat rotate z
 	template <typename T = float>
-	Matrix<4, 4, T> rotateZ(float rad)
+	Matrix<4, 4, T> mrotateZ(float rad)
 	{
 		T c = static_cast<T>(cos(rad));
 		T s = static_cast<T>(sin(rad));
@@ -115,10 +120,10 @@ namespace clfe
 		);
 	}
 
-	// Weird
+	// mat rotate
 	template <typename T = float>
 		requires Arithmetic<T>
-	Matrix<4, 4, T> rotate(float rad, Vector<3, T> axis)
+	Matrix<4, 4, T> mrotate(float rad, Vector<3, T> axis)
 	{
 		axis = axis.normalized();
 		T c = static_cast<T>(cos(rad));

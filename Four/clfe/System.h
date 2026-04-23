@@ -244,12 +244,12 @@ namespace clfe
 			~InstanceLink()
 			{
 				parent->len--;
+				if (next != nullptr)
+				{
+					next->last = last;
+				}
 				if (last == nullptr)
 				{
-					if (next != nullptr)
-					{
-						next->last = nullptr;
-					}
 					parent->first = next;
 				}
 				else

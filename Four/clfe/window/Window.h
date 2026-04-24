@@ -7,6 +7,7 @@
 #include "clfe/input/InputCore.h"
 #include "clfe/InstanceInterface.h"
 #include "clfe/UniString.h"
+#include "clfe/SharedLink.h"
 
 #include "clm/Vector2.h"
 
@@ -31,6 +32,16 @@ namespace clfe
 		static inline InstanceListHandle<Window> getInstanceList()
 		{
 			return WindowList->getHandle();
+		}
+
+	protected: // Shared links
+		LinkWell* PipelineWell;
+		static void PipelineInit(Window* this_);
+
+	public:
+		inline SharedLink* pullPipelineLink()
+		{
+			return PipelineWell->pull();
 		}
 
 	protected:

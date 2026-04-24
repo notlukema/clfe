@@ -3,6 +3,8 @@
 #include "clfe/AttachmentLayers.h"
 #include "clfe/InstanceTypes.h"
 
+#include "clfe/Log.h"
+
 namespace clfe
 {
 
@@ -43,6 +45,13 @@ namespace clfe
 		MoveCallback(nullptr), ResizeCallback(nullptr), CloseCallback(nullptr), MinimizeCallback(nullptr), MaximizeCallback(nullptr)//, VisibilityCallback(nullptr)
 	{
 		inputCore = new InputCore();
+
+		PipelineWell = new LinkWell(new LinkFuncSingle<Window>(this, PipelineInit), nullptr);
+	}
+
+	void Window::PipelineInit(Window* this_)
+	{
+		CLFE_LOG("window connected to pipeline");
 	}
 
 	Window::~Window()
@@ -63,6 +72,7 @@ namespace clfe
 				}
 			}
 
+			delete PipelineWell;
 			innerDestroy();
 			exists_ = false;
 		}

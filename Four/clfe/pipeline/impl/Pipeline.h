@@ -3,6 +3,7 @@
 
 #include "clfe/System.h"
 #include "clfe/window/Window.h"
+#include "clfe/SharedLink.h"
 
 namespace clfe
 {
@@ -19,20 +20,21 @@ namespace clfe
 		static bool sinit();
 		static void sterminate();
 
+	protected: // Shared links
+		//LinkPool* WindowPool;
+
+
 	protected:
 		clid thisid;
 		Pipeline(clid id);
 		InstanceHandle<Pipeline>* instlink;
-
-		//LinkWell<Pipeline, Window> windowLinkWell;
 
 	public:
 		virtual ~Pipeline();
 		clid getID() const;
 
 		//virtual void draw() = 0;
-		//Window* thid;
-		//virtual void initWindow(clfe::Window* window) = 0;
+		virtual void initWindow(clfe::Window* window) = 0;
 
 		// More
 

@@ -20,8 +20,6 @@ namespace clfe
 		Pipeline_OpenGL4_6_Windows(PIXELFORMATDESCRIPTOR pfd, Window* window = nullptr);
 		~Pipeline_OpenGL4_6_Windows() override;
 
-		virtual void initWindow(Window* window) override;
-
 	};
 
 }

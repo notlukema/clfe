@@ -139,7 +139,6 @@
     <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
-    <ClCompile Include="clfe\SharedLink.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\UniString.cpp" />

@@ -8,41 +8,41 @@ namespace clfe
 {
 
 	const Attachment Pipeline::PipelineAttachment = Attachment(AttachmentLayers::Pipeline, Pipeline::sinit, nullptr, Pipeline::sterminate);
-	InstanceList<Pipeline>* Pipeline::Pipelines = nullptr;
+	InstanceList<Pipeline>* Pipeline::PipelineList = nullptr;
 
 	InstanceListHandle<Pipeline> Pipeline::getPipelinesList()
 	{
-		return Pipelines->getHandle();
+		return PipelineList->getHandle();
 	}
 
 	bool Pipeline::sinit()
 	{
-		Pipelines = new InstanceList<Pipeline>(InstanceTypes::Pipeline);
+		PipelineList = new InstanceList<Pipeline>(InstanceTypes::Pipeline);
 
 		return true;
 	}
 
 	void Pipeline::sterminate()
 	{
-		delete Pipelines;
-		Pipelines = nullptr;
+		delete PipelineList;
+		PipelineList = nullptr;
 	}
 
 	// Pipeline
 
-	Pipeline::Pipeline(clid id) : thisid(id)//, windowLinkWell(this, nullptr, nullptr)
+	Pipeline::Pipeline(void (*initfunc)(Pipeline* this_, Window* other), void (*termfunc)(Pipeline* this_, Window* other)) : InstanceInterface(PipelineList)
 	{
-		instlink = Pipelines->add(this, id);
+		WindowPool = new LinkPool<Window>(new DoubleLinkFunction<Pipeline, Window>(this, initfunc), new DoubleLinkFunction<Pipeline, Window>(this, termfunc));
 	}
 
 	Pipeline::~Pipeline()
 	{
-		delete instlink;
+		delete WindowPool;
 	}
 
-	clid Pipeline::getID() const
+	void Pipeline::attachWindow(Window* window)
 	{
-		return thisid;
+		WindowPool->attach(window->pullPipelineLink());
 	}
 
 }

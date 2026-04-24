@@ -3,15 +3,16 @@
 
 #include "clfe/System.h"
 #include "clfe/window/Window.h"
+#include "clfe/InstanceInterface.h"
 #include "clfe/SharedLink.h"
 
 namespace clfe
 {
 
-	class Pipeline
+	class Pipeline : public InstanceInterface<Pipeline>
 	{
 	private:
-		static InstanceList<Pipeline>* Pipelines;
+		static InstanceList<Pipeline>* PipelineList;
 
 	public:
 		static const Attachment PipelineAttachment;
@@ -21,20 +22,16 @@ namespace clfe
 		static void sterminate();
 
 	protected: // Shared links
-		//LinkPool* WindowPool;
-
+		LinkPool<Window>* WindowPool;
 
 	protected:
-		clid thisid;
-		Pipeline(clid id);
-		InstanceHandle<Pipeline>* instlink;
+		Pipeline(void (*initfunc)(Pipeline* this_, Window* other) = nullptr, void (*termfunc)(Pipeline* this_, Window* other) = nullptr);
 
 	public:
 		virtual ~Pipeline();
-		clid getID() const;
 
+		void attachWindow(Window* window);
 		//virtual void draw() = 0;
-		virtual void initWindow(clfe::Window* window) = 0;
 
 		// More
 

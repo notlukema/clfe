@@ -37,6 +37,7 @@ int main()
 
 
     Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
+    pipeline->attachWindow(wnd1);
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
 

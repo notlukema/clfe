@@ -17,12 +17,12 @@ namespace clfe
 		}
 	}
 
-	Pipeline_OpenGL4_6_Windows::Pipeline_OpenGL4_6_Windows(PixelFormat format, Window* window) : Pipeline(System::genNextID())
+	Pipeline_OpenGL4_6_Windows::Pipeline_OpenGL4_6_Windows(PixelFormat format, Window* window) : Pipeline(nullptr, nullptr)
 	{
 		innerInit(WindowsUtils::convertToWindowsFormat(format), window);
 	}
 
-	Pipeline_OpenGL4_6_Windows::Pipeline_OpenGL4_6_Windows(PIXELFORMATDESCRIPTOR pfd, Window* window) : Pipeline(System::genNextID())
+	Pipeline_OpenGL4_6_Windows::Pipeline_OpenGL4_6_Windows(PIXELFORMATDESCRIPTOR pfd, Window* window) : Pipeline(nullptr, nullptr)
 	{
 		innerInit(pfd, window);
 	}
@@ -32,9 +32,5 @@ namespace clfe
 		// Empty
 	}
 
-	void Pipeline_OpenGL4_6_Windows::initWindow(Window* window)
-	{
-		// Empty
-	}
 
 }

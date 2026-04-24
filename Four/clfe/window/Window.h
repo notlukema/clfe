@@ -34,12 +34,9 @@ namespace clfe
 			return WindowList->getHandle();
 		}
 
-	protected: // Shared links
-		LinkWell* PipelineWell;
-		static void PipelineInit(Window* this_);
-
-	public:
-		inline SharedLink* pullPipelineLink()
+	public: // Shared links
+		LinkWell<Window>* PipelineWell;
+		inline SharedLink<Window>* pullPipelineLink()
 		{
 			return PipelineWell->pull();
 		}

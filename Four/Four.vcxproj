@@ -153,7 +153,6 @@
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
     <ClInclude Include="clfe\InstanceInterface.h" />
-    <ClInclude Include="clfe\MutualLink.h" />
     <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
@@ -164,6 +163,7 @@
     <ClInclude Include="clfe\pipeline\impl\PixelFormat.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h" />
     <ClInclude Include="clfe\Placeholder.h" />
+    <ClInclude Include="clfe\SharedLink.h" />
     <ClInclude Include="clfe\UniString.h" />
     <ClInclude Include="clm\Matrix.h" />
     <ClInclude Include="clm\Matrix2x2.h" />

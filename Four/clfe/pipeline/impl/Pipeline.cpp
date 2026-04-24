@@ -30,7 +30,7 @@ namespace clfe
 
 	// Pipeline
 
-	Pipeline::Pipeline(clid id) : thisid(id)
+	Pipeline::Pipeline(clid id) : thisid(id)//, windowLinkWell(this, nullptr, nullptr)
 	{
 		instlink = Pipelines->add(this, id);
 	}

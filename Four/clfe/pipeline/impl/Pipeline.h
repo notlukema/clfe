@@ -1,8 +1,8 @@
 #ifndef CLFE_PIPELINE_H
 #define CLFE_PIPELINE_H
 
-#include "clfe/window/Window.h"
 #include "clfe/System.h"
+#include "clfe/window/Window.h"
 
 namespace clfe
 {
@@ -24,13 +24,15 @@ namespace clfe
 		Pipeline(clid id);
 		InstanceHandle<Pipeline>* instlink;
 
+		//LinkWell<Pipeline, Window> windowLinkWell;
+
 	public:
 		virtual ~Pipeline();
 		clid getID() const;
 
 		//virtual void draw() = 0;
-		
-		virtual void initWindow(Window* window) = 0;
+		//Window* thid;
+		//virtual void initWindow(clfe::Window* window) = 0;
 
 		// More
 

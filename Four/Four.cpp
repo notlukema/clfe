@@ -4,6 +4,8 @@
 #include "clfe/System.h"
 #include "clfe/CLFE.h"
 
+//#include "clfe/pipeline/impl/Pipeline.h"
+
 #include "clm/CLM.h"
 
 #include "clfe/window/Window.h"
@@ -18,7 +20,6 @@
 #include "clfe/pipeline/Opengl4_6.h"
 
 #include "clfe/Placeholder.h"
-
 
 
 #include "clu/Print.h"

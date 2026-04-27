@@ -8,7 +8,8 @@
 namespace clfe
 {
 
-	Window* createWindow(UniString name, int x, int y, int width, int height) {
+	Window* createWindow(UniString name, int x, int y, int width, int height)
+	{
 #ifdef CLFE_OS_WIN
 		return new WinWnd(name, x, y, width, height);
 #elif

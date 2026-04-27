@@ -101,7 +101,6 @@ namespace clfe
 		{
 			return false;
 		}
-
 		return keysDown[key];
 	}
 
@@ -111,7 +110,6 @@ namespace clfe
 		{
 			return false;
 		}
-
 		return !keysDown[key];
 	}
 
@@ -121,7 +119,6 @@ namespace clfe
 		{
 			return false;
 		}
-
 		return keysDown[key] && keys[key] == 0;
 	}
 
@@ -131,7 +128,6 @@ namespace clfe
 		{
 			return false;
 		}
-
 		return !keysDown[key] && keys[key] == 0;
 	}
 

@@ -32,5 +32,9 @@ namespace clfe
 		// Empty
 	}
 
+	bool Pipeline_OpenGL4_6_Windows::validateWindow(Window* window)
+	{
+		return true; // Elaborate later
+	}
 
 }

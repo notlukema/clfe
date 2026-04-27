@@ -30,7 +30,6 @@ namespace clfe
 			return KeyTable<Platform>::KeyMap[key];
 		}
 
-
 	};
 
 	template <>

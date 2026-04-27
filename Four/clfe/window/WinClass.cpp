@@ -56,9 +56,7 @@ namespace clfe
 		return wClass;
 	}
 
-	WinClass::WinClass(UniString name, UniString className, ATOM wClass) : InstanceInterface(ClassList), name(name), className(className), wClass(wClass)
-	{
-	}
+	WinClass::WinClass(UniString name, UniString className, ATOM wClass) : InstanceInterface(ClassList), name(name), className(className), wClass(wClass) {}
 
 	WinClass::~WinClass()
 	{

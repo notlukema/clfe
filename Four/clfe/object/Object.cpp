@@ -5,17 +5,11 @@
 namespace clfe
 {
 
-	Object::Object() : smallData{}, first(nullptr), dataCount(0), position(Vector3f(0.0f, 0.0f, 0.0f))
-	{
-	}
+	Object::Object() : smallData{}, first(nullptr), dataCount(0), position(Vector3f(0.0f, 0.0f, 0.0f)) {}
 
-	Object::Object(float x, float y, float z) : smallData{}, first(nullptr), dataCount(0), position(Vector3f(x, y, z))
-	{
-	}
+	Object::Object(float x, float y, float z) : smallData{}, first(nullptr), dataCount(0), position(Vector3f(x, y, z)) {}
 
-	Object::Object(const Vector3f& position) : smallData{}, first(nullptr), dataCount(0), position(position)
-	{
-	}
+	Object::Object(const Vector3f& position) : smallData{}, first(nullptr), dataCount(0), position(position) {}
 
 	Object::~Object()
 	{

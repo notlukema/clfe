@@ -32,7 +32,7 @@ namespace clfe
 
 	Pipeline::Pipeline(void (*initfunc)(Pipeline* this_, Window* other), void (*termfunc)(Pipeline* this_, Window* other)) : InstanceInterface(PipelineList)
 	{
-		WindowPool = new LinkPool<Window>(new DoubleLinkFunction<Pipeline, Window>(this, initfunc), new DoubleLinkFunction<Pipeline, Window>(this, termfunc));
+		WindowPool = new LinkPool<Window>(this, initfunc, termfunc);
 	}
 
 	Pipeline::~Pipeline()
@@ -40,9 +40,14 @@ namespace clfe
 		delete WindowPool;
 	}
 
-	void Pipeline::attachWindow(Window* window)
+	bool Pipeline::attachWindow(Window* window)
 	{
-		WindowPool->attach(window->pullPipelineLink());
+		if (validateWindow(window))
+		{
+			WindowPool->attach(window->pullPipelineLink());
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -28,8 +28,7 @@ namespace clfe
 		template <typename T>
 		friend class LinkPool;
 
-		SharedLink(LinkWell<T>* well, SharedLink<T>* next, SharedLink<T>* last) : well(well), nextw(next), lastw(last), pool(nullptr), nextp(nullptr), lastp(nullptr)
-		{}
+		SharedLink(LinkWell<T>* well, SharedLink<T>* next, SharedLink<T>* last) : well(well), nextw(next), lastw(last), pool(nullptr), nextp(nullptr), lastp(nullptr) {}
 
 		bool completeLink(LinkPool<T>* pool, SharedLink<T>* next, SharedLink<T>* last)
 		{
@@ -124,8 +123,7 @@ namespace clfe
 		// The higher the value, the higher its priority
 		const int priority_;
 
-		LinkBase(int priority = 0) : first(nullptr), len(0), priority_(priority)
-		{}
+		LinkBase(int priority = 0) : first(nullptr), len(0), priority_(priority) {}
 
 		~LinkBase()
 		{
@@ -177,8 +175,7 @@ namespace clfe
 		}
 
 	public:
-		LinkWell(T* this_, void (*initfunc)(T* this_), void (*termfunc)(T* this_), int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc)
-		{}
+		LinkWell(T* this_, void (*initfunc)(T* this_), void (*termfunc)(T* this_), int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc) {}
 
 		SharedLink<T>* pull()
 		{
@@ -210,8 +207,7 @@ namespace clfe
 		void (*func)(T* this_, U* other);
 
 	public:
-		DoubleLinkFunction(T* this_, void (*func)(T* this_, U* other)) : this_(this_), func(func)
-		{}
+		DoubleLinkFunction(T* this_, void (*func)(T* this_, U* other)) : this_(this_), func(func) {}
 
 		virtual void invoke(U* other) override
 		{
@@ -251,8 +247,11 @@ namespace clfe
 		}
 
 	public:
-		LinkPool(LinkFunction<T>* initfunc, LinkFunction<T>* termfunc, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc)
-		{}
+		LinkPool(LinkFunction<T>* initfunc, LinkFunction<T>* termfunc, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc) {}
+		
+		template <typename U>
+		LinkPool(U* this_, void (*initfunc)(U* this_, T* other), void (*termfunc)(U* this_, T* other), int priority = 0) : LinkBase<T>(priority),
+			initfunc(new DoubleLinkFunction<U, T>(this_, initfunc)), termfunc(new DoubleLinkFunction<U, T>(this_, termfunc)) {}
 
 		~LinkPool()
 		{

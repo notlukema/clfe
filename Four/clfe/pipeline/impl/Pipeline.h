@@ -30,7 +30,8 @@ namespace clfe
 	public:
 		virtual ~Pipeline();
 
-		void attachWindow(Window* window);
+		virtual bool validateWindow(Window* window) = 0;
+		bool attachWindow(Window* window);
 		//virtual void draw() = 0;
 
 		// More

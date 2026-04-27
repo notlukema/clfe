@@ -115,7 +115,7 @@ namespace clfe
 
 		T* operator*() const
 		{
-			return static_cast<T*>(node); // static_cast is safe because of the DerivedFrom requirment
+			return static_cast<T*>(node);
 		}
 
 		bool operator!=(inslist_null end) const
@@ -148,7 +148,8 @@ namespace clfe
 	class InstanceListHandle
 	{
 	private:
-		template <typename U> // For access to list in iterator constructor
+		// For access to list in iterator constructor
+		template <typename U>
 		friend inslist_iterator<U> begin(InstanceListHandle<U>& list);
 
 		InstanceList<T>* list;

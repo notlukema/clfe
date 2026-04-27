@@ -5,7 +5,6 @@
 #include "clfe/Attachment.h"
 #include "clfe/System.h"
 #include "clfe/input/InputCore.h"
-#include "clfe/InstanceInterface.h"
 #include "clfe/UniString.h"
 #include "clfe/SharedLink.h"
 

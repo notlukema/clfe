@@ -5,6 +5,7 @@
 #include "InstanceTypes.h"
 
 #include "List.h"
+//#include "Concepts.h"
 
 // Included for the sake of being "part of the system"
 #include "CrossPlatform.h"
@@ -20,10 +21,15 @@ namespace clfe
 
 	// Forward declarations
 	class InstanceBase;
+
+	class InstanceLink;
+
 	template <typename T>
 	class InstanceList;
+
 	template <typename T>
 	class InstanceListHandle;
+
 
 	class System
 	{
@@ -90,11 +96,51 @@ namespace clfe
 	};
 
 	//
+	// Range based list implementation for InstanceList and InstanceListHandle
+	//
+
+	struct inslist_null {};
+
+	template <typename T>
+	struct inslist_iterator
+	{
+
+		InstanceLink* node;
+		inslist_iterator(InstanceList<T>* list) : node(list->getFirstLink()) {}
+
+		void operator++()
+		{
+			node = node->next;
+		}
+
+		T* operator*() const
+		{
+			return static_cast<T*>(node); // static_cast is safe because of the DerivedFrom requirment
+		}
+
+		bool operator!=(inslist_null end) const
+		{
+			return node != nullptr;
+		}
+
+	};
+
+	template <typename T>
+	inslist_iterator<T> begin(InstanceList<T>& list)
+	{
+		return inslist_iterator<T>(&list);
+	};
+
+	template <typename T>
+	inslist_null end(InstanceList<T>& list)
+	{
+		return inslist_null();
+	};
+
+	//
 	// InstanceListHandle
 	//
 
-	template <typename T> // Forward declaration for access to list in iterator constructor
-	struct inslist_iterator;
 	template <typename T>
 	inslist_iterator<T> begin(InstanceListHandle<T>& list);
 
@@ -129,70 +175,7 @@ namespace clfe
 		{
 			return list->find(id);
 		}
-		
-	};
 
-	//
-	// InstanceBase
-	//
-
-	class InstanceBase
-	{
-	protected:
-		InstanceBase(InsType_t type);
-		InsType_t type;
-
-	public:
-		virtual ~InstanceBase();
-
-		inline InsType_t getType() const
-		{
-			return type;
-		}
-
-		virtual bool hasInstance(clid id) = 0;
-
-	};
-
-	//
-	// Range based list implementation for InstanceList and InstanceListHandle
-	//
-
-	struct inslist_null {};
-
-	template <typename T>
-	struct inslist_iterator
-	{
-		InstanceList<T>::InstanceLink* node;
-		inslist_iterator(InstanceList<T>* list) : node(list->getFirstLink()) {}
-
-		void operator++()
-		{
-			node = node->next;
-		}
-
-		T* operator*() const
-		{
-			return node->obj;
-		}
-
-		bool operator!=(inslist_null end) const
-		{
-			return node != nullptr;
-		}
-
-	};
-
-	template <typename T>
-	inslist_iterator<T> begin(InstanceList<T>& list)
-	{
-		return inslist_iterator<T>(&list);
-	};
-
-	template <typename T>
-	inslist_null end(InstanceList<T>& list)
-	{
-		return inslist_null();
 	};
 
 	template <typename T>
@@ -208,76 +191,94 @@ namespace clfe
 	};
 	
 	//
-	// InstanceList
+	// InstanceList implementation
 	//
+
+	class InstanceBase
+	{
+	protected:
+		InstanceBase(InsType_t type);
+		InsType_t type;
+
+		friend class InstanceLink;
+
+		InstanceLink* first;
+		int len;
+
+	public:
+		virtual ~InstanceBase();
+
+		inline InsType_t getType() const
+		{
+			return type;
+		}
+
+		inline InstanceLink* getFirstLink() const
+		{
+			return first;
+		}
+
+		inline int length() const
+		{
+			return len;
+		}
+
+		virtual bool hasInstance(clid id) = 0;
+
+	};
+
+	class InstanceLink
+	{
+	public:
+		const clid id;
+		InstanceBase* const parent;
+
+	private:
+		// For access to next pointers
+		template <typename T>
+		friend struct inslist_iterator;
+		template <typename T>
+		friend class InstanceList;
+
+		InstanceLink* next;
+		InstanceLink* last;
+
+	public:
+		InstanceLink(clid id, InstanceBase* parent);
+		~InstanceLink();
+
+		inline clid getID() const
+		{
+			return id;
+		}
+
+	};
+
+	// Any type T that isn't a child class of InstanceLink will cause major problems (usually crashing)
+	// Instance Interface handles instance indexing stuff as well
+	template <typename T>
+	class InstanceInterface : public InstanceLink
+	{
+	public:
+		InstanceInterface(InstanceList<T>* list) : InstanceLink(System::genNextID(), list)
+		{
+			// stuff
+		}
+
+	};
 
 	template <typename T>
 	class InstanceList : public InstanceBase
 	{
 	public:
-		struct InstanceLink;
+		InstanceList(InsType_t type) : InstanceBase(type) {}
 
-	private:
-		InstanceLink* first;
-		int len;
-
-	public:
-		// Deleting the link deletes the entry in the list, but not the object. However, deleting through the list itself will delete the object.
-		// The link should not be exposed outside of object implmentations, otherwise there is danger of dangling objects.
-		struct InstanceLink
+		virtual ~InstanceList()
 		{
-		public:
-			T* const obj;
-			const clid id;
-			InstanceList<T>* const parent;
-
-		private:
-			friend class InstanceList<T>; // For access to next and last and acess to parent len and first
-			friend struct inslist_iterator<T>; // For access to next and last
-			InstanceLink* next;
-			InstanceLink* last;
-
-		public:
-			InstanceLink(T* obj, clid id, InstanceList<T>* parent, InstanceLink* next, InstanceLink* last) : obj(obj), id(id), parent(parent), next(next), last(last) {}
-
-			// Does not delete the object
-			~InstanceLink()
+			while (first != nullptr)
 			{
-				parent->len--;
-				if (next != nullptr)
-				{
-					next->last = last;
-				}
-				if (last == nullptr)
-				{
-					parent->first = next;
-				}
-				else
-				{
-					last->next = next;
-				}
-			}
-
-		};
-
-	public:
-		InstanceList(InsType_t type) : InstanceBase(type), first(nullptr), len(0) {}
-
-		~InstanceList()
-		{
-			while (first != nullptr) // Statement is a bit redundant with the break
-			{
-				clid id = first->id;
-				delete first->obj;
-				if (first == nullptr)
-				{
-					break;
-				}
-				if (first->id == id)
-				{
-					CLFE_LOG("Object does not delete InstanceLink upon destruction! Cleanup complete but still recommended for the object to delete the link itself.");
-					delete first;
-				}
+				T* obj = static_cast<T*>(first);
+				delete obj;
 			}
 		}
 
@@ -286,34 +287,12 @@ namespace clfe
 			return InstanceListHandle<T>(this);
 		}
 
-		InstanceLink* getFirstLink()
-		{
-			return first;
-		}
-
-		int length()
-		{
-			return len;
-		}
-
-		InstanceLink* add(T* object, clid id)
-		{
-			InstanceLink* node = new InstanceLink(object, id, this, first, nullptr);
-			if (first != nullptr)
-			{
-				first->last = node;
-			}
-			first = node;
-			len++;
-			return node;
-		}
-
 		bool hasInstance(clid id) override
 		{
 			InstanceLink* node = first;
 			while (node != nullptr)
 			{
-				if (node->id == id)
+				if (node->getID() == id)
 				{
 					return true;
 				}
@@ -322,14 +301,15 @@ namespace clfe
 			return false;
 		}
 
+		// The key difference between InstanceList and the non-template base class
 		T* find(clid id)
 		{
 			InstanceLink* node = first;
 			while (node != nullptr)
 			{
-				if (node->id == id)
+				if (node->getID() == id)
 				{
-					return node->obj;
+					return static_cast<T*>(node);
 				}
 				node = node->next;
 			}
@@ -337,9 +317,7 @@ namespace clfe
 		}
 
 	};
-	
-	template <typename T>
-	using InstanceHandle = InstanceList<T>::InstanceLink;
+
 
 }
 

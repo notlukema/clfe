@@ -3,7 +3,6 @@
 
 #include "clfe/System.h"
 #include "clfe/window/Window.h"
-#include "clfe/InstanceInterface.h"
 #include "clfe/SharedLink.h"
 
 namespace clfe

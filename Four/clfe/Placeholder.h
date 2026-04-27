@@ -2,7 +2,6 @@
 #define CLFE_PLACEHOLDER_H
 
 #include "System.h"
-#include "InstanceInterface.h"
 #include "Attachment.h"
 
 #include "Function.h"

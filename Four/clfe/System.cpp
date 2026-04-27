@@ -62,7 +62,9 @@ namespace clfe
 		return InstanceTypes::Invalid;
 	}
 
-	InstanceBase::InstanceBase(InsType_t type) : type(type)
+	// InstanceBase
+
+	InstanceBase::InstanceBase(InsType_t type) : type(type), first(nullptr), len(0)
 	{
 		System::addInstance(this);
 	}
@@ -70,6 +72,35 @@ namespace clfe
 	InstanceBase::~InstanceBase()
 	{
 		System::removeInstance(this);
+	}
+
+	// InstanceLink
+
+	InstanceLink::InstanceLink(clid id, InstanceBase* parent) : id(id), parent(parent), next(parent->first), last(nullptr)
+	{
+		if (parent->first != nullptr)
+		{
+			parent->first->last = this;
+		}
+		parent->first = this;
+		parent->len++;
+	}
+
+	InstanceLink::~InstanceLink()
+	{
+		parent->len--;
+		if (next != nullptr)
+		{
+			next->last = last;
+		}
+		if (last == nullptr)
+		{
+			parent->first = next;
+		}
+		else
+		{
+			last->next = next;
+		}
 	}
 
 }

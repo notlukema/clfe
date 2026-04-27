@@ -2,7 +2,6 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
-#include "clfe/InstanceInterface.h"
 
 #include <Windows.h>
 

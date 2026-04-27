@@ -152,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
-    <ClInclude Include="clfe\InstanceInterface.h" />
     <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
@@ -216,6 +215,7 @@
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="FastDraw.h" />
+    <ClInclude Include="interface\TypeInfo.h" />
     <ClInclude Include="interface\TypeTraits.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

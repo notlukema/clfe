@@ -11,6 +11,9 @@ namespace clfe
 	template <typename T, typename U>
 	concept SameAs = std::same_as<T, U>;
 
+	template <typename Derived, typename Base>
+	concept DerivedFrom = std::derived_from<Derived, Base>;
+
 }
 
 #endif

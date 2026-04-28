@@ -1,7 +1,6 @@
 #include "Window.h"
 
 #include "clfe/AttachmentLayers.h"
-#include "clfe/InstanceTypes.h"
 
 #include "clfe/Log.h"
 
@@ -24,7 +23,7 @@ namespace clfe
 
 	bool Window::init()
 	{
-		WindowList = new InstanceList<Window>(InstanceTypes::Window);
+		WindowList = new InstanceList<Window>();
 		return true;
 	}
 

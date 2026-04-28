@@ -1,7 +1,6 @@
 #include "WinWnd.h"
 
 #include "clfe/AttachmentLayers.h"
-#include "clfe/InstanceTypes.h"
 
 #include "clu/FlexibleToString.h"
 
@@ -16,7 +15,7 @@ namespace clfe
 
 	bool WinClass::init()
 	{
-		ClassList = new InstanceList<WinClass>(InstanceTypes::WinClass);
+		ClassList = new InstanceList<WinClass>();
 		HInstance = GetModuleHandle(NULL);
 		DefaultClass = createClass("Default", WinWnd::defWndProc);
 		return DefaultClass != nullptr;

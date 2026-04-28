@@ -1,7 +1,6 @@
 #include "Pipeline.h"
 
 #include "clfe/AttachmentLayers.h"
-#include "clfe/InstanceTypes.h"
 #include "clfe/System.h"
 
 namespace clfe
@@ -17,7 +16,7 @@ namespace clfe
 
 	bool Pipeline::sinit()
 	{
-		PipelineList = new InstanceList<Pipeline>(InstanceTypes::Pipeline);
+		PipelineList = new InstanceList<Pipeline>();
 
 		return true;
 	}

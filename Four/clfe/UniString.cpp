@@ -31,26 +31,33 @@ namespace clfe
 		str.str_wchar_t = nullptr;
 	}
 
-#define UNISTR_BASE_STR str_char // just for some "transparency" or whatever
-
-	static void deleteData(UniString& str)
-	{
-		if (str.str_char != nullptr)
-		{
-			delete str.str_char;
-		}
-		if (str.str_wchar_t != nullptr)
-		{
-			delete str.str_wchar_t;
-		}
-	}
-
 	UniString::~UniString()
 	{
-		deleteData(*this);
+		deleteData();
 	}
 
-	const char* UniString::get_char()
+#define UNISTR_BASE_STR str_char // Just for some "transparency"
+
+	void UniString::deleteData()
+	{
+		if (str_char != nullptr)
+		{
+			delete str_char;
+		}
+		if (str_wchar_t != nullptr)
+		{
+			delete str_wchar_t;
+		}
+	}
+
+	UniString& UniString::fill()
+	{
+		get_char();
+		get_wchar_t();
+		return *this;
+	}
+
+	const char* UniString::get_char() const
 	{
 		if (str_char == nullptr)
 		{
@@ -63,7 +70,7 @@ namespace clfe
 		return str_char;
 	}
 
-	const wchar_t* UniString::get_wchar_t()
+	const wchar_t* UniString::get_wchar_t() const
 	{
 		if (str_wchar_t == nullptr)
 		{
@@ -89,7 +96,7 @@ namespace clfe
 		{
 			return *this;
 		}
-		deleteData(*this);
+		deleteData();
 
 		len_ = str.len_;
 		str_char = str.str_char == nullptr ? nullptr : copyStr(str.str_char);
@@ -104,7 +111,7 @@ namespace clfe
 		{
 			return *this;
 		}
-		deleteData(*this);
+		deleteData();
 
 		len_ = str.len_;
 		str_char = str.str_char;
@@ -115,6 +122,16 @@ namespace clfe
 		str.str_wchar_t = nullptr;
 
 		return *this;
+	}
+
+	UniString::operator const char* () const
+	{
+		return get_char();
+	}
+
+	UniString::operator const wchar_t* () const
+	{
+		return get_wchar_t();
 	}
 
 	UniString operator+(const UniString& str1, const UniString& str2)

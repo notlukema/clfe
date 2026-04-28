@@ -179,9 +179,6 @@
     <ClInclude Include="clfe\input\SystemInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\InstanceTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\AttachmentLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -270,6 +267,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\TypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\UnorderedMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\TypeIndex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

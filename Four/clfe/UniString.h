@@ -11,10 +11,10 @@ namespace clfe
 	{
 	private:
 		size_t len_;
-		char* str_char; // The basic char is the common interface of UniString
-		wchar_t* str_wchar_t;
+		mutable char* str_char; // The basic char is the common interface of UniString
+		mutable wchar_t* str_wchar_t;
 
-		friend void deleteData(UniString& str);
+		void deleteData();
 
 	public:
 		UniString(const char* str);
@@ -23,6 +23,8 @@ namespace clfe
 		UniString(const UniString& str);
 		UniString(UniString&& str) noexcept;
 		~UniString();
+
+		UniString& fill();
 
 		inline size_t length() const
 		{
@@ -34,11 +36,11 @@ namespace clfe
 			return static_cast<int>(len_);
 		}
 
-		const char* get_char();
-		const wchar_t* get_wchar_t();
+		const char* get_char() const;
+		const wchar_t* get_wchar_t() const;
 
 		template <typename T>
-		const T* get()
+		const T* get() const
 		{
 			if (IsSame<T, char>)
 			{
@@ -57,6 +59,9 @@ namespace clfe
 
 		UniString& operator=(const UniString& str);
 		UniString& operator=(UniString&& str) noexcept;
+
+		operator const char* () const;
+		operator const wchar_t* () const;
 
 		friend UniString operator+(const UniString& str1, const UniString& str2);
 

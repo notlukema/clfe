@@ -181,7 +181,6 @@
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Log.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
-    <ClInclude Include="clfe\InstanceTypes.h" />
     <ClInclude Include="clfe\object\Object.h" />
     <ClInclude Include="clfe\object\ObjectData.h" />
     <ClInclude Include="clfe\System.h" />
@@ -215,8 +214,10 @@
     <ClInclude Include="clu\Print.h" />
     <ClInclude Include="clu\StringUtils.h" />
     <ClInclude Include="FastDraw.h" />
+    <ClInclude Include="interface\TypeIndex.h" />
     <ClInclude Include="interface\TypeInfo.h" />
     <ClInclude Include="interface\TypeTraits.h" />
+    <ClInclude Include="interface\UnorderedMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

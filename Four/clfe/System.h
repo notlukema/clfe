@@ -2,9 +2,10 @@
 #define CLFE_SYSTEM_H
 
 #include "Attachment.h"
-#include "InstanceTypes.h"
+#include "UniString.h"
 
 #include "List.h"
+#include "TypeInfo.h"
 //#include "Concepts.h"
 
 // Included for the sake of being "part of the system"
@@ -49,7 +50,7 @@ namespace clfe
 			for (InstanceBase* instance : Instances)
 			{
 				InstanceList<T>* list = dynamic_cast<InstanceList<T>*>(instance);
-				if (list)
+				if (list != nullptr)
 				{
 					return list;
 				}
@@ -62,8 +63,6 @@ namespace clfe
 		static void terminate();
 		static clid genNextID();
 
-		static InsType_t getInstanceType(clid id);
-
 		static inline const List<InstanceBase*>& getInstances()
 		{
 			return Instances;
@@ -73,7 +72,7 @@ namespace clfe
 		static T* findInstance(clid id)
 		{
 			InstanceList<T>* list = getInstanceListInner<T>();
-			if (list)
+			if (list != nullptr)
 			{
 				return list->find(id);
 			}
@@ -85,12 +84,18 @@ namespace clfe
 		static InstanceListHandle<T>* getInstanceList()
 		{
 			InstanceList<T>* list = getInstanceListInner<T>();
-			if (list)
+			if (list != nullptr)
 			{
 				return list->getHandle();
 			}
 
 			return nullptr;
+		}
+
+		template <typename T>
+		static UniString getTypeName()
+		{
+			return UniString(typeid(T).name());
 		}
 
 	};
@@ -157,9 +162,9 @@ namespace clfe
 	public:
 		InstanceListHandle(InstanceList<T>* list) : list(list) {}
 
-		InsType_t getType() const
+		UniString getTypeName() const
 		{
-			return list->getType();
+			return list->getTypeName();
 		}
 
 		int length()
@@ -198,8 +203,8 @@ namespace clfe
 	class InstanceBase
 	{
 	protected:
-		InstanceBase(InsType_t type);
-		InsType_t type;
+		InstanceBase(UniString name);
+		UniString name;
 
 		friend class InstanceLink;
 
@@ -209,9 +214,9 @@ namespace clfe
 	public:
 		virtual ~InstanceBase();
 
-		inline InsType_t getType() const
+		inline UniString getTypeName() const
 		{
-			return type;
+			return name;
 		}
 
 		inline InstanceLink* getFirstLink() const
@@ -272,7 +277,8 @@ namespace clfe
 	class InstanceList : public InstanceBase
 	{
 	public:
-		InstanceList(InsType_t type) : InstanceBase(type) {}
+		InstanceList() : InstanceBase(System::getTypeName<T>()) {}
+		InstanceList(UniString name) : InstanceBase(name) {}
 
 		virtual ~InstanceList()
 		{

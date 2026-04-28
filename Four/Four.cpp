@@ -41,6 +41,8 @@ int main()
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
 
+    print(getWindowList());
+
 
     while (wnd1->exists())
     {

@@ -49,22 +49,9 @@ namespace clfe
 		return thisID;
 	}
 
-	InsType_t System::getInstanceType(clid id)
-	{
-		for (InstanceBase* instance : Instances)
-		{
-			if (instance->hasInstance(id))
-			{
-				return instance->getType();
-			}
-		}
-
-		return InstanceTypes::Invalid;
-	}
-
 	// InstanceBase
 
-	InstanceBase::InstanceBase(InsType_t type) : type(type), first(nullptr), len(0)
+	InstanceBase::InstanceBase(UniString name) : name(name), first(nullptr), len(0)
 	{
 		System::addInstance(this);
 	}

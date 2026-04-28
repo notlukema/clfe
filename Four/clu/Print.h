@@ -6,10 +6,6 @@
 #include <cstdio>
 
 
-#ifdef CLFE_SYSTEM_H
-#include "clfe/InstanceTypes.h"
-#endif
-
 // Supplies simple print functions for whichever types are included
 
 namespace clfe
@@ -78,7 +74,7 @@ namespace clfe
 	void print(InstanceListHandle<T>* list)
 	{
 		printf("Instance List <");
-		printf(InstanceNames::getTypeName(list->getType()));
+		printf(list->getTypeName());
 		printf("> (%d) [", list->length());
 		bool first = true;
 		for (T* obj : *list)

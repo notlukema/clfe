@@ -8,7 +8,7 @@ namespace clfe
 
 	bool Placeholder::init()
 	{
-		PlaceholderList = new InstanceList<Placeholder>(99);
+		PlaceholderList = new InstanceList<Placeholder>();
 		return true;
 	}
 

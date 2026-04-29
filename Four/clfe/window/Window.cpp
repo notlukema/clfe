@@ -44,8 +44,6 @@ namespace clfe
 	Window::Window() : InstanceInterface(WindowList), exists_(true), destroyRequested(false),
 		MoveCallback(nullptr), ResizeCallback(nullptr), CloseCallback(nullptr), MinimizeCallback(nullptr), MaximizeCallback(nullptr)//, VisibilityCallback(nullptr)
 	{
-		PipelineWell = new LinkWell<Window>(this, nullptr, nullptr);
-
 		inputCore = new InputCore();
 	}
 
@@ -67,7 +65,6 @@ namespace clfe
 				}
 			}
 
-			delete PipelineWell;
 			innerDestroy();
 			exists_ = false;
 		}
@@ -77,7 +74,6 @@ namespace clfe
 	{
 		if (exists_)
 		{
-			delete PipelineWell;
 			innerDestroy();
 			exists_ = false;
 			destroyRequested = true; // Might as well

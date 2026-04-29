@@ -43,7 +43,7 @@ namespace clfe
 	{
 		if (validateWindow(window))
 		{
-			WindowPool->attach(window->pullPipelineLink());
+			//WindowPool->attach(window->pullPipelineLink());
 			return true;
 		}
 		return false;

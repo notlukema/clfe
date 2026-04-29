@@ -33,13 +33,6 @@ namespace clfe
 			return WindowList->getHandle();
 		}
 
-	public: // Shared links
-		LinkWell<Window>* PipelineWell;
-		inline SharedLink<Window>* pullPipelineLink()
-		{
-			return PipelineWell->pull();
-		}
-
 	protected:
 		Window();
 

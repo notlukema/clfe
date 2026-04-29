@@ -275,5 +275,8 @@
     <ClInclude Include="interface\TypeIndex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

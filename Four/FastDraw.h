@@ -72,6 +72,7 @@ namespace clfe
         };
 
 		hDC = GetDC(window->getHWND());
+        // Remember ReleaseDC
         if (!hDC) {
             return false;
 		}

@@ -33,17 +33,21 @@ namespace clfe
 		DefaultClass = nullptr;
 	}
 
+	// WinClass* WinClass::createClass(UniString name, WNDCLASSEX wc) {}
+
 	WinClass* WinClass::createClass(UniString name, WNDPROC wndProc)
 	{
 		UniString className = name + "_clfewinwnd" + toStr(ClassList->length());
 		// Default Class -> Default_clfewinwnd0
 
-		WNDCLASS wc = {}; // TODO: Check out WNDCLASSEX later on
+		WNDCLASSEX wc = {}; // TODO: Check out WNDCLASSEX later on
+		wc.cbSize = sizeof(WNDCLASSEX);
+		wc.style = CS_OWNDC; // Private DC
 		wc.lpfnWndProc = wndProc;
 		wc.hInstance = HInstance;
 		wc.lpszClassName = className.get_wchar_t();
 
-		ATOM atom = RegisterClass(&wc);
+		ATOM atom = RegisterClassEx(&wc);
 		if (atom == NULL) {
 			//DWORD error = GetLastError();
 			CLFE_ERROR("Error registering windows class!");

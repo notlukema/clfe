@@ -157,6 +157,7 @@
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
     <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
     <ClInclude Include="clfe\pipeline\impl\PixelFormat.h" />

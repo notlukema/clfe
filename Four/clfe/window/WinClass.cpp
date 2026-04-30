@@ -33,20 +33,22 @@ namespace clfe
 		DefaultClass = nullptr;
 	}
 
-	// WinClass* WinClass::createClass(UniString name, WNDCLASSEX wc) {}
-
 	WinClass* WinClass::createClass(UniString name, WNDPROC wndProc)
 	{
 		UniString className = name + "_clfewinwnd" + toStr(ClassList->length());
-		// Default Class -> Default_clfewinwnd0
 
-		WNDCLASSEX wc = {}; // TODO: Check out WNDCLASSEX later on
+		WNDCLASSEX wc = {};
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.style = CS_OWNDC; // Private DC
 		wc.lpfnWndProc = wndProc;
 		wc.hInstance = HInstance;
 		wc.lpszClassName = className.get_wchar_t();
 
+		return createClass(name, wc);
+	}
+
+	WinClass* WinClass::createClass(UniString name, WNDCLASSEX wc)
+	{
 		ATOM atom = RegisterClassEx(&wc);
 		if (atom == NULL) {
 			//DWORD error = GetLastError();
@@ -54,8 +56,7 @@ namespace clfe
 			return nullptr;
 		}
 
-		WinClass* wClass = new WinClass(name, className, atom);
-
+		WinClass* wClass = new WinClass(name, UniString(wc.lpszClassName), atom);
 		return wClass;
 	}
 

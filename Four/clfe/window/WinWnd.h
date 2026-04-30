@@ -39,6 +39,7 @@ namespace clfe
 		}
 
 		static WinClass* createClass(UniString name, WNDPROC wndProc);
+		static WinClass* createClass(UniString name, WNDCLASSEX wndClass);
 
 	private:
 		UniString name, className;

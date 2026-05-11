@@ -45,6 +45,8 @@ int main()
     while (wnd1->exists())
     {
         float deltaTime = step();
+        std::cout << "   delta time: " << deltaTime << "\n";
+        std::cout << "   fps: " << 1 / deltaTime << "\n";
         fastDraw((WinWnd*)wnd1, deltaTime);
     }
 

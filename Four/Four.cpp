@@ -35,7 +35,6 @@ int main()
 
     Window* wnd1 = createWindow("thing");
 
-
     Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
     pipeline->attachWindow(wnd1);
 

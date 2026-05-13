@@ -60,9 +60,6 @@
     <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\impl\PixelFormat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clfe\Placeholder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,6 +67,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clu\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -239,16 +239,10 @@
     <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\pipeline\impl\PixelFormat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h">
+    <ClInclude Include="clfe\data\PixelFormat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Concepts.h">

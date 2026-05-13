@@ -135,8 +135,8 @@
     <ClCompile Include="clfe\object\Object.cpp" />
     <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp" />
-    <ClCompile Include="clfe\pipeline\impl\PixelFormat.cpp" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
+    <ClCompile Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.cpp" />
     <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
@@ -153,15 +153,13 @@
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
     <ClInclude Include="clfe\object\Scene.h" />
-    <ClInclude Include="clfe\pipeline\impl\WindowsUtils.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
     <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
-    <ClInclude Include="clfe\pipeline\impl\PixelFormat.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6_Windows.h" />
+    <ClInclude Include="clfe\data\PixelFormat.h" />
     <ClInclude Include="clfe\Placeholder.h" />
     <ClInclude Include="clfe\SharedLink.h" />
     <ClInclude Include="clfe\UniString.h" />

@@ -4,11 +4,9 @@
 namespace clfe
 {
 
+	// Unused yet, will implement when desired or needed
 	class PixelFormat
 	{
-	public:
-		PixelFormat();
-		~PixelFormat();
 
 	};
 

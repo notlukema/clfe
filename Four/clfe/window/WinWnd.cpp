@@ -62,9 +62,16 @@ namespace clfe
 
 		if (hwnd_ == NULL)
 		{
-			DWORD errorCode = GetLastError();
-			logError("Placeholder error, fix later!"); // TODO: fix error
+			//DWORD errorCode = GetLastError();
+			CLFE_ERROR("Failed to create windows window!");
 			return;
+		}
+
+		hdc_ = GetDC(hwnd_);
+
+		if (hdc_ == NULL)
+		{
+			CLFE_ERROR("Failed to create window device!");
 		}
 
 		ShowWindow(hwnd_, SW_SHOWNORMAL);
@@ -73,6 +80,7 @@ namespace clfe
 	void WinWnd::innerDestroy()
 	{
 		// Detach from pipelines: delete mutuallinks
+		ReleaseDC(hwnd_, hdc_);
 		DestroyWindow(hwnd_);
 	}
 

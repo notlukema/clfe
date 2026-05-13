@@ -35,7 +35,7 @@ int main()
 
     Window* wnd1 = createWindow("thing");
 
-    Pipeline* pipeline = new Pipeline_OpenGL4_6_Windows();
+    Pipeline* pipeline = new Pipeline_OpenGL4_6();
     pipeline->attachWindow(wnd1);
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
@@ -44,8 +44,9 @@ int main()
     while (wnd1->exists())
     {
         float deltaTime = step();
-        std::cout << "   delta time: " << deltaTime << "\n";
-        std::cout << "   fps: " << 1 / deltaTime << "\n";
+        //std::cout << "   delta time: " << deltaTime << "\n";
+        //std::cout << "   fps: " << 1 / deltaTime << "\n";
+
         fastDraw((WinWnd*)wnd1, deltaTime);
     }
 

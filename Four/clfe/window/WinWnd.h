@@ -82,6 +82,7 @@ namespace clfe
 	private:
 		const WinClass* wClass_;
 		HWND hwnd_;
+		HDC hdc_;
 
 		void createWindow(UniString name, const WinClass* wClass, int x, int y, int width, int height);
 
@@ -94,6 +95,11 @@ namespace clfe
 		inline HWND getHWND() const
 		{
 			return hwnd_;
+		}
+
+		inline HDC getHDC() const
+		{
+			return hdc_;
 		}
 
 		virtual UniString getName() override;

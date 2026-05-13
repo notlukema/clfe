@@ -6,7 +6,6 @@
 #include "clfe/System.h"
 #include "clfe/input/InputCore.h"
 #include "clfe/UniString.h"
-#include "clfe/SharedLink.h"
 
 #include "clm/Vector2.h"
 

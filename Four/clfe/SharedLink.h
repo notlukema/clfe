@@ -1,8 +1,6 @@
 #ifndef CLFE_SHAREDLINK_H
 #define CLFE_SHAREDLINK_H
 
-#include "clfe/Log.h"
-
 namespace clfe
 {
 
@@ -175,7 +173,7 @@ namespace clfe
 		}
 
 	public:
-		LinkWell(T* this_, void (*initfunc)(T* this_), void (*termfunc)(T* this_), int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc) {}
+		LinkWell(T* this_, void (*initfunc)(T* this_) = nullptr, void (*termfunc)(T* this_) = nullptr, int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc) {}
 
 		SharedLink<T>* pull()
 		{
@@ -247,16 +245,16 @@ namespace clfe
 		}
 
 	public:
-		LinkPool(LinkFunction<T>* initfunc, LinkFunction<T>* termfunc, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc) {}
+		LinkPool(LinkFunction<T>* initfunc = nullptr, LinkFunction<T>* termfunc = nullptr, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc) {}
 		
 		template <typename U>
 		LinkPool(U* this_, void (*initfunc)(U* this_, T* other), void (*termfunc)(U* this_, T* other), int priority = 0) : LinkBase<T>(priority),
-			initfunc(new DoubleLinkFunction<U, T>(this_, initfunc)), termfunc(new DoubleLinkFunction<U, T>(this_, termfunc)) {}
+			initfunc(initfunc == nullptr ? nullptr : new DoubleLinkFunction<U, T>(this_, initfunc)), termfunc(termfunc == nullptr ? nullptr : new DoubleLinkFunction<U, T>(this_, termfunc)) {}
 
 		~LinkPool()
 		{
 			if (initfunc != nullptr)
-			{
+			{	
 				delete initfunc;
 			}
 			if (termfunc != nullptr)

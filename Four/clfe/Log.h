@@ -1,5 +1,5 @@
-#ifndef CLFE_ERROR_H
-#define CLFE_ERROR_H
+#ifndef CLFE_LOG_H
+#define CLFE_LOG_H
 
 #include "Exception.h"
 

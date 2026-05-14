@@ -1,11 +1,14 @@
 #include "WinWnd.h"
 
+#include "clfe/Log.h"
+
+#include <iostream>
+
 namespace clfe
 {
 
 	void WinWnd::step()
 	{
-		// TODO: consider threading and stuff and also improve algorithm
 		MSG msg;
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
@@ -17,12 +20,12 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(UniString name, int x, int y, int width, int height)
+	WinWnd::WinWnd(UniString name, int x, int y, int width, int height) : well(new LinkWell<WinWnd>(this))
 	{
 		createWindow(name, WinClass::getDefaultClass(), x, y, width, height);
 	}
 
-	WinWnd::WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height)
+	WinWnd::WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height) : well(new LinkWell<WinWnd>(this))
 	{
 		createWindow(name, wClass, x, y, width, height);
 	}
@@ -79,7 +82,7 @@ namespace clfe
 
 	void WinWnd::innerDestroy()
 	{
-		// Detach from pipelines: delete mutuallinks
+		delete well;
 		ReleaseDC(hwnd_, hdc_);
 		DestroyWindow(hwnd_);
 	}

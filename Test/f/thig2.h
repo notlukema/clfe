@@ -3,7 +3,7 @@
 namespace thig
 {
 
-	struct thig
+	struct thig2
 	{
 		static bool f;
 	};

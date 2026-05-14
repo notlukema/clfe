@@ -30,6 +30,7 @@ namespace clfe
 	public:
 		virtual ~Pipeline() = default;
 
+		virtual bool compatible(Window* window) = 0;
 		virtual bool attachWindow(Window* window) = 0;
 		virtual bool detachWindow(Window* window) = 0;
 

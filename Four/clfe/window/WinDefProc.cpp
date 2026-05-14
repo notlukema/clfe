@@ -3,6 +3,8 @@
 #include "clfe/input/KeyTables.h"
 #include "clfe/Log.h"
 
+#include <iostream>
+
 namespace clfe
 {
 
@@ -10,7 +12,7 @@ namespace clfe
 
 	LRESULT CALLBACK WinWnd::defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		WinWnd* window;
+		WinWnd* window = nullptr;
 		if (uMsg == WM_NCCREATE)
 		{
 			CREATESTRUCT* createStruct = (CREATESTRUCT*)lParam;
@@ -23,37 +25,34 @@ namespace clfe
 			window = (WinWnd*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 		}
 
-		if (window)
+		if (window == nullptr)
 		{
-			if (uMsg == WM_KEYDOWN)
-			{
-				window->getInput()->trigKeyDown(KeyTables::translateKey<WindowsKeys>(wParam));
-				return BlankReturn;
-			}
-			if (uMsg == WM_KEYUP)
-			{
-				window->getInput()->trigKeyUp(KeyTables::translateKey<WindowsKeys>(wParam));
-				return BlankReturn;
-			}
-
-			if (uMsg == WM_CLOSE)
-			{
-				window->destroy();
-				return BlankReturn;
-			}
-
-			if (uMsg == WM_MOVE)
-			{
-				CLFE_LOG("moved");
-			}
-
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		}
-		else
-		{ // Shouldn't happen
-			CLFE_ERROR("");
-			return DefWindowProc(hwnd, uMsg, wParam, lParam);
+
+		if (uMsg == WM_KEYDOWN)
+		{
+			window->getInput()->trigKeyDown(KeyTables::translateKey<WindowsKeys>(wParam));
+			return BlankReturn;
 		}
+		if (uMsg == WM_KEYUP)
+		{
+			window->getInput()->trigKeyUp(KeyTables::translateKey<WindowsKeys>(wParam));
+			return BlankReturn;
+		}
+
+		if (uMsg == WM_CLOSE)
+		{
+			window->destroy();
+			return BlankReturn;
+		}
+
+		if (uMsg == WM_MOVE)
+		{
+			CLFE_LOG("moved");
+		}
+
+		return DefWindowProc(hwnd, uMsg, wParam, lParam);
 	}
 
 }

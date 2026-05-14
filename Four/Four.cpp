@@ -28,7 +28,6 @@ using namespace clfe;
 
 int main()
 {
-
     if (!clfe::init()) {
         return -1;
     }
@@ -39,7 +38,6 @@ int main()
     pipeline->attachWindow(wnd1);
 
     std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
-
 
     while (wnd1->exists())
     {

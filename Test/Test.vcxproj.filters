@@ -18,5 +18,25 @@
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="f\thig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="f\center.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="f\thig2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="f\thig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="f\thig2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="f\center.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

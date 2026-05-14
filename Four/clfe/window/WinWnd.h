@@ -2,6 +2,7 @@
 #define CLFE_WINWND_H
 
 #include "Window.h"
+#include "clfe/SharedLink.h"
 
 #include <Windows.h>
 
@@ -78,6 +79,10 @@ namespace clfe
 		static LRESULT CALLBACK defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 		static void step();
+
+		// SharedLink
+	private: LinkWell<WinWnd>* well;
+	public: inline SharedLink<WinWnd>* pullLink() { return well->pull(); }
 
 	private:
 		const WinClass* wClass_;

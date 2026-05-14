@@ -9,9 +9,13 @@ namespace clfe
 
 	Window* createWindow(UniString name, int x, int y, int width, int height)
 	{
-#ifdef CLFE_OS_WIN
+#if defined(CLFE_OS_WIN)
 		return new WinWnd(name, x, y, width, height);
-#elif
+#elif defined(CLFE_OS_MAC)
+		return nullptr;
+#elif defined(CLFE_OS_LINUX)
+		return nullptr;
+#else
 		return nullptr;
 #endif
 	}

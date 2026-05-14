@@ -27,17 +27,33 @@ namespace clfe
 	{
 		if (extension == nullptr)
 		{
-			extension = defaultExtension();
+			this->extension = defaultExtension();
 		}
-		if (extension == nullptr)
+		if (this->extension == nullptr)
 		{
-			CLFE_ERROR("OpenGL 4.6 pipeline not naturally supported!");
+			CLFE_ERROR("OpenGL 4.6 pipeline is not naturally supported!");
 		}
 	}
 
 	Pipeline_OpenGL4_6::~Pipeline_OpenGL4_6()
 	{
 		delete extension;
+	}
+
+	PipelineData Pipeline_OpenGL4_6::getData()
+	{
+		GLint major, minor;
+		glGetIntegerv(GL_MAJOR_VERSION, &major);
+		glGetIntegerv(GL_MINOR_VERSION, &minor);
+
+		return PipelineData(
+			Name,
+			reinterpret_cast<const char*>(glGetString(GL_VENDOR)),
+			reinterpret_cast<const char*>(glGetString(GL_RENDERER)),
+			reinterpret_cast<const char*>(glGetString(GL_VERSION)),
+			major,
+			minor
+		);
 	}
 
 	bool Pipeline_OpenGL4_6::compatible(Window* window)
@@ -47,8 +63,7 @@ namespace clfe
 
 	bool Pipeline_OpenGL4_6::attachWindow(Window* window)
 	{
-		return true;
-		//return extension->initWindow(window);
+		return extension->initWindow(window);
 	}
 
 	bool Pipeline_OpenGL4_6::detachWindow(Window* window)
@@ -68,7 +83,7 @@ namespace clfe
 
 	void Pipeline_OpenGL4_6::draw()
 	{
-
+		//extension->makeCurrent();
 	}
 
 }

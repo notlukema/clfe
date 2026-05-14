@@ -80,9 +80,9 @@ namespace clfe
 
 		static void step();
 
-		// SharedLink
-	private: LinkWell<WinWnd>* well;
-	public: inline SharedLink<WinWnd>* pullLink() { return well->pull(); }
+	// SharedLink
+	private: LinkWell<WinWnd> well;
+	public: inline SharedLink<WinWnd>* pullLink() { return well.pull(); }
 
 	private:
 		const WinClass* wClass_;
@@ -96,6 +96,8 @@ namespace clfe
 	public: // Interface implementations
 		WinWnd(UniString name, int x, int y, int width, int height);
 		WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height);
+
+		virtual ~WinWnd() override;
 
 		inline HWND getHWND() const
 		{

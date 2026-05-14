@@ -53,7 +53,6 @@ namespace clfe
 
 	Window::~Window()
 	{
-		destroy();
 		delete inputCore;
 	}
 

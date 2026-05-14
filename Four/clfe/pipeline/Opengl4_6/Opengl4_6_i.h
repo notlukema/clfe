@@ -22,6 +22,8 @@ namespace clfe
 		virtual bool compatible(Window* window) = 0;
 		virtual bool initWindow(Window* window) = 0;
 
+		virtual bool makeCurrent(Window* window = nullptr) = 0;
+
 	};
 
 	class Pipeline_OpenGL4_6 : public Pipeline
@@ -38,6 +40,8 @@ namespace clfe
 	public:
 		Pipeline_OpenGL4_6(GL4_6_Extension* extension = nullptr);
 		~Pipeline_OpenGL4_6() override;
+
+		virtual PipelineData getData() override;
 
 		virtual bool compatible(Window* window) override;
 		virtual bool attachWindow(Window* window) override;

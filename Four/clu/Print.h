@@ -7,6 +7,7 @@
 
 
 // Supplies simple print functions for whichever types are included
+// Add as needed
 
 namespace clfe
 {
@@ -102,6 +103,19 @@ namespace clfe
 	void print(InstanceList<T>* list)
 	{
 		print(list->getHandle());
+	}
+#endif
+
+#ifdef CLFE_PIPELINEDATA_H
+	void print(const PipelineData& data)
+	{
+		printf("Pipeline Data for %s [\n", data.PipelineName.get_char());
+		printf("   Vendor: %s\n", data.VendorName.get_char());
+		printf("   Renderer: %s\n", data.RendererName.get_char());
+		printf("   Version: %s\n", data.VersionString.get_char());
+		printf("   Version Major: %d\n", data.VersionMajor);
+		printf("   Version Minor: %d\n", data.VersionMinor);
+		printf("]\n");
 	}
 #endif
 	

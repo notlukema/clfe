@@ -1,6 +1,7 @@
 #ifndef CLFE_PIPELINE_H
 #define CLFE_PIPELINE_H
 
+#include "../PipelineData.h"
 #include "clfe/System.h"
 #include "clfe/window/Window.h"
 #include "clfe/object/Scene.h"
@@ -29,6 +30,8 @@ namespace clfe
 
 	public:
 		virtual ~Pipeline() = default;
+
+		virtual PipelineData getData() = 0;
 
 		virtual bool compatible(Window* window) = 0;
 		virtual bool attachWindow(Window* window) = 0;

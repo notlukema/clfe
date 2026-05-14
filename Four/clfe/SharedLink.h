@@ -5,6 +5,9 @@ namespace clfe
 {
 
 	template <typename T>
+	class LinkBase;
+
+	template <typename T>
 	class LinkWell;
 
 	template <typename T>
@@ -22,12 +25,17 @@ namespace clfe
 		SharedLink<T>* lastp;
 
 		template <typename T>
+		friend class LinkBase;
+
+		template <typename T>
 		friend class LinkWell;
+
 		template <typename T>
 		friend class LinkPool;
 
 		SharedLink(LinkWell<T>* well, SharedLink<T>* next, SharedLink<T>* last) : well(well), nextw(next), lastw(last), pool(nullptr), nextp(nullptr), lastp(nullptr) {}
 
+		// Check if already connected to pool beforehand
 		bool completeLink(LinkPool<T>* pool, SharedLink<T>* next, SharedLink<T>* last)
 		{
 			if (this->pool != nullptr)
@@ -35,21 +43,33 @@ namespace clfe
 				return false;
 			}
 
-			this->pool = pool;
-			nextp = next;
-			lastp = last;
-
 			// Same priority calls the pool first
 			if (well->priority_ > pool->priority_)
 			{
-				well->invokeInit();
-				pool->invokeInit(well->this_);
+				if (!well->invokeInit())
+				{
+					return false;
+				}
+				if (!pool->invokeInit(well->this_))
+				{
+					return false;
+				}
 			}
 			else
 			{
-				pool->invokeInit(well->this_);
-				well->invokeInit();
+				if (!pool->invokeInit(well->this_))
+				{
+					return false;
+				}
+				if (!well->invokeInit())
+				{
+					return false;
+				}
 			}
+
+			this->pool = pool;
+			nextp = next;
+			lastp = last;
 
 			return true;
 		}
@@ -81,7 +101,7 @@ namespace clfe
 				}
 				if (lastw == nullptr)
 				{
-					well->first = nextw;
+					well->first_ = nextw;
 				}
 				else
 				{
@@ -97,7 +117,7 @@ namespace clfe
 				}
 				if (lastp == nullptr)
 				{
-					pool->first = nextp;
+					pool->first_ = nextp;
 				}
 				else
 				{
@@ -108,27 +128,25 @@ namespace clfe
 
 	};
 
-	// Helper class (do not use)
+	// LinkBase
+
 	template <typename T>
 	class LinkBase
 	{
 	protected:
 		template <typename T>
 		friend class SharedLink;
-		SharedLink<T>* first;
+		SharedLink<T>* first_;
 		int len;
 
 		// The higher the value, the higher its priority
 		const int priority_;
 
-		LinkBase(int priority = 0) : first(nullptr), len(0), priority_(priority) {}
+		LinkBase(int priority = 0) : first_(nullptr), len(0), priority_(priority) {}
 
 		~LinkBase()
 		{
-			while (first != nullptr)
-			{
-				delete first;
-			}
+			releaseAll();
 		}
 
 	public:
@@ -142,26 +160,45 @@ namespace clfe
 			return priority_;
 		}
 
+		void releaseAll()
+		{
+			while (first_ != nullptr)
+			{
+				delete first_;
+			}
+		}
+
+		T* first()
+		{
+			if (first_ != nullptr)
+			{
+				return first_->well->getObj();
+			}
+			return nullptr;
+		}
+
 	};
 
-	// When priority is the same, the LinkWell functions are always called second
+	// Link Well
+
 	template <typename T>
 	class LinkWell : public LinkBase<T>
 	{
 	private:
 		T* this_;
-		void (*initfunc)(T* this_);
+		bool (*initfunc)(T* this_);
 		void (*termfunc)(T* this_);
 
 		template <typename T>
 		friend class SharedLink;
 
-		void invokeInit()
+		bool invokeInit()
 		{
 			if (initfunc != nullptr)
 			{
-				initfunc(this_);
+				return initfunc(this_);
 			}
+			return true;
 		}
 
 		void invokeTerm()
@@ -173,24 +210,31 @@ namespace clfe
 		}
 
 	public:
-		LinkWell(T* this_, void (*initfunc)(T* this_) = nullptr, void (*termfunc)(T* this_) = nullptr, int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc) {}
+		LinkWell(T* this_, bool (*initfunc)(T* this_) = nullptr, void (*termfunc)(T* this_) = nullptr, int priority = 0) : LinkBase<T>(priority), this_(this_), initfunc(initfunc), termfunc(termfunc) {}
 
 		SharedLink<T>* pull()
 		{
-			SharedLink<T>* link = new SharedLink<T>(this, LinkBase<T>::first, nullptr);
-			if (LinkBase<T>::first != nullptr)
+			SharedLink<T>* link = new SharedLink<T>(this, LinkBase<T>::first_, nullptr);
+			if (LinkBase<T>::first_ != nullptr)
 			{
-				LinkBase<T>::first->lastw = link;
+				LinkBase<T>::first_->lastw = link;
 			}
-			LinkBase<T>::first = link;
+			LinkBase<T>::first_ = link;
 			LinkBase<T>::len++;
 			return link;
+		}
+
+		inline T* getObj()
+		{
+			return this_;
 		}
 		
 	};
 	
+	// Link Pool
+
 	template <typename T>
-	class LinkFunction
+	class VoidLinkFunction
 	{
 	public:
 		virtual void invoke(T* other) = 0;
@@ -198,14 +242,14 @@ namespace clfe
 	};
 
 	template <typename T, typename U>
-	class DoubleLinkFunction : public LinkFunction<U>
+	class VoidDoubleLinkFunction : public VoidLinkFunction<U>
 	{
 	private:
 		T* this_;
 		void (*func)(T* this_, U* other);
 
 	public:
-		DoubleLinkFunction(T* this_, void (*func)(T* this_, U* other)) : this_(this_), func(func) {}
+		VoidDoubleLinkFunction(T* this_, void (*func)(T* this_, U* other)) : this_(this_), func(func) {}
 
 		virtual void invoke(U* other) override
 		{
@@ -217,23 +261,53 @@ namespace clfe
 
 	};
 
+	template <typename T>
+	class BoolLinkFunction
+	{
+	public:
+		virtual bool invoke(T* other) = 0;
+
+	};
+
+	template <typename T, typename U>
+	class BoolDoubleLinkFunction : public BoolLinkFunction<U>
+	{
+	private:
+		T* this_;
+		bool (*func)(T* this_, U* other);
+
+	public:
+		BoolDoubleLinkFunction(T* this_, bool (*func)(T* this_, U* other)) : this_(this_), func(func) {}
+
+		virtual bool invoke(U* other) override
+		{
+			if (func != nullptr) // Should always be true
+			{
+				return func(this_, other);
+			}
+			return true;
+		}
+
+	};
+
 	// When priority is the same, the LinkPool functions are always called first
 	template <typename T>
 	class LinkPool : public LinkBase<T>
 	{
 	private:
-		LinkFunction<T>* initfunc;
-		LinkFunction<T>* termfunc;
+		BoolLinkFunction<T>* initfunc;
+		VoidLinkFunction<T>* termfunc;
 
 		template <typename T>
 		friend class SharedLink;
 
-		void invokeInit(T* other)
+		bool invokeInit(T* other)
 		{
 			if (initfunc != nullptr)
 			{
-				initfunc->invoke(other);
+				return initfunc->invoke(other);
 			}
+			return true;
 		}
 
 		void invokeTerm(T* other)
@@ -245,11 +319,13 @@ namespace clfe
 		}
 
 	public:
-		LinkPool(LinkFunction<T>* initfunc = nullptr, LinkFunction<T>* termfunc = nullptr, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc) {}
+		LinkPool(BoolLinkFunction<T>* initfunc = nullptr, VoidLinkFunction<T>* termfunc = nullptr, int priority = 0) : LinkBase<T>(priority), initfunc(initfunc), termfunc(termfunc) {}
 		
 		template <typename U>
-		LinkPool(U* this_, void (*initfunc)(U* this_, T* other), void (*termfunc)(U* this_, T* other), int priority = 0) : LinkBase<T>(priority),
-			initfunc(initfunc == nullptr ? nullptr : new DoubleLinkFunction<U, T>(this_, initfunc)), termfunc(termfunc == nullptr ? nullptr : new DoubleLinkFunction<U, T>(this_, termfunc)) {}
+		LinkPool(U* this_, bool (*initfunc)(U* this_, T* other), void (*termfunc)(U* this_, T* other), int priority = 0) : LinkBase<T>(priority),
+			initfunc(initfunc == nullptr ? nullptr : new BoolDoubleLinkFunction<U, T>(this_, initfunc)),
+			termfunc(termfunc == nullptr ? nullptr : new VoidDoubleLinkFunction<U, T>(this_, termfunc))
+		{}
 
 		~LinkPool()
 		{
@@ -265,17 +341,31 @@ namespace clfe
 
 		bool attach(SharedLink<T>* link)
 		{
-			if (!link->completeLink(this, LinkBase<T>::first, nullptr))
+			if (!link->completeLink(this, LinkBase<T>::first_, nullptr))
 			{
 				return false;
 			}
-			if (LinkBase<T>::first != nullptr)
+			if (LinkBase<T>::first_ != nullptr)
 			{
-				LinkBase<T>::first->lastp = link;
+				LinkBase<T>::first_->lastp = link;
 			}
-			LinkBase<T>::first = link;
+			LinkBase<T>::first_ = link;
 			LinkBase<T>::len++;
 			return true;
+		}
+
+		bool contains(T* obj)
+		{
+			SharedLink<T>* link = LinkBase<T>::first_;
+			while (link != nullptr)
+			{
+				if (link->well->getObj() == obj)
+				{
+					return true;
+				}
+				link = link->nextp;
+			}
+			return false;
 		}
 
 	};

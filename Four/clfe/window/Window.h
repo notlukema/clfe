@@ -60,8 +60,8 @@ namespace clfe
 		void setMaximizeCallback(Function<bool(bool maximized)> callback);
 
 	public:
-		// Do no override; instead, use innerDestroy function
-		~Window();
+		virtual ~Window();
+
 		void destroy();
 		// Bypasses the close callback
 		void hardDestroy();

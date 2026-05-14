@@ -15,14 +15,19 @@ namespace clfe
 	private:
 		LinkPool<WinWnd> pool;
 
-		static void attachWindow(GL4_6_Extension_Windows* this_, WinWnd* window);
+		HGLRC hrc;
+
+		static bool attachWindow(GL4_6_Extension_Windows* this_, WinWnd* window);
 		static void detachWindow(GL4_6_Extension_Windows* this_, WinWnd* window);
 		
 	public:
 		GL4_6_Extension_Windows();
+		~GL4_6_Extension_Windows() override;
 
 		virtual bool compatible(Window* window) override;
 		virtual bool initWindow(Window* window) override;
+
+		virtual bool makeCurrent(Window* window) override;
 
 	};
 

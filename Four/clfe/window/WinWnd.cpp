@@ -2,8 +2,6 @@
 
 #include "clfe/Log.h"
 
-#include <iostream>
-
 namespace clfe
 {
 
@@ -20,12 +18,12 @@ namespace clfe
 	// Split section
 
 
-	WinWnd::WinWnd(UniString name, int x, int y, int width, int height) : well(new LinkWell<WinWnd>(this))
+	WinWnd::WinWnd(UniString name, int x, int y, int width, int height) : well(this)
 	{
 		createWindow(name, WinClass::getDefaultClass(), x, y, width, height);
 	}
 
-	WinWnd::WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height) : well(new LinkWell<WinWnd>(this))
+	WinWnd::WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height) : well(this)
 	{
 		createWindow(name, wClass, x, y, width, height);
 	}
@@ -80,9 +78,14 @@ namespace clfe
 		ShowWindow(hwnd_, SW_SHOWNORMAL);
 	}
 
+	WinWnd::~WinWnd()
+	{
+		innerDestroy();
+	}
+
 	void WinWnd::innerDestroy()
 	{
-		delete well;
+		well.releaseAll();
 		ReleaseDC(hwnd_, hdc_);
 		DestroyWindow(hwnd_);
 	}

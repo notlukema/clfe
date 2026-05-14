@@ -160,6 +160,7 @@
     <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
     <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
     <ClInclude Include="clfe\data\PixelFormat.h" />
+    <ClInclude Include="clfe\pipeline\PipelineData.h" />
     <ClInclude Include="clfe\Placeholder.h" />
     <ClInclude Include="clfe\SharedLink.h" />
     <ClInclude Include="clfe\UniString.h" />

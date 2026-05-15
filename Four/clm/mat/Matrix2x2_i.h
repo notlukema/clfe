@@ -25,11 +25,11 @@ namespace clfe
 		using ct = Vector<2, T>;
 		ct array[2];
 
-		inline void swap(msize_t c1, msize_t r1, msize_t c2, msize_t r2)
+		inline void swap(msize_t r1, msize_t c1, msize_t r2, msize_t c2)
 		{
-			T temp = get(c1, r1);
-			setAt(c1, r1, get(c2, r2));
-			setAt(c2, r2, temp);
+			T temp = get(r1, c1);
+			setAt(r1, c1, get(r2, c2));
+			setAt(r2, c2, temp);
 		}
 
 	public:
@@ -54,27 +54,27 @@ namespace clfe
 			arr[1]
 		} {}
 
-		inline int rows() const
+		inline msize_t rows() const
 		{
 			return 2;
 		}
 
-		inline int cols() const
+		inline msize_t cols() const
 		{
 			return 2;
 		}
 
-		inline ct& operator[](int i)
+		inline ct& operator[](msize_t i)
 		{
 			return array[i];
 		}
 
-		inline ct getRow(int i) const
+		inline ct getRow(msize_t i) const
 		{
 			return array[i];
 		}
 
-		inline void setRow(int r, const ct& vec)
+		inline void setRow(msize_t r, const ct& vec)
 		{
 			array[r] = vec;
 		}
@@ -84,12 +84,12 @@ namespace clfe
 			return static_cast<const ct* const>(array);
 		}
 
-		inline T get(int r, int c) const
+		inline T get(msize_t r, msize_t c) const
 		{
 			return array[r].get(c);
 		}
 
-		inline void setAt(int r, int c, T value)
+		inline void setAt(msize_t r, msize_t c, T value)
 		{
 			array[r].setAt(c, value);
 		}
@@ -103,9 +103,15 @@ namespace clfe
 		Matrix<2, 2, T> transposed() const
 		{
 			return Matrix<2, 2, T>(
-				get(0, 0), get(0, 1),
-				get(1, 0), get(1, 1)
+				get(0, 0), get(1, 0),
+				get(0, 1), get(1, 1)
 			);
+		}
+
+		template <typename U = T>
+		U determinant() const requires Arithmetic2<T, U>
+		{
+			return static_cast<U>(get(0, 0) * get(1, 1) - get(0, 1) * get(1, 0));
 		}
 
 	public: // Matrix2x2 specific

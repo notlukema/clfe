@@ -58,7 +58,7 @@ namespace clfe
         auto arr = new T[16];
         for (int i = 0; i < 16; i++)
         {
-            arr[i] = mat44.get(i / 4, i % 4);
+            arr[i] = mat44.get(i % 4, i / 4);
         }
         return arr;
     }
@@ -146,31 +146,31 @@ namespace clfe
 
         currentNode = firstNode;
         dothefunny(
-            mtranslate(0.8f, 0.0f, 0.0f)
+            mrotateZ(rot * 1.5f)
             * mrotateX(0.3f)
-            * mrotateZ(rot * 1.5f)
+            * mtranslate(0.8f, 0.0f, 0.0f)
         , 0.4);
 
         dothefunny(
-            mtranslate(-3.0f, 0.5f*sinf(rot * 1.5f), 0.0f)
-            * mrotateX(Constf.Pi * sinf(rot * 3))
+            mrotateZ(Constf.Pi * sinf(rot + 5))
             * mrotateY(Constf.Pi * sinf(rot * 2 + 1))
-            * mrotateZ(Constf.Pi * sinf(rot + 5))
+            * mrotateX(Constf.Pi * sinf(rot * 3))
+            * mtranslate(-3.0f, 0.5f*sinf(rot * 1.5f), 0.0f)
         , 0.2);
 
         dothefunny(
-            mtranslate(12.0f * sinf(rot * 5), -14.0f, -50 + 30.0f * cosf(rot * 5))
-            * mrotateX(0.2f)
+            mrotateX(0.2f)
+            * mtranslate(12.0f * sinf(rot * 5), -14.0f, -50 + 30.0f * cosf(rot * 5))
         , 3);
 
         dothefunny(
-            mtranslate(-1.2f, 0.3f, 0.0f)
-            * mrotateX(rot * 1.2f)
+            mrotateX(rot * 1.2f)
+            * mtranslate(-1.2f, 0.3f, 0.0f)
         , 0.4);
 
         dothefunny(
-            mtranslate(3.0f, 1.0f, 0.0f)
-            * mrotateY(rot * 9)
+            mrotateY(rot * 9)
+            * mtranslate(3.0f, 1.0f, 0.0f)
         , 0.2);
 
         SwapBuffers(window->getHDC());

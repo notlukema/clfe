@@ -275,5 +275,17 @@
     <ClInclude Include="clfe\pipeline\PipelineData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clm\mat\Matrix3x3_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\mat\Matrix4x4_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,23 +1,24 @@
-#ifndef CLFE_PIPELINE_OPENGL4_6_H
-#define CLFE_PIPELINE_OPENGL4_6_H
+#ifndef CLFE_PIPELINE_VULKAN1_4_H
+#define CLFE_PIPELINE_VULKAN1_4_H
 
 #include "../impl/Pipeline.h"
+#include "../impl/Vulkan_i.h"
 #include "clfe/window/Window.h"
 
 namespace clfe
 {
 
-	class Pipeline_OpenGL4_6;
+	class Pipeline_Vulkan1_4;
 
-	class GL4_6_Extension
+	class Vulkan1_4_Extension
 	{
 	protected:
-		friend class Pipeline_OpenGL4_6;
+		friend class Pipeline_Vulkan1_4;
 
-		GL4_6_Extension() = default;
+		Vulkan1_4_Extension() = default;
 
 	public:
-		virtual ~GL4_6_Extension() = default;
+		virtual ~Vulkan1_4_Extension() = default;
 
 		virtual bool compatible(Window* window) = 0;
 		virtual bool initWindow(Window* window) = 0;
@@ -26,20 +27,20 @@ namespace clfe
 
 	};
 
-	class Pipeline_OpenGL4_6 : public Pipeline
+	class Pipeline_Vulkan1_4 : public Pipeline
 	{
 	public:
 		static const char* const Name;
 
-		static GL4_6_Extension* defaultExtension();
+		static Vulkan1_4_Extension* defaultExtension();
 
 	private:
-		friend class GL4_6_Extension;
-		GL4_6_Extension* extension;
+		friend class Vulkan1_4_Extension;
+		Vulkan1_4_Extension* extension;
 
 	public:
-		Pipeline_OpenGL4_6(GL4_6_Extension* extension = nullptr);
-		~Pipeline_OpenGL4_6() override;
+		Pipeline_Vulkan1_4(Vulkan1_4_Extension* extension = nullptr);
+		~Pipeline_Vulkan1_4() override;
 
 		virtual PipelineData getData() override;
 
@@ -57,7 +58,7 @@ namespace clfe
 }
 
 #if defined(CLFE_OS_WIN)
-#include "Windows_i.h"
+//#include "Windows_i.h"
 
 #elif defined(CLFE_OS_MAC)
 //#include "MacWnd_i.h"
@@ -66,7 +67,7 @@ namespace clfe
 //#include "LinuxWnd_i.h"
 
 #else
-#warning "Unsupported platform for OpenGL 4.6 pipeline!"
+#warning "Unsupported platform for Vulkan 1.4 pipeline!"
 
 #endif
 

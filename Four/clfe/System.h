@@ -59,6 +59,8 @@ namespace clfe
 		}
 
 	public:
+		System() = delete;
+
 		static bool init();
 		static void terminate();
 		static clid genNextID();

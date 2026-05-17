@@ -40,6 +40,8 @@ namespace clfe
 		static void removeAttachment(Attachment* attachment);
 
 	public:
+		AttachmentHolder() = delete;
+
 		static inline const List<Attachment*>& getAttachments()
 		{
 			return attachments;

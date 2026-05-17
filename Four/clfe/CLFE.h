@@ -1,12 +1,15 @@
 #ifndef CLFE_CLFE_H
 #define CLFE_CLFE_H
 
+#include "Global.h"
+
 // Ties togethor the init, step, and terminate functions of various modules
 
 namespace clfe
 {
 
 	bool init();
+	bool init(const ApplicationInfo& applicationInfo);
 	void step(float dt);
 	void step(double dt);
 	void terminate();

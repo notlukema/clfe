@@ -51,13 +51,7 @@
     <ClCompile Include="clfe\object\ObjectData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\Placeholder.cpp">
@@ -69,7 +63,10 @@
     <ClCompile Include="clu\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.cpp">
+    <ClCompile Include="clfe\pipeline\impl\Vulkan_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\Global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -285,6 +282,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clm\Matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Opengl4_6\GL4_6_StateMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Vulkan1_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\impl\Vulkan_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\GlobalVulkan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

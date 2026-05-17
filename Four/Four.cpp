@@ -10,14 +10,11 @@
 
 #include "clfe/window/Window.h"
 
-#include <cstdlib>
 #include "Chrono.h"
-
-#include "FastDraw.h"
 
 #include "clfe/input/KeyTables.h"
 
-#include "clfe/pipeline/Opengl4_6.h"
+//#include "clfe/pipeline/Vulkan1_4.h"
 
 #include "clfe/Placeholder.h"
 
@@ -28,18 +25,20 @@ using namespace clfe;
 
 int main()
 {
-    if (!clfe::init()) {
+	ApplicationInfo appInfo("Four", 1, 0, 0);
+    if (!clfe::init(appInfo)) {
         return -1;
     }
 
     Window* wnd1 = createWindow("thing");
 
-    Pipeline* pipeline = new Pipeline_OpenGL4_6();
-    pipeline->attachWindow(wnd1);
+    std::cout << Global::getApplicationInfo().ApplicationName << "\n";
 
-    print(pipeline->getData());
 
-    std::cout << fastDrawInit((WinWnd*)wnd1) << "-fastdrawinit complete\n";
+    //Pipeline* pipeline = new Pipeline_Vulkan1_4();
+    //pipeline->attachWindow(wnd1);
+
+    //print(pipeline->getData());
 
     while (wnd1->exists())
     {
@@ -47,7 +46,6 @@ int main()
         //std::cout << "   delta time: " << deltaTime << "\n";
         //std::cout << "   fps: " << 1 / deltaTime << "\n";
 
-        fastDraw((WinWnd*)wnd1, deltaTime);
     }
 
     clfe::terminate();

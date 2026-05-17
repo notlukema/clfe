@@ -8,6 +8,8 @@ namespace clfe
 
 	struct Key
 	{
+		Key() = delete;
+
 #define K_T static constexpr Key_t
 
 		K_T Unknown = -1;

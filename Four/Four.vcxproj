@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -105,13 +105,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\;.\interface;.\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\interface;.\glad\include;C:\VulkanSDK\1.4.350.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\VulkanSDK\1.4.350.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,12 +133,11 @@
   <ItemGroup>
     <ClCompile Include="clfe\Attachment.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
+    <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\object\Object.cpp" />
     <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp" />
-    <ClCompile Include="clfe\pipeline\Opengl4_6\glad\glad.c" />
-    <ClCompile Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.cpp" />
-    <ClCompile Include="clfe\pipeline\Opengl4_6\Windows_i.cpp" />
+    <ClCompile Include="clfe\pipeline\impl\Vulkan_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
@@ -152,15 +152,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
+    <ClInclude Include="clfe\Global.h" />
     <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\data\PixelFormat.h" />
+    <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
+    <ClInclude Include="clfe\pipeline\impl\Vulkan_i.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
+    <ClInclude Include="clfe\pipeline\Opengl4_6\GL4_6_StateMachine.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h" />
     <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
-    <ClInclude Include="clfe\pipeline\impl\Pipeline.h" />
-    <ClInclude Include="clfe\data\PixelFormat.h" />
     <ClInclude Include="clfe\pipeline\PipelineData.h" />
+    <ClInclude Include="clfe\pipeline\GlobalVulkan.h" />
+    <ClInclude Include="clfe\pipeline\Vulkan1_4.h" />
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h" />
     <ClInclude Include="clfe\Placeholder.h" />
     <ClInclude Include="clfe\SharedLink.h" />
     <ClInclude Include="clfe\UniString.h" />

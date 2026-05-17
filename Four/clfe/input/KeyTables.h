@@ -15,10 +15,13 @@ namespace clfe
 	template <int Platform>
 	class KeyTable
 	{
+		KeyTable() = delete;
 	};
 
 	struct KeyTables
 	{
+	public:
+		KeyTables() = delete;
 
 		template <int Platform, typename T>
 			requires IsIntegral<T>
@@ -36,6 +39,8 @@ namespace clfe
 	class KeyTable<WindowsKeys>
 	{
 	public:
+		KeyTable() = delete;
+
 		static constexpr int Size = 100;
 
 		// Avoid direct access to discourage inline code bloat

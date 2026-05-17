@@ -25,6 +25,12 @@ namespace clfe
 		return success;
 	}
 
+	bool init(const ApplicationInfo& applicationInfo)
+	{
+		Global::postApplicationInfo(applicationInfo);
+		return init();
+	}
+
 	void step(float dt)
 	{
 		for (Attachment* attachment : AttachmentHolder::getAttachmentsSortedByStepPriority())

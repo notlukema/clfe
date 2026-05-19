@@ -14,9 +14,7 @@
 
 #include "clfe/input/KeyTables.h"
 
-//#include "clfe/pipeline/Vulkan1_4.h"
-
-#include "clfe/Placeholder.h"
+#include "clfe/pipeline/Vulkan1_4.h"
 
 
 #include "clu/Print.h"
@@ -25,14 +23,16 @@ using namespace clfe;
 
 int main()
 {
-	ApplicationInfo appInfo("Four", 1, 0, 0);
-    if (!clfe::init(appInfo)) {
+    if (!clfe::init(ApplicationInfo("Four", 1, 0, 0)))
+    {
         return -1;
     }
 
     Window* wnd1 = createWindow("thing");
 
     std::cout << Global::getApplicationInfo().ApplicationName << "\n";
+
+
 
 
     //Pipeline* pipeline = new Pipeline_Vulkan1_4();

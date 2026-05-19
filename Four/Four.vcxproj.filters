@@ -27,7 +27,7 @@
     <ClCompile Include="clfe\window\WinDefProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\window\Window.cpp">
+    <ClCompile Include="clfe\window\Window_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\window\WinWnd.cpp">
@@ -51,10 +51,7 @@
     <ClCompile Include="clfe\object\ObjectData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\impl\Pipeline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\Placeholder.cpp">
+    <ClCompile Include="clfe\pipeline\Pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\UniString.cpp">
@@ -63,10 +60,16 @@
     <ClCompile Include="clu\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\impl\Vulkan_i.cpp">
+    <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\Global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\Placeholder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +86,7 @@
     <ClInclude Include="clfe\input\KeyTables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\window\Window.h">
+    <ClInclude Include="clfe\window\Window_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\window\WinWnd.h">
@@ -227,7 +230,7 @@
     <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\pipeline\impl\Pipeline.h">
+    <ClInclude Include="clfe\pipeline\Pipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\Scene.h">
@@ -243,9 +246,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Concepts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Placeholder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\UniString.h">
@@ -293,13 +293,19 @@
     <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\pipeline\impl\Vulkan_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\GlobalVulkan.h">
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Placeholder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\ModernPipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\window\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

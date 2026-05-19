@@ -2,8 +2,8 @@
 #define CLM_VECMAT_UTILS_H
 
 // Guards against if anyone decides to include this file directly
-#include "clm/vec/Vector_i.h"
-#include "clm/mat/Matrix_i.h"
+#include "../vec/Vector_i.h"
+#include "../mat/Matrix_i.h"
 
 namespace clfe
 {

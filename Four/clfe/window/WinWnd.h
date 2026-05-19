@@ -1,7 +1,11 @@
 #ifndef CLFE_WINWND_H
 #define CLFE_WINWND_H
 
-#include "Window.h"
+#include "Window_i.h"
+
+#include "clfe/System.h"
+#include "clfe/Attachment.h"
+#include "clfe/UniString.h"
 #include "clfe/SharedLink.h"
 
 #include <Windows.h>

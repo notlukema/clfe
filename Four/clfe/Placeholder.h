@@ -13,11 +13,12 @@ namespace clfe
 	class Placeholder : public InstanceInterface<Placeholder>
 	{
 	private:
-		static const Attachment PlaceholderAttachment;
 		static InstanceList<Placeholder>* PlaceholderList;
 		static bool init();
 		static void step(float delf, double deld);
 		static void term();
+
+		inline static const Attachment PlaceholderAttachment = Attachment(1, init, step, term);
 
 	public:
 		Function<void()> initFunc;

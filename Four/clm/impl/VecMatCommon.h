@@ -1,8 +1,6 @@
 #ifndef CLM_VECMAT_COMMON_H
 #define CLM_VECMAT_COMMON_H
 
-#include "Math.h"
-
 #include <type_traits>
 #include <cstdint>
 #include <utility>

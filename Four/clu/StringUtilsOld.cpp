@@ -1,6 +1,6 @@
 #include "StringUtils.h"
 
-#include "../clfe/Log.h"
+#include "clfe/Log.h"
 
 #include <cstdlib>
 #include <malloc.h>

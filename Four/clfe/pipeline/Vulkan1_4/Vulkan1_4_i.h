@@ -1,9 +1,10 @@
 #ifndef CLFE_PIPELINE_VULKAN1_4_H
 #define CLFE_PIPELINE_VULKAN1_4_H
 
-#include "../impl/Pipeline.h"
-#include "../impl/Vulkan_i.h"
-#include "clfe/window/Window.h"
+#include "../Pipeline.h"
+#include "Global_i.h"
+
+#include "clfe/window/Window_i.h"
 
 namespace clfe
 {

@@ -3,6 +3,7 @@
 
 #include "InputParams.h"
 #include "Key.h"
+
 #include "TypeTraits.h"
 
 namespace clfe

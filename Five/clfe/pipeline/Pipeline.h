@@ -4,7 +4,7 @@
 #include "PipelineData.h"
 
 #include "clfe/System.h"
-#include "clfe/window/Window.h"
+#include "clfe/window/Window_i.h"
 #include "clfe/object/Scene.h"
 
 namespace clfe

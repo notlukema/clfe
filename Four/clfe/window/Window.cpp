@@ -1,10 +1,25 @@
-#include "Window_i.h"
+#include "Window.h"
 
+#include "clfe/CrossPlatform.h"
 #include "clfe/AttachmentLayers.h"
-#include "clfe/Log.h"
 
 namespace clfe
 {
+
+	Window* createWindow(UniString name, int x, int y, int width, int height)
+	{
+#if defined(CLFE_OS_WIN)
+		return new WinWnd(name, x, y, width, height);
+#elif defined(CLFE_OS_MAC)
+		return nullptr;
+#elif defined(CLFE_OS_LNX)
+		return nullptr;
+#else
+		return nullptr;
+#endif
+	}
+
+	//
 
 	const Attachment Window::WindowAttachment = Attachment(AttachmentLayers::Window, Window::init, Window::step, Window::terminate);
 	InstanceList<Window>* Window::WindowList = nullptr;

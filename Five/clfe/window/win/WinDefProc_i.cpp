@@ -1,4 +1,4 @@
-#include "WinWnd.h"
+#include "WinWindow_i.h"
 
 #include "clfe/Log.h"
 
@@ -9,19 +9,19 @@ namespace clfe
 
 	static const LRESULT BlankReturn = 0;
 
-	LRESULT CALLBACK WinWnd::defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+	LRESULT CALLBACK WinWindow::defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		WinWnd* window = nullptr;
+		WinWindow* window = nullptr;
 		if (uMsg == WM_NCCREATE)
 		{
 			CREATESTRUCT* createStruct = (CREATESTRUCT*)lParam;
-			window = (WinWnd*)createStruct->lpCreateParams;
+			window = (WinWindow*)createStruct->lpCreateParams;
 
 			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
 		}
 		else
 		{
-			window = (WinWnd*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+			window = (WinWindow*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 		}
 
 		if (window == nullptr)

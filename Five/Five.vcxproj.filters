@@ -15,34 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Four.cpp">
+    <ClCompile Include="Five.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\input\InputCore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\window\WinClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\window\WinDefProc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\window\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\window\WinWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\CLFE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\System.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\Attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\object\Object.cpp">
@@ -51,16 +27,31 @@
     <ClCompile Include="clfe\object\ObjectData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="clfe\pipeline\Pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\UniString.cpp">
+    <ClCompile Include="clfe\window\win\WinClass_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clu\StringUtils.cpp">
+    <ClCompile Include="clfe\window\win\WinDefProc_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp">
+    <ClCompile Include="clfe\window\Window_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\window\win\WinWindow_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\Attachment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\CLFE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\Global.cpp">
@@ -69,11 +60,23 @@
     <ClCompile Include="clfe\Placeholder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp">
+    <ClCompile Include="clfe\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\UniString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\benchmarking\Benchmark.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clu\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clfe\data\PixelFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="clfe\input\InputCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -86,10 +89,49 @@
     <ClInclude Include="clfe\input\KeyTables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clfe\input\SystemInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\ObjectData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\ModernPipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\PipelineData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\pipeline\Vulkan1_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="clfe\window\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\window\WinWnd.h">
+    <ClInclude Include="clfe\window\Window_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\window\win\WinWindow_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Attachment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\AttachmentLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CLFE.h">
@@ -98,43 +140,67 @@
     <ClInclude Include="clfe\CrossPlatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clfe\Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Placeholder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\SharedLink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="clfe\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\mat\MatMul.h">
+    <ClInclude Include="clfe\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\mat\MatOp.h">
+    <ClInclude Include="clm\VectorMatrixCommon_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\mat\Matrix_i.h">
+    <ClInclude Include="clm\VectorMatrixOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\mat\Matrix2x2_i.h">
+    <ClInclude Include="clm\VectorMatrixUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\mat\MatUtils.h">
+    <ClInclude Include="clm\MatrixOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\VecOp.h">
+    <ClInclude Include="clm\Matrix_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\Vector_i.h">
+    <ClInclude Include="clm\Matrix2x2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\Vector2_i.h">
+    <ClInclude Include="clm\Matrix3x3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\Vector3_i.h">
+    <ClInclude Include="clm\Matrix4x4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\Vector4_i.h">
+    <ClInclude Include="clm\MatrixUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\vec\VecUtils.h">
+    <ClInclude Include="clm\VectorOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\CLM.h">
+    <ClInclude Include="clm\Vector_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VectorUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clm\Math.h">
@@ -149,16 +215,16 @@
     <ClInclude Include="clm\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\impl\VecMatCommon.h">
+    <ClInclude Include="clm\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\impl\VecMatOp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\impl\VecMatUtils.h">
+    <ClInclude Include="clm\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\benchmarking\Benchmark.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clu\FlexibleToString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clu\LongBoolList.h">
@@ -170,25 +236,13 @@
     <ClInclude Include="clu\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FastDraw.h">
+    <ClInclude Include="interface\Chrono.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\Attachment.h">
+    <ClInclude Include="interface\Concepts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\input\SystemInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\AttachmentLayers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\object\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\object\ObjectData.h">
+    <ClInclude Include="interface\Exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Function.h">
@@ -197,112 +251,22 @@
     <ClInclude Include="interface\List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="interface\Chrono.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\TypeTraits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Matrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Vector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Vector2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Vector4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Matrix2x2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Pipeline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\object\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\data\PixelFormat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\Exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\Concepts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\UniString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clu\FlexibleToString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\SharedLink.h">
+    <ClInclude Include="interface\TypeIndex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\TypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="interface\TypeTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="interface\UnorderedMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="interface\TypeIndex.h">
+    <ClInclude Include="FastDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\PipelineData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\mat\Matrix3x3_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\mat\Matrix4x4_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Matrix3x3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clm\Matrix4x4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Opengl4_6\GL4_6_StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\Placeholder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\ModernPipeline.h">
+    <ClInclude Include="clfe\window\WinWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

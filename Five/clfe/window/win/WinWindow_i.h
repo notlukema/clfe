@@ -1,7 +1,7 @@
-#ifndef CLFE_WINWND_H
-#define CLFE_WINWND_H
+#ifndef CLFE_WINDOW_WIN_I_H
+#define CLFE_WINDOW_WIN_I_H
 
-#include "Window.h"
+#include "../Window_i.h"
 
 #include "clfe/System.h"
 #include "clfe/Attachment.h"
@@ -22,7 +22,7 @@ namespace clfe
 		static WinClass* DefaultClass;
 
 	public:
-		static const Attachment WinWndAttachment;
+		static const Attachment WinWindowAttachment;
 
 		static bool init();
 		static void step(float delf, double deld);
@@ -77,7 +77,7 @@ namespace clfe
 		return WinClass::getInstanceList();
 	}
 
-	class WinWnd : public Window
+	class WinWindow : public Window
 	{
 	public: // Window processes
 		static LRESULT CALLBACK defWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -85,8 +85,8 @@ namespace clfe
 		static void step();
 
 	// SharedLink
-	private: LinkWell<WinWnd> well;
-	public: inline SharedLink<WinWnd>* pullLink() { return well.pull(); }
+	private: LinkWell<WinWindow> well;
+	public: inline SharedLink<WinWindow>* pullLink() { return well.pull(); }
 
 	private:
 		const WinClass* wClass_;
@@ -98,10 +98,10 @@ namespace clfe
 		virtual void innerDestroy() override;
 
 	public: // Interface implementations
-		WinWnd(UniString name, int x, int y, int width, int height);
-		WinWnd(UniString name, const WinClass* wClass, int x, int y, int width, int height);
+		WinWindow(UniString name, int x, int y, int width, int height);
+		WinWindow(UniString name, const WinClass* wClass, int x, int y, int width, int height);
 
-		virtual ~WinWnd() override;
+		virtual ~WinWindow() override;
 
 		inline HWND getHWND() const
 		{

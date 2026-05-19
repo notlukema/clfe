@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,9 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{844018f2-24e5-40e9-957b-f0c7c6a99000}</ProjectGuid>
-    <RootNamespace>Four</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{1c9de5a0-dd8c-4f21-9346-5892d1d1527f}</ProjectGuid>
+    <RootNamespace>Five</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -82,6 +82,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -97,6 +100,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -105,8 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\;.\interface;.\glad\include;C:\VulkanSDK\1.4.350.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+      <AdditionalIncludeDirectories>./;./interface;C:\VulkanSDK\1.4.350.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -114,6 +119,9 @@
       <AdditionalDependencies>opengl32.lib;glu32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\VulkanSDK\1.4.350.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -129,11 +137,15 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clfe\Attachment.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
+    <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\object\Object.cpp" />
     <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
@@ -141,90 +153,77 @@
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
-    <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\UniString.cpp" />
-    <ClCompile Include="clfe\window\WinClass.cpp" />
-    <ClCompile Include="clfe\window\WinDefProc.cpp" />
-    <ClCompile Include="clfe\window\Window.cpp" />
-    <ClCompile Include="clfe\window\WinWnd.cpp" />
+    <ClCompile Include="clfe\window\win\WinClass_i.cpp" />
+    <ClCompile Include="clfe\window\win\WinDefProc_i.cpp" />
+    <ClCompile Include="clfe\window\Window_i.cpp" />
+    <ClCompile Include="clfe\window\win\WinWindow_i.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
     <ClCompile Include="clu\StringUtils.cpp" />
-    <ClCompile Include="Four.cpp" />
+    <ClCompile Include="Five.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
-    <ClInclude Include="clfe\Global.h" />
-    <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\AttachmentLayers.h" />
+    <ClInclude Include="clfe\CLFE.h" />
+    <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\data\PixelFormat.h" />
+    <ClInclude Include="clfe\Global.h" />
+    <ClInclude Include="clfe\input\InputCore.h" />
+    <ClInclude Include="clfe\input\InputParams.h" />
+    <ClInclude Include="clfe\input\Key.h" />
+    <ClInclude Include="clfe\input\KeyTables.h" />
+    <ClInclude Include="clfe\input\SystemInput.h" />
+    <ClInclude Include="clfe\Log.h" />
+    <ClInclude Include="clfe\object\Object.h" />
+    <ClInclude Include="clfe\object\ObjectData.h" />
+    <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\pipeline\ModernPipeline.h" />
     <ClInclude Include="clfe\pipeline\Pipeline.h" />
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6\GL4_6_StateMachine.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\glad.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6\glad\khrplatform.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6\Opengl4_6_i.h" />
-    <ClInclude Include="clfe\pipeline\Opengl4_6\Windows_i.h" />
     <ClInclude Include="clfe\pipeline\PipelineData.h" />
     <ClInclude Include="clfe\pipeline\Vulkan1_4.h" />
+    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h" />
     <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h" />
     <ClInclude Include="clfe\Placeholder.h" />
     <ClInclude Include="clfe\SharedLink.h" />
+    <ClInclude Include="clfe\System.h" />
     <ClInclude Include="clfe\UniString.h" />
+    <ClInclude Include="clfe\window\Window.h" />
+    <ClInclude Include="clfe\window\Window_i.h" />
+    <ClInclude Include="clfe\window\win\WinWindow_i.h" />
+    <ClInclude Include="clfe\window\WinWindow.h" />
+    <ClInclude Include="clm\VectorMatrixCommon_i.h" />
+    <ClInclude Include="clm\VectorMatrixOp_i.h" />
+    <ClInclude Include="clm\VectorMatrixUtils.h" />
+    <ClInclude Include="clm\Math.h" />
+    <ClInclude Include="clm\MathConst.h" />
+    <ClInclude Include="clm\Mathd.h" />
+    <ClInclude Include="clm\Mathf.h" />
     <ClInclude Include="clm\Matrix.h" />
+    <ClInclude Include="clm\MatrixOp_i.h" />
     <ClInclude Include="clm\Matrix2x2.h" />
     <ClInclude Include="clm\Matrix3x3.h" />
     <ClInclude Include="clm\Matrix4x4.h" />
-    <ClInclude Include="clm\mat\Matrix3x3_i.h" />
-    <ClInclude Include="clm\mat\Matrix4x4_i.h" />
+    <ClInclude Include="clm\Matrix_i.h" />
+    <ClInclude Include="clm\MatrixUtils.h" />
     <ClInclude Include="clm\Vector.h" />
+    <ClInclude Include="clm\VectorOp_i.h" />
     <ClInclude Include="clm\Vector2.h" />
     <ClInclude Include="clm\Vector3.h" />
     <ClInclude Include="clm\Vector4.h" />
+    <ClInclude Include="clm\Vector_i.h" />
+    <ClInclude Include="clm\VectorUtils.h" />
+    <ClInclude Include="clu\benchmarking\Benchmark.h" />
     <ClInclude Include="clu\FlexibleToString.h" />
+    <ClInclude Include="clu\LongBoolList.h" />
+    <ClInclude Include="clu\Print.h" />
+    <ClInclude Include="clu\StringUtils.h" />
+    <ClInclude Include="FastDraw.h" />
     <ClInclude Include="interface\Chrono.h" />
     <ClInclude Include="interface\Concepts.h" />
     <ClInclude Include="interface\Exception.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />
-    <ClInclude Include="clfe\AttachmentLayers.h" />
-    <ClInclude Include="clfe\CLFE.h" />
-    <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\Log.h" />
-    <ClInclude Include="clfe\input\SystemInput.h" />
-    <ClInclude Include="clfe\object\Object.h" />
-    <ClInclude Include="clfe\object\ObjectData.h" />
-    <ClInclude Include="clfe\System.h" />
-    <ClInclude Include="clfe\input\InputCore.h" />
-    <ClInclude Include="clfe\input\InputParams.h" />
-    <ClInclude Include="clfe\input\Key.h" />
-    <ClInclude Include="clfe\input\KeyTables.h" />
-    <ClInclude Include="clfe\window\Window.h" />
-    <ClInclude Include="clfe\window\WinWnd.h" />
-    <ClInclude Include="clm\CLM.h" />
-    <ClInclude Include="clm\Math.h" />
-    <ClInclude Include="clm\MathConst.h" />
-    <ClInclude Include="clm\Mathd.h" />
-    <ClInclude Include="clm\Mathf.h" />
-    <ClInclude Include="clm\mat\MatMul.h" />
-    <ClInclude Include="clm\mat\MatOp.h" />
-    <ClInclude Include="clm\mat\Matrix_i.h" />
-    <ClInclude Include="clm\mat\Matrix2x2_i.h" />
-    <ClInclude Include="clm\mat\MatUtils.h" />
-    <ClInclude Include="clm\impl\VecMatCommon.h" />
-    <ClInclude Include="clm\impl\VecMatOp.h" />
-    <ClInclude Include="clm\impl\VecMatUtils.h" />
-    <ClInclude Include="clm\vec\VecOp.h" />
-    <ClInclude Include="clm\vec\Vector_i.h" />
-    <ClInclude Include="clm\vec\Vector2_i.h" />
-    <ClInclude Include="clm\vec\Vector3_i.h" />
-    <ClInclude Include="clm\vec\Vector4_i.h" />
-    <ClInclude Include="clm\vec\VecUtils.h" />
-    <ClInclude Include="clu\benchmarking\Benchmark.h" />
-    <ClInclude Include="clu\LongBoolList.h" />
-    <ClInclude Include="clu\Print.h" />
-    <ClInclude Include="clu\StringUtils.h" />
-    <ClInclude Include="FastDraw.h" />
     <ClInclude Include="interface\TypeIndex.h" />
     <ClInclude Include="interface\TypeInfo.h" />
     <ClInclude Include="interface\TypeTraits.h" />

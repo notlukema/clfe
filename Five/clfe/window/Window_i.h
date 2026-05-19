@@ -1,5 +1,5 @@
-#ifndef CLFE_WINDOW_H
-#define CLFE_WINDOW_H
+#ifndef CLFE_WINDOW_I_H
+#define CLFE_WINDOW_I_H
 
 #include "clfe/System.h"
 #include "clfe/Attachment.h"

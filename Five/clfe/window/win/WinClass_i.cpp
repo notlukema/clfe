@@ -1,0 +1,70 @@
+#include "WinWindow_i.h"
+
+#include "clfe/AttachmentLayers.h"
+
+#include "clu/FlexibleToString.h"
+
+namespace clfe
+{
+	
+	InstanceList<WinClass>* WinClass::ClassList = nullptr;
+	const Attachment WinClass::WinWindowAttachment = Attachment(AttachmentLayers::WinWindow, WinClass::init, WinClass::step, WinClass::terminate);
+
+	HINSTANCE WinClass::HInstance;
+	WinClass* WinClass::DefaultClass = nullptr;
+
+	bool WinClass::init()
+	{
+		ClassList = new InstanceList<WinClass>();
+		HInstance = GetModuleHandle(NULL);
+		DefaultClass = createClass("Default", WinWindow::defWndProc);
+		return DefaultClass != nullptr;
+	}
+
+	void WinClass::step(float delf, double deld)
+	{
+		WinWindow::step();
+	}
+
+	void WinClass::terminate()
+	{
+		delete ClassList;
+		ClassList = nullptr;
+		DefaultClass = nullptr;
+	}
+
+	WinClass* WinClass::createClass(UniString name, WNDPROC wndProc)
+	{
+		UniString className = name + "_clfewinwindow" + toStr(ClassList->length());
+
+		WNDCLASSEX wc = {};
+		wc.cbSize = sizeof(WNDCLASSEX);
+		wc.style = CS_OWNDC; // Private DC
+		wc.lpfnWndProc = wndProc;
+		wc.hInstance = HInstance;
+		wc.lpszClassName = className.get_wchar_t();
+
+		return createClass(name, wc);
+	}
+
+	WinClass* WinClass::createClass(UniString name, WNDCLASSEX wc)
+	{
+		ATOM atom = RegisterClassEx(&wc);
+		if (atom == NULL) {
+			//DWORD error = GetLastError();
+			CLFE_ERROR("Error registering windows class!");
+			return nullptr;
+		}
+
+		WinClass* wClass = new WinClass(name, UniString(wc.lpszClassName), atom);
+		return wClass;
+	}
+
+	WinClass::WinClass(UniString name, UniString className, ATOM wClass) : InstanceInterface(ClassList), name(name), className(className), wClass(wClass) {}
+
+	WinClass::~WinClass()
+	{
+		UnregisterClassW(MAKEINTATOM(wClass), HInstance);
+	}
+
+}

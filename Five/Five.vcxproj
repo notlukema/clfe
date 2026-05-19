@@ -146,16 +146,14 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
-    <ClCompile Include="clfe\object\Object.cpp" />
-    <ClCompile Include="clfe\object\ObjectData.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\UniString.cpp" />
-    <ClCompile Include="clfe\window\win\WinClass_i.cpp" />
-    <ClCompile Include="clfe\window\win\WinDefProc_i.cpp" />
+    <ClCompile Include="clfe\window\win\WinClass.cpp" />
+    <ClCompile Include="clfe\window\win\WinDefProc.cpp" />
     <ClCompile Include="clfe\window\Window_i.cpp" />
     <ClCompile Include="clfe\window\win\WinWindow_i.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
@@ -167,7 +165,6 @@
     <ClInclude Include="clfe\AttachmentLayers.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
-    <ClInclude Include="clfe\data\PixelFormat.h" />
     <ClInclude Include="clfe\Global.h" />
     <ClInclude Include="clfe\input\InputCore.h" />
     <ClInclude Include="clfe\input\InputParams.h" />
@@ -176,8 +173,8 @@
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\Log.h" />
     <ClInclude Include="clfe\object\Object.h" />
-    <ClInclude Include="clfe\object\ObjectData.h" />
     <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\object\Texture.h" />
     <ClInclude Include="clfe\pipeline\ModernPipeline.h" />
     <ClInclude Include="clfe\pipeline\Pipeline.h" />
     <ClInclude Include="clfe\pipeline\PipelineData.h" />

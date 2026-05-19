@@ -78,7 +78,10 @@ namespace clfe
 
 	WinWindow::~WinWindow()
 	{
-		innerDestroy();
+		if (exists_)
+		{
+			innerDestroy();
+		}
 	}
 
 	void WinWindow::innerDestroy()

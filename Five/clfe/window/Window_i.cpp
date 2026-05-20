@@ -1,7 +1,5 @@
 #include "Window_i.h"
 
-#include "clfe/AttachmentLayers.h"
-
 namespace clfe
 {
 

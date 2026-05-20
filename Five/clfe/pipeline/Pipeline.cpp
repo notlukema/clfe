@@ -1,7 +1,5 @@
 #include "Pipeline.h"
 
-#include "clfe/AttachmentLayers.h"
-
 namespace clfe
 {
 

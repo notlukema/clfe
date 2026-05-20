@@ -1,7 +1,5 @@
 #include "WinWindow_i.h"
 
-#include "clfe/AttachmentLayers.h"
-
 #include "clu/FlexibleToString.h"
 
 namespace clfe

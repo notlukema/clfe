@@ -146,6 +146,10 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
+    <ClCompile Include="clfe\object\DynamicScene.cpp" />
+    <ClCompile Include="clfe\object\EObject.cpp" />
+    <ClCompile Include="clfe\object\Object_i.cpp" />
+    <ClCompile Include="clfe\object\Scene.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
@@ -162,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\Attachment.h" />
-    <ClInclude Include="clfe\AttachmentLayers.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
     <ClInclude Include="clfe\Global.h" />
@@ -172,8 +175,11 @@
     <ClInclude Include="clfe\input\KeyTables.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\Log.h" />
-    <ClInclude Include="clfe\object\Object.h" />
+    <ClInclude Include="clfe\object\DynamicScene.h" />
+    <ClInclude Include="clfe\object\EObject.h" />
+    <ClInclude Include="clfe\object\Object_i.h" />
     <ClInclude Include="clfe\object\Scene.h" />
+    <ClInclude Include="clfe\object\StaticScene.h" />
     <ClInclude Include="clfe\object\Texture.h" />
     <ClInclude Include="clfe\pipeline\ModernPipeline.h" />
     <ClInclude Include="clfe\pipeline\Pipeline.h" />

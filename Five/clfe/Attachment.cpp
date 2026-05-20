@@ -48,7 +48,7 @@ namespace clfe
 	{
 		attachments.sort([](Attachment* a, Attachment* b) {
 			return a->initPriority < b->initPriority;
-			});
+		});
 		return attachments;
 	}
 
@@ -56,7 +56,7 @@ namespace clfe
 	{
 		attachments.sort([](Attachment* a, Attachment* b) {
 			return a->stepPriority < b->stepPriority;
-			});
+		});
 		return attachments;
 	}
 
@@ -64,7 +64,7 @@ namespace clfe
 	{
 		attachments.sort([](Attachment* a, Attachment* b) {
 			return a->termPriority < b->termPriority;
-			});
+		});
 		return attachments;
 	}
 

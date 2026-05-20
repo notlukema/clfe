@@ -66,6 +66,18 @@
     <ClCompile Include="clfe\window\win\WinDefProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\object\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\EObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\DynamicScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\Object_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -111,9 +123,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\Attachment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\AttachmentLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\CLFE.h">
@@ -254,10 +263,19 @@
     <ClInclude Include="clfe\object\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\Object.h">
+    <ClInclude Include="clfe\object\Object_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\EObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\StaticScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\DynamicScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

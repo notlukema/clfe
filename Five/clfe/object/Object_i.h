@@ -4,31 +4,16 @@
 namespace clfe
 {
 
-	// Object types
-
-	enum class ObjectType
-	{
-
-		Dynamic = 1,
-		Static = 2
-
-	};
-
 	// Object
 
 	class Object
 	{
 	protected:
-		const ObjectType type;
 		bool active;
 
-		Object(ObjectType type = ObjectType::Static, bool active = true);
+		Object(bool active = true);
 
 	public:
-		inline ObjectType getType() const
-		{
-			return type;
-		}
 
 		inline bool isActive() const
 		{

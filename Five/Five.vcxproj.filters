@@ -72,10 +72,10 @@
     <ClCompile Include="clfe\object\EObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\DynamicScene.cpp">
+    <ClCompile Include="clfe\object\Object_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\Object_i.cpp">
+    <ClCompile Include="clfe\object\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

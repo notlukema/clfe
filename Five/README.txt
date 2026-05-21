@@ -39,3 +39,12 @@ Implementation files add an '_i' suffix to their header guards.
 User files do not add the '_i' suffix to their header guards.
 - Ex. CLFE_WINDOW_H
 - The existence of these headers must mean that the corresponding implementation version (if it exists) is also present
+
+
+
+
+
+
+Note to self:
+Objects created normally will always use the default allocator (maybe set a specialized "default allocator" class in the engine for this)
+Objects should always allow for taking memory in, which allows for more custom memory allocations

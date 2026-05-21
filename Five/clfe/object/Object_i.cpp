@@ -3,7 +3,7 @@
 namespace clfe
 {
 
-	Object::Object(ObjectType type, bool active) : type(type), active(active)
+	Object::Object(bool active) : active(active)
 	{}
 
 	void Object::deactivate()

@@ -146,10 +146,10 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
-    <ClCompile Include="clfe\object\DynamicScene.cpp" />
     <ClCompile Include="clfe\object\EObject.cpp" />
     <ClCompile Include="clfe\object\Object_i.cpp" />
     <ClCompile Include="clfe\object\Scene.cpp" />
+    <ClCompile Include="clfe\object\Texture.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />

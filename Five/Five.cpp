@@ -14,7 +14,8 @@
 
 #include "clfe/pipeline/Vulkan1_4.h"
 
-#include "clfe/object/tex/Texture.h"
+#include "clfe/object/Texture.h"
+#include "clfe/Allocation.h"
 
 
 #include "clu/Print.h"
@@ -32,8 +33,10 @@ int main()
 
     std::cout << Global::getApplicationInfo().ApplicationName << "\n";
 
-
-
+    Texture<5, float>* tex = new Texture<5, float>(2, 2);
+    std::cout << tex->channels() << "\n";
+    tex->set(0, 0, 0.0f, 0.1f, 0.2f, 0.3f, 0.4f);
+    print(tex->get(0, 0));
 
     //Pipeline* pipeline = new Pipeline_Vulkan1_4();
     //pipeline->attachWindow(wnd1);

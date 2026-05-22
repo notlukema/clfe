@@ -1,5 +1,5 @@
-#ifndef CLM_VECTORMATRIX_UTILS_H
-#define CLM_VECTORMATRIX_UTILS_H
+#ifndef CLM_VECTORMATRIX_UTILS_I_H
+#define CLM_VECTORMATRIX_UTILS_I_H
 
 #include "VectorMatrixCommon_i.h"
 #include "Vector_i.h"

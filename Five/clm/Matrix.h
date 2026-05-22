@@ -1,4 +1,4 @@
-#include "Matrix_i.h"
+#include "MatrixImpl.h"
 
 // Includes all other matrix versions
 #include "Matrix2x2.h"

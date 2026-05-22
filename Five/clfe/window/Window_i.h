@@ -7,7 +7,7 @@
 
 #include "clfe/input/InputCore.h"
 
-#include "clm/Vector2.h"
+#include "clm/VectorImpl.h"
 
 #include "Function.h"
 
@@ -98,19 +98,19 @@ namespace clfe
 
 		virtual int getX() const = 0;
 		virtual int getY() const = 0;
-		virtual Vector2i getPosition() const = 0;
+		virtual Vector<2, int> getPosition() const = 0;
 		virtual void setX(int x) = 0;
 		virtual void setY(int y) = 0;
 		virtual void setPosition(int x, int y) = 0;
-		virtual void setPosition(const Vector2i& pos) = 0;
+		virtual void setPosition(const Vector<2, int>& pos) = 0;
 
 		virtual int getWidth() const = 0;
 		virtual int getHeight() const = 0;
-		virtual Vector2i getSize() const = 0;
+		virtual Vector<2, int> getSize() const = 0;
 		virtual void setWidth(int width) = 0;
 		virtual void setHeight(int height) = 0;
 		virtual void setSize(int width, int height) = 0;
-		virtual void setSize(const Vector2i& size) = 0;
+		virtual void setSize(const Vector<2, int>& size) = 0;
 
 		virtual void show() = 0;
 		virtual void hide() = 0;

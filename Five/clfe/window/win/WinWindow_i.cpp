@@ -115,11 +115,11 @@ namespace clfe
 		return rect.top;
 	}
 
-	Vector2i WinWindow::getPosition() const
+	Vector<2, int> WinWindow::getPosition() const
 	{
 		RECT rect;
 		GetWindowRect(hwnd_, &rect);
-		return Vector2i(rect.left, rect.top);
+		return Vector<2, int>(rect.left, rect.top);
 	}
 
 	void WinWindow::setX(int x)
@@ -137,7 +137,7 @@ namespace clfe
 		SetWindowPos(hwnd_, NULL, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 	}
 
-	void WinWindow::setPosition(const Vector2i& pos)
+	void WinWindow::setPosition(const Vector<2, int>& pos)
 	{
 		SetWindowPos(hwnd_, NULL, pos.x(), pos.y(), 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 	}
@@ -156,11 +156,11 @@ namespace clfe
 		return rect.bottom - rect.top;
 	}
 
-	Vector2i WinWindow::getSize() const
+	Vector<2, int> WinWindow::getSize() const
 	{
 		RECT rect;
 		GetWindowRect(hwnd_, &rect);
-		return Vector2i(rect.right - rect.left, rect.bottom - rect.top);
+		return Vector<2, int>(rect.right - rect.left, rect.bottom - rect.top);
 	}
 
 	void WinWindow::setWidth(int width)
@@ -178,7 +178,7 @@ namespace clfe
 		SetWindowPos(hwnd_, NULL, 0, 0, width, height, SWP_NOZORDER | SWP_NOMOVE);
 	}
 
-	void WinWindow::setSize(const Vector2i& size)
+	void WinWindow::setSize(const Vector<2, int>& size)
 	{
 		SetWindowPos(hwnd_, NULL, 0, 0, size.x(), size.y(), SWP_NOZORDER | SWP_NOMOVE);
 	}

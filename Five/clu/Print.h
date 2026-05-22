@@ -24,7 +24,7 @@ namespace clfe
 		printf("%d", value);
 	}
 
-#ifdef CLM_VECTOR_H
+#ifdef CLM_VECTOR_I_H
 	template <msize_t Size, typename T>
 	void print(const Vector<Size, T>& vec)
 	{
@@ -41,7 +41,7 @@ namespace clfe
 	}
 #endif
 	
-#ifdef CLM_MATRIX_H
+#ifdef CLM_MATRIX_I_H
 	template <msize_t Cols, msize_t Rows, typename T>
 	void print(const Matrix<Cols, Rows, T>& mat)
 	{

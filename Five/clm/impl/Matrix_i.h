@@ -213,11 +213,4 @@ namespace clfe
 
 }
 
-#include "MatrixOp_i.h"
-#include "MatrixUtils.h"
-#ifdef CLM_VECTOR_I_H
-#include "VectorMatrixOp_i.h"
-#include "VectorMatrixUtils.h"
-#endif
-
 #endif

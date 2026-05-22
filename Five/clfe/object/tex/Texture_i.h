@@ -3,8 +3,9 @@
 
 #include "clfe/Allocation.h"
 
-#include "clm/Vector.h"
+#include "clm/VectorImpl.h"
 
+#include "TypeTraits.h"
 #include "Concepts.h"
 
 #include <cstdint>
@@ -29,6 +30,60 @@ namespace clfe
 
 	};
 
+	template <uint8_t Channels, typename T>
+	constexpr TextureType determineTextureType()
+	{
+		if constexpr (Channels == 3)
+		{
+			if constexpr (IsSame<T, int8_t>)
+			{
+				return TextureType::RGB8;
+			}
+			if constexpr (IsSame<T, uint8_t>)
+			{
+				return TextureType::RGBU8;
+			}
+			if constexpr (IsSame<T, float>)
+			{
+				if constexpr (sizeof(float) == 4)
+				{
+					return TextureType::RGB32F;
+				}
+				if constexpr (sizeof(float) == 2)
+				{
+					return TextureType::RGB16F;
+				}
+				return TextureType::INVALID;
+			}
+		}
+
+		if constexpr (Channels == 4)
+		{
+			if constexpr (IsSame<T, int8_t>)
+			{
+				return TextureType::RGBA8;
+			}
+			if constexpr (IsSame<T, uint8_t>)
+			{
+				return TextureType::RGBAU8;
+			}
+			if constexpr (IsSame<T, float>)
+			{
+				if constexpr (sizeof(float) == 4)
+				{
+					return TextureType::RGBA32F;
+				}
+				if constexpr (sizeof(float) == 2)
+				{
+					return TextureType::RGBA16F;
+				}
+				return TextureType::INVALID;
+			}
+		}
+
+		return TextureType::INVALID;
+	}
+
 	// Texture
 
 	template <uint8_t Channels, typename T, typename... Args>
@@ -41,6 +96,7 @@ namespace clfe
 		const uint32_t width_, height_;
 		const uint32_t size;
 		T* data;
+		const TextureType type_;
 
 		inline uint64_t index(uint32_t x, uint32_t y)
 		{
@@ -49,17 +105,23 @@ namespace clfe
 
 	public:
 		// Initializes with default allocation if data is nullptr
-		Texture(uint32_t width, uint32_t height, T* data = nullptr) : width_(width), height_(height), size(width * height * Channels), data(data)
+		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : width_(width), height_(height), size(width * height * Channels), data(data),
+			type_(type == TextureType::INVALID ? determineTextureType<Channels, T>() : type)
 		{
 			if (data == nullptr)
 			{
-				data = (T*)malloc(size * sizeof(T));
+				this->data = (T*)malloc(size * sizeof(T));
 			}
+		}
+
+		~Texture()
+		{
+			// figure out later
 		}
 
 		inline TextureType type() const
 		{
-			return TextureType::INVALID;
+			return type_;
 		}
 
 		inline uint32_t width() const
@@ -80,42 +142,26 @@ namespace clfe
 		Vector<Channels, T> get(uint32_t x, uint32_t y)
 		{
 			uint64_t i = index(x, y);
-			return Vector<Channels, T>(data[i], data[i + 1], data[i + 2], data[i + 3]);
+			T arr[Channels];
+			for (uint8_t j = 0; j < Channels; j++)
+			{
+				arr[j] = data[i + j];
+			}
+			return Vector<Channels, T>(arr);
 		}
 
 		void set(uint32_t x, uint32_t y, const Vector<Channels, T>& value)
 		{
-			// Partially unrolled
 			uint64_t i = index(x, y);
-			if constexpr (Channels >= 1)
+			for (uint8_t j = 0; j < Channels; j++)
 			{
-				data[i] = value[0];
-			}
-			if constexpr (Channels >= 2)
-			{
-				data[i + 1] = value[1];
-			}
-			if constexpr (Channels >= 3)
-			{
-				data[i + 2] = value[2];
-			}
-			if constexpr (Channels >= 4)
-			{
-				data[i + 3] = value[3];
-			}
-			if constexpr (Channels >= 5)
-			{
-				for (uint8_t c = 4; c < Channels; c++)
-				{
-					data[i + c] = value[c];
-				}
+				data[i + j] = value[j];
 			}
 		}
 
 		template <typename... Args>
 		void set(uint32_t x, uint32_t y, Args... args) requires CompatibleTexArgs<Channels, T, Args...>
 		{
-			// Fully unrolled
 			uint64_t i = index(x, y);
 			uint8_t j = 0;
 			((data[i + j++] = args), ...);

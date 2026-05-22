@@ -1,4 +1,4 @@
-#include "Vector_i.h"
+#include "VectorImpl.h"
 
 // Includes all other vector versions
 #include "Vector2.h"

@@ -78,9 +78,6 @@
     <ClCompile Include="clfe\Allocation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\tex\TextureRGBAF.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -152,49 +149,49 @@
     <ClInclude Include="clfe\UniString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VectorMatrixCommon_i.h">
+    <ClInclude Include="clm\impl\VectorMatrixCommon_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VectorMatrixOp_i.h">
+    <ClInclude Include="clm\impl\VectorMatrixOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VectorMatrixUtils.h">
+    <ClInclude Include="clm\impl\VectorMatrixUtils_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\MatrixOp_i.h">
+    <ClInclude Include="clm\impl\MatrixOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Matrix_i.h">
+    <ClInclude Include="clm\impl\Matrix_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Matrix2x2.h">
+    <ClInclude Include="clm\impl\Matrix2x2_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Matrix3x3.h">
+    <ClInclude Include="clm\impl\Matrix3x3_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Matrix4x4.h">
+    <ClInclude Include="clm\impl\Matrix4x4_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\MatrixUtils.h">
+    <ClInclude Include="clm\impl\MatrixUtils_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VectorOp_i.h">
+    <ClInclude Include="clm\impl\VectorOp_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Vector_i.h">
+    <ClInclude Include="clm\impl\Vector_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Vector2.h">
+    <ClInclude Include="clm\impl\Vector2_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Vector3.h">
+    <ClInclude Include="clm\impl\Vector3_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\Vector4.h">
+    <ClInclude Include="clm\impl\Vector4_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clm\VectorUtils.h">
+    <ClInclude Include="clm\impl\VectorUtils_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clm\Math.h">
@@ -284,10 +281,46 @@
     <ClInclude Include="clfe\Allocation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\tex\TextureRGBA8.h">
+    <ClInclude Include="clfe\object\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\tex\Texture.h">
+    <ClInclude Include="clm\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\Matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\VectorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clm\MatrixImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\TextureImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\tex\TextureRGB_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\tex\TextureRGBA_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\TextureRGB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\TextureRGBA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

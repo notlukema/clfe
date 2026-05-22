@@ -118,19 +118,19 @@ namespace clfe
 
 		virtual int getX() const override;
 		virtual int getY() const override;
-		virtual Vector2i getPosition() const override;
+		virtual Vector<2, int> getPosition() const override;
 		virtual void setX(int x) override;
 		virtual void setY(int y) override;
 		virtual void setPosition(int x, int y) override;
-		virtual void setPosition(const Vector2i& pos) override;
+		virtual void setPosition(const Vector<2, int>& pos) override;
 
 		virtual int getWidth() const override;
 		virtual int getHeight() const override;
-		virtual Vector2i getSize() const override;
+		virtual Vector<2, int> getSize() const override;
 		virtual void setWidth(int width) override;
 		virtual void setHeight(int height) override;
 		virtual void setSize(int width, int height) override;
-		virtual void setSize(const Vector2i& size) override;
+		virtual void setSize(const Vector<2, int>& size) override;
 
 		virtual void show() override;
 		virtual void hide() override;

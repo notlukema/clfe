@@ -1,10 +1,10 @@
-#ifndef CLM_MATRIX_UTILS_H
-#define CLM_MATRIX_UTILS_H
+#ifndef CLM_MATRIX_UTILS_I_H
+#define CLM_MATRIX_UTILS_I_H
 
 #include "VectorMatrixCommon_i.h"
 #include "Matrix_i.h"
 #include "Vector_i.h"
-#include "VectorUtils.h"
+#include "VectorUtils_i.h"
 
 namespace clfe
 {

@@ -14,6 +14,8 @@
 
 #include "clfe/pipeline/Vulkan1_4.h"
 
+#include "clfe/object/tex/Texture.h"
+
 
 #include "clu/Print.h"
 

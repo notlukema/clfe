@@ -75,7 +75,10 @@
     <ClCompile Include="clfe\object\Object_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\Texture.cpp">
+    <ClCompile Include="clfe\Allocation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\tex\TextureRGBAF.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -260,7 +263,7 @@
     <ClInclude Include="clfe\window\WinWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\Texture.h">
+    <ClInclude Include="clfe\object\tex\Texture_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\Object_i.h">
@@ -276,6 +279,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\DynamicScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\Allocation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\tex\TextureRGBA8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\tex\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

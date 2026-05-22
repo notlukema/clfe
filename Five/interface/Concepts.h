@@ -14,6 +14,9 @@ namespace clfe
 	template <typename Derived, typename Base>
 	concept DerivedFrom = std::derived_from<Derived, Base>;
 
+	template <typename From, typename To>
+	concept ConvertibleTo = std::convertible_to<From, To>;
+
 }
 
 #endif

@@ -32,6 +32,19 @@ namespace clfe
 		return init();
 	}
 
+	bool init(const Allocator& allocator)
+	{
+		setDefaultAllocator(allocator);
+		return init();
+	}
+
+	bool init(const ApplicationInfo& applicationInfo, const Allocator& allocator)
+	{
+		Global::postApplicationInfo(applicationInfo);
+		setDefaultAllocator(allocator);
+		return init();
+	}
+
 	void step(float dt)
 	{
 		for (Attachment* attachment : AttachmentHolder::getAttachmentsSortedByStepPriority())

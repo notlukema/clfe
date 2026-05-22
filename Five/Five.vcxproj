@@ -142,6 +142,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clfe\Allocation.cpp" />
     <ClCompile Include="clfe\Attachment.cpp" />
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
@@ -149,7 +150,7 @@
     <ClCompile Include="clfe\object\EObject.cpp" />
     <ClCompile Include="clfe\object\Object_i.cpp" />
     <ClCompile Include="clfe\object\Scene.cpp" />
-    <ClCompile Include="clfe\object\Texture.cpp" />
+    <ClCompile Include="clfe\object\tex\TextureRGBAF.h" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Five.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clfe\Allocation.h" />
     <ClInclude Include="clfe\Attachment.h" />
     <ClInclude Include="clfe\CLFE.h" />
     <ClInclude Include="clfe\CrossPlatform.h" />
@@ -180,7 +182,9 @@
     <ClInclude Include="clfe\object\Object_i.h" />
     <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\object\StaticScene.h" />
-    <ClInclude Include="clfe\object\Texture.h" />
+    <ClInclude Include="clfe\object\tex\Texture.h" />
+    <ClInclude Include="clfe\object\tex\Texture_i.h" />
+    <ClInclude Include="clfe\object\tex\TextureRGBA8.h" />
     <ClInclude Include="clfe\pipeline\ModernPipeline.h" />
     <ClInclude Include="clfe\pipeline\Pipeline.h" />
     <ClInclude Include="clfe\pipeline\PipelineData.h" />

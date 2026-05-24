@@ -148,8 +148,10 @@
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
     <ClCompile Include="clfe\object\EObject.cpp" />
+    <ClCompile Include="clfe\object\Material.cpp" />
     <ClCompile Include="clfe\object\Object_i.cpp" />
     <ClCompile Include="clfe\object\Scene.cpp" />
+    <ClCompile Include="clfe\object\tex\Texture_i.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
     <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="clfe\window\win\WinDefProc.cpp" />
     <ClCompile Include="clfe\window\Window_i.cpp" />
     <ClCompile Include="clfe\window\win\WinWindow_i.cpp" />
+    <ClCompile Include="clm\Quaternion.cpp" />
     <ClCompile Include="clu\benchmarking\Benchmark.cpp" />
     <ClCompile Include="clu\StringUtils.cpp" />
     <ClCompile Include="Five.cpp" />
@@ -178,6 +181,7 @@
     <ClInclude Include="clfe\Log.h" />
     <ClInclude Include="clfe\object\DynamicScene.h" />
     <ClInclude Include="clfe\object\EObject.h" />
+    <ClInclude Include="clfe\object\Material.h" />
     <ClInclude Include="clfe\object\Object_i.h" />
     <ClInclude Include="clfe\object\Scene.h" />
     <ClInclude Include="clfe\object\StaticScene.h" />
@@ -206,6 +210,7 @@
     <ClInclude Include="clm\Matrix3x3.h" />
     <ClInclude Include="clm\Matrix4x4.h" />
     <ClInclude Include="clm\MatrixImpl.h" />
+    <ClInclude Include="clm\Quaternion.h" />
     <ClInclude Include="clm\Vector2.h" />
     <ClInclude Include="clm\Vector3.h" />
     <ClInclude Include="clm\Vector4.h" />
@@ -246,6 +251,7 @@
     <ClInclude Include="interface\TypeInfo.h" />
     <ClInclude Include="interface\TypeTraits.h" />
     <ClInclude Include="interface\UnorderedMap.h" />
+    <ClInclude Include="interface\VectorList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

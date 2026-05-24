@@ -3,22 +3,23 @@
 namespace clfe
 {
 
-	Object::Object(bool active) : active(active)
-	{}
-
-	void Object::deactivate()
+	Object::Object(uint32_t vertexCount, uint32_t indexCount, Vector<3, float>* vertices, Vector<2, float>** uvs, uint32_t* indices, Vector<3, float> pos, Quaternion rot, bool active) : 
+		vCount(vertexCount), iCount(indexCount), vertices(vertices), uvs{ nullptr }, indices(indices), pos(pos), rot(rot), active(active)
 	{
-		active = false;
+		for (uint8_t i = 0; i < UVChannelCount; i++)
+		{
+			this->uvs[i] = uvs[i];
+		}
 	}
 
-	void Object::activate()
+	Object::~Object()
 	{
-		active = true;
-	}
-
-	void Object::setActive(bool active)
-	{
-		this->active = active;
+		delete vertices;
+		for (uint8_t i = 0; i < UVChannelCount; i++)
+		{
+			delete uvs[i];
+		}
+		delete indices;
 	}
 
 }

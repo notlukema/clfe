@@ -84,40 +84,19 @@ namespace clfe
 		return TextureType::INVALID;
 	}
 
-	// Texture
+	// Texture base
 
-	template <uint8_t Channels, typename T, typename... Args>
-	concept CompatibleTexArgs = (sizeof...(Args) == Channels) && (ConvertibleTo<Args, T> && ...);
-
-	template <uint8_t Channels, typename T>
-	class Texture
+	class TextureBase
 	{
-	private:
-		const uint32_t width_, height_;
-		const uint32_t size;
-		T* data;
+	protected:
+		const uint32_t width_, height_, size_;
 		const TextureType type_;
 
-		inline uint64_t index(uint32_t x, uint32_t y)
-		{
-			return (x + static_cast<uint64_t>(width_) * y) * Channels;
-		}
+		TextureBase(uint32_t width, uint32_t height, uint32_t size, TextureType type);
 
 	public:
-		// Initializes with default allocation if data is nullptr
-		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : width_(width), height_(height), size(width * height * Channels), data(data),
-			type_(type == TextureType::INVALID ? determineTextureType<Channels, T>() : type)
-		{
-			if (data == nullptr)
-			{
-				this->data = (T*)malloc(size * sizeof(T));
-			}
-		}
-
-		~Texture()
-		{
-			// figure out later
-		}
+		virtual const void* getRawData() = 0;
+		virtual uint8_t channels() const = 0;
 
 		inline TextureType type() const
 		{
@@ -134,7 +113,55 @@ namespace clfe
 			return height_;
 		}
 
-		inline uint8_t channels() const
+		inline uint32_t size() const
+		{
+			return size_;
+		}
+
+	};
+
+	// Texture
+
+	template <uint8_t Channels, typename T, typename... Args>
+	concept CompatibleTexArgs = (sizeof...(Args) == Channels) && (ConvertibleTo<Args, T> && ...);
+
+	template <uint8_t Channels, typename T>
+	class Texture : public TextureBase
+	{
+	private:
+		T* data;
+
+		inline uint64_t index(uint32_t x, uint32_t y)
+		{
+			return (x + static_cast<uint64_t>(width_) * y) * Channels;
+		}
+
+	public:
+		// Initializes with default allocation if data is nullptr
+		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : TextureBase(width, height, width * height * Channels, type == TextureType::INVALID ? determineTextureType<Channels, T>() : type), data(data)
+		{
+			if (data == nullptr)
+			{
+				this->data = (T*)malloc(size_ * sizeof(T));
+			}
+		}
+
+		~Texture()
+		{
+			delete data;
+		}
+
+		const T* getData()
+		{
+			return data;
+		}
+
+		virtual const void* getRawData() override
+		{
+			return data;
+		}
+
+		virtual uint8_t channels() const override
 		{
 			return Channels;
 		}

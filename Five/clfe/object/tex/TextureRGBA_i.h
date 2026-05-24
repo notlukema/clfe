@@ -7,13 +7,10 @@ namespace clfe
 {
 
 	template <typename T>
-	class Texture<4, T>
+	class Texture<4, T> : TextureBase
 	{
 	private:
-		const uint32_t width_, height_;
-		const uint32_t size;
 		T* data;
-		const TextureType type_;
 
 		inline uint64_t index(uint32_t x, uint32_t y)
 		{
@@ -22,31 +19,30 @@ namespace clfe
 
 	public:
 		// Initializes with default allocation if data is nullptr
-		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : width_(width), height_(height), size(width * height * 4), data(data),
-			type_(type == TextureType::INVALID ? determineTextureType<4, T>() : type)
+		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : TextureBase(width, height, width * height * 4, type == TextureType::INVALID ? determineTextureType<4, T>() : type), data(data)
 		{
 			if (data == nullptr)
 			{
-				this->data = (T*)malloc(size * sizeof(T));
+				this->data = (T*)malloc(size_ * sizeof(T));
 			}
 		}
 
-		inline TextureType type() const
+		~Texture()
 		{
-			return type_;
+			delete data;
 		}
 
-		inline uint32_t width() const
+		const T* getData()
 		{
-			return width_;
+			return data;
 		}
 
-		inline uint32_t height() const
+		virtual const void* getRawData() override
 		{
-			return height_;
+			return data;
 		}
 
-		inline uint8_t channels() const
+		virtual uint8_t channels() const override
 		{
 			return 4;
 		}

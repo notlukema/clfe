@@ -7,7 +7,7 @@ namespace clfe
 {
 
 	template <typename T>
-	class Texture<4, T> : TextureBase
+	class Texture<4, T> : public TextureBase
 	{
 	private:
 		T* data;

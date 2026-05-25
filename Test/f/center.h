@@ -1,13 +1,13 @@
 #pragma once
 
+#include <string>
+
 namespace thig
 {
 	struct f
 	{
 	public:
-		static int num;
-
-		static bool postint(int i);
+		f(std::string str);
 
 	};
 }

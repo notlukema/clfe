@@ -1,11 +1,19 @@
 #pragma once
 
+#include "center.h"
+#include "thig.h"
+
 namespace thig
 {
 
-	struct thig2
+	class thig2
 	{
-		static bool f;
+		inline static f f2 = f("thig2 loaded");
+	public:
+		inline static void func2()
+		{
+			thig::func();
+		}
 	};
 
 }

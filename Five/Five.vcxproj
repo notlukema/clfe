@@ -147,8 +147,11 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
+    <ClCompile Include="clfe\object\Mesh.cpp" />
     <ClCompile Include="clfe\object\EObject.cpp" />
-    <ClCompile Include="clfe\object\Material.cpp" />
+    <ClCompile Include="clfe\object\Material_i.cpp" />
+    <ClCompile Include="clfe\object\Model.cpp" />
+    <ClCompile Include="clfe\object\Model_i.cpp" />
     <ClCompile Include="clfe\object\Object_i.cpp" />
     <ClCompile Include="clfe\object\Scene.cpp" />
     <ClCompile Include="clfe\object\tex\Texture_i.cpp" />
@@ -179,12 +182,14 @@
     <ClInclude Include="clfe\input\KeyTables.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\Log.h" />
-    <ClInclude Include="clfe\object\DynamicScene.h" />
     <ClInclude Include="clfe\object\EObject.h" />
     <ClInclude Include="clfe\object\Material.h" />
+    <ClInclude Include="clfe\object\Material_i.h" />
+    <ClInclude Include="clfe\object\Mesh.h" />
+    <ClInclude Include="clfe\object\Model.h" />
+    <ClInclude Include="clfe\object\Model_i.h" />
     <ClInclude Include="clfe\object\Object_i.h" />
     <ClInclude Include="clfe\object\Scene.h" />
-    <ClInclude Include="clfe\object\StaticScene.h" />
     <ClInclude Include="clfe\object\Texture.h" />
     <ClInclude Include="clfe\object\TextureImpl.h" />
     <ClInclude Include="clfe\object\TextureRGB.h" />
@@ -247,6 +252,7 @@
     <ClInclude Include="interface\Exception.h" />
     <ClInclude Include="interface\Function.h" />
     <ClInclude Include="interface\List.h" />
+    <ClInclude Include="interface\Memory.h" />
     <ClInclude Include="interface\TypeIndex.h" />
     <ClInclude Include="interface\TypeInfo.h" />
     <ClInclude Include="interface\TypeTraits.h" />

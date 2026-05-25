@@ -1,8 +1,12 @@
-#include "thig2.h"
+/*#include "thig2.h"
 
-#include "center.h"
+#include "thig.h"
 
 namespace thig
 {
-	bool thig2::f = f::postint(2);
+	void thig2::func2()
+	{
+		thig::func();
+	}
 }
+*/

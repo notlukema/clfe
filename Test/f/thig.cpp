@@ -1,8 +1,10 @@
-#include "thig.h"
-
-#include "center.h"
+/*#include "thig.h"
 
 namespace thig
 {
-	bool thig::f = f::postint(1);
+	void thig::func()
+	{
+		std::cout << "thiggg!!\n";
+	}
 }
+*/

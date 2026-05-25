@@ -1,16 +1,13 @@
 #include <iostream>
 
-#include "f/center.h"
-//#include "f/thig2.h"
 //#include "f/thig.h"
+#include "f/thig2.h"
 
 using namespace thig;
 
 
 int main()
 {
-
-	std::cout << "thig::f::num " << f::num << std::endl;
-
+	thig2::func2();
 	return 0;
 }

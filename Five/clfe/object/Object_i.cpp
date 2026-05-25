@@ -1,25 +1,26 @@
 #include "Object_i.h"
 
+#include "clfe/Allocation.h"
+
 namespace clfe
 {
 
-	Object::Object(uint32_t vertexCount, uint32_t indexCount, Vector<3, float>* vertices, Vector<2, float>** uvs, uint32_t* indices, Vector<3, float> pos, Quaternion rot, bool active) : 
-		vCount(vertexCount), iCount(indexCount), vertices(vertices), uvs{ nullptr }, indices(indices), pos(pos), rot(rot), active(active)
+	Object::Object(uint32_t meshCount, Mesh** meshes, bool active, Vector<3, float> pos, Quaternion rot) : meshCount(meshCount), meshes(meshes), active(active), pos(pos), rot(rot)
+	{}
+
+	Object::Object(Mesh* mesh, bool active, Vector<3, float> pos, Quaternion rot) : meshCount(1), active(active), pos(pos), rot(rot)
 	{
-		for (uint8_t i = 0; i < UVChannelCount; i++)
-		{
-			this->uvs[i] = uvs[i];
-		}
+		meshes = (Mesh**)malloc(sizeof(Mesh*));
+		meshes[0] = mesh;
 	}
 
 	Object::~Object()
 	{
-		delete vertices;
-		for (uint8_t i = 0; i < UVChannelCount; i++)
+		for (uint32_t i = 0; i < meshCount; i++)
 		{
-			delete uvs[i];
+			delete meshes[i];
 		}
-		delete indices;
+		delete meshes;
 	}
 
 }

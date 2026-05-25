@@ -1,34 +1,29 @@
+#include "Material_i.h"
+
 #ifndef CLFE_MATERIAL_H
 #define CLFE_MATERIAL_H
 
-#include "TextureImpl.h"
-
-#include <cstdint>
+#include "Texture.h"
 
 namespace clfe
 {
 
-	class Material
+	template <typename T>
+	Material* createSingleColorMaterial(T r, T g, T b, T a)
 	{
-	private:
-		const uint32_t count_;
-		const TextureBase* textures_;
+		return new Material(1, createSingleColorTexture(r, g, b, a));
+	}
 
-	public:
-		Material(const uint32_t count, const TextureBase* textures);
-		~Material();
+	template <typename T>
+	Material* createSingleColorMaterial(T r, T g, T b)
+	{
+		return new Material(1, createSingleColorTexture(r, g, b));
+	}
 
-		inline uint32_t count()
-		{
-			return count_;
-		}
-
-		inline const TextureBase* textures()
-		{
-			return textures_;
-		}
-
-	};
+	inline Material* RedMaterial()
+	{
+		return createSingleColorMaterial(1.0f, 0.0f, 0.0f, 1.0f);
+	}
 
 }
 

@@ -4,12 +4,8 @@
 
 namespace thig
 {
-	int f::num = 0;
-
-	bool f::postint(int i)
+	f::f(std::string str)
 	{
-		num = i;
-		std::cout << "new f: " << num << std::endl;
-		return true;
+		std::cout << str << "\n";
 	}
 }

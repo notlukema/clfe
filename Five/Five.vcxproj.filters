@@ -81,10 +81,19 @@
     <ClCompile Include="clfe\object\tex\Texture_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\Material.cpp">
+    <ClCompile Include="clfe\object\Material_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clm\Quaternion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\Model_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,12 +290,6 @@
     <ClInclude Include="clfe\object\EObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\StaticScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\object\DynamicScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\Allocation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -335,10 +338,25 @@
     <ClInclude Include="interface\VectorList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\Material.h">
+    <ClInclude Include="clfe\object\Material_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clm\Quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Model_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

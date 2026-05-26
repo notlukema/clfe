@@ -69,10 +69,7 @@
     <ClCompile Include="clfe\object\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\EObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\object\Object_i.cpp">
+    <ClCompile Include="clfe\object\engine\EObject_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\Allocation.cpp">
@@ -87,13 +84,19 @@
     <ClCompile Include="clm\Quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\object\Mesh.cpp">
+    <ClCompile Include="clfe\object\engine\EMesh_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\object\Model_i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clfe\object\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\engine\EMaterial_i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clfe\object\MVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,13 +284,10 @@
     <ClInclude Include="clfe\object\tex\Texture_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\Object_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\object\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\EObject.h">
+    <ClInclude Include="clfe\object\engine\EObject_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\Allocation.h">
@@ -344,7 +344,7 @@
     <ClInclude Include="clm\Quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\object\Mesh.h">
+    <ClInclude Include="clfe\object\engine\EMesh_i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface\Memory.h">
@@ -357,6 +357,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\engine\EMaterial_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\MVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\ObjectConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -89,18 +89,47 @@ namespace clfe
 	class TextureBase
 	{
 	protected:
-		const uint32_t width_, height_, size_;
 		const TextureType type_;
+		const uint8_t channels_;
+		const uint32_t width_, height_, size_;
 
-		TextureBase(uint32_t width, uint32_t height, uint32_t size, TextureType type);
+		uint32_t references_;
+		bool deleteOnNoRef;
+
+		TextureBase(TextureType type, uint8_t channels, uint32_t width, uint32_t height, bool deleteOnNoRef = true);
 
 	public:
+		virtual ~TextureBase() = default;
+
 		virtual const void* getRawData() = 0;
-		virtual uint8_t channels() const = 0;
+		virtual TextureBase* copy(bool deleteOnNoRef) = 0;
+
+		inline uint32_t references() const
+		{
+			return references_;
+		}
+
+		void addReference();
+		void removeReference();
+
+		inline bool deleteOnNoReferences() const
+		{
+			return deleteOnNoRef;
+		}
+
+		inline void setDeleteOnNoReferences(bool value)
+		{
+			deleteOnNoRef = value;
+		}
 
 		inline TextureType type() const
 		{
 			return type_;
+		}
+
+		inline uint8_t channels() const
+		{
+			return channels_;
 		}
 
 		inline uint32_t width() const
@@ -129,7 +158,7 @@ namespace clfe
 	class Texture : public TextureBase
 	{
 	private:
-		T* data;
+		const T* data;
 
 		inline uint64_t index(uint32_t x, uint32_t y)
 		{
@@ -138,7 +167,7 @@ namespace clfe
 
 	public:
 		// Initializes with default allocation if data is nullptr
-		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : TextureBase(width, height, width * height * Channels, type == TextureType::INVALID ? determineTextureType<Channels, T>() : type), data(data)
+		Texture(uint32_t width, uint32_t height, const T* data = nullptr, TextureType type = TextureType::INVALID, bool deleteOnNoRef = true) : TextureBase(type == TextureType::INVALID ? determineTextureType<Channels, T>() : type, Channels, width, height, deleteOnNoRef), data(data)
 		{
 			if (data == nullptr)
 			{
@@ -146,12 +175,12 @@ namespace clfe
 			}
 		}
 
-		~Texture()
+		virtual ~Texture() override
 		{
 			delete data;
 		}
 
-		const T* getData()
+		inline const T* getData()
 		{
 			return data;
 		}
@@ -161,9 +190,14 @@ namespace clfe
 			return data;
 		}
 
-		virtual uint8_t channels() const override
+		virtual TextureBase* copy(bool deleteOnNoRef) override
 		{
-			return Channels;
+			T* newData = new T[size_];
+			for (uint32_t i = 0; i < size_; i++)
+			{
+				newData[i] = data[i];
+			}
+			return new Texture<Channels, T>(width_, height_, newData, type_, deleteOnNoRef);
 		}
 
 		Vector<Channels, T> get(uint32_t x, uint32_t y)

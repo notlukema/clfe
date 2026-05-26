@@ -9,9 +9,7 @@ namespace clfe
 	{}
 
 	Model::SubMesh::~SubMesh()
-	{
-		// don't delete material yet
-	}
+	{}
 
 	void Model::SubMesh::addVertex(Vector<3, float> vertex, Vector<2, float>* uvs, uint8_t uvCount)
 	{
@@ -80,12 +78,16 @@ namespace clfe
 
 	Model::~Model()
 	{
-		// something here?
+		for (uint32_t i = 0; i < meshCount; i++)
+		{
+			meshes[i].material()->removeReference();
+		}
 	}
 
 	void Model::newMesh(Material* material)
 	{
 		meshCount++;
+		material->addReference();
 		meshes.push_back(SubMesh(material));
 	}
 
@@ -97,6 +99,7 @@ namespace clfe
 		}
 
 		meshCount--;
+		meshes.at(mesh).material()->removeReference();
 		meshes.erase(meshes.begin() + mesh);
 	}
 

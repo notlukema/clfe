@@ -10,7 +10,7 @@ namespace clfe
 	class Texture<4, T> : public TextureBase
 	{
 	private:
-		T* data;
+		const T* data;
 
 		inline uint64_t index(uint32_t x, uint32_t y)
 		{
@@ -19,7 +19,7 @@ namespace clfe
 
 	public:
 		// Initializes with default allocation if data is nullptr
-		Texture(uint32_t width, uint32_t height, T* data = nullptr, TextureType type = TextureType::INVALID) : TextureBase(width, height, width * height * 4, type == TextureType::INVALID ? determineTextureType<4, T>() : type), data(data)
+		Texture(uint32_t width, uint32_t height, const T* data = nullptr, TextureType type = TextureType::INVALID, bool deleteOnNoRef = true) : TextureBase(type == TextureType::INVALID ? determineTextureType<4, T>() : type, 4, width, height, deleteOnNoRef), data(data)
 		{
 			if (data == nullptr)
 			{
@@ -27,12 +27,12 @@ namespace clfe
 			}
 		}
 
-		~Texture()
+		virtual ~Texture() override
 		{
 			delete data;
 		}
 
-		const T* getData()
+		inline const T* getData()
 		{
 			return data;
 		}
@@ -42,9 +42,14 @@ namespace clfe
 			return data;
 		}
 
-		virtual uint8_t channels() const override
+		virtual TextureBase* copy(bool deleteOnNoRef) override
 		{
-			return 4;
+			T* newData = new T[size_];
+			for (uint32_t i = 0; i < size_; i++)
+			{
+				newData[i] = data[i];
+			}
+			return new Texture<4, T>(width_, height_, newData, type_, deleteOnNoRef);
 		}
 
 		Vector<4, T> get(uint32_t x, uint32_t y)

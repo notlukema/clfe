@@ -1,8 +1,8 @@
 #ifndef CLFE_MODEL_I_H
 #define CLFE_MODEL_I_H
 
-#include "Mesh.h"
 #include "Material_i.h"
+#include "ObjectConst.h"
 
 #include "clm/VectorImpl.h"
 
@@ -69,7 +69,7 @@ namespace clfe
 				return vertices_;
 			}
 
-			inline const VectorList<Vector<2, float>>& uv(uint32_t i) const
+			inline const VectorList<Vector<2, float>>& uvs(uint32_t i) const
 			{
 				return uvs_[i];
 			}
@@ -128,6 +128,26 @@ namespace clfe
 		inline const SubMesh& getMesh(uint32_t mesh)
 		{
 			return meshes[mesh];
+		}
+
+		inline const VectorList<Vector<3, float>>& getVertices(uint32_t mesh) const
+		{
+			return meshes[mesh].vertices();
+		}
+
+		inline const VectorList<Vector<2, float>>& getUVs(uint32_t mesh, uint32_t i) const
+		{
+			return meshes[mesh].uvs(i);
+		}
+
+		inline const VectorList<uint32_t>& getIndices(uint32_t mesh) const
+		{
+			return meshes[mesh].indices();
+		}
+
+		inline Material* getMaterial(uint32_t mesh) const
+		{
+			return meshes[mesh].material();
 		}
 
 		template <typename... Args>

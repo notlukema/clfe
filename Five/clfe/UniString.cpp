@@ -83,6 +83,40 @@ namespace clfe
 		return str_wchar_t;
 	}
 
+	char UniString::char_at(size_t i) const
+	{
+		if (i < 0 || i >= len_)
+		{
+			return 0;
+		}
+		if (str_char == nullptr)
+		{
+			if (UNISTR_BASE_STR == nullptr)
+			{
+				return 0;
+			}
+			str_char = toStrNarrow(UNISTR_BASE_STR);
+		}
+		return str_char[i];
+	}
+
+	wchar_t UniString::wchar_t_at(size_t i) const
+	{
+		if (i < 0 || i >= len_)
+		{
+			return 0;
+		}
+		if (str_wchar_t == nullptr)
+		{
+			if (UNISTR_BASE_STR == nullptr)
+			{
+				return 0;
+			}
+			str_wchar_t = toStrWide(UNISTR_BASE_STR);
+		}
+		return str_wchar_t[i];
+	}
+
 	// Utility
 
 	UniString::operator bool() const
@@ -124,6 +158,8 @@ namespace clfe
 		return *this;
 	}
 
+	// Operators
+
 	UniString::operator const char* () const
 	{
 		return get_char();
@@ -137,6 +173,22 @@ namespace clfe
 	UniString operator+(const UniString& str1, const UniString& str2)
 	{
 		return UniString(concatStr(str1.str_char, str2.str_char));
+	}
+
+	bool operator==(const UniString& str1, const UniString& str2)
+	{
+		if (str1.len_ != str2.len_)
+		{
+			return false;
+		}
+		for (size_t i = 0; i < str1.len_; i++)
+		{
+			if (str1.str_char[i] != str2.str_char[i])
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

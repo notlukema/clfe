@@ -40,11 +40,16 @@ int main()
 
     //print(pipeline->getData());
 
-    Scene* scene = new Scene();
-
     Model* rect = createRectModel(100, 100, 100, RedMaterial());
 
-    scene->createObject(rect);
+
+    Scene* scene = new Scene();
+
+    scene->addObject(rect);
+
+    delete rect;
+
+    // f
 
     while (wnd1->exists())
     {

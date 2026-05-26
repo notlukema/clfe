@@ -106,6 +106,13 @@ namespace clfe
 	}
 #endif
 
+#ifdef CLFE_UNISTRING_H
+	void print(const UniString& str)
+	{
+		printf(str.get_char());
+	}
+#endif
+
 #ifdef CLFE_PIPELINEDATA_H
 	void print(const PipelineData& data)
 	{

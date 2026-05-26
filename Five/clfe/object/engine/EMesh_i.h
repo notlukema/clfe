@@ -1,7 +1,8 @@
-#ifndef CLFE_MESH_H
-#define CLFE_MESH_H
+#ifndef CLFE_MESH_ENGINE_I_H
+#define CLFE_MESH_ENGINE_I_H
 
-#include "Material_i.h"
+#include "EMaterial_i.h"
+#include "../ObjectConst.h"
 
 #include "clm/VectorImpl.h"
 
@@ -10,12 +11,9 @@
 namespace clfe
 {
 
-	inline constexpr uint8_t UVChannelCount = 8;
-
 	class Scene;
-	class Model;
 
-	class Mesh
+	class EMesh
 	{
 	private:
 		uint32_t vCount;
@@ -25,14 +23,18 @@ namespace clfe
 		Vector<2, float>* uvs_[UVChannelCount];
 		uint32_t* indices_;
 
-		Material* material_;
+		EMaterial* material_;
 
 		friend class Scene;
-		friend class Model;
-		Mesh(Material* material, uint32_t vertexCount, uint32_t indexCount, Vector<3, float>* vertices, Vector<2, float>** uvs, uint32_t* indices);
+		EMesh(EMaterial* material, uint32_t vertexCount, uint32_t indexCount, Vector<3, float>* vertices, Vector<2, float>** uvs, uint32_t* indices);
 
 	public:
-		~Mesh();
+		~EMesh();
+
+		inline EMaterial* material() const
+		{
+			return material_;
+		}
 
 		inline uint32_t vertexCount() const
 		{

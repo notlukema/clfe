@@ -11,13 +11,13 @@ namespace clfe
 	template <typename T>
 	Material* createSingleColorMaterial(T r, T g, T b, T a)
 	{
-		return new Material(1, createSingleColorTexture(r, g, b, a));
+		return new Material(createSingleColorTexture(r, g, b, a));
 	}
 
 	template <typename T>
 	Material* createSingleColorMaterial(T r, T g, T b)
 	{
-		return new Material(1, createSingleColorTexture(r, g, b));
+		return new Material(createSingleColorTexture(r, g, b));
 	}
 
 	inline Material* RedMaterial()

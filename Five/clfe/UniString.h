@@ -3,6 +3,8 @@
 
 #include "TypeTraits.h"
 
+#include <iostream>
+
 namespace clfe
 {
 
@@ -40,15 +42,32 @@ namespace clfe
 		const wchar_t* get_wchar_t() const;
 
 		template <typename T>
-		const T* get() const
+		inline const T* get() const
 		{
-			if (IsSame<T, char>)
+			if constexpr (IsSame<T, char>)
 			{
 				return get_char();
 			}
-			if (IsSame<T, wchar_t>)
+			if constexpr (IsSame<T, wchar_t>)
 			{
 				return get_wchar_t();
+			}
+			return nullptr;
+		}
+
+		char char_at(size_t i) const;
+		wchar_t wchar_t_at(size_t i) const;
+
+		template <typename T>
+		inline T at(size_t i) const
+		{
+			if constexpr (IsSame<T, char>)
+			{
+				return char_at(i);
+			}
+			if constexpr (IsSame<T, wchar_t>)
+			{
+				return wchar_t_at(i);
 			}
 			return nullptr;
 		}
@@ -64,10 +83,12 @@ namespace clfe
 		operator const wchar_t* () const;
 
 		friend UniString operator+(const UniString& str1, const UniString& str2);
+		friend bool operator==(const UniString& str1, const UniString& str2);
 
 	};
 
 	UniString operator+(const UniString& str1, const UniString& str2);
+	bool operator==(const UniString& str1, const UniString& str2);
 
 }
 

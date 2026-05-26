@@ -21,12 +21,6 @@
     <ClCompile Include="clfe\input\InputCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clfe\pipeline\Pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +93,9 @@
     <ClCompile Include="clfe\object\MVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clfe\object\cam\Frustum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clfe\input\InputCore.h">
@@ -116,12 +113,6 @@
     <ClInclude Include="clfe\input\SystemInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clfe\pipeline\ModernPipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,9 +120,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\pipeline\PipelineData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clfe\pipeline\Vulkan1_4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\window\Window.h">
@@ -366,6 +354,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clfe\object\ObjectConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\cam\Camera_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clfe\object\cam\Frustum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -147,6 +147,7 @@
     <ClCompile Include="clfe\CLFE.cpp" />
     <ClCompile Include="clfe\Global.cpp" />
     <ClCompile Include="clfe\input\InputCore.cpp" />
+    <ClCompile Include="clfe\object\cam\Frustum.cpp" />
     <ClCompile Include="clfe\object\engine\EMaterial_i.cpp" />
     <ClCompile Include="clfe\object\engine\EMesh_i.cpp" />
     <ClCompile Include="clfe\object\engine\EObject_i.cpp" />
@@ -157,8 +158,6 @@
     <ClCompile Include="clfe\object\Scene.cpp" />
     <ClCompile Include="clfe\object\tex\Texture_i.cpp" />
     <ClCompile Include="clfe\pipeline\Pipeline.cpp" />
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Global_i.cpp" />
-    <ClCompile Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.cpp" />
     <ClCompile Include="clfe\Placeholder.cpp" />
     <ClCompile Include="clfe\System.cpp" />
     <ClCompile Include="clfe\UniString.cpp" />
@@ -183,6 +182,9 @@
     <ClInclude Include="clfe\input\KeyTables.h" />
     <ClInclude Include="clfe\input\SystemInput.h" />
     <ClInclude Include="clfe\Log.h" />
+    <ClInclude Include="clfe\object\Camera.h" />
+    <ClInclude Include="clfe\object\cam\Camera_i.h" />
+    <ClInclude Include="clfe\object\cam\Frustum.h" />
     <ClInclude Include="clfe\object\engine\EMaterial_i.h" />
     <ClInclude Include="clfe\object\engine\EObject_i.h" />
     <ClInclude Include="clfe\object\Material.h" />
@@ -203,9 +205,6 @@
     <ClInclude Include="clfe\pipeline\ModernPipeline.h" />
     <ClInclude Include="clfe\pipeline\Pipeline.h" />
     <ClInclude Include="clfe\pipeline\PipelineData.h" />
-    <ClInclude Include="clfe\pipeline\Vulkan1_4.h" />
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Global_i.h" />
-    <ClInclude Include="clfe\pipeline\Vulkan1_4\Vulkan1_4_i.h" />
     <ClInclude Include="clfe\Placeholder.h" />
     <ClInclude Include="clfe\SharedLink.h" />
     <ClInclude Include="clfe\System.h" />

@@ -5,6 +5,7 @@
 #include "Matrix_i.h"
 #include "Vector_i.h"
 #include "VectorUtils_i.h"
+#include "../Mathf.h"
 
 namespace clfe
 {
